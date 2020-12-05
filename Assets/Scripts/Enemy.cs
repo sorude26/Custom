@@ -17,6 +17,7 @@ public class Enemy : Unit
 
     private bool search = false;
     private bool move = false;
+    private bool attack = false;
 
     private Target targetUnit = null;
 
@@ -78,7 +79,24 @@ public class Enemy : Unit
                     ActionNow = false;
                 }
             }
-            
+            if (moveMood)
+            {
+                UnitMove();
+            }
+            if (move && !moveMood)//移動終了で位置を保存
+            {
+                Vector3 thisPos = transform.position;
+                if (CurrentPosX != (int)thisPos.x / gameMap.mapScale || CurrentPosZ != (int)thisPos.z / gameMap.mapScale)
+                {
+                    CurrentPosX = (int)thisPos.x / gameMap.mapScale;
+                    CurrentPosZ = (int)thisPos.z / gameMap.mapScale;
+                    CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
+                    attack = true;
+                }
+                gameStage.SetUnitPos();
+            }
+
+            UnitAngleControl();
         }
     }
 }
