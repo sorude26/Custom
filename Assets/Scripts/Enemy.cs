@@ -11,47 +11,74 @@ public enum EnemyAI
 }
 public class Enemy : Unit
 {
-    /*
-
     [SerializeField]
     EnemyAI enemyAI = EnemyAI.Attacker;
     public bool ActionNow { get; private set; } = false;
 
     private bool search = false;
+    private bool move = false;
 
-    private List<Target> targetList;
+    private Target targetUnit = null;
 
     private void Update()
     {
         if (ActionNow)
         {
-            if (!search)
-            {
-                gameMap.StartSearch(this);
-                search = true;
-            }
             if (enemyAI == EnemyAI.Attacker)
             {
-                for (int i = 0; i < gameMap.maxX; i++)
+                if (!search)
                 {
-                    for (int j = 0; j < gameMap.maxZ; j++)
+                    gameMap.StartSearch(this);
+                    for (int i = 0; i < gameMap.maxX; i++)
                     {
-                        if (gameMap.MoveList[i][j].movePoint > 0)
+                        for (int j = 0; j < gameMap.maxZ; j++)
                         {
-                            foreach (Player target in unitManager.GetPlayerList())
+                            if (gameMap.MoveList[i][j].movePoint > 0)
                             {
-                                Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
-                                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                                int a = 0;
+                                foreach (Player target in unitManager.GetPlayerList())
                                 {
-                                    int point = movePower - gameMap.MoveList[i][j].movePoint;
-                                    point += (target.GetMaxHp() - target.CurrentHp) * 10;
+                                    int point = 0;
+                                    Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
+                                    if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                                    {
+                                        point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;
+                                        point += (target.GetMaxHp() - target.CurrentHp) * 100;
+                                        point -= a;
+                                        if (a != 0)
+                                        {
+                                            if (point > targetUnit.TargetPoint)
+                                            {
+                                                targetUnit = new Target(target, point, i, j);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            targetUnit = new Target(target, point, i, j);
+                                        }
+                                    }
+                                    a++;
                                 }
                             }
                         }
                     }
+                    search = true;
+                }
+                if (targetUnit != null)
+                {
+                    if (!move)
+                    {
+                        UnitMove(gameMap.MoveList, targetUnit.PosX, targetUnit.PosZ);
+                        move = true;
+                    }
+                }
+                else
+                {
+                    search = false;
+                    ActionNow = false;
                 }
             }
+            
         }
     }
-    */
 }

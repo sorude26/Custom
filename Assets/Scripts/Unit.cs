@@ -20,11 +20,14 @@ public class Unit : MonoBehaviour
     {
         public Unit TargetUnit { get; set; }
         public int TargetPoint { get; set; }
-
-        public Target(Unit target, int point)
+        public int PosX { get; set; }
+        public int PosZ { get; set; }
+        public Target(Unit target, int point,int x, int z)
         {
             TargetUnit = target;
             TargetPoint = point;
+            PosX = x;
+            PosZ = z;
         }
     }
 
@@ -378,8 +381,8 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void TargetShot(Unit targetUnit)
     {
-        Vector3 lockOnPos = targetUnit.transform.position;
-        Vector3 targetDir = lockOnPos - transform.position;
+        Vector3 targetPos = targetUnit.transform.position;
+        Vector3 targetDir = targetPos - transform.position;
         targetDir.y = 0.0f;
         Quaternion p = Quaternion.Euler(0, 180, 0);
         Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
