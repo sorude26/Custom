@@ -23,11 +23,11 @@ public class Stage : MonoBehaviour
     private void Awake()
     {
         StageDate = this;
-        unitManager = UnitManager.Instance;
     }
 
     void Start()
     {
+        unitManager = UnitManager.Instance;
         foreach (Enemy unit in unitManager.GetEnemies())
         {
             stageUnits.Add(unit);
