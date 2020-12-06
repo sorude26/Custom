@@ -83,7 +83,7 @@ public class Enemy : Unit
             {
                 UnitMove();
             }
-            if (move && !moveMood)//移動終了で位置を保存
+            if (move && !moveMood && !attack)//移動終了で位置を保存
             {
                 Vector3 thisPos = transform.position;
                 if (CurrentPosX != (int)thisPos.x / gameMap.mapScale || CurrentPosZ != (int)thisPos.z / gameMap.mapScale)
@@ -91,12 +91,23 @@ public class Enemy : Unit
                     CurrentPosX = (int)thisPos.x / gameMap.mapScale;
                     CurrentPosZ = (int)thisPos.z / gameMap.mapScale;
                     CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                    attack = true;
                 }
                 gameStage.SetUnitPos();
+                attack = true;
             }
-
             UnitAngleControl();
+            if (attack)
+            {
+                if (targetUnit != null)
+                {
+                    TargetShot(targetUnit.TargetUnit);
+                }
+                targetUnit = null;
+                search = false;
+                move = false;
+                attack = false;
+                ActionNow = false;
+            }
         }
     }
 }
