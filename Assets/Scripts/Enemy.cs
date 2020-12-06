@@ -110,4 +110,9 @@ public class Enemy : Unit
             }
         }
     }
+
+    public void StatAction()
+    {
+        ActionNow = true;
+    }
 }

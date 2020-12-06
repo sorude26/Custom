@@ -6,7 +6,7 @@ public class Stage : MonoBehaviour
 {
     public Player PlayerUnit { get; private set; }
     public Unit subUnit;
-    public Unit enemyUnit;
+    public Enemy enemyUnit;
     private UnitManager unitManager;
     public List<Unit> stageUnits;
     public List<int[]> stageUnitsPos = new List<int[]>();

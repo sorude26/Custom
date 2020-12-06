@@ -47,4 +47,9 @@ public class StageUI : MonoBehaviour
         message = false;
         messageWindow.SetActive(false);
     }
+
+    public void OnClickEnemyMove()
+    {
+        stageDate.enemyUnit.StatAction();
+    }
 }

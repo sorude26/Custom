@@ -1520,6 +1520,7 @@ MonoBehaviour:
   maxHp: 100
   startPosX: 5
   startPosZ: 2
+  detectionRange: 60
   moveSpeed: 20
   haveWeapon: {fileID: 1848101434}
   enemyAI: 0
@@ -1928,7 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subUnit: {fileID: 965185967}
-  enemyUnit: {fileID: 0}
+  enemyUnit: {fileID: 630850602}
   stageUnits: []
   map: {fileID: 1765515230}
 --- !u!212 &771640687
@@ -2883,6 +2884,7 @@ MonoBehaviour:
   maxHp: 100
   startPosX: 2
   startPosZ: 5
+  detectionRange: 0
   moveSpeed: 20
   haveWeapon: {fileID: 0}
   enemyAI: 0
@@ -3720,6 +3722,7 @@ MonoBehaviour:
   maxHp: 100
   startPosX: 0
   startPosZ: 0
+  detectionRange: 0
   moveSpeed: 20
   haveWeapon: {fileID: 407926098}
   mark: {fileID: 3373301158540351835, guid: 316553b3b917f274d9544c22b4ad2b31, type: 3}
@@ -4360,7 +4363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4389,7 +4392,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1994827878}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1505810063}
+        m_MethodName: OnClickEnemyMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1994827878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4676,6 +4690,7 @@ MonoBehaviour:
   maxHp: 100
   startPosX: 8
   startPosZ: 8
+  detectionRange: 0
   moveSpeed: 20
   haveWeapon: {fileID: 199916329}
   mark: {fileID: 3373301158540351835, guid: 316553b3b917f274d9544c22b4ad2b31, type: 3}

@@ -46,7 +46,7 @@ public class Unit : MonoBehaviour
     public int CurrentHp { get; protected set; }
     public int CurrentPosX { get; protected set; } = 0;//現在位置
     public int CurrentPosZ { get; protected set; } = 0;//現在位置
-
+    [SerializeField] float detectionRange;
     public float DetectionRange { get; protected set; }//索敵範囲
     public float CurrentPosY { get; set; }
 
@@ -82,6 +82,7 @@ public class Unit : MonoBehaviour
         gameMap = Map.Instans;
         gameStage = Stage.StageDate;
         unitManager = UnitManager.Instance;
+        DetectionRange = detectionRange;
         CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
     }
