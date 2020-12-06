@@ -132,10 +132,20 @@ public class Unit : MonoBehaviour
         {
             Debug.Log("ダメージ発生" + damege);
             CurrentHp -= damege;
+            if (CurrentHp <= 0)
+            {
+                Debug.Log("撃破");
+                Dead();
+            }
         }
     }
-
-
+    /// <summary>
+    /// 撃破処理
+    /// </summary>
+    protected void Dead()
+    {
+        gameObject.SetActive(false);
+    }
     /// <summary>
     /// ユニット瞬間移動
     /// </summary>

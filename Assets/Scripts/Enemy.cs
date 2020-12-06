@@ -80,23 +80,26 @@ public class Enemy : Unit
                         int number = 0;
                         foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
                         {
-                            int point = 0;
-                            Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
-                            if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                            if (target.CurrentHp > 0)
                             {
-                                point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が多い場合に高得点
-                                point += (target.GetMaxHp() - target.CurrentHp) * 100;//ターゲットの耐久値の減少量が大きい場合に高得点
-                                point -= number;//ターゲットの登録順で得点に差
-                                if (targetUnit != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                                int point = 0;
+                                Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
+                                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                                 {
-                                    if (point > targetUnit.TargetPoint)
+                                    point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が多い場合に高得点
+                                    point += (target.GetMaxHp() - target.CurrentHp) * 100;//ターゲットの耐久値の減少量が大きい場合に高得点
+                                    point -= number;//ターゲットの登録順で得点に差
+                                    if (targetUnit != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                                    {
+                                        if (point > targetUnit.TargetPoint)
+                                        {
+                                            targetUnit = new Target(target, point, i, j);
+                                        }
+                                    }
+                                    else
                                     {
                                         targetUnit = new Target(target, point, i, j);
                                     }
-                                }
-                                else
-                                {
-                                    targetUnit = new Target(target, point, i, j);
                                 }
                             }
                             number++;
