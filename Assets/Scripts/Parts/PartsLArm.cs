@@ -8,6 +8,8 @@ public class PartsLArm : UnitParts
 
     [SerializeField]
     GameObject armParts;
+    [SerializeField]
+    Transform grip;
     void Start()
     {
         StartSet();

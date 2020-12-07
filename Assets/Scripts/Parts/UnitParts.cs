@@ -6,16 +6,15 @@ public class UnitParts : MonoBehaviour
 {
     [SerializeField]
     protected string partsName;
-
     public string PartsName { get; protected set; }
 
     [SerializeField]
     protected int partsHp;
     public int CurrentPartsHp { get; protected set; }
+
     [SerializeField]
     protected int weight;
     public int Weight { get; protected set; }//重量
-
     public bool PartsDestroy { get; protected set; }
     protected void StartSet()
     {
