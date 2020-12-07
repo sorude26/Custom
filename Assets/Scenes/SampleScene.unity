@@ -1515,12 +1515,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitAngle: 1
-  movePower: 5
+  movePower: 3
   liftingForce: 2
   maxHp: 100
   startPosX: 5
   startPosZ: 2
-  detectionRange: 60
+  detectionRange: 30
   moveSpeed: 20
   haveWeapon: {fileID: 1848101434}
   enemyAI: 0
