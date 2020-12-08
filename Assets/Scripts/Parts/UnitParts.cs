@@ -13,6 +13,10 @@ public class UnitParts : MonoBehaviour
     public int CurrentPartsHp { get; protected set; }
 
     [SerializeField]
+    protected int defense;
+    public int Defense { get; protected set; }
+
+    [SerializeField]
     protected int weight;
     public int Weight { get; protected set; }//重量
     public bool PartsDestroy { get; protected set; }
@@ -20,6 +24,12 @@ public class UnitParts : MonoBehaviour
     {
         PartsName = partsName;
         CurrentPartsHp = partsHp;
+        Defense = defense;
         Weight = weight;
+    }
+
+    public void Damage(int damage)
+    {
+        CurrentPartsHp -= damage;
     }
 }

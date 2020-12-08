@@ -63,5 +63,12 @@ public class Bullet : MonoBehaviour
             }
             Power -= hitUnit.Defense;
         }
+
+        UnitParts hitParts = other.GetComponent<UnitParts>();
+        if (hitParts != null)
+        {
+            hitParts.Damage(Power);
+            Power -= hitParts.Defense;
+        }
     }
 }
