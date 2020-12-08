@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitPartsList : MonoBehaviour
 {
+    public static UnitPartsList Instanse { get; private set; }
     [SerializeField]
     List<PartsHead> HeadList;
     [SerializeField]
@@ -14,6 +15,11 @@ public class UnitPartsList : MonoBehaviour
     List<PartsRArm> RArmsList;
     [SerializeField]
     List<PartsLeg> LegList;
+
+    private void Awake()
+    {
+        Instanse = this;
+    }
 
     public PartsHead GetPartsHead(int i) { return HeadList[i]; }
     public PartsBody GetPartsBody(int i) { return BodyList[i]; }
