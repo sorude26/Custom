@@ -249,7 +249,7 @@ public class Unit : MonoBehaviour
                 }
             }
         }
-        else if (movePosZ != moveTargetPosZ && MoveNow)
+        if (movePosZ != moveTargetPosZ && MoveNow)
         {
             if (movePosZ < moveTargetPosZ)
             {
