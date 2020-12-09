@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,14 +37,16 @@ public class Enemy : Unit
             if (move && !moveMood && !attack)//移動終了で位置を保存
             {
                 Vector3 thisPos = transform.position;
-                if (CurrentPosX != (int)thisPos.x / gameMap.mapScale || CurrentPosZ != (int)thisPos.z / gameMap.mapScale)
+                //Debug.Log(thisPos.x + "," + thisPos.z);
+                if (CurrentPosX != (int)Math.Round(thisPos.x) / gameMap.mapScale || CurrentPosZ != (int)Math.Round(thisPos.z) / gameMap.mapScale)
                 {
-                    CurrentPosX = (int)thisPos.x / gameMap.mapScale;
-                    CurrentPosZ = (int)thisPos.z / gameMap.mapScale;
+                    CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
+                    CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
                     CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
+                    gameStage.MoveFinish = false;
                 }
+                //Debug.Log(CurrentPosX +"," + CurrentPosZ);
                 gameStage.SetUnitPos();
-                attack = true;
             }
             UnitAngleControl();
             if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
