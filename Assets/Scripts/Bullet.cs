@@ -67,6 +67,7 @@ public class Bullet : MonoBehaviour
         UnitParts hitParts = other.GetComponent<UnitParts>();
         if (hitParts != null)
         {
+            Debug.Log("命中");
             hitParts.Damage(Power);
             Power -= hitParts.Defense;
         }

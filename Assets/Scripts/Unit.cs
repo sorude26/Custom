@@ -438,7 +438,6 @@ public class Unit : MonoBehaviour
         transform.rotation = endRot;
         targetDir = targetPos - LArm.ArmParts().transform.position;
         endRot = Quaternion.LookRotation(targetDir) * p;
-        p = Quaternion.Euler(180, 180, 180);
         LArm.ArmParts().transform.rotation = endRot;
         LArmWeapon.Shot();
     }

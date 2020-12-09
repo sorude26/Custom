@@ -78,7 +78,7 @@ public class Weapon : MonoBehaviour
     {
         GameObject bullet = Instantiate(thisBullet);
         Bullet shotBullet = bullet.GetComponent<Bullet>();
-        shotBullet.StartMove(this, muzzle.position, transform.forward);
+        shotBullet.StartMove(this, muzzle.position, transform.forward * -1);
     }
 
     private void MachineGunShot()
