@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalLeg
   partsHp: 80
+  defense: 0
   weight: 40
   moveType: 0
   movePower: 6
@@ -321,7 +322,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8809973078818939221}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.4905148, y: 0.4804926, z: 0.83714867}
