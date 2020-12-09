@@ -457,6 +457,7 @@ public class Unit : MonoBehaviour
     public void UnitCreate(int headID,int bodyID, int lArmID,int weaponLID, int rArmID, int weaponRID, int legID)
     {
         GameObject leg = Instantiate(partsList.GetLegObject(legID));
+        leg.transform.position = transform.position;
         leg.transform.parent = transform;
         Leg = leg.GetComponent<PartsLeg>();
         GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
