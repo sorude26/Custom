@@ -14,5 +14,9 @@ public class PartsLArm : UnitParts
     {
         StartSet();
     }
-
+    public Transform GetGrip()
+    {
+        return grip;
+    }
+    public GameObject ArmParts() { return armParts; }
 }

@@ -22,4 +22,8 @@ public class PartsBody : UnitParts
         UnitOutput = unitOutput;
         LiftingForce = liftingForce;
     }
+
+    public Transform GetHeadPos() { return headParts; }
+    public Transform GetRArmPos() { return rArmParts; }
+    public Transform GetLArmPos() { return lArmParts; }
 }

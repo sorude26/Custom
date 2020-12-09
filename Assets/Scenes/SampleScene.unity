@@ -3968,6 +3968,8 @@ MonoBehaviour:
   - {fileID: 5241919623720192512, guid: 2f7af28f473e08740916ad25c92d1345, type: 3}
   LegList:
   - {fileID: 8809973078818939222, guid: f965084e377d7d84485cd09a1c79f0aa, type: 3}
+  weaponsList:
+  - {fileID: 5040189597040958365, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
 --- !u!212 &1758934267
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -32,4 +32,9 @@ public class UnitParts : MonoBehaviour
     {
         CurrentPartsHp -= damage;
     }
+
+    public void TransFormParts(Vector3 partsPos)
+    {
+        transform.position = partsPos;
+    }
 }

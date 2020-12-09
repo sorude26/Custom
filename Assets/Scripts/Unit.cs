@@ -53,6 +53,7 @@ public class Unit : MonoBehaviour
     protected UnitManager unitManager;
     protected Map gameMap;
     protected Stage gameStage;
+    protected UnitPartsList partsList;
 
     protected List<int[]> unitMoveList;
 
@@ -71,6 +72,14 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected Weapon haveWeapon;
     public int Defense { get; protected set; } = 20;
+
+    public PartsHead Head { get; protected set; }
+    public PartsBody Body { get; protected set; }
+    public PartsLArm LArm { get; protected set; }
+    public PartsRArm RArm { get; protected set; }
+    public PartsLeg Leg { get; protected set; }
+    public Weapon LArmWeapon { get; protected set; }
+    public Weapon RArmWeapon { get; protected set; }
     protected void Awake()
     {
         CurrentHp = maxHp;
@@ -82,6 +91,7 @@ public class Unit : MonoBehaviour
         gameMap = Map.Instans;
         gameStage = Stage.StageDate;
         unitManager = UnitManager.Instance;
+        partsList = UnitPartsList.Instance;
         DetectionRange = detectionRange;
         CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
@@ -399,5 +409,78 @@ public class Unit : MonoBehaviour
         Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
         transform.rotation = endRot;
         haveWeapon.Shot();
+    }
+    /// <summary>
+    /// ターゲットに攻撃
+    /// </summary>
+    /// <param name="targetUnit"></param>
+    public void TargetShot(Unit targetUnit,Weapon attackWeapon)
+    {
+        Vector3 targetPos = targetUnit.transform.position;
+        Vector3 targetDir = targetPos - transform.position;
+        targetDir.y = 0.0f;
+        Quaternion p = Quaternion.Euler(0, 180, 0);
+        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+        transform.rotation = endRot;
+        attackWeapon.Shot();
+    }
+    /// <summary>
+    /// ターゲットに攻撃
+    /// </summary>
+    /// <param name="targetUnit"></param>
+    public void LArmTargetShot(Unit targetUnit)
+    {
+        Vector3 targetPos = targetUnit.Body.transform.position;
+        Vector3 targetDir = targetPos - transform.position;
+        targetDir.y = 0.0f;
+        Quaternion p = Quaternion.Euler(0, 180, 0);
+        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+        transform.rotation = endRot;
+        targetDir = targetPos - LArm.ArmParts().transform.position;
+        endRot = Quaternion.LookRotation(targetDir) * p;
+        p = Quaternion.Euler(180, 180, 180);
+        LArm.ArmParts().transform.rotation = endRot;
+        LArmWeapon.Shot();
+    }
+    /// <summary>
+    /// 指定した見た目のユニットを生成する
+    /// </summary>
+    /// <param name="headID">ヘッドパーツID</param>
+    /// <param name="bodyID">ボディパーツID</param>
+    /// <param name="lArmID">レフトアームパーツID</param>
+    /// <param name="weaponLID">レフトアーム装備武器ID</param>
+    /// <param name="rArmID">ライトアームパーツID</param>
+    /// <param name="weaponRID">ライトアーム装備武器ID</param>
+    /// <param name="legID">レッグパーツID</param>
+    public void UnitCreate(int headID,int bodyID, int lArmID,int weaponLID, int rArmID, int weaponRID, int legID)
+    {
+        GameObject leg = Instantiate(partsList.GetLegObject(legID));
+        leg.transform.parent = transform;
+        Leg = leg.GetComponent<PartsLeg>();
+        GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
+        body.transform.parent = transform;
+        Body = body.GetComponent<PartsBody>();
+        Body.TransFormParts(Leg.GetPartsHigh().position);
+        GameObject head = Instantiate(partsList.GetHeadObject(headID));
+        head.transform.parent = transform;
+        Head = head.GetComponent<PartsHead>();
+        Head.TransFormParts(Body.GetHeadPos().position);
+        GameObject lArm = Instantiate(partsList.GetLArmObject(lArmID));
+        lArm.transform.parent = transform;
+        LArm = lArm.GetComponent<PartsLArm>();
+        LArm.TransFormParts(Body.GetLArmPos().position);
+        GameObject weaponL = Instantiate(partsList.GetWeaponObject(weaponLID));
+        weaponL.transform.parent = LArm.ArmParts().transform;
+        LArmWeapon = weaponL.GetComponent<Weapon>();
+        LArmWeapon.TransFormParts(LArm.GetGrip().position);
+        GameObject rArm = Instantiate(partsList.GetRArmObject(rArmID));
+        rArm.transform.parent = transform;
+        RArm = rArm.GetComponent<PartsRArm>();
+        RArm.TransFormParts(Body.GetRArmPos().position);
+        GameObject weaponR = Instantiate(partsList.GetWeaponObject(weaponRID));
+        weaponR.transform.parent = RArm.ArmParts().transform;
+        RArmWeapon = weaponR.GetComponent<Weapon>();
+        RArmWeapon.TransFormParts(RArm.GetGrip().position);
+
     }
 }

@@ -137,7 +137,7 @@ public class Stage : MonoBehaviour
     {
         if (!MoveNow)
         {
-            PlayerUnit.TargetShot(subUnit);
+            PlayerUnit.LArmTargetShot(subUnit);
             UnitMoveFinish();
         }
         else
@@ -159,5 +159,11 @@ public class Stage : MonoBehaviour
             PlayerMoveMode = false;
             PlayerTurn = false;
         }
+    }
+
+    public void UnitC()
+    {
+        PlayerUnit.UnitCreate(0, 0, 0, 0, 0, 0, 0);
+        subUnit.UnitCreate(0, 0, 0, 0, 0, 0, 0);
     }
 }

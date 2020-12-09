@@ -52,4 +52,9 @@ public class StageUI : MonoBehaviour
     {
         stageDate.enemyUnit.StatAction();
     }
+
+    public void OnClickCreate()
+    {
+        stageDate.UnitC();
+    }
 }

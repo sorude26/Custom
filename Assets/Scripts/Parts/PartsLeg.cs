@@ -26,4 +26,8 @@ public class PartsLeg : UnitParts
         UnitMoveType = moveType;
     }
 
+    public Transform GetPartsHigh()
+    {
+        return partsHigh;
+    }
 }

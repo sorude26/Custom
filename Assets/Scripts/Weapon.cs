@@ -108,4 +108,8 @@ public class Weapon : MonoBehaviour
             }
         }
     }
+    public void TransFormParts(Vector3 partsPos)
+    {
+        transform.position = partsPos;
+    }
 }
