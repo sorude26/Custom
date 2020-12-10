@@ -20,10 +20,16 @@ public class Enemy : Unit
     private bool move = false;
     private bool attack = false;
 
-    private Target targetUnit = null;
+    public Target Target { get; private set; } = null;
+    private bool SilhouetteOn = false;
 
     private void Update()
     {
+        if (!SilhouetteOn)
+        {
+            SilhouetteOn = true;
+            UnitCreate(0,0,0,0,0,0,0);
+        }
         if (ActionNow)
         {
             if (enemyAI == EnemyAI.Attacker)
@@ -43,7 +49,7 @@ public class Enemy : Unit
                     CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
                     CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
                     CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                    gameStage.MoveFinish = false;
+                    attack = true;
                 }
                 //Debug.Log(CurrentPosX +"," + CurrentPosZ);
                 gameStage.SetUnitPos();
@@ -51,11 +57,13 @@ public class Enemy : Unit
             UnitAngleControl();
             if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
             {
-                if (targetUnit != null)//ターゲットが存在する場合に攻撃
+                Debug.Log("待機");
+                if (Target != null)//ターゲットが存在する場合に攻撃
                 {
-                    TargetShot(targetUnit.TargetUnit);
+                    Debug.Log("攻撃");
+                    LArmTargetShot(Target.TargetUnit);
                 }
-                targetUnit = null;
+                Target = null;
                 search = false;
                 move = false;
                 attack = false;
@@ -92,16 +100,16 @@ public class Enemy : Unit
                                     point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が多い場合に高得点
                                     point += (target.GetMaxHp() - target.CurrentHp) * 100;//ターゲットの耐久値の減少量が大きい場合に高得点
                                     point -= number;//ターゲットの登録順で得点に差
-                                    if (targetUnit != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                                    if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
                                     {
-                                        if (point > targetUnit.TargetPoint)
+                                        if (point > Target.TargetPoint)
                                         {
-                                            targetUnit = new Target(target, point, i, j);
+                                            Target = new Target(target, point, i, j);
                                         }
                                     }
                                     else
                                     {
-                                        targetUnit = new Target(target, point, i, j);
+                                        Target = new Target(target, point, i, j);
                                     }
                                 }
                             }
@@ -112,11 +120,11 @@ public class Enemy : Unit
             }
             search = true;
         }
-        if (targetUnit != null)//ターゲットが設定されているならば移動実施
+        if (Target != null)//ターゲットが設定されているならば移動実施
         {
             if (!move)
             {
-                UnitMove(gameMap.MoveList, targetUnit.PosX, targetUnit.PosZ);
+                UnitMove(gameMap.MoveList, Target.PosX, Target.PosZ);
                 move = true;
             }
         }
