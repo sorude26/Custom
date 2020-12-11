@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     private bool overRange = false;//有効射程外か
     Vector3 moveDir = Vector3.zero;//移動方向
     Vector3 startPos;//発射位置
-    private float diffusivity = 0.02f;//拡散率
+    private float diffusivity;//拡散率
     private void Start()
     {
         startPos = transform.position;
@@ -25,6 +25,7 @@ public class Bullet : MonoBehaviour
     public void StartMove(Weapon weapon,Vector3 pos,Vector3 angle)
     {
         transform.localPosition = pos;
+        diffusivity = weapon.Diffusivity;
         moveDir = angle;
         moveDir.x += Random.Range(-diffusivity, diffusivity);
         moveDir.y += Random.Range(-diffusivity, diffusivity);
@@ -53,6 +54,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         Unit hitUnit = other.GetComponent<Unit>();
         if (hitUnit != null)//命中処理
         {
@@ -63,7 +65,7 @@ public class Bullet : MonoBehaviour
             }
             Power -= hitUnit.Defense;
         }
-
+        */
         UnitParts hitParts = other.GetComponent<UnitParts>();
         if (hitParts != null)
         {

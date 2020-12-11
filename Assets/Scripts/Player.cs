@@ -28,9 +28,20 @@ public class Player : Unit
             gameStage.SetUnitPos();
         }
         UnitAngleControl();
+        
     }
 
-
+    private void LateUpdate()
+    {
+        if (silhouetteOn)
+        {
+            CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
+            if (Body.CurrentPartsHp <= 0)
+            {
+                Dead();
+            }
+        }
+    }
     /// <summary>
     /// 移動可能箇所表示
     /// </summary>

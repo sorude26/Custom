@@ -32,6 +32,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] int totalShotNumber;
     private int shotNumber;//発射弾数
     private float intervalTime;//発射間隔
+    [SerializeField] float diffusivity = 0.02f;//拡散率
+    public float Diffusivity { get; private set; }
     public int NumberOfBullets { get; private set; }//装弾数
     public int Weight { get; private set; }//重量
 
@@ -45,6 +47,7 @@ public class Weapon : MonoBehaviour
         Power = power;
         BulletSpeed = bulletSpeed;
         TotalShotNumber = totalShotNumber;
+        Diffusivity = diffusivity;
     }
     private void Update()
     {

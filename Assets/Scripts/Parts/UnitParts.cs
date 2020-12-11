@@ -30,7 +30,15 @@ public class UnitParts : MonoBehaviour
 
     public void Damage(int damage)
     {
-        CurrentPartsHp -= damage;
+        if (CurrentPartsHp > 0)
+        {
+            CurrentPartsHp -= damage;
+            Debug.Log(partsName + "にヒット" + damage + "ダメージ！残："+ CurrentPartsHp );
+            if (CurrentPartsHp < 0)
+            {
+                CurrentPartsHp = 0;
+            }
+        }
     }
 
     public void TransFormParts(Vector3 partsPos)

@@ -198,7 +198,10 @@ public class Map : MonoBehaviour
         {
             if (x == gameStage.stageUnitsPos[i][0] && z == gameStage.stageUnitsPos[i][1])
             {
-                return;
+                if (!gameStage.stageUnits[i].DestroyBody)
+                {
+                    return;
+                }
             }
         }
         movePower = movePower - MovePoint(MoveList[x][z].MapType);//移動力変動

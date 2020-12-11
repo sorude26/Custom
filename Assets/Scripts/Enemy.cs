@@ -21,13 +21,12 @@ public class Enemy : Unit
     private bool attack = false;
 
     public Target Target { get; private set; } = null;
-    private bool SilhouetteOn = false;
+    
 
     private void Update()
     {
-        if (!SilhouetteOn)
+        if (!silhouetteOn)
         {
-            SilhouetteOn = true;
             UnitCreate(0,0,0,0,0,0,0);
         }
         if (ActionNow)
@@ -70,8 +69,19 @@ public class Enemy : Unit
                 ActionNow = false;
             }
         }
+        
     }
-
+    private void LateUpdate()
+    {
+        if (silhouetteOn)
+        {
+            CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
+            if (Body.CurrentPartsHp <= 0)
+            {
+                Dead();
+            }
+        }
+    }
     public void StatAction()
     {
         ActionNow = true;
@@ -91,13 +101,13 @@ public class Enemy : Unit
                         int number = 0;
                         foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
                         {
-                            if (target.CurrentHp > 0)
+                            if (!target.DestroyBody)
                             {
                                 int point = 0;
                                 Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
                                 if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                                 {
-                                    point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が多い場合に高得点
+                                    point += gameMap.MoveList[i][j].movePoint * 10;//移動量が少ない場合に高得点
                                     point += (target.GetMaxHp() - target.CurrentHp) * 100;//ターゲットの耐久値の減少量が大きい場合に高得点
                                     point -= number;//ターゲットの登録順で得点に差
                                     if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録

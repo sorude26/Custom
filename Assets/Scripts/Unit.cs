@@ -75,12 +75,14 @@ public class Unit : MonoBehaviour
     public int Defense { get; protected set; } = 20;
 
     public PartsHead Head { get; protected set; }
-    public PartsBody Body { get; protected set; }
+    public PartsBody Body { get; protected set; } = null;
     public PartsLArm LArm { get; protected set; }
     public PartsRArm RArm { get; protected set; }
     public PartsLeg Leg { get; protected set; }
     public Weapon LArmWeapon { get; protected set; }
     public Weapon RArmWeapon { get; protected set; }
+    protected bool silhouetteOn = false;
+    public bool DestroyBody { get; protected set; } = false;
     protected void Awake()
     {
         CurrentHp = maxHp;
@@ -119,6 +121,7 @@ public class Unit : MonoBehaviour
             gameStage.SetUnitPos();
         }
         UnitAngleControl();
+        
     }
 
     /// <summary>
@@ -157,6 +160,8 @@ public class Unit : MonoBehaviour
     /// </summary>
     protected void Dead()
     {
+        DestroyBody = true;
+        gameStage.SetUnitPos();
         gameObject.SetActive(false);
     }
     /// <summary>
@@ -456,34 +461,37 @@ public class Unit : MonoBehaviour
     /// <param name="legID">レッグパーツID</param>
     public void UnitCreate(int headID,int bodyID, int lArmID,int weaponLID, int rArmID, int weaponRID, int legID)
     {
-        GameObject leg = Instantiate(partsList.GetLegObject(legID));
-        leg.transform.position = transform.position;
-        leg.transform.parent = transform;
-        Leg = leg.GetComponent<PartsLeg>();
-        GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
-        body.transform.parent = transform;
-        Body = body.GetComponent<PartsBody>();
-        Body.TransFormParts(Leg.GetPartsHigh().position);
-        GameObject head = Instantiate(partsList.GetHeadObject(headID));
-        head.transform.parent = transform;
-        Head = head.GetComponent<PartsHead>();
-        Head.TransFormParts(Body.GetHeadPos().position);
-        GameObject lArm = Instantiate(partsList.GetLArmObject(lArmID));
-        lArm.transform.parent = transform;
-        LArm = lArm.GetComponent<PartsLArm>();
-        LArm.TransFormParts(Body.GetLArmPos().position);
-        GameObject weaponL = Instantiate(partsList.GetWeaponObject(weaponLID));
-        weaponL.transform.parent = LArm.ArmParts().transform;
-        LArmWeapon = weaponL.GetComponent<Weapon>();
-        LArmWeapon.TransFormParts(LArm.GetGrip().position);
-        GameObject rArm = Instantiate(partsList.GetRArmObject(rArmID));
-        rArm.transform.parent = transform;
-        RArm = rArm.GetComponent<PartsRArm>();
-        RArm.TransFormParts(Body.GetRArmPos().position);
-        GameObject weaponR = Instantiate(partsList.GetWeaponObject(weaponRID));
-        weaponR.transform.parent = RArm.ArmParts().transform;
-        RArmWeapon = weaponR.GetComponent<Weapon>();
-        RArmWeapon.TransFormParts(RArm.GetGrip().position);
-
+        if (!silhouetteOn)
+        {
+            GameObject leg = Instantiate(partsList.GetLegObject(legID));
+            leg.transform.position = transform.position;
+            leg.transform.parent = transform;
+            Leg = leg.GetComponent<PartsLeg>();
+            GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
+            body.transform.parent = transform;
+            Body = body.GetComponent<PartsBody>();
+            Body.TransFormParts(Leg.GetPartsHigh().position);
+            GameObject head = Instantiate(partsList.GetHeadObject(headID));
+            head.transform.parent = transform;
+            Head = head.GetComponent<PartsHead>();
+            Head.TransFormParts(Body.GetHeadPos().position);
+            GameObject lArm = Instantiate(partsList.GetLArmObject(lArmID));
+            lArm.transform.parent = transform;
+            LArm = lArm.GetComponent<PartsLArm>();
+            LArm.TransFormParts(Body.GetLArmPos().position);
+            GameObject weaponL = Instantiate(partsList.GetWeaponObject(weaponLID));
+            weaponL.transform.parent = LArm.ArmParts().transform;
+            LArmWeapon = weaponL.GetComponent<Weapon>();
+            LArmWeapon.TransFormParts(LArm.GetGrip().position);
+            GameObject rArm = Instantiate(partsList.GetRArmObject(rArmID));
+            rArm.transform.parent = transform;
+            RArm = rArm.GetComponent<PartsRArm>();
+            RArm.TransFormParts(Body.GetRArmPos().position);
+            GameObject weaponR = Instantiate(partsList.GetWeaponObject(weaponRID));
+            weaponR.transform.parent = RArm.ArmParts().transform;
+            RArmWeapon = weaponR.GetComponent<Weapon>();
+            RArmWeapon.TransFormParts(RArm.GetGrip().position);
+            silhouetteOn = true;
+        }
     }
 }
