@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b527cc98b385e49b1d1c22b47c9470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAngle: 1
+  unitAngle: 2
   movePower: 5
   liftingForce: 2
   maxHp: 100
@@ -2958,7 +2958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b527cc98b385e49b1d1c22b47c9470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAngle: 1
+  unitAngle: 3
   movePower: 10
   liftingForce: 2
   maxHp: 100
@@ -5015,7 +5015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04327acaa35fad841827097aaa84651c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAngle: 0
+  unitAngle: 3
   movePower: 5
   liftingForce: 2
   maxHp: 100
