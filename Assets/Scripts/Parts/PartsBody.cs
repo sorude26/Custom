@@ -16,6 +16,8 @@ public class PartsBody : UnitParts
     Transform rArmParts;
     [SerializeField]
     Transform lArmParts;
+    [SerializeField]
+    Transform bodyCenter;
     void Start()
     {
         StartSet();
@@ -26,4 +28,5 @@ public class PartsBody : UnitParts
     public Transform GetHeadPos() { return headParts; }
     public Transform GetRArmPos() { return rArmParts; }
     public Transform GetLArmPos() { return lArmParts; }
+    public Transform GetBodyCentrer() { return bodyCenter; }
 }

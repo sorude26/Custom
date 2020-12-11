@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalLeg
   partsHp: 80
-  defense: 0
+  defense: 5
   weight: 40
   moveType: 0
   movePower: 6

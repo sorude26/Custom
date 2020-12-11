@@ -652,7 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalHead
   partsHp: 30
-  defense: 0
+  defense: 5
   weight: 10
   detectionRange: 50
 --- !u!54 &626008665182727622

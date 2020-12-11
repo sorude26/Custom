@@ -206,6 +206,7 @@ public class Unit : MonoBehaviour
             moveTargetPosZ = unitMoveList[moveCount][1] * gameMap.mapScale;
             moveTargetLevel = gameMap.MapDates[unitMoveList[moveCount][0]][unitMoveList[moveCount][1]].Level;
             MoveNow = true;
+            StartUnitAngle();
         }
 
         if (movePosX != moveTargetPosX && MoveNow) //移動・昇降、方向変更処理
@@ -402,6 +403,30 @@ public class Unit : MonoBehaviour
                     break;
             }
         }
+    }
+    /// <summary>
+    /// 向き変更
+    /// </summary>
+    protected void StartUnitAngle()
+    {
+            currentAngle = unitAngle;
+            switch (currentAngle)
+            {
+                case UnitAngle.Up:
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                    break;
+                case UnitAngle.Down:
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    break;
+                case UnitAngle.Left:
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                    break;
+                case UnitAngle.Right:
+                    transform.rotation = Quaternion.Euler(0, 270, 0);
+                    break;
+                default:
+                    break;
+            }
     }
 
     /// <summary>

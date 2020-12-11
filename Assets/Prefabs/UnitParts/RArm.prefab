@@ -732,6 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalRArm
   partsHp: 50
+  defense: 5
   weight: 20
   armParts: {fileID: 5241919623393525797}
   grip: {fileID: 5241919623421666601}
