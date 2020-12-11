@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
         public int TargetPoint { get; set; }
         public int PosX { get; set; }
         public int PosZ { get; set; }
-        public Target(Unit target, int point,int x, int z)
+        public Target(Unit target, int point, int x, int z)
         {
             TargetUnit = target;
             TargetPoint = point;
@@ -33,7 +33,7 @@ public class Unit : MonoBehaviour
     }
 
     [SerializeField]
-    UnitAngle unitAngle = UnitAngle.Up;//初期方向
+    UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向
     [SerializeField]
     protected int movePower = 10;//仮
@@ -98,6 +98,7 @@ public class Unit : MonoBehaviour
         DetectionRange = detectionRange;
         CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
+        StartUnitAngle();
     }
 
     private void Update()
@@ -121,7 +122,7 @@ public class Unit : MonoBehaviour
             gameStage.SetUnitPos();
         }
         UnitAngleControl();
-        
+
     }
 
     /// <summary>
@@ -143,7 +144,7 @@ public class Unit : MonoBehaviour
     public void Damage(int damege)
     {
         Debug.Log("被弾" + damege);
-        damege -= Defense/10;
+        damege -= Defense / 10;
         if (damege > 0)
         {
             Debug.Log("ダメージ発生" + damege);
@@ -348,7 +349,7 @@ public class Unit : MonoBehaviour
     /// <param name="currentLevel">現在地高度</param>
     /// <param name="moveList">移動範囲リスト</param>
     /// <param name="moveCost">移動前座標の移動コスト</param>
-    protected void MoveSearchPos(int x, int z, int movePower, float currentLevel, List<List<Map.MapDate>> moveList,int moveCost)
+    protected void MoveSearchPos(int x, int z, int movePower, float currentLevel, List<List<Map.MapDate>> moveList, int moveCost)
     {
         if (x < 0 || z < 0 || x >= gameMap.maxX || z >= gameMap.maxZ) { return; }//マップ範囲内か確認
         if (movePower + moveCost != moveList[x][z].movePoint) { return; } //一つ前の座標か確認        
@@ -405,28 +406,28 @@ public class Unit : MonoBehaviour
         }
     }
     /// <summary>
-    /// 向き変更
+    /// 初回向き変更
     /// </summary>
     protected void StartUnitAngle()
     {
-            currentAngle = unitAngle;
-            switch (currentAngle)
-            {
-                case UnitAngle.Up:
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                    break;
-                case UnitAngle.Down:
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                    break;
-                case UnitAngle.Left:
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
-                    break;
-                case UnitAngle.Right:
-                    transform.rotation = Quaternion.Euler(0, 270, 0);
-                    break;
-                default:
-                    break;
-            }
+        currentAngle = unitAngle;
+        switch (currentAngle)
+        {
+            case UnitAngle.Up:
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                break;
+            case UnitAngle.Down:
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case UnitAngle.Left:
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+                break;
+            case UnitAngle.Right:
+                transform.rotation = Quaternion.Euler(0, 270, 0);
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
@@ -447,7 +448,7 @@ public class Unit : MonoBehaviour
     /// ターゲットに攻撃
     /// </summary>
     /// <param name="targetUnit"></param>
-    public void TargetShot(Unit targetUnit,Weapon attackWeapon)
+    public void TargetShot(Unit targetUnit, Weapon attackWeapon)
     {
         Vector3 targetPos = targetUnit.transform.position;
         Vector3 targetDir = targetPos - transform.position;
@@ -475,6 +476,23 @@ public class Unit : MonoBehaviour
         LArmWeapon.Shot();
     }
     /// <summary>
+    /// ターゲットに攻撃
+    /// </summary>
+    /// <param name="targetUnit"></param>
+    public void RArmTargetShot(Unit targetUnit)
+    {
+        Vector3 targetPos = targetUnit.Body.transform.position;
+        Vector3 targetDir = targetPos - transform.position;
+        targetDir.y = 0.0f;
+        Quaternion p = Quaternion.Euler(0, 180, 0);
+        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+        transform.rotation = endRot;
+        targetDir = targetPos - RArm.ArmParts().transform.position;
+        endRot = Quaternion.LookRotation(targetDir) * p;
+        RArm.ArmParts().transform.rotation = endRot;
+        RArmWeapon.Shot();
+    }
+    /// <summary>
     /// 指定した見た目のユニットを生成する
     /// </summary>
     /// <param name="headID">ヘッドパーツID</param>
@@ -484,10 +502,11 @@ public class Unit : MonoBehaviour
     /// <param name="rArmID">ライトアームパーツID</param>
     /// <param name="weaponRID">ライトアーム装備武器ID</param>
     /// <param name="legID">レッグパーツID</param>
-    public void UnitCreate(int headID,int bodyID, int lArmID,int weaponLID, int rArmID, int weaponRID, int legID)
+    public void UnitCreate(int headID, int bodyID, int lArmID, int weaponLID, int rArmID, int weaponRID, int legID)
     {
         if (!silhouetteOn)
         {
+            transform.rotation = Quaternion.Euler(0, 0, 0);//パーツ生成時に向きを合わせる
             GameObject leg = Instantiate(partsList.GetLegObject(legID));
             leg.transform.position = transform.position;
             leg.transform.parent = transform;
@@ -516,6 +535,7 @@ public class Unit : MonoBehaviour
             weaponR.transform.parent = RArm.ArmParts().transform;
             RArmWeapon = weaponR.GetComponent<Weapon>();
             RArmWeapon.TransFormParts(RArm.GetGrip().position);
+            StartUnitAngle();//向きを戻す
             silhouetteOn = true;
         }
     }

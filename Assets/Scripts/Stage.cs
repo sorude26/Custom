@@ -137,7 +137,7 @@ public class Stage : MonoBehaviour
     {
         if (!MoveNow)
         {
-            PlayerUnit.LArmTargetShot(subUnit);
+            PlayerUnit.RArmTargetShot(subUnit);
             UnitMoveFinish();
         }
         else

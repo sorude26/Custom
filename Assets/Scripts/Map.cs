@@ -78,11 +78,11 @@ public class Map : MonoBehaviour
             {
                 float y = 0;
                 MapType type = MapType.Normal;
-                //if (i >= 2 && i <= 6 && j > 1 && j < 5)
-               // {
-               //     y = 2.0f;
-               //     type = MapType.Wasteland;
-               // }
+               if (i > 1 && i < 8 && j > 1 && j < 8)
+                {
+                    y = 2.0f;
+                    //type = MapType.Wasteland;
+                }
                 
                 MapDate mapZ = new MapDate(type, i, j, y);
                 mapX.Add(mapZ);
