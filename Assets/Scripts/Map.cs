@@ -127,7 +127,6 @@ public class Map : MonoBehaviour
     /// <param name="moveUnit">移動ユニット</param>
     public void StartSearch(Unit moveUnit)
     {
- 
         for (int i = 0; i < maxX; i++)
         {
             for (int j = 0; j < maxZ; j++)

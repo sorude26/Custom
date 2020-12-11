@@ -444,6 +444,7 @@ MonoBehaviour:
   power: 10
   bulletSpeed: 80
   totalShotNumber: 10
+  diffusivity: 0.02
 --- !u!4 &199916330
 Transform:
   m_ObjectHideFlags: 0
@@ -757,6 +758,7 @@ MonoBehaviour:
   power: 10
   bulletSpeed: 80
   totalShotNumber: 10
+  diffusivity: 0.02
 --- !u!4 &407926099
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &456521738
 Transform:
   m_ObjectHideFlags: 0
@@ -1184,7 +1186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u653B\u6483"
+  m_Text: "\u751F\u6210"
 --- !u!222 &503416860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1593,7 +1595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitAngle: 1
-  movePower: 3
+  movePower: 5
   liftingForce: 2
   maxHp: 100
   startPosX: 5
@@ -1620,7 +1622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &652292657
 Transform:
   m_ObjectHideFlags: 0
@@ -2651,7 +2653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &933934913
 Transform:
   m_ObjectHideFlags: 0
@@ -4390,6 +4392,7 @@ MonoBehaviour:
   power: 10
   bulletSpeed: 80
   totalShotNumber: 10
+  diffusivity: 0.02
 --- !u!65 &1848101435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4483,7 +4486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925643053
 Transform:
   m_ObjectHideFlags: 0

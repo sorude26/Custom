@@ -48,9 +48,9 @@ public class Enemy : Unit
                     CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
                     CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
                     CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                    attack = true;
                 }
                 //Debug.Log(CurrentPosX +"," + CurrentPosZ);
+                attack = true;
                 gameStage.SetUnitPos();
             }
             UnitAngleControl();
