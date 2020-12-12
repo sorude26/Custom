@@ -33,7 +33,7 @@ public class Unit : MonoBehaviour
     }
 
     [SerializeField]
-    UnitAngle unitAngle = UnitAngle.Down;//初期方向
+    public UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向
     [SerializeField]
     protected int movePower = 10;//仮
@@ -406,7 +406,7 @@ public class Unit : MonoBehaviour
         }
     }
     /// <summary>
-    /// 初回向き変更
+    /// 初回向きセット
     /// </summary>
     protected void StartUnitAngle()
     {
@@ -428,7 +428,18 @@ public class Unit : MonoBehaviour
             default:
                 break;
         }
+        if (silhouetteOn)//パーツ向きリセット
+        {
+            Head.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            Body.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            LArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            LArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
+            RArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            RArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
+            Leg.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
     }
+
 
     /// <summary>
     /// ターゲットに攻撃

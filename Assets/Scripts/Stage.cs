@@ -163,6 +163,6 @@ public class Stage : MonoBehaviour
 
     public void UnitC()
     {
-        PlayerUnit.UnitCreate(0, 0, 0, 0, 0, 1, 0);
+        PlayerUnit.UnitCreate(0, 0, 0, 0, 0, 0, 0);
     }
 }
