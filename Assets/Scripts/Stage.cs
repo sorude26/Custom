@@ -20,6 +20,9 @@ public class Stage : MonoBehaviour
     public bool EnemyTurn { get; private set; }
 
     public int PlayUnitCount { get; private set; } = 0;
+
+    [SerializeField]
+    int x = 0;
     private void Awake()
     {
         StageDate = this;
@@ -163,6 +166,6 @@ public class Stage : MonoBehaviour
 
     public void UnitC()
     {
-        PlayerUnit.UnitCreate(0, 0, 0, 0, 0, 0, 0);
+        PlayerUnit.UnitCreate(0, x, 0, 0, 0, x, 0);
     }
 }
