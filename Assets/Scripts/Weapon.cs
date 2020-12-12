@@ -63,7 +63,7 @@ public class Weapon : MonoBehaviour
                     MachineGunShot();
                     break;
                 case WeaponType.Shotgun:
-                    weaponTrigger = false;
+                    ShotgunShot();                    
                     break;
                 default:
                     weaponTrigger = false;
@@ -111,6 +111,15 @@ public class Weapon : MonoBehaviour
             }
         }
     }
+    private void ShotgunShot()
+    {
+        for (int i = 0; i < totalShotNumber; i++)
+        {
+            BulletShot();
+        }
+        weaponTrigger = false;
+    }
+
     public void TransFormParts(Vector3 partsPos)
     {
         transform.position = partsPos;
