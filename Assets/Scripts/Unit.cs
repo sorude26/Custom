@@ -550,4 +550,27 @@ public class Unit : MonoBehaviour
             silhouetteOn = true;
         }
     }
+
+    protected void PartsUpdate()
+    {
+        if (silhouetteOn)
+        {
+            if (movePower != Leg.MovePower)
+            {
+                movePower = Leg.MovePower;
+            }
+            if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
+            {
+                CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
+            }
+            if (liftingForce != Body.LiftingForce)
+            {
+                liftingForce = Body.LiftingForce;
+            }
+            if (Body.CurrentPartsHp <= 0)
+            {
+                Dead();
+            }            
+        }
+    }
 }

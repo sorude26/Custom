@@ -14,6 +14,13 @@ public class PartsRArm : UnitParts
     {
         StartSet();
     }
+    private void Update()
+    {
+        if (partsBreak)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     public Transform GetGrip()
     {
         return grip;

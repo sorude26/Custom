@@ -25,7 +25,14 @@ public class PartsLeg : UnitParts
         MovePower = movePower;
         UnitMoveType = moveType;
     }
-
+    private void Update()
+    {
+        if (partsBreak)
+        {
+            MovePower = 2;
+            partsBreak = false;
+        }
+    }
     public Transform GetPartsHigh()
     {
         return partsHigh;

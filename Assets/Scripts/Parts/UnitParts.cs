@@ -20,6 +20,8 @@ public class UnitParts : MonoBehaviour
     protected int weight;
     public int Weight { get; protected set; }//重量
     public bool PartsDestroy { get; protected set; }
+
+    protected bool partsBreak = false;
     protected void StartSet()
     {
         PartsName = partsName;
@@ -34,9 +36,10 @@ public class UnitParts : MonoBehaviour
         {
             CurrentPartsHp -= damage;
             Debug.Log(partsName + "にヒット" + damage + "ダメージ！残："+ CurrentPartsHp );
-            if (CurrentPartsHp < 0)
+            if (CurrentPartsHp <= 0)
             {
                 CurrentPartsHp = 0;
+                PartsBreak();
             }
         }
     }
@@ -44,5 +47,10 @@ public class UnitParts : MonoBehaviour
     public void TransFormParts(Vector3 partsPos)
     {
         transform.position = partsPos;
+    }
+
+    protected void PartsBreak()
+    {
+        partsBreak = true;
     }
 }

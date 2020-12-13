@@ -12,5 +12,12 @@ public class PartsHead : UnitParts
         StartSet();
         DetectionRange = detectionRange;
     }
-
+    private void Update()
+    {
+        if (partsBreak)
+        {
+            DetectionRange = 20;
+            partsBreak = false;
+        }
+    }
 }
