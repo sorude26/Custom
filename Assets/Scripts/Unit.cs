@@ -567,6 +567,10 @@ public class Unit : MonoBehaviour
             {
                 liftingForce = Body.LiftingForce;
             }
+            if (DetectionRange != Head.DetectionRange)
+            {
+                DetectionRange = Head.DetectionRange;
+            }
             if (Body.CurrentPartsHp <= 0)
             {
                 Dead();
