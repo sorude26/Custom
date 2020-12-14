@@ -64,12 +64,11 @@ public class Stage : MonoBehaviour
             PlayUnitCount++;
             if (PlayUnitCount >= unitManager.GetPlayerList().Length)
             {
-                PlayerTurn = true;
                 PlayUnitCount = 0;
-                PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
             }
-            else
+            if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
             {
+
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
             }
