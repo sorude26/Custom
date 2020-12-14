@@ -167,4 +167,25 @@ public class Stage : MonoBehaviour
     {
         PlayerUnit.UnitCreate(0, x, 0, 0, 0, x, 0);
     }
+
+    private void Fupdete()
+    {
+        //個別ユニットターン開始
+        //スイッチ表示フラグ待ち
+        //移動Ｆｌａｇ
+        //移動終了待ち
+        //終了、キャンセルor待機or攻撃
+        //攻撃Ｆｌａｇ
+        //攻撃終了待ち
+        //終了、待機
+        //待機Ｆｌａｇ
+        //方向設定、ターン終了
+        //
+        //次期ユニット検索、設定
+       bool uiOn = true;
+        if (true)
+        {
+            MoveStart();
+        }
+    }
 }
