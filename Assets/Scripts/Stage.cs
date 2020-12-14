@@ -187,5 +187,29 @@ public class Stage : MonoBehaviour
         {
             MoveStart();
         }
+        if (true)
+        {
+            //移動終了
+            uiOn = true;
+        }
+        if (true)
+        {
+            AttackStart();
+        }
+        if (true)
+        {
+            //攻撃終了
+        }
+        if (true)
+        {
+            //方向変更
+            uiOn = true;
+        }
+        if (true)
+        {
+            //変更終了
+            //Next
+        }
     }
+   
 }

@@ -551,6 +551,9 @@ public class Unit : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// パーツデータを反映
+    /// </summary>
     protected void PartsUpdate()
     {
         if (silhouetteOn)
