@@ -39,7 +39,8 @@ public class Weapon : MonoBehaviour
 
     private bool weaponTrigger = false;//攻撃トリガー
     private bool shotStart = false;//攻撃開始フラグ
-
+    public bool AttackNow { get; private set; }
+    private float attackTimer = 0;
     private void Start()
     {
         Range = range;
@@ -70,11 +71,21 @@ public class Weapon : MonoBehaviour
                     break;
             }
         }
+        if (!weaponTrigger && attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+            if (attackTimer <= 0)
+            {
+                AttackNow = false;
+            }
+        }
     }
 
     public void Shot()
     {
         weaponTrigger = true;
+        AttackNow = true;
+        attackTimer = 0.5f;
     }
     
     private void BulletShot()

@@ -41,17 +41,8 @@ public class Enemy : Unit
             }
             if (move && !moveMood && !attack)//移動終了で位置を保存
             {
-                Vector3 thisPos = transform.position;
-                //Debug.Log(thisPos.x + "," + thisPos.z);
-                if (CurrentPosX != (int)Math.Round(thisPos.x) / gameMap.mapScale || CurrentPosZ != (int)Math.Round(thisPos.z) / gameMap.mapScale)
-                {
-                    CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
-                    CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
-                    CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                }
-                //Debug.Log(CurrentPosX +"," + CurrentPosZ);
-                attack = true;
-                gameStage.SetUnitPos();
+                MoveFinishSet();
+                attack = true;                
             }
             UnitAngleControl();
             if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了

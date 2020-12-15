@@ -57,7 +57,7 @@ public class Unit : MonoBehaviour
     protected UnitPartsList partsList;
 
     protected List<int[]> unitMoveList;
-
+    //――――――――移動描写関連――――――――
     [SerializeField]
     protected float moveSpeed = 1;
     protected bool moveMood = false;
@@ -69,7 +69,7 @@ public class Unit : MonoBehaviour
     protected float moveTargetPosZ;
     protected float moveLevel;
     protected float moveTargetLevel;
-
+    //―――――――――――――――――――――――
     [SerializeField]
     protected Weapon haveWeapon;
     public int Defense { get; protected set; } = 20;
@@ -406,7 +406,7 @@ public class Unit : MonoBehaviour
         }
     }
     /// <summary>
-    /// 初回向きセット
+    /// 向きリセットセット
     /// </summary>
     protected void StartUnitAngle()
     {
@@ -440,7 +440,50 @@ public class Unit : MonoBehaviour
         }
     }
 
+    protected bool attackMode = false;
+    protected bool attackNow = false;
+    protected float attackTimer = 0;
+    protected Weapon attackWeapon = null;
+    protected void AttackSystem()
+    {
+        if (attackMode)
+        {
+            if (attackNow && !attackWeapon.AttackNow)
+            {
+                attackNow = false;
+                attackMode = false;
+                StartUnitAngle();
+            }
+            attackTimer += Time.deltaTime;
+            if (attackTimer > 0.5 && !attackWeapon.AttackNow)
+            {
+                attackWeapon.Shot();
+                attackNow = true;
+            }
+        }
+    }
 
+    protected void MoveSystem()
+    {
+        if (moveMood)
+        {
+            UnitMove();
+        }
+    }
+    public void MoveFinishSet()
+    {
+        if (!moveMood)//移動終了で位置を保存
+        {
+            Vector3 thisPos = transform.position;
+            if (CurrentPosX != (int)Math.Round(thisPos.x) / gameMap.mapScale || CurrentPosZ != (int)Math.Round(thisPos.z) / gameMap.mapScale)
+            {
+                CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
+                CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
+                CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
+            }
+            gameStage.SetUnitPos();
+        }
+    }
     /// <summary>
     /// ターゲットに攻撃
     /// </summary>
