@@ -93,6 +93,7 @@ public class Weapon : MonoBehaviour
         GameObject bullet = Instantiate(thisBullet);
         Bullet shotBullet = bullet.GetComponent<Bullet>();
         shotBullet.StartMove(this, muzzle.position, transform.forward * -1);
+        EffectManager.PlayEffect(EffectID.MuzzleFlash, muzzle.position);
     }
 
     private void MachineGunShot()

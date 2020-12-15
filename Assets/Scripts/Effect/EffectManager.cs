@@ -8,6 +8,9 @@ public enum EffectID
 
 	Explosion,  // 爆発
 	Hit,
+	Smoke,
+	MuzzleFlash,
+	HyperExplosion,
 	// 下に追加する
 	// 途中で追加しない！
 }

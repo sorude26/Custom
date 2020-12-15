@@ -51,6 +51,7 @@ public class UnitParts : MonoBehaviour
 
     protected void PartsBreak()
     {
+        EffectManager.PlayEffect(EffectID.Explosion, transform.position);
         partsBreak = true;
     }
 }

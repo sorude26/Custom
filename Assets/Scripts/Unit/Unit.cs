@@ -139,6 +139,7 @@ public class Unit : MonoBehaviour
     /// </summary>
     protected void Dead()
     {
+        EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
         DestroyBody = true;
         gameStage.SetUnitPos();
         gameObject.SetActive(false);
