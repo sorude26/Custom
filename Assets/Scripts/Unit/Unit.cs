@@ -83,6 +83,8 @@ public class Unit : MonoBehaviour
     public Weapon RArmWeapon { get; protected set; }
     protected bool silhouetteOn = false;
     public bool DestroyBody { get; protected set; } = false;
+
+    public bool ActionTurn { get; set; }
     protected void Awake()
     {
         CurrentHp = maxHp;
@@ -99,30 +101,6 @@ public class Unit : MonoBehaviour
         CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
         StartUnitAngle();
-    }
-
-    private void Update()
-    {
-        if (moveMood)
-        {
-            UnitMove();
-        }
-        if (gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
-        {
-            Vector3 thisPos = transform.position;
-            //Debug.Log(thisPos.x + "," + thisPos.z);
-            if (CurrentPosX != (int)Math.Round(thisPos.x) / gameMap.mapScale || CurrentPosZ != (int)Math.Round(thisPos.z) / gameMap.mapScale)
-            {
-                CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
-                CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
-                CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                gameStage.MoveFinish = false;
-            }
-            //Debug.Log(CurrentPosX +"," + CurrentPosZ);
-            gameStage.SetUnitPos();
-        }
-        UnitAngleControl();
-
     }
 
     /// <summary>
@@ -483,6 +461,13 @@ public class Unit : MonoBehaviour
             }
             gameStage.SetUnitPos();
         }
+    }
+
+    protected void TurnFinishSystem(UnitAngle angle)
+    {
+        unitAngle = angle;
+        StartUnitAngle();
+        ActionTurn = false;
     }
     /// <summary>
     /// ターゲットに攻撃

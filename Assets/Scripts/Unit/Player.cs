@@ -9,26 +9,20 @@ public class Player : Unit
 
     void Update()
     {
+        if (!silhouetteOn)
+        {
+            UnitCreate(0, 0, 0, 0, 0, 0, 0);
+        }
         if (moveMood)
         {
             UnitMove();
         }
         if (gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
         {
-            Vector3 thisPos = transform.position;
-            //Debug.Log(thisPos.x + "," + thisPos.z);
-            if (CurrentPosX != (int)Math.Round(thisPos.x) / gameMap.mapScale || CurrentPosZ != (int)Math.Round(thisPos.z) / gameMap.mapScale)
-            {
-                CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
-                CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
-                CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                gameStage.MoveFinish = false;
-            }
-            //Debug.Log(CurrentPosX +"," + CurrentPosZ);
-            gameStage.SetUnitPos();
+            MoveFinishSet();
+            gameStage.MoveFinish = false;
         }
         UnitAngleControl();
-        
     }
 
     private void LateUpdate()

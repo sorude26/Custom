@@ -8,6 +8,7 @@ public class UnitManager : MonoBehaviour
 
     Player[] playerList = null;
     Enemy[] enemyList = null;
+    public static List<int[]> UnitDetaList { get; private set; }//パーツデータ反映用
     private void Awake()
     {
         Instance = this;
