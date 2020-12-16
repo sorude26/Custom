@@ -618,4 +618,9 @@ public class Unit : MonoBehaviour
             }            
         }
     }
+
+    public void OnClickThis()
+    {
+
+    }
 }
