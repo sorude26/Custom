@@ -21,6 +21,7 @@ public class Player : Unit
         {
             MoveFinishSet();
             gameStage.MoveFinish = false;
+            TargetCursor.instance.SetCursor(this);
         }
         UnitAngleControl();
     }

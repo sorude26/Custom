@@ -621,6 +621,6 @@ public class Unit : MonoBehaviour
 
     public void OnClickThis()
     {
-
+        TargetCursor.instance.SetCursor(this);
     }
 }
