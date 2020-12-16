@@ -71,6 +71,7 @@ public class Stage : MonoBehaviour
 
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
+                PlayerUnit.ActionTurn = true;
             }
         }
 
@@ -160,6 +161,7 @@ public class Stage : MonoBehaviour
             MoveFinish = true;
             PlayerMoveMode = false;
             PlayerTurn = false;
+            PlayerUnit.ActionTurn = false;
         }
     }
 

@@ -551,17 +551,21 @@ public class Unit : MonoBehaviour
             leg.transform.position = transform.position;
             leg.transform.parent = transform;
             Leg = leg.GetComponent<PartsLeg>();
+            Leg.SetOwner(this);
             GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
             body.transform.parent = transform;
             Body = body.GetComponent<PartsBody>();
+            Body.SetOwner(this);
             Body.TransFormParts(Leg.GetPartsHigh().position);
             GameObject head = Instantiate(partsList.GetHeadObject(headID));
             head.transform.parent = transform;
             Head = head.GetComponent<PartsHead>();
+            Head.SetOwner(this);
             Head.TransFormParts(Body.GetHeadPos().position);
             GameObject lArm = Instantiate(partsList.GetLArmObject(lArmID));
             lArm.transform.parent = transform;
             LArm = lArm.GetComponent<PartsLArm>();
+            LArm.SetOwner(this);
             LArm.TransFormParts(Body.GetLArmPos().position);
             GameObject weaponL = Instantiate(partsList.GetWeaponObject(weaponLID));
             weaponL.transform.parent = LArm.ArmParts().transform;
@@ -570,6 +574,7 @@ public class Unit : MonoBehaviour
             GameObject rArm = Instantiate(partsList.GetRArmObject(rArmID));
             rArm.transform.parent = transform;
             RArm = rArm.GetComponent<PartsRArm>();
+            RArm.SetOwner(this);
             RArm.TransFormParts(Body.GetRArmPos().position);
             GameObject weaponR = Instantiate(partsList.GetWeaponObject(weaponRID));
             weaponR.transform.parent = RArm.ArmParts().transform;
@@ -590,6 +595,10 @@ public class Unit : MonoBehaviour
             if (movePower != Leg.MovePower)
             {
                 movePower = Leg.MovePower;
+            }
+            if (moveSpeed != Leg.MoveSpeed)
+            {
+                moveSpeed = Leg.MoveSpeed;
             }
             if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
             {

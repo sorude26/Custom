@@ -16,7 +16,9 @@ public class PartsLeg : UnitParts
     [SerializeField]
     int movePower = 10;
     public int MovePower { get; private set; }
-
+    [SerializeField]
+    float moveSpeed = 20;
+    public float MoveSpeed { get; private set; }
     [SerializeField]
     Transform partsHigh;
     void Start()
@@ -24,12 +26,14 @@ public class PartsLeg : UnitParts
         StartSet();
         MovePower = movePower;
         UnitMoveType = moveType;
+        MoveSpeed = moveSpeed;
     }
     private void Update()
     {
         if (partsBreak)
         {
             MovePower = 2;
+            MoveSpeed = 15;
             partsBreak = false;
         }
     }

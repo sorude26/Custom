@@ -11,13 +11,13 @@ public class Player : Unit
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0, 0, 0, 0, 0, 0, 0);
+            UnitCreate(0, 0, 0, 0, 0, 1, 0);
         }
         if (moveMood)
         {
             UnitMove();
         }
-        if (gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
+        if (ActionTurn && gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
         {
             MoveFinishSet();
             gameStage.MoveFinish = false;
@@ -27,17 +27,7 @@ public class Player : Unit
 
     private void LateUpdate()
     {
-        if (silhouetteOn)
-        {
-            if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
-            {
-                CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
-            }
-            if (Body.CurrentPartsHp <= 0)
-            {
-                Dead();
-            }
-        }
+        PartsUpdate();
     }
     /// <summary>
     /// 移動可能箇所表示

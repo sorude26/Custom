@@ -21,6 +21,7 @@ public class UnitParts : MonoBehaviour
     public int Weight { get; protected set; }//重量
     public bool PartsDestroy { get; protected set; }
 
+    protected Unit owner;
     protected bool partsBreak = false;
     protected void StartSet()
     {
@@ -53,5 +54,10 @@ public class UnitParts : MonoBehaviour
     {
         EffectManager.PlayEffect(EffectID.Explosion, transform.position);
         partsBreak = true;
+    }
+
+    public void SetOwner(Unit owner)
+    {
+        this.owner = owner;
     }
 }

@@ -27,7 +27,7 @@ public class Enemy : Unit
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0,0,0,0,0,0,0);
+            UnitCreate(0,0,0,1,0,0,0);
         }
         if (ActionNow)
         {
@@ -47,11 +47,15 @@ public class Enemy : Unit
             UnitAngleControl();
             if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
             {
-                Debug.Log("待機");
+               // Debug.Log("待機");
                 if (Target != null)//ターゲットが存在する場合に攻撃
                 {
-                    Debug.Log("攻撃");
-                    LArmTargetShot(Target.TargetUnit);
+                    // Debug.Log("攻撃");
+                    Vector3 dir = Target.TargetUnit.transform.position - transform.position;
+                    if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
+                    {
+                        LArmTargetShot(Target.TargetUnit);
+                    }
                 }
                 Target = null;
                 search = false;
@@ -64,17 +68,7 @@ public class Enemy : Unit
     }
     private void LateUpdate()
     {
-        if (silhouetteOn)
-        {
-            if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
-            {
-                CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
-            }
-            if (Body.CurrentPartsHp <= 0)
-            {
-                Dead();
-            }
-        }
+        PartsUpdate();
     }
     public void StatAction()
     {
@@ -101,7 +95,15 @@ public class Enemy : Unit
                                 Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
                                 if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                                 {
-                                    point += gameMap.MoveList[i][j].movePoint * 10;//移動量が少ない場合に高得点
+                                    if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
+                                    {
+                                        point += 1000;
+                                        point += gameMap.MoveList[i][j].movePoint * 10;//移動量が少ない場合に高得点
+                                    }
+                                    else
+                                    {
+                                        point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が大きい場合に高得点
+                                    }
                                     point += (target.GetMaxHp() - target.CurrentHp) * 100;//ターゲットの耐久値の減少量が大きい場合に高得点
                                     point -= number;//ターゲットの登録順で得点に差
                                     if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録

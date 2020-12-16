@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 5993842351252125584}
   - component: {fileID: 4887415719773605842}
   m_Layer: 0
-  m_Name: WeaponShotgun
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,14 +371,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fae1e83803687f438d8e44a764b68d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBullet: {fileID: 7612344758654808426, guid: e35a63629c6710d4e8a35dda39732bba,
+  thisBullet: {fileID: 21713365192079208, guid: 728e4a39df6baf944a6e0d1bd8330d59,
     type: 3}
   muzzle: {fileID: 3529701607770644586}
   weaponType: 2
-  range: 25
+  range: 30
   effectiveRange: 20
   power: 8
-  bulletSpeed: 80
+  bulletSpeed: 100
   totalShotNumber: 20
   diffusivity: 0.2
 --- !u!1 &2212457741589024336
