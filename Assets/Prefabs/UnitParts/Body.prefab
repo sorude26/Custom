@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: NormalBody
-  partsHp: 120
+  partsHp: 60
   defense: 5
   weight: 50
   unitOutput: 500

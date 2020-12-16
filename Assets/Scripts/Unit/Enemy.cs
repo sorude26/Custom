@@ -62,6 +62,7 @@ public class Enemy : Unit
                 move = false;
                 attack = false;
                 ActionNow = false;
+                gameStage.EnemyTurn = true;
             }
         }
         

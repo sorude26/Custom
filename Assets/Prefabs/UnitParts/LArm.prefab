@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: NormalLArm
-  partsHp: 50
+  partsHp: 30
   defense: 5
   weight: 20
   armParts: {fileID: 5235159687437821511}

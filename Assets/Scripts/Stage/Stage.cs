@@ -17,9 +17,10 @@ public class Stage : MonoBehaviour
     public bool MoveNow { get; private set; }
 
     public bool PlayerTurn { get; private set; }
-    public bool EnemyTurn { get; private set; }
+    public bool EnemyTurn { get; set; }
 
     public int PlayUnitCount { get; private set; } = 0;
+    public int EnemyUnitCount { get; private set; } = 0;
 
     [SerializeField]
     int x = 0;
@@ -65,6 +66,7 @@ public class Stage : MonoBehaviour
             if (PlayUnitCount >= unitManager.GetPlayerList().Length)
             {
                 PlayUnitCount = 0;
+                EnemyTurn = true;
             }
             if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
             {
@@ -77,7 +79,17 @@ public class Stage : MonoBehaviour
 
         if (EnemyTurn)
         {
-            
+            if (EnemyUnitCount >= unitManager.GetEnemies().Length)
+            {
+                EnemyUnitCount = 0;
+            }
+            if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
+            {
+                enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
+                enemyUnit.StatAction();
+            }
+            EnemyUnitCount++;
+            EnemyTurn = false;
         }
     }
 
