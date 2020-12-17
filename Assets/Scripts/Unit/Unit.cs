@@ -427,17 +427,24 @@ public class Unit : MonoBehaviour
     {
         if (attackMode)
         {
-            if (attackNow && !attackWeapon.AttackNow)
+            if (attackWeapon != null)
             {
-                attackNow = false;
-                attackMode = false;
-                StartUnitAngle();
+                if (attackNow && !attackWeapon.AttackNow)
+                {
+                    attackNow = false;
+                    attackMode = false;
+                    StartUnitAngle();
+                }
+                attackTimer += Time.deltaTime;
+                if (attackTimer > 0.5 && !attackWeapon.AttackNow)
+                {
+                    attackWeapon.Shot();
+                    attackNow = true;
+                }
             }
-            attackTimer += Time.deltaTime;
-            if (attackTimer > 0.5 && !attackWeapon.AttackNow)
+            else
             {
-                attackWeapon.Shot();
-                attackNow = true;
+                attackMode = false;
             }
         }
     }
@@ -488,7 +495,7 @@ public class Unit : MonoBehaviour
     /// ターゲットに攻撃
     /// </summary>
     /// <param name="targetUnit"></param>
-    public void TargetShot(Unit targetUnit, Weapon attackWeapon)
+    public void TargetShot(Unit targetUnit, UnitParts attackArm)
     {
         Vector3 targetPos = targetUnit.transform.position;
         Vector3 targetDir = targetPos - transform.position;
@@ -496,7 +503,25 @@ public class Unit : MonoBehaviour
         Quaternion p = Quaternion.Euler(0, 180, 0);
         Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
         transform.rotation = endRot;
-        attackWeapon.Shot();
+        if (attackArm == LArm)
+        {
+            targetDir = targetPos - LArm.ArmParts().transform.position;
+            endRot = Quaternion.LookRotation(targetDir) * p;
+            LArm.ArmParts().transform.rotation = endRot;
+            attackWeapon = LArmWeapon;
+        }
+        else if (attackArm == RArm)
+        {
+            targetDir = targetPos - RArm.ArmParts().transform.position;
+            endRot = Quaternion.LookRotation(targetDir) * p;
+            RArm.ArmParts().transform.rotation = endRot;
+            attackWeapon = RArmWeapon;
+        }
+        else
+        {
+            attackWeapon = null;
+        }
+        attackMode = true;
     }
     /// <summary>
     /// ターゲットに攻撃

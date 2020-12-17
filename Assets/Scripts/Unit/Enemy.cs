@@ -48,21 +48,24 @@ public class Enemy : Unit
             if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
             {
                // Debug.Log("待機");
-                if (Target != null)//ターゲットが存在する場合に攻撃
+                if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
                 {
                     // Debug.Log("攻撃");
                     Vector3 dir = Target.TargetUnit.transform.position - transform.position;
                     if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
                     {
-                        LArmTargetShot(Target.TargetUnit);
+                        TargetShot(Target.TargetUnit, LArm);
+                        Target = null;
                     }
                 }
-                Target = null;
-                search = false;
-                move = false;
-                attack = false;
-                ActionNow = false;
-                gameStage.EnemyTurn = true;
+                if (!attackMode)
+                {
+                    search = false;
+                    move = false;
+                    attack = false;
+                    ActionNow = false;
+                    gameStage.EnemyTurn = true;
+                }
             }
         }
         
@@ -70,6 +73,7 @@ public class Enemy : Unit
     private void LateUpdate()
     {
         PartsUpdate();
+        AttackSystem();
     }
     public void StatAction()
     {
