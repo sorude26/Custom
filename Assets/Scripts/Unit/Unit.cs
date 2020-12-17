@@ -420,6 +420,7 @@ public class Unit : MonoBehaviour
     }
 
     protected bool attackMode = false;
+    protected bool attackTrigger = false;
     protected bool attackNow = false;
     protected float attackTimer = 0;
     protected Weapon attackWeapon = null;
@@ -433,17 +434,24 @@ public class Unit : MonoBehaviour
                 {
                     attackNow = false;
                     attackMode = false;
-                    StartUnitAngle();
+                    attackTrigger = false;
+                    //StartUnitAngle();
                 }
-                attackTimer += Time.deltaTime;
-                if (attackTimer > 0.5 && !attackWeapon.AttackNow)
+                if (attackTrigger)
                 {
-                    attackWeapon.Shot();
-                    attackNow = true;
+                    attackTimer += Time.deltaTime;
+                    if (attackTimer > 0.5 && !attackWeapon.AttackNow)
+                    {
+                        attackWeapon.Shot();
+                        attackNow = true;
+                        attackTrigger = false;
+                        attackTimer = 0;
+                    }
                 }
             }
             else
             {
+                attackTrigger = false;
                 attackMode = false;
             }
         }
@@ -497,7 +505,7 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void TargetShot(Unit targetUnit, UnitParts attackArm)
     {
-        Vector3 targetPos = targetUnit.transform.position;
+        Vector3 targetPos = targetUnit.Body.transform.position;
         Vector3 targetDir = targetPos - transform.position;
         targetDir.y = 0.0f;
         Quaternion p = Quaternion.Euler(0, 180, 0);
@@ -521,6 +529,7 @@ public class Unit : MonoBehaviour
         {
             attackWeapon = null;
         }
+        attackTimer = 0;
         attackMode = true;
     }
     /// <summary>

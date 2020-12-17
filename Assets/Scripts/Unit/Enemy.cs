@@ -54,12 +54,14 @@ public class Enemy : Unit
                     Vector3 dir = Target.TargetUnit.transform.position - transform.position;
                     if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
                     {
+                        attackTrigger = true;
                         TargetShot(Target.TargetUnit, LArm);
                         Target = null;
                     }
                 }
-                if (!attackMode)
+                if (!attackTrigger)
                 {
+                    Target = null;
                     search = false;
                     move = false;
                     attack = false;
@@ -102,14 +104,14 @@ public class Enemy : Unit
                                 {
                                     if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
                                     {
-                                        point += 1000;
-                                        point += gameMap.MoveList[i][j].movePoint * 10;//移動量が少ない場合に高得点
+                                        point += 2000;
+                                        point += gameMap.MoveList[i][j].movePoint * 20;//移動量が少ない場合に高得点
                                     }
                                     else
                                     {
                                         point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が大きい場合に高得点
                                     }
-                                    point += (target.GetMaxHp() - target.CurrentHp) * 100;//ターゲットの耐久値の減少量が大きい場合に高得点
+                                    point += (target.GetMaxHp() - target.CurrentHp) * 30;//ターゲットの耐久値の減少量が大きい場合に高得点
                                     point -= number;//ターゲットの登録順で得点に差
                                     if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
                                     {
@@ -141,8 +143,7 @@ public class Enemy : Unit
         }
         else
         {
-            search = false;
-            ActionNow = false;
+            attack = true;
         }
     }
 }
