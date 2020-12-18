@@ -44,6 +44,7 @@ public class Stage : MonoBehaviour
         PlayerUnit = unitManager.GetPlayer(0);
         PlayerTurn = true;
         EnemyTurn = false;
+        TargetCursor.instance.SetCursor(PlayerUnit);
     }
 
     void Update()
@@ -67,6 +68,7 @@ public class Stage : MonoBehaviour
             {
                 PlayUnitCount = 0;
                 EnemyTurn = true;
+                TargetCursor.instance.SetCursor(enemyUnit);
             }
             if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
             {
@@ -74,6 +76,7 @@ public class Stage : MonoBehaviour
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
                 PlayerUnit.ActionTurn = true;
+                TargetCursor.instance.SetCursor(PlayerUnit);
             }
         }
 
@@ -152,7 +155,7 @@ public class Stage : MonoBehaviour
     {
         if (!MoveNow)
         {
-            PlayerUnit.RArmTargetShot(subUnit);
+            PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
             UnitMoveFinish();
         }
         else
@@ -162,7 +165,7 @@ public class Stage : MonoBehaviour
             PlayerMoveMode = false;
             PlayerTurn = false;
             UnitMoveReturn();
-            PlayerUnit.TargetShot(subUnit);
+            PlayerUnit.TargetShot(TargetCursor.instance.TargetUnit);
         }
     }
 

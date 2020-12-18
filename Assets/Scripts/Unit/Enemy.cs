@@ -27,7 +27,7 @@ public class Enemy : Unit
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0,0,0,1,0,0,0);
+            UnitCreate(0,0,0,0,0,0,0);
         }
         if (ActionNow)
         {
