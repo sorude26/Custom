@@ -98,15 +98,17 @@ public class Stage : MonoBehaviour
                     EnemyUnitCount = 0;
                     EnemyTurn = false;
                     EnemyAction = false;
+                    PlayUnitCount = 0;
                     foreach (Player player in unitManager.GetPlayerList())
                     {
+                        PlayUnitCount++;
                         if (player.Body.CurrentPartsHp > 0)
                         {
+                            PlayerTurn = true;
                             PlayerUnit = player;
                             TargetCursor.instance.SetCursor(PlayerUnit);
                             break;
                         }
-                        PlayUnitCount++;
                     }
                 }
                 if (EnemyAction)
