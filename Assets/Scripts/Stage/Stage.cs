@@ -44,7 +44,7 @@ public class Stage : MonoBehaviour
         }
         SetUnitPos();
         PlayerUnit = unitManager.GetPlayer(0);
-        PlayerTurn = true;
+        PlayerTurn = false;
         EnemyTurn = false;
         TargetCursor.instance.SetCursor(PlayerUnit);
     }
@@ -63,10 +63,8 @@ public class Stage : MonoBehaviour
         {
             MoveNow = false;
         }
-        if (!PlayerTurn)
+        if (!PlayerTurn && !EnemyTurn)
         {
-            PlayerUnit.ActionTurn = true;
-            PlayUnitCount++;
             if (PlayUnitCount >= unitManager.GetPlayerList().Length)
             {
                 PlayUnitCount = 0;
@@ -81,11 +79,11 @@ public class Stage : MonoBehaviour
             }
             if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
             {
-
+                PlayerUnit.ActionTurn = true;
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
-                PlayerUnit.ActionTurn = true;               
             }
+            PlayUnitCount++;
         }
         if (turnCountTimer > 0)
         {
@@ -95,21 +93,33 @@ public class Stage : MonoBehaviour
         {
             if (EnemyAction)
             {
-                EnemyUnitCount++;
                 if (EnemyUnitCount >= unitManager.GetEnemies().Length)
                 {
                     EnemyUnitCount = 0;
                     EnemyTurn = false;
                     EnemyAction = false;
+                    foreach (Player player in unitManager.GetPlayerList())
+                    {
+                        if (player.Body.CurrentPartsHp > 0)
+                        {
+                            PlayerUnit = player;
+                            TargetCursor.instance.SetCursor(PlayerUnit);
+                            break;
+                        }
+                        PlayUnitCount++;
+                    }
                 }
-                if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
+                if (EnemyAction)
                 {
-                    enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
-                    enemyUnit.StatAction();
-                    EnemyAction = false;
+                    if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
+                    {
+                        enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
+                        enemyUnit.StatAction();
+                        EnemyAction = false;
+                    }
+                    EnemyUnitCount++;
                 }
             }
-            
         }
     }
 
@@ -160,7 +170,7 @@ public class Stage : MonoBehaviour
 
     public void MoveStart()
     {
-        if (!MoveNow && !MoveFinish)
+        if (!MoveNow && !MoveFinish && !EnemyTurn)
         {
             if (!PlayerMoveMode)
             {
@@ -173,7 +183,7 @@ public class Stage : MonoBehaviour
 
     public void AttackStart()
     {
-        if (!MoveFinish)
+        if (!MoveFinish && !EnemyTurn)
         {
             if (!MoveNow)
             {

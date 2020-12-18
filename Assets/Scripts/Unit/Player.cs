@@ -35,7 +35,6 @@ public class Player : Unit
     /// <param name="moveList"></param>
     public void UnitMoveList(List<List<Map.MapDate>> moveList)
     {
-        TargetCursor.instance.SetCursor(this);
         for (int i = 0; i < gameMap.maxX; i++)
         {
             for (int j = 0; j < gameMap.maxZ; j++)
@@ -47,6 +46,5 @@ public class Player : Unit
                 }
             }
         }
-
     }
 }
