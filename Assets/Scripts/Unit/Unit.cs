@@ -505,6 +505,7 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void TargetShot(Unit targetUnit, UnitParts attackArm)
     {
+        //MoveFinishSet();
         Vector3 targetPos = targetUnit.Body.transform.position;
         Vector3 targetDir = targetPos - transform.position;
         targetDir.y = 0.0f;

@@ -27,7 +27,7 @@ public class Enemy : Unit
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0,0,0,0,0,0,0);
+            UnitCreate(0,0,0,1,0,0,0);
         }
         if (ActionNow)
         {
@@ -54,6 +54,7 @@ public class Enemy : Unit
                     Vector3 dir = Target.TargetUnit.transform.position - transform.position;
                     if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
                     {
+                        TargetCursor.instance.SetCursor(Target.TargetUnit);
                         attackTrigger = true;
                         TargetShot(Target.TargetUnit, LArm);
                         Target = null;
@@ -66,7 +67,8 @@ public class Enemy : Unit
                     move = false;
                     attack = false;
                     ActionNow = false;
-                    gameStage.EnemyTurn = true;
+                    gameStage.EnemyAction = true;
+                    gameStage.turnCountTimer = 1;
                 }
             }
         }

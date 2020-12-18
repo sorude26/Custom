@@ -11,7 +11,7 @@ public class Player : Unit
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0, 0, 0, 0, 0, 1, 0);
+            UnitCreate(0, 0, 0, 0, 0, 0, 0);
         }
         if (moveMood)
         {
@@ -35,6 +35,7 @@ public class Player : Unit
     /// <param name="moveList"></param>
     public void UnitMoveList(List<List<Map.MapDate>> moveList)
     {
+        TargetCursor.instance.SetCursor(this);
         for (int i = 0; i < gameMap.maxX; i++)
         {
             for (int j = 0; j < gameMap.maxZ; j++)

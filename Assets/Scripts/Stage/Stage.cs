@@ -18,7 +18,9 @@ public class Stage : MonoBehaviour
 
     public bool PlayerTurn { get; private set; }
     public bool EnemyTurn { get; set; }
+    public bool EnemyAction { get; set; }
 
+    public float turnCountTimer = 0;
     public int PlayUnitCount { get; private set; } = 0;
     public int EnemyUnitCount { get; private set; } = 0;
 
@@ -63,11 +65,18 @@ public class Stage : MonoBehaviour
         }
         if (!PlayerTurn)
         {
+            PlayerUnit.ActionTurn = true;
             PlayUnitCount++;
             if (PlayUnitCount >= unitManager.GetPlayerList().Length)
             {
                 PlayUnitCount = 0;
                 EnemyTurn = true;
+                EnemyAction = true;
+                turnCountTimer = 2;
+                foreach  (Unit unit in unitManager.GetPlayerList())
+                {
+                    unit.MoveFinishSet();
+                }
                 TargetCursor.instance.SetCursor(enemyUnit);
             }
             if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
@@ -75,24 +84,32 @@ public class Stage : MonoBehaviour
 
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
-                PlayerUnit.ActionTurn = true;
-                TargetCursor.instance.SetCursor(PlayerUnit);
+                PlayerUnit.ActionTurn = true;               
             }
         }
-
-        if (EnemyTurn)
+        if (turnCountTimer > 0)
         {
-            if (EnemyUnitCount >= unitManager.GetEnemies().Length)
+            turnCountTimer -= Time.deltaTime;
+        }
+        if (EnemyTurn && turnCountTimer <= 0)
+        {
+            if (EnemyAction)
             {
-                EnemyUnitCount = 0;
+                EnemyUnitCount++;
+                if (EnemyUnitCount >= unitManager.GetEnemies().Length)
+                {
+                    EnemyUnitCount = 0;
+                    EnemyTurn = false;
+                    EnemyAction = false;
+                }
+                if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
+                {
+                    enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
+                    enemyUnit.StatAction();
+                    EnemyAction = false;
+                }
             }
-            if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
-            {
-                enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
-                enemyUnit.StatAction();
-            }
-            EnemyUnitCount++;
-            EnemyTurn = false;
+            
         }
     }
 
@@ -103,8 +120,11 @@ public class Stage : MonoBehaviour
     /// <param name="y"></param>
     public void UnitMoveStart(int x, int y)
     {
-        PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
-        PlayerUnit.UnitMove(map.MoveList, x, y);
+        if (!MoveFinish)
+        {
+            PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
+            PlayerUnit.UnitMove(map.MoveList, x, y);
+        }
     }
 
     /// <summary>
@@ -140,7 +160,7 @@ public class Stage : MonoBehaviour
 
     public void MoveStart()
     {
-        if (!MoveNow)
+        if (!MoveNow && !MoveFinish)
         {
             if (!PlayerMoveMode)
             {
@@ -153,25 +173,28 @@ public class Stage : MonoBehaviour
 
     public void AttackStart()
     {
-        if (!MoveNow)
+        if (!MoveFinish)
         {
-            PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
-            UnitMoveFinish();
-        }
-        else
-        { 
-            MoveNow = false;
-            MoveFinish = true;
-            PlayerMoveMode = false;
-            PlayerTurn = false;
-            UnitMoveReturn();
-            PlayerUnit.TargetShot(TargetCursor.instance.TargetUnit);
+            if (!MoveNow)
+            {
+                PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
+                UnitMoveFinish();
+            }
+            else
+            {
+                MoveNow = false;
+                MoveFinish = true;
+                PlayerMoveMode = false;
+                PlayerTurn = false;
+                UnitMoveReturn();
+                PlayerUnit.TargetShot(TargetCursor.instance.TargetUnit);
+            }
         }
     }
 
     public void UnitMoveFinish()
     {
-        if (!MoveNow)
+        if (!MoveNow && !MoveFinish)
         {
             MoveFinish = true;
             PlayerMoveMode = false;
