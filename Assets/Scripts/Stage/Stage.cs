@@ -133,9 +133,9 @@ public class Stage : MonoBehaviour
     public void UnitMoveStart(int x, int y)
     {
         if (!MoveFinish)
-        {
+        {            
             PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
-            PlayerUnit.UnitMove(map.MoveList, x, y);
+            PlayerUnit.UnitMove2(map.MoveList2, x, y);
         }
     }
 
@@ -177,8 +177,15 @@ public class Stage : MonoBehaviour
             if (!PlayerMoveMode)
             {
                 PlayerMoveMode = true;
-                map.StartSearch(PlayerUnit);
-                PlayerUnit.UnitMoveList(map.MoveList);
+                map.StartSearch2(PlayerUnit);
+                PlayerUnit.UnitMoveList2(map.MoveList2);
+                foreach (Map.MapDate item in map.MoveList2)
+                {
+                    if (item.movePoint >0)
+                    {
+                        Debug.Log("x:" + item.PosX + "z:" + item.PosZ + "P:" + item.movePoint);
+                    }
+                }
             }
         }
     }

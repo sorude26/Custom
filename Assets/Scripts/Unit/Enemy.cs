@@ -33,7 +33,7 @@ public class Enemy : Unit
         {
             if (enemyAI == EnemyAI.Attacker)
             {
-                ActionTypeAttacker();
+                ActionTypeAttacker2();
             }
             if (moveMood)
             {
@@ -140,6 +140,67 @@ public class Enemy : Unit
             if (!move)
             {
                 UnitMove(gameMap.MoveList, Target.PosX, Target.PosZ);
+                move = true;
+            }
+        }
+        else
+        {
+            attack = true;
+        }
+    }
+    private void ActionTypeAttacker2()
+    {
+        if (!search)
+        {
+            gameMap.StartSearch2(this);
+            foreach (Map.MapDate mapDate in gameMap.MoveList2)
+            {
+                if (mapDate.movePoint > 0)
+                {
+                    int number = 0;
+                    foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
+                    {
+                        if (!target.DestroyBody)
+                        {
+                            int point = 0;
+                            Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
+                            if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                            {
+                                if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
+                                {
+                                    point += 2000;
+                                    point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
+                                }
+                                else
+                                {
+                                    point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
+                                }
+                                point += (target.GetMaxHp() - target.CurrentHp) * 30;//ターゲットの耐久値の減少量が大きい場合に高得点
+                                point -= number;//ターゲットの登録順で得点に差
+                                if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                                {
+                                    if (point > Target.TargetPoint)
+                                    {
+                                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                    }
+                                }
+                                else
+                                {
+                                    Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                }
+                            }
+                        }
+                        number++;
+                    }
+                }
+            }            
+            search = true;
+        }
+        if (Target != null)//ターゲットが設定されているならば移動実施
+        {
+            if (!move)
+            {
+                UnitMove2(gameMap.MoveList2, Target.PosX, Target.PosZ);
                 move = true;
             }
         }

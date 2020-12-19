@@ -26,9 +26,9 @@ public class MovePanel : MonoBehaviour
             Vector3 thisPos = transform.position;
             float posX = thisPos.x;
             float posZ = thisPos.z;
-            //Debug.Log("クリックされた" + posX + "," + posZ);
-            int x = (int)posX / 10;
-            int z = (int)posZ / 10;
+            Debug.Log("クリックされた" + posX + "," + posZ);
+            int x = (int)Math.Round(thisPos.x) / 10;
+            int z = (int)Math.Round(thisPos.z) / 10;
             stage.UnitMoveStart(x, z);
         }
     }

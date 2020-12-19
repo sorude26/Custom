@@ -56,8 +56,8 @@ public class Map : MonoBehaviour
 
     private void Awake()
     {
-        MapCreate(maxX, maxZ);
-        MoveList = new List<List<MapDate>>(MapDates);
+        MapCreate2(maxX, maxZ);
+        //MoveList = new List<List<MapDate>>(MapDates);
         MoveList2 = new List<MapDate>(MapDates2);
         Instans = this;
     }
@@ -94,13 +94,13 @@ public class Map : MonoBehaviour
     }
     public void MapCreate2(int x, int z)
     {
-        for (int i = 0; i < x; i++)
+        for (int i = 0; i < z; i++)
         {
-            for (int j = 0; j < z; j++)
+            for (int j = 0; j < x; j++)
             {
                 MapType type = MapType.Normal;
                 float y = 0;
-                MapDate map = new MapDate(type, i, j, y);
+                MapDate map = new MapDate(type, j, i, y);
                 MapDates2.Add(map);
             }
         }
@@ -157,7 +157,7 @@ public class Map : MonoBehaviour
         {
             map.movePoint = 0;
         }
-        int p = moveUnit.CurrentPosX + (maxX * moveUnit.CurrentPosZ);
+        int p = moveUnit.CurrentPosX + (moveUnit.CurrentPosZ * maxX);
         MoveList2[p].movePoint = moveUnit.GetMovePower();
         SearchCross2(p, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
     }
@@ -180,15 +180,21 @@ public class Map : MonoBehaviour
     }
     void SearchCross2(int p, int movePower, float liftingForce)
     {
-        if (0 < p - maxX && p < maxX * maxZ)
+        if (0 <= p && p < maxX * maxZ)
         {
-            SearchPos2(p - maxX, movePower, MoveList2[p].Level, liftingForce);
-            SearchPos2(p + maxX, movePower, MoveList2[p].Level, liftingForce);
-            if (MoveList2[p].PosX > 0)
+            if (MoveList2[p].PosZ > 0 && MoveList2[p].PosZ < maxZ)
+            {
+                SearchPos2(p - maxX, movePower, MoveList2[p].Level, liftingForce);
+            }
+            if (MoveList2[p].PosZ >= 0 && MoveList2[p].PosZ < maxZ - 1)
+            {
+                SearchPos2(p + maxX, movePower, MoveList2[p].Level, liftingForce);
+            }
+            if (MoveList2[p].PosX > 0 && MoveList2[p].PosX < maxX)
             {
                 SearchPos2(p - 1, movePower, MoveList2[p].Level, liftingForce);
             }
-            if (MoveList2[p].PosX < maxX - 1)
+            if (MoveList2[p].PosX >= 0 && MoveList2[p].PosX < maxX - 1)
             {
                 SearchPos2(p + 1, movePower, MoveList2[p].Level, liftingForce);
             }
@@ -254,7 +260,7 @@ public class Map : MonoBehaviour
         if (p < 0 || p >= maxX * maxZ)//調査対象がマップ範囲内であるか確認
         {
             return;
-        }
+        }        
         if (MovePoint(MoveList2[p].MapType) == 0)//侵入可能か確認、０は侵入不可又は未設定
         {
             return;
@@ -280,7 +286,6 @@ public class Map : MonoBehaviour
         }
         for (int i = 0; i < gameStage.stageUnits.Count; i++)//ユニットがいるか確認
         {
-            
             if (MoveList2[p].PosX == gameStage.stageUnitsPos[i][0] && MoveList2[p].PosZ == gameStage.stageUnitsPos[i][1])
             {
                 if (!gameStage.stageUnits[i].DestroyBody)
@@ -288,8 +293,8 @@ public class Map : MonoBehaviour
                     return;
                 }
             }
-            
         }
+
         movePower = movePower - MovePoint(MoveList2[p].MapType);//移動力変動
 
         if (movePower > 0)//移動可能箇所に足跡入力、再度検索

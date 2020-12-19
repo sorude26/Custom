@@ -98,8 +98,8 @@ public class Unit : MonoBehaviour
         unitManager = UnitManager.Instance;
         partsList = UnitPartsList.Instance;
         DetectionRange = detectionRange;
-        CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-        //CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
+        //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
+        CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
         StartUnitAngle();
     }
@@ -154,8 +154,8 @@ public class Unit : MonoBehaviour
     {
         CurrentPosX = posX;
         CurrentPosZ = posZ;
-        CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-        //CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
+        //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
+        CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
     }
 
@@ -172,7 +172,14 @@ public class Unit : MonoBehaviour
         unitMoveList.Add(pos); //目標データ保存
         SearchCross(targetX, targetZ, moveList[targetX][targetZ].movePoint, moveList);
     }
-
+    public void UnitMove2(List<Map.MapDate> moveList, int targetX, int targetZ)
+    {
+        unitMoveList = new List<int[]>();
+        int[] pos = { targetX, targetZ };
+        unitMoveList.Add(pos); //目標データ保存
+        int p = targetX + (targetZ * gameMap.maxX);
+        SearchCross2(p, moveList[p].movePoint, moveList);
+    }
     /// <summary>
     /// ユニット移動処理
     /// </summary>
@@ -186,8 +193,8 @@ public class Unit : MonoBehaviour
             moveLevel = thisPos.y;
             moveTargetPosX = unitMoveList[moveCount][0] * gameMap.mapScale;
             moveTargetPosZ = unitMoveList[moveCount][1] * gameMap.mapScale;
-            moveTargetLevel = gameMap.MapDates[unitMoveList[moveCount][0]][unitMoveList[moveCount][1]].Level;
-            //moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0]+(gameMap.maxX * unitMoveList[moveCount][1])].Level;
+            //moveTargetLevel = gameMap.MapDates[unitMoveList[moveCount][0]][unitMoveList[moveCount][1]].Level;
+            moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0]+(gameMap.maxX * unitMoveList[moveCount][1])].Level;
             MoveNow = true;
             StartUnitAngle();
         }
@@ -321,7 +328,28 @@ public class Unit : MonoBehaviour
             MoveSearchPos(x + 1, z, movePower, moveList[x][z].Level, moveList, gameMap.MovePoint(gameMap.MapDates[x][z].MapType));
         }
     }
-
+    protected void SearchCross2(int p, int movePower, List<Map.MapDate> moveList)
+    {
+        if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
+        {
+            if (gameMap.MoveList2[p].PosZ > 0 && gameMap.MoveList2[p].PosZ < gameMap.maxZ)
+            {
+                MoveSearchPos2(p - gameMap.maxX, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+            if (gameMap.MoveList2[p].PosZ >= 0 && gameMap.MoveList2[p].PosZ < gameMap.maxZ - 1)
+            {
+                MoveSearchPos2(p + gameMap.maxX, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+            if (gameMap.MoveList2[p].PosX > 0 && gameMap.MoveList2[p].PosX < gameMap.maxX)
+            {
+                MoveSearchPos2(p - 1, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+            if (gameMap.MoveList2[p].PosX >= 0 && gameMap.MoveList2[p].PosX < gameMap.maxX - 1)
+            {
+                MoveSearchPos2(p + 1, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+        }
+    }
     /// <summary>
     /// 対象座標の確認
     /// </summary>
@@ -359,32 +387,32 @@ public class Unit : MonoBehaviour
             SearchCross(x, z, movePower, moveList);
         }
     }
-    protected void MoveSearchPos2(int x, int z, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
+    protected void MoveSearchPos2(int p, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
     {
-        if (x < 0 || z < 0 || x >= gameMap.maxX || z >= gameMap.maxZ) { return; }//マップ範囲内か確認
-        if (movePower + moveCost != moveList[x].movePoint) { return; } //一つ前の座標か確認        
         if (moveMood) { return; }//検索終了か確認
-        if (moveList[x].Level >= currentLevel) //高低差確認
+        if (p < 0 || p >= gameMap.maxX * gameMap.maxZ) { return; }//マップ範囲内か確認
+        if (movePower + moveCost != moveList[p].movePoint) { return; } //一つ前の座標か確認     
+        if (moveList[p].Level >= currentLevel) //高低差確認
         {
-            if (moveList[x].Level - currentLevel > liftingForce) { return; }
+            if (moveList[p].Level - currentLevel > liftingForce) { return; }
         }
         else
         {
-            if (currentLevel - moveList[x].Level > liftingForce) { return; }
+            if (currentLevel - moveList[p].Level > liftingForce) { return; }
         }
 
-        movePower = moveList[x].movePoint;
+        movePower = moveList[p].movePoint;
 
-        int[] pos = { x, z };
+        int[] pos = { gameMap.MoveList2[p].PosX, gameMap.MoveList2[p].PosZ };
         unitMoveList.Add(pos); //移動順データ保存
-        if (CurrentPosX == x && CurrentPosZ == z) //初期地点か確認
+        if (CurrentPosX == gameMap.MoveList2[p].PosX && CurrentPosZ == gameMap.MoveList2[p].PosZ) //初期地点か確認
         {
             moveMood = true; //移動モード移行
             moveCount = unitMoveList.Count - 1;//移動経路数を入力
         }
         else
         {
-            //SearchCross(x, z, movePower, moveList);
+            SearchCross2(p, movePower, moveList);
         }
     }
     /// <summary>
@@ -503,8 +531,8 @@ public class Unit : MonoBehaviour
             {
                 CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
                 CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
-                CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
-                //CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
+                //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
+                CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
             }
             gameStage.SetUnitPos();
         }

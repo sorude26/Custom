@@ -47,4 +47,18 @@ public class Player : Unit
             }
         }
     }
+    public void UnitMoveList2(List<Map.MapDate> moveList)
+    {
+        int count= 0;
+        foreach (Map.MapDate map in moveList)
+        {
+            if(map.movePoint > 0)
+            {
+                count++;
+                GameObject instance = Instantiate(mark);
+                instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);
+            }
+        }
+        Debug.Log(count);
+    }
 }
