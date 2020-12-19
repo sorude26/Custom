@@ -51,7 +51,10 @@ public class Stage : MonoBehaviour
 
     void Update()
     {
-
+        if (turnCountTimer > 0)
+        {
+            turnCountTimer -= Time.deltaTime;
+        }
         if (PlayerUnit.MoveNow)
         {
             if (!MoveNow)
@@ -63,7 +66,7 @@ public class Stage : MonoBehaviour
         {
             MoveNow = false;
         }
-        if (!PlayerTurn && !EnemyTurn)
+        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0)
         {
             if (PlayUnitCount >= unitManager.GetPlayerList().Length)
             {
@@ -77,17 +80,16 @@ public class Stage : MonoBehaviour
                 }
                 TargetCursor.instance.SetCursor(enemyUnit);
             }
-            if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
+            if (unitManager.GetPlayer(PlayUnitCount).Body)
             {
-                PlayerUnit.ActionTurn = true;
-                PlayerTurn = true;
-                PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
+                if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
+                {
+                    PlayerUnit.ActionTurn = true;
+                    PlayerTurn = true;
+                    PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
+                }
+                PlayUnitCount++;
             }
-            PlayUnitCount++;
-        }
-        if (turnCountTimer > 0)
-        {
-            turnCountTimer -= Time.deltaTime;
         }
         if (EnemyTurn && turnCountTimer <= 0)
         {
@@ -99,6 +101,7 @@ public class Stage : MonoBehaviour
                     EnemyTurn = false;
                     EnemyAction = false;
                     PlayUnitCount = 0;
+                    turnCountTimer = 2;
                     foreach (Player player in unitManager.GetPlayerList())
                     {
                         PlayUnitCount++;
@@ -152,6 +155,7 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void SetUnitPos()
     {
+        turnCountTimer = 2;
         stageUnitsPos.Clear();
         foreach (Unit unit in stageUnits)
         {
@@ -179,13 +183,6 @@ public class Stage : MonoBehaviour
                 PlayerMoveMode = true;
                 map.StartSearch2(PlayerUnit);
                 PlayerUnit.UnitMoveList2(map.MoveList2);
-                foreach (Map.MapDate item in map.MoveList2)
-                {
-                    if (item.movePoint >0)
-                    {
-                        Debug.Log("x:" + item.PosX + "z:" + item.PosZ + "P:" + item.movePoint);
-                    }
-                }
             }
         }
     }
