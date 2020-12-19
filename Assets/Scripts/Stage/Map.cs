@@ -47,7 +47,7 @@ public class Map : MonoBehaviour
 
     public List<List<MapDate>> MapDates { get; private set; } = new List<List<MapDate>>();//マップデータ
     public List<List<MapDate>> MoveList { get; private set; } //移動マップデータ
-    public List<MapDate> MapDates2 { get; private set; }
+    public List<MapDate> MapDates2 { get; private set; } = new List<MapDate>();
     public List<MapDate> MoveList2 { get; private set; }
     public Stage gameStage;//ステージデータ
     public readonly int maxX = 10;//マップ最大値
@@ -58,6 +58,7 @@ public class Map : MonoBehaviour
     {
         MapCreate(maxX, maxZ);
         MoveList = new List<List<MapDate>>(MapDates);
+        MoveList2 = new List<MapDate>(MapDates2);
         Instans = this;
     }
     void Start()
@@ -158,7 +159,7 @@ public class Map : MonoBehaviour
         }
         int p = moveUnit.CurrentPosX + (maxX * moveUnit.CurrentPosZ);
         MoveList2[p].movePoint = moveUnit.GetMovePower();
-        //SearchCross2(p, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
+        SearchCross2(p, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
     }
     /// <summary>
     /// 十字範囲の移動可能箇所を調べる
@@ -181,10 +182,16 @@ public class Map : MonoBehaviour
     {
         if (0 < p - maxX && p < maxX * maxZ)
         {
-            // SearchPos(p - maxX, movePower, MoveList2[p].Level, liftingForce);
-            // SearchPos(p + maxX, movePower, MoveList2[p].Level, liftingForce);
-            // SearchPos(p - 1, movePower, MoveList2[p].Level, liftingForce);
-            // SearchPos(p + 1, movePower, MoveList2[p].Level, liftingForce);
+            SearchPos2(p - maxX, movePower, MoveList2[p].Level, liftingForce);
+            SearchPos2(p + maxX, movePower, MoveList2[p].Level, liftingForce);
+            if (MoveList2[p].PosX > 0)
+            {
+                SearchPos2(p - 1, movePower, MoveList2[p].Level, liftingForce);
+            }
+            if (MoveList2[p].PosX < maxX - 1)
+            {
+                SearchPos2(p + 1, movePower, MoveList2[p].Level, liftingForce);
+            }
         }
     }
     /// <summary>
@@ -244,7 +251,7 @@ public class Map : MonoBehaviour
     }
     void SearchPos2(int p,int movePower, float currentLevel, float liftingForce)
     {
-        if (p < 0 || p >= maxX * maxZ )//調査対象がマップ範囲内であるか確認
+        if (p < 0 || p >= maxX * maxZ)//調査対象がマップ範囲内であるか確認
         {
             return;
         }
@@ -273,15 +280,15 @@ public class Map : MonoBehaviour
         }
         for (int i = 0; i < gameStage.stageUnits.Count; i++)//ユニットがいるか確認
         {
-            /*
-            if (x == gameStage.stageUnitsPos[i][0] && z == gameStage.stageUnitsPos[i][1])
+            
+            if (MoveList2[p].PosX == gameStage.stageUnitsPos[i][0] && MoveList2[p].PosZ == gameStage.stageUnitsPos[i][1])
             {
                 if (!gameStage.stageUnits[i].DestroyBody)
                 {
                     return;
                 }
             }
-            */
+            
         }
         movePower = movePower - MovePoint(MoveList2[p].MapType);//移動力変動
 
