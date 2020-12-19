@@ -24,8 +24,7 @@ public class Stage : MonoBehaviour
     public int PlayUnitCount { get; private set; } = 0;
     public int EnemyUnitCount { get; private set; } = 0;
 
-    [SerializeField]
-    int x = 0;
+    bool start = false;
     private void Awake()
     {
         StageDate = this;
@@ -51,6 +50,10 @@ public class Stage : MonoBehaviour
 
     void Update()
     {
+        if (!start && PlayerUnit.Body)
+        {
+            start = true;
+        }
         if (turnCountTimer > 0)
         {
             turnCountTimer -= Time.deltaTime;
@@ -66,7 +69,7 @@ public class Stage : MonoBehaviour
         {
             MoveNow = false;
         }
-        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0)
+        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start)
         {
             if (PlayUnitCount >= unitManager.GetPlayerList().Length)
             {
@@ -74,22 +77,21 @@ public class Stage : MonoBehaviour
                 EnemyTurn = true;
                 EnemyAction = true;
                 turnCountTimer = 2;
-                foreach  (Unit unit in unitManager.GetPlayerList())
+                foreach (Unit unit in unitManager.GetPlayerList())
                 {
                     unit.MoveFinishSet();
                 }
                 TargetCursor.instance.SetCursor(enemyUnit);
             }
-            if (unitManager.GetPlayer(PlayUnitCount).Body)
+
+            if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
             {
-                if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
-                {
-                    PlayerUnit.ActionTurn = true;
-                    PlayerTurn = true;
-                    PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
-                }
-                PlayUnitCount++;
+                PlayerUnit.ActionTurn = true;
+                PlayerTurn = true;
+                PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
             }
+            PlayUnitCount++;
+
         }
         if (EnemyTurn && turnCountTimer <= 0)
         {
@@ -136,7 +138,7 @@ public class Stage : MonoBehaviour
     public void UnitMoveStart(int x, int y)
     {
         if (!MoveFinish)
-        {            
+        {
             PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
             PlayerUnit.UnitMove2(map.MoveList2, x, y);
         }
@@ -221,7 +223,6 @@ public class Stage : MonoBehaviour
 
     public void UnitC()
     {
-        PlayerUnit.UnitCreate(0, x, 0, 0, 0, x, 0);
     }
 
     private void Fupdete()
@@ -238,7 +239,7 @@ public class Stage : MonoBehaviour
         //方向設定、ターン終了
         //
         //次期ユニット検索、設定
-       bool uiOn = true;
+        bool uiOn = true;
         if (true)
         {
             MoveStart();
@@ -267,5 +268,5 @@ public class Stage : MonoBehaviour
             //Next
         }
     }
-   
+
 }

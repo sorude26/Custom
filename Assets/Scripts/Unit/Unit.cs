@@ -116,25 +116,7 @@ public class Unit : MonoBehaviour
     public float GetLiftingForce() { return liftingForce; }
 
     public int GetMaxHp() { return maxHp; }
-    /// <summary>
-    /// ダメージ処理
-    /// </summary>
-    /// <param name="damege"></param>
-    public void Damage(int damege)
-    {
-        Debug.Log("被弾" + damege);
-        damege -= Defense / 10;
-        if (damege > 0)
-        {
-            Debug.Log("ダメージ発生" + damege);
-            CurrentHp -= damege;
-            if (CurrentHp <= 0)
-            {
-                Debug.Log("撃破");
-                Dead();
-            }
-        }
-    }
+    
     /// <summary>
     /// 撃破処理
     /// </summary>

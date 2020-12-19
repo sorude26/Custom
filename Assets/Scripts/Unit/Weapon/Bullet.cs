@@ -54,18 +54,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*
-        Unit hitUnit = other.GetComponent<Unit>();
-        if (hitUnit != null)//命中処理
-        {
-            if (Power > 0)
-            {
-                Debug.Log("命中");
-                hitUnit.Damage(Power);
-            }
-            Power -= hitUnit.Defense;
-        }
-        */
         UnitParts hitParts = other.GetComponent<UnitParts>();
         if (hitParts != null)
         {
