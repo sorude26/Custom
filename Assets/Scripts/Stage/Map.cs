@@ -46,8 +46,9 @@ public class Map : MonoBehaviour
     }
 
     public List<List<MapDate>> MapDates { get; private set; } = new List<List<MapDate>>();//マップデータ
-
     public List<List<MapDate>> MoveList { get; private set; } //移動マップデータ
+    public List<MapDate> MapDates2 { get; private set; }
+    public List<MapDate> MoveList2 { get; private set; }
     public Stage gameStage;//ステージデータ
     public readonly int maxX = 10;//マップ最大値
     public readonly int maxZ = 10;
@@ -90,7 +91,19 @@ public class Map : MonoBehaviour
             MapDates.Add(mapX);
         }
     }
-
+    public void MapCreate2(int x,int z)
+    {
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < z; j++)
+            {
+                MapType type = MapType.Normal;
+                float y = 0;
+                MapDate map = new MapDate(type,i,j,y);
+                MapDates2.Add(map);
+            }
+        }
+    }
     /// <summary>
     /// 地形タイプごとの移動力補正を返す
     /// </summary>
@@ -208,6 +221,53 @@ public class Map : MonoBehaviour
         if (movePower > 0)//移動可能箇所に足跡入力、再度検索
         {
             MoveList[x][z].movePoint = movePower;
+            SearchCross(x, z, movePower, liftingForce);
+        }
+    }
+    void SearchPos2(int x, int z, int movePower, float currentLevel, float liftingForce ,int p)
+    {
+        if (x < 0 || x >= maxX || z < 0 || z >= maxZ)//調査対象がマップ範囲内であるか確認
+        {
+            return;
+        }
+        if (MovePoint(MoveList2[p].MapType) == 0)//侵入可能か確認、０は侵入不可又は未設定
+        {
+            return;
+        }
+        if (MoveList2[p].Level >= currentLevel)//高低差確認
+        {
+            if (MoveList2[p].Level - currentLevel > liftingForce)
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (currentLevel - MoveList2[p].Level > liftingForce)
+            {
+                return;
+            }
+        }
+
+        if (movePower <= MoveList2[p].movePoint)//確認済か確認
+        {
+            return;
+        }
+        for (int i = 0; i < gameStage.stageUnits.Count; i++)//ユニットがいるか確認
+        {
+            if (x == gameStage.stageUnitsPos[i][0] && z == gameStage.stageUnitsPos[i][1])
+            {
+                if (!gameStage.stageUnits[i].DestroyBody)
+                {
+                    return;
+                }
+            }
+        }
+        movePower = movePower - MovePoint(MoveList2[p].MapType);//移動力変動
+
+        if (movePower > 0)//移動可能箇所に足跡入力、再度検索
+        {
+            MoveList2[p].movePoint = movePower;
             SearchCross(x, z, movePower, liftingForce);
         }
     }
