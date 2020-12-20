@@ -89,6 +89,7 @@ public class Stage : MonoBehaviour
                 PlayerUnit.ActionTurn = true;
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
+                TargetCursor.instance.SetCursor(enemyUnit);
             }
             PlayUnitCount++;
 
