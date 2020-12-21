@@ -89,10 +89,8 @@ public class Stage : MonoBehaviour
                 PlayerUnit.ActionTurn = true;
                 PlayerTurn = true;
                 PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
-                TargetCursor.instance.SetCursor(enemyUnit);
             }
             PlayUnitCount++;
-
         }
         if (EnemyTurn && turnCountTimer <= 0)
         {
@@ -179,7 +177,7 @@ public class Stage : MonoBehaviour
 
     public void MoveStart()
     {
-        if (!MoveNow && !MoveFinish && !EnemyTurn)
+        if (!MoveNow && !MoveFinish && !EnemyTurn && turnCountTimer <= 0)
         {
             if (!PlayerMoveMode)
             {
@@ -192,7 +190,7 @@ public class Stage : MonoBehaviour
 
     public void AttackStart()
     {
-        if (!MoveFinish && !EnemyTurn)
+        if (!MoveFinish && !EnemyTurn && turnCountTimer <= 0)
         {
             if (!MoveNow)
             {
@@ -213,7 +211,7 @@ public class Stage : MonoBehaviour
 
     public void UnitMoveFinish()
     {
-        if (!MoveNow && !MoveFinish)
+        if (!MoveNow && !MoveFinish && turnCountTimer <= 0)
         {
             MoveFinish = true;
             PlayerMoveMode = false;
