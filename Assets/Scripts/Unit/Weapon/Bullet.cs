@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
         if (dir.sqrMagnitude >= EffectiveRange * EffectiveRange && !overRange)//有効射程内か
         {
             overRange = true;
-            Power /= 5;
+            Power /= 2;
         }
         if (dir.sqrMagnitude >= Range * Range || Power <= 0)//射程範囲外又は、威力低下で消去
         {

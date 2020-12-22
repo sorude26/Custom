@@ -458,7 +458,7 @@ MonoBehaviour:
   defense: 5
   weight: 40
   moveType: 0
-  movePower: 6
+  movePower: 5
   moveSpeed: 50
   partsHigh: {fileID: 8809973080735558364}
 --- !u!54 &4658738442373862770
