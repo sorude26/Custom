@@ -20,15 +20,17 @@ public class Unit : MonoBehaviour
     public class Target
     {
         public Unit TargetUnit { get; set; }
-        public int TargetPoint { get; set; }
+        public float TargetPoint { get; set; }
         public int PosX { get; set; }
         public int PosZ { get; set; }
-        public Target(Unit target, int point, int x, int z)
+        public float  Distance { get; set; }
+        public Target(Unit target, float point, int x, int z ,float distance)
         {
             TargetUnit = target;
             TargetPoint = point;
             PosX = x;
             PosZ = z;
+            Distance = distance;
         }
     }
 

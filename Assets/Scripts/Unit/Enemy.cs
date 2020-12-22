@@ -114,6 +114,7 @@ public class Enemy : Unit
                                 Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
                                 if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                                 {
+                                    float distance = DetectionRange * DetectionRange - dir.sqrMagnitude;
                                     if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
                                     {
                                         point += 2000;
@@ -127,14 +128,18 @@ public class Enemy : Unit
                                     point -= number;//ターゲットの登録順で得点に差
                                     if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
                                     {
+                                        if (Target.Distance > distance)
+                                        {
+                                            point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;
+                                        }
                                         if (point > Target.TargetPoint)
                                         {
-                                            Target = new Target(target, point, i, j);
+                                            Target = new Target(target, point, i, j, distance);
                                         }
                                     }
                                     else
                                     {
-                                        Target = new Target(target, point, i, j);
+                                        Target = new Target(target, point, i, j, distance);
                                     }
                                 }
                             }
@@ -172,10 +177,11 @@ public class Enemy : Unit
                     {
                         if (!target.DestroyBody)
                         {
-                            int point = 0;
+                            float point = 0;
                             Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
                             if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                             {
+                                float distance = dir.sqrMagnitude;
                                 if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
                                 {
                                     point += 10000;
@@ -185,18 +191,19 @@ public class Enemy : Unit
                                 {
                                     point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
                                 }
-                                point += (target.GetMaxHp() - target.CurrentHp) * 30;//ターゲットの耐久値の減少量が大きい場合に高得点
+                                point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
                                 point -= number;//ターゲットの登録順で得点に差
+                                point -= distance;
                                 if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
                                 {
                                     if (point > Target.TargetPoint)
                                     {
-                                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ, distance);
                                     }
                                 }
                                 else
                                 {
-                                    Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                    Target = new Target(target, point, mapDate.PosX, mapDate.PosZ, distance);
                                 }
                             }
                         }

@@ -13,23 +13,23 @@ public class Weapon : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject thisBullet;//弾
+    GameObject thisBullet = null;//弾
 
     [SerializeField]
-    Transform muzzle;//銃口
+    Transform muzzle = null;//銃口
 
     [SerializeField]
     WeaponType weaponType = WeaponType.Rifle;//武器種
     public float Range { get; private set; }//最大射程
-    [SerializeField] float range;
+    [SerializeField] float range = 0;
     public float EffectiveRange { get; private set; }//有効射程
-    [SerializeField] float effectiveRange;
+    [SerializeField] float effectiveRange = 0;
     public int Power { get; private set; }//威力
-    [SerializeField] int power;
+    [SerializeField] int power = 0;
     public float BulletSpeed { get; private set; }//弾速
-    [SerializeField] float bulletSpeed;
+    [SerializeField] float bulletSpeed = 0;
     public int TotalShotNumber { get; private set; }//総射撃数
-    [SerializeField] int totalShotNumber;
+    [SerializeField] int totalShotNumber = 0;
     private int shotNumber;//発射弾数
     private float intervalTime;//発射間隔
     [SerializeField] float diffusivity = 0.02f;//拡散率

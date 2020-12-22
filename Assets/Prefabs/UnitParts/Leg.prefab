@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: NormalLeg
-  partsHp: 40
+  partsHp: 50
   defense: 5
   weight: 40
   moveType: 0

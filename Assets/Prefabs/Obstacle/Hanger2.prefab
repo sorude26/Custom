@@ -100,7 +100,7 @@ MonoBehaviour:
   unitAngle: 0
   movePower: 0
   liftingForce: 0
-  maxHp: 30
+  maxHp: 10
   startPosX: 4
   startPosZ: 2
   detectionRange: 0
