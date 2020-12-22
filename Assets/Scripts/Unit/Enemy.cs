@@ -70,7 +70,7 @@ public class Enemy : Unit
                         attack = false;
                         ActionNow = false;
                         gameStage.EnemyAction = true;
-                        gameStage.turnCountTimer = 1;
+                        gameStage.turnCountTimer = 2;
                     }
                 }
             }

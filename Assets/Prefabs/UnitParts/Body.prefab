@@ -1124,7 +1124,7 @@ MonoBehaviour:
   defense: 5
   weight: 50
   unitOutput: 500
-  liftingForce: 2
+  liftingForce: 3
   headParts: {fileID: 6673392777080238337}
   rArmParts: {fileID: 6673392777358537654}
   lArmParts: {fileID: 6673392776738124628}

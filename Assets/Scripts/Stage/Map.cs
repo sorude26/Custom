@@ -53,9 +53,13 @@ public class Map : MonoBehaviour
     public readonly int maxX = 15;//マップ最大値
     public readonly int maxZ = 15;
     public readonly int mapScale = 10;//拡大率
-
+    [SerializeField]
+    StageData data = null;
+    [SerializeField]
+    GameObject panel = null;
     private void Awake()
     {
+        data.Type = StageType.Factory1;
         MapCreate2(maxX, maxZ);
         //MoveList = new List<List<MapDate>>(MapDates);
         MoveList2 = new List<MapDate>(MapDates2);
@@ -98,10 +102,13 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < x; j++)
             {
-                MapType type = MapType.Normal;
-                float y = 0;
-                MapDate map = new MapDate(type, j, i, y);
+                MapDate map = new MapDate(data.StageDataGet(j,i), j, i, data.StageLevelData(j,i));
                 MapDates2.Add(map);
+                if (data.StageLevelData(j, i) != 0)
+                {
+                    GameObject mapPanel = Instantiate(panel);
+                    mapPanel.transform.position = new Vector3(j * 10, data.StageLevelData(j, i), i * 10);
+                }
             }
         }
     }
