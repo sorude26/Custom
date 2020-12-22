@@ -168,7 +168,7 @@ public class Enemy : Unit
                             {
                                 if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
                                 {
-                                    point += 2000;
+                                    point += 10000;
                                     point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
                                 }
                                 else

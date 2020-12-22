@@ -75,7 +75,14 @@ public class Stage : MonoBehaviour
         }
         if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start)
         {
-            if (PlayUnitCount >= unitManager.GetPlayerList().Length)
+            if (!unitManager.GetPlayer(PlayUnitCount).DestroyBody)
+            {
+                PlayerUnit.ActionTurn = true;
+                PlayerTurn = true;
+                PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
+            }
+            PlayUnitCount++;
+            if (PlayUnitCount > unitManager.GetPlayerList().Length)
             {
                 PlayUnitCount = 0;
                 EnemyTurn = true;
@@ -86,15 +93,7 @@ public class Stage : MonoBehaviour
                     unit.MoveFinishSet();
                 }
                 TargetCursor.instance.SetCursor(enemyUnit);
-            }
-
-            if (unitManager.GetPlayer(PlayUnitCount).Body.CurrentPartsHp > 0)
-            {
-                PlayerUnit.ActionTurn = true;
-                PlayerTurn = true;
-                PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
-            }
-            PlayUnitCount++;
+            }            
         }
         if (EnemyTurn && turnCountTimer <= 0)
         {
@@ -105,19 +104,21 @@ public class Stage : MonoBehaviour
                     EnemyUnitCount = 0;
                     EnemyTurn = false;
                     EnemyAction = false;
+                    PlayerTurn = false;
                     PlayUnitCount = 0;
                     turnCountTimer = 2;
+                    /*
                     foreach (Player player in unitManager.GetPlayerList())
                     {
-                        PlayUnitCount++;
                         if (player.Body.CurrentPartsHp > 0)
                         {
-                            PlayerTurn = true;
                             PlayerUnit = player;
                             TargetCursor.instance.SetCursor(PlayerUnit);
                             break;
                         }
+                        PlayUnitCount++;
                     }
+                    */
                 }
                 if (EnemyAction)
                 {
