@@ -14,6 +14,7 @@ public class Obstacle : Unit
             if (CurrentHp < 0)
             {
                 Dead();
+                gameObject.SetActive(false);
             }
         }
     }

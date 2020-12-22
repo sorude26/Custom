@@ -29,50 +29,60 @@ public class Enemy : Unit
         {
             UnitCreate(0,0,0,1,0,0,0);
         }
-        if (ActionNow)
+        if (silhouetteOn)
         {
-            if (enemyAI == EnemyAI.Attacker)
+            if (ActionNow)
             {
-                ActionTypeAttacker2();
-            }
-            if (moveMood)
-            {
-                UnitMove();
-            }
-            if (move && !moveMood && !attack)//移動終了で位置を保存
-            {
-                MoveFinishSet();
-                attack = true;                
-            }
-            UnitAngleControl();
-            if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
-            {
-               // Debug.Log("待機");
-                if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
+                if (enemyAI == EnemyAI.Attacker)
                 {
-                    // Debug.Log("攻撃");
-                    Vector3 dir = Target.TargetUnit.transform.position - transform.position;
-                    if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
+                    ActionTypeAttacker2();
+                }
+                if (moveMood)
+                {
+                    UnitMove();
+                }
+                if (move && !moveMood && !attack)//移動終了で位置を保存
+                {
+                    MoveFinishSet();
+                    attack = true;
+                }
+                UnitAngleControl();
+                if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
+                {
+                    // Debug.Log("待機");
+                    if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
                     {
-                        TargetCursor.instance.SetCursor(Target.TargetUnit);
-                        attackTrigger = true;
-                        TargetShot(Target.TargetUnit, LArm);
+                        // Debug.Log("攻撃");
+                        Vector3 dir = Target.TargetUnit.transform.position - transform.position;
+                        if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
+                        {
+                            TargetCursor.instance.SetCursor(Target.TargetUnit);
+                            attackTrigger = true;
+                            TargetShot(Target.TargetUnit, LArm);
+                            Target = null;
+                        }
+                    }
+                    if (!attackTrigger)
+                    {
                         Target = null;
+                        search = false;
+                        move = false;
+                        attack = false;
+                        ActionNow = false;
+                        gameStage.EnemyAction = true;
+                        gameStage.turnCountTimer = 1;
                     }
                 }
-                if (!attackTrigger)
-                {
-                    Target = null;
-                    search = false;
-                    move = false;
-                    attack = false;
-                    ActionNow = false;
-                    gameStage.EnemyAction = true;
-                    gameStage.turnCountTimer = 1;
-                }
+            }
+            if (DestroyBody)
+            {
+                gameObject.SetActive(false);
+                gameStage.EnemyDestroyCount++;
+                silhouetteOn = false;
             }
         }
         
+
     }
     private void LateUpdate()
     {

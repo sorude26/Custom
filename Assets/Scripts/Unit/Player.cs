@@ -9,20 +9,30 @@ public class Player : Unit
 
     void Update()
     {
-        if (!silhouetteOn)
+        if (!silhouetteOn && !DestroyBody)
         {
             UnitCreate(0, 0, 0, 0, 0, 0, 0);
         }
-        if (moveMood)
+        if (silhouetteOn)
         {
-            UnitMove();
+            if (moveMood)
+            {
+                UnitMove();
+            }
+            if (ActionTurn && gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
+            {
+                MoveFinishSet();
+                gameStage.MoveFinish = false;
+            }
+            UnitAngleControl();
+            if (DestroyBody)
+            {
+                gameObject.SetActive(false);
+                gameStage.PlayerDestroyCount++;
+                silhouetteOn = false;
+            }
         }
-        if (ActionTurn && gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
-        {
-            MoveFinishSet();
-            gameStage.MoveFinish = false;
-        }
-        UnitAngleControl();
+        
     }
 
     private void LateUpdate()

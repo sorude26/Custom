@@ -2,8 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum VictoryConditions
+{
+    AllDestroy,
+    TargetNumberBreak,
+    TargetBreak,
+    Survive,
+    GoalPosition,
+}
 public class Stage : MonoBehaviour
 {
+    [SerializeField]
+    VictoryConditions victory = VictoryConditions.AllDestroy;
+    public bool Victory { get; private set; } = false;
     public Player PlayerUnit { get; private set; }
     public Unit subUnit;
     public Enemy enemyUnit;
@@ -21,9 +32,10 @@ public class Stage : MonoBehaviour
     public bool EnemyAction { get; set; }
 
     public float turnCountTimer = 0;
-    public int PlayUnitCount { get; private set; } = 0;
+    public int PlayerUnitCount { get; private set; } = 0;
+    public int PlayerDestroyCount { get; set; } = 0;
     public int EnemyUnitCount { get; private set; } = 0;
-
+    public int EnemyDestroyCount { get; set; } = 0;
     bool start = false;
     private void Awake()
     {
@@ -75,16 +87,16 @@ public class Stage : MonoBehaviour
         }
         if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start)
         {
-            if (!unitManager.GetPlayer(PlayUnitCount).DestroyBody)
+            if (!unitManager.GetPlayer(PlayerUnitCount).DestroyBody)
             {
                 PlayerUnit.ActionTurn = true;
                 PlayerTurn = true;
-                PlayerUnit = unitManager.GetPlayer(PlayUnitCount);
+                PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
             }
-            PlayUnitCount++;
-            if (PlayUnitCount > unitManager.GetPlayerList().Length)
+            PlayerUnitCount++;
+            if (PlayerUnitCount > unitManager.GetPlayerList().Length)
             {
-                PlayUnitCount = 0;
+                PlayerUnitCount = 0;
                 EnemyTurn = true;
                 EnemyAction = true;
                 turnCountTimer = 2;
@@ -105,20 +117,8 @@ public class Stage : MonoBehaviour
                     EnemyTurn = false;
                     EnemyAction = false;
                     PlayerTurn = false;
-                    PlayUnitCount = 0;
+                    PlayerUnitCount = 0;
                     turnCountTimer = 2;
-                    /*
-                    foreach (Player player in unitManager.GetPlayerList())
-                    {
-                        if (player.Body.CurrentPartsHp > 0)
-                        {
-                            PlayerUnit = player;
-                            TargetCursor.instance.SetCursor(PlayerUnit);
-                            break;
-                        }
-                        PlayUnitCount++;
-                    }
-                    */
                 }
                 if (EnemyAction)
                 {
@@ -132,6 +132,7 @@ public class Stage : MonoBehaviour
                 }
             }
         }
+        VictoryConditionsCheck();
     }
 
     /// <summary>
@@ -225,52 +226,36 @@ public class Stage : MonoBehaviour
         }
     }
 
-    public void UnitC()
+    private void VictoryConditionsCheck()
     {
+        switch (victory)
+        {
+            case VictoryConditions.AllDestroy:
+                if (EnemyDestroyCount == unitManager.GetEnemies().Length && !Victory)
+                {
+                    Victory = true;
+                    Debug.Log("勝利");
+                }
+                break;
+            case VictoryConditions.TargetNumberBreak:
+                break;
+            case VictoryConditions.TargetBreak:
+                break;
+            case VictoryConditions.Survive:
+                break;
+            case VictoryConditions.GoalPosition:
+                break;
+            default:
+                break;
+        }
+        if (!Victory && PlayerDestroyCount == unitManager.GetPlayerList().Length)
+        {
+            Victory = true;
+            Debug.Log("敗北");
+        }
     }
 
-    private void Fupdete()
-    {
-        //個別ユニットターン開始
-        //スイッチ表示フラグ待ち
-        //移動Ｆｌａｇ
-        //移動終了待ち
-        //終了、キャンセルor待機or攻撃
-        //攻撃Ｆｌａｇ
-        //攻撃終了待ち
-        //終了、待機
-        //待機Ｆｌａｇ
-        //方向設定、ターン終了
-        //
-        //次期ユニット検索、設定
-        bool uiOn = true;
-        if (true)
-        {
-            MoveStart();
-        }
-        if (true)
-        {
-            //移動終了
-            uiOn = true;
-        }
-        if (true)
-        {
-            AttackStart();
-        }
-        if (true)
-        {
-            //攻撃終了
-        }
-        if (true)
-        {
-            //方向変更
-            uiOn = true;
-        }
-        if (true)
-        {
-            //変更終了
-            //Next
-        }
-    }
+
+
 
 }

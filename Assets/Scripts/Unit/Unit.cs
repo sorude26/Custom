@@ -124,8 +124,7 @@ public class Unit : MonoBehaviour
     {
         EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
         DestroyBody = true;
-        gameStage.SetUnitPos();
-        gameObject.SetActive(false);
+        gameStage.SetUnitPos();       
     }
     /// <summary>
     /// ユニット瞬間移動

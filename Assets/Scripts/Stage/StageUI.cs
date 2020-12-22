@@ -55,6 +55,6 @@ public class StageUI : MonoBehaviour
 
     public void OnClickCreate()
     {
-        stageDate.UnitC();
+        
     }
 }
