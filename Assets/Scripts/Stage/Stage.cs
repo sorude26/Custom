@@ -41,6 +41,10 @@ public class Stage : MonoBehaviour
         {
             stageUnits.Add(unit);
         }
+        foreach (Obstacle obstacle in unitManager.GetObstacles())
+        {
+            stageUnits.Add(obstacle);
+        }
         SetUnitPos();
         PlayerUnit = unitManager.GetPlayer(0);
         PlayerTurn = false;

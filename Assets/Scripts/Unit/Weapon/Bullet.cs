@@ -52,6 +52,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void HitBullet(int Defense)
+    {
+        EffectManager.PlayEffect(EffectID.Hit, transform.position);
+        Power -= Defense;
+    }
     private void OnTriggerEnter(Collider other)
     {
         UnitParts hitParts = other.GetComponent<UnitParts>();
@@ -60,7 +65,6 @@ public class Bullet : MonoBehaviour
             if (Power > 0)
             {
                 EffectManager.PlayEffect(EffectID.Hit, transform.position);
-                //Debug.Log("命中");
                 hitParts.Damage(Power);
                 Power -= hitParts.Defense;
             }

@@ -8,12 +8,14 @@ public class UnitManager : MonoBehaviour
 
     Player[] playerList = null;
     Enemy[] enemyList = null;
+    Obstacle[] obstaclesList = null;
     public static List<int[]> UnitDetaList { get; private set; }//パーツデータ反映用
     private void Awake()
     {
         Instance = this;
         playerList = FindObjectsOfType<Player>();
         enemyList = FindObjectsOfType<Enemy>();
+        obstaclesList = FindObjectsOfType<Obstacle>();
     }
     public Player GetPlayer(int i)
     {
@@ -39,5 +41,10 @@ public class UnitManager : MonoBehaviour
     public Enemy[] GetEnemies()
     {
         return enemyList;
+    }
+
+    public Obstacle[] GetObstacles()
+    {
+        return obstaclesList;
     }
 }
