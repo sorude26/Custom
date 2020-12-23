@@ -19,7 +19,7 @@ public class Player : Unit
             {
                 UnitMove();
             }
-            if (ActionTurn && gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
+            if (gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
             {
                 MoveFinishSet();
                 gameStage.MoveFinish = false;
@@ -59,6 +59,7 @@ public class Player : Unit
     }
     public void UnitMoveList2(List<Map.MapDate> moveList)
     {
+        //gameStage.SetUnitPos();
         foreach (Map.MapDate map in moveList)
         {
             if (map.movePoint > 0)

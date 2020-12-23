@@ -89,11 +89,11 @@ public class Stage : MonoBehaviour
         {
             if (!unitManager.GetPlayer(PlayerUnitCount).DestroyBody)
             {
-                PlayerUnit.ActionTurn = true;
-                PlayerTurn = true;
+                PlayerUnit.MoveFinishSet();
                 PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
+                PlayerTurn = true;
             }
-            PlayerUnitCount++;
+            PlayerUnitCount++;            
             if (PlayerUnitCount > unitManager.GetPlayerList().Length)
             {
                 PlayerUnitCount = 0;

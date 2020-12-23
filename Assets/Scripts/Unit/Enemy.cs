@@ -20,6 +20,8 @@ public class Enemy : Unit
     private bool move = false;
     private bool attack = false;
 
+    private Weapon weapon1 = null;
+    private Weapon weapon2 = null;
     public Target Target { get; private set; } = null;
 
 
@@ -54,11 +56,11 @@ public class Enemy : Unit
                     {
                         // Debug.Log("攻撃");
                         Vector3 dir = Target.TargetUnit.transform.position - transform.position;
-                        if (dir.sqrMagnitude <= LArmWeapon.Range * LArmWeapon.Range)
+                        if (dir.sqrMagnitude <= weapon1.Range * weapon1.Range)
                         {
                             TargetCursor.instance.SetCursor(Target.TargetUnit);
                             attackTrigger = true;
-                            TargetShot(Target.TargetUnit, LArm);
+                            TargetShot(Target.TargetUnit, weapon1);
                             Target = null;
                         }
                     }
@@ -93,76 +95,7 @@ public class Enemy : Unit
     {
         ActionNow = true;
     }
-
-    private void ActionTypeAttacker()
-    {
-        if (!search)
-        {
-            gameMap.StartSearch(this);
-            for (int i = 0; i < gameMap.maxX; i++)
-            {
-                for (int j = 0; j < gameMap.maxZ; j++)
-                {
-                    if (gameMap.MoveList[i][j].movePoint > 0)
-                    {
-                        int number = 0;
-                        foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
-                        {
-                            if (!target.DestroyBody)
-                            {
-                                int point = 0;
-                                Vector3 dir = target.transform.position - new Vector3(i * gameMap.mapScale, gameMap.MoveList[i][j].Level, j * gameMap.mapScale);
-                                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
-                                {
-                                    float distance = DetectionRange * DetectionRange - dir.sqrMagnitude;
-                                    if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
-                                    {
-                                        point += 2000;
-                                        point += gameMap.MoveList[i][j].movePoint * 20;//移動量が少ない場合に高得点
-                                    }
-                                    else
-                                    {
-                                        point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;//移動量が大きい場合に高得点
-                                    }
-                                    point += (target.GetMaxHp() - target.CurrentHp) * 30;//ターゲットの耐久値の減少量が大きい場合に高得点
-                                    point -= number;//ターゲットの登録順で得点に差
-                                    if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
-                                    {
-                                        if (Target.Distance > distance)
-                                        {
-                                            point += (movePower - gameMap.MoveList[i][j].movePoint) * 10;
-                                        }
-                                        if (point > Target.TargetPoint)
-                                        {
-                                            Target = new Target(target, point, i, j, distance);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Target = new Target(target, point, i, j, distance);
-                                    }
-                                }
-                            }
-                            number++;
-                        }
-                    }
-                }
-            }
-            search = true;
-        }
-        if (Target != null)//ターゲットが設定されているならば移動実施
-        {
-            if (!move)
-            {
-                UnitMove(gameMap.MoveList, Target.PosX, Target.PosZ);
-                move = true;
-            }
-        }
-        else
-        {
-            attack = true;
-        }
-    }
+        
     private void ActionTypeAttacker2()
     {
         if (!search)
@@ -182,7 +115,22 @@ public class Enemy : Unit
                             if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                             {
                                 float distance = dir.sqrMagnitude;
-                                if (dir.sqrMagnitude <= LArmWeapon.EffectiveRange * LArmWeapon.EffectiveRange)
+                                if (LArm.CurrentPartsHp >0)
+                                {
+                                    weapon1 = LArmWeapon;
+                                    weapon2 = RArmWeapon;
+                                }
+                                else
+                                {
+                                    weapon1 = RArmWeapon;
+                                    weapon2 = LArmWeapon;
+                                }
+                                if (LArmWeapon.EffectiveRange < RArmWeapon.EffectiveRange && RArm.CurrentPartsHp > 0 )
+                                {
+                                    weapon1 = RArmWeapon;
+                                    weapon2 = LArmWeapon;
+                                }
+                                if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
                                 {
                                     point += 10000;
                                     point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
@@ -193,17 +141,17 @@ public class Enemy : Unit
                                 }
                                 point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
                                 point -= number;//ターゲットの登録順で得点に差
-                                point -= distance;
+                                point -= distance;//距離が短いほど高得点
                                 if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
                                 {
                                     if (point > Target.TargetPoint)
                                     {
-                                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ, distance);
+                                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
                                     }
                                 }
                                 else
                                 {
-                                    Target = new Target(target, point, mapDate.PosX, mapDate.PosZ, distance);
+                                    Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
                                 }
                             }
                         }
