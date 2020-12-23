@@ -8635,6 +8635,7 @@ MonoBehaviour:
   - {fileID: 6673392778233104623, guid: 4afbb2037fa2ecc4c816af96bfed1c66, type: 3}
   BodyObjectList:
   - {fileID: 6673392778233104622, guid: 4afbb2037fa2ecc4c816af96bfed1c66, type: 3}
+  - {fileID: 4848896100023767557, guid: 2beea6fae65ad9141969eb897be71fff, type: 3}
   LArmsList:
   - {fileID: 5636109707663599792, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
   LArmObjectList:
@@ -8652,6 +8653,7 @@ MonoBehaviour:
   weaponObjectList:
   - {fileID: 780823539462373911, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
   - {fileID: 934432947381065304, guid: ec0daba4ccc710f4da7e9b69a1f378f1, type: 3}
+  - {fileID: 4468825202332573747, guid: 5222c168d18aa0a48a39fa515cf9c025, type: 3}
 --- !u!212 &1758934267
 SpriteRenderer:
   m_ObjectHideFlags: 0
