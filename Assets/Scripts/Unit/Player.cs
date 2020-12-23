@@ -11,7 +11,7 @@ public class Player : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(0, 0, 0, 0, 0, 1, 0);
+            UnitCreate(0, 0, 0, 1, 0, 1, 0);
         }
         if (silhouetteOn)
         {
@@ -32,7 +32,7 @@ public class Player : Unit
                 silhouetteOn = false;
             }
         }
-        
+
     }
 
     private void LateUpdate()
@@ -61,7 +61,7 @@ public class Player : Unit
     {
         foreach (Map.MapDate map in moveList)
         {
-            if(map.movePoint > 0)
+            if (map.movePoint > 0)
             {
                 GameObject instance = Instantiate(mark);
                 instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);

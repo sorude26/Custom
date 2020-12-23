@@ -21,13 +21,13 @@ public class Enemy : Unit
     private bool attack = false;
 
     public Target Target { get; private set; } = null;
-    
+
 
     private void Update()
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0,0,0,0,0,0,0);
+            UnitCreate(0, 0, 0, 2, 0, 2, 0);
         }
         if (silhouetteOn)
         {
@@ -81,7 +81,7 @@ public class Enemy : Unit
                 silhouetteOn = false;
             }
         }
-        
+
 
     }
     private void LateUpdate()
@@ -210,7 +210,7 @@ public class Enemy : Unit
                         number++;
                     }
                 }
-            }            
+            }
             search = true;
         }
         if (Target != null)//ターゲットが設定されているならば移動実施

@@ -287,10 +287,10 @@ MonoBehaviour:
     type: 3}
   muzzle: {fileID: 3953540240575149093}
   weaponType: 1
-  range: 80
+  range: 70
   effectiveRange: 40
   power: 4
-  bulletSpeed: 150
+  bulletSpeed: 250
   totalShotNumber: 10
   diffusivity: 0.05
 --- !u!1 &966102881338882187
