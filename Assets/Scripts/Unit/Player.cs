@@ -23,6 +23,7 @@ public class Player : Unit
             {
                 MoveFinishSet();
                 gameStage.MoveFinish = false;
+                gameStage.turnCountTimer = 2;
             }
             UnitAngleControl();
             if (DestroyBody)

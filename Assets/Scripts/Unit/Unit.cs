@@ -515,7 +515,7 @@ public class Unit : MonoBehaviour
                 //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
                 CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
             }
-            gameStage.SetUnitPos();
+            gameStage.SetUnitPos();            
         }
     }
 
@@ -578,6 +578,7 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void TargetShot(Unit targetUnit, Weapon attackWeapon)
     {
+        CameraControl.Instans.UnitCamera(this);
         Vector3 targetPos = targetUnit.Body.transform.position;
         Vector3 targetDir = targetPos - transform.position;
         targetDir.y = 0.0f;

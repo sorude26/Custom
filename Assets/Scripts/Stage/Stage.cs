@@ -37,6 +37,7 @@ public class Stage : MonoBehaviour
     public int EnemyUnitCount { get; private set; } = 0;
     public int EnemyDestroyCount { get; set; } = 0;
     bool start = false;
+   
     private void Awake()
     {
         StageDate = this;
@@ -91,7 +92,9 @@ public class Stage : MonoBehaviour
             {
                 PlayerUnit.MoveFinishSet();
                 PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
+                TargetCursor.instance.SetCursor(PlayerUnit);
                 PlayerTurn = true;
+                CameraControl.Instans.UnitCamera(PlayerUnit);
             }
             PlayerUnitCount++;            
             if (PlayerUnitCount > unitManager.GetPlayerList().Length)
@@ -125,6 +128,7 @@ public class Stage : MonoBehaviour
                     if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
                     {
                         enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
+                        CameraControl.Instans.UnitCamera(enemyUnit);
                         enemyUnit.StatAction();
                         EnemyAction = false;
                     }

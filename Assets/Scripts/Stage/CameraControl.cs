@@ -8,9 +8,10 @@ public class CameraControl : MonoBehaviour
     public Transform MainCameraTrans { get; private set; }
 
     private int cameraPos = 0;
-
+    public static CameraControl Instans { get; private set; }
     private void Awake()
     {
+        Instans = this;
         MainCamera = GetComponentInChildren<Camera>();
         MainCameraTrans = MainCamera.transform;
     }
@@ -59,7 +60,7 @@ public class CameraControl : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 break;
             case 4:
-                transform.position = new Vector3(Map.Instans.maxX * 5.0f, Map.Instans.maxX * Map.Instans.maxZ, Map.Instans.maxZ * 5.0f);
+                transform.position = new Vector3(Map.Instans.maxX * 5.0f, (Map.Instans.maxX + Map.Instans.maxZ)*5, Map.Instans.maxZ * 5.0f);
                 lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
                 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
@@ -72,6 +73,11 @@ public class CameraControl : MonoBehaviour
                 cameraPos = 0;
                 break;
         }
-
+    }
+    public void UnitCamera(Unit unit)
+    {
+        transform.position = new Vector3(unit.CurrentPosX * 10 - 20, 20 + unit.CurrentPosY, unit.CurrentPosZ * 10 - 20);
+        Vector3 targetDir = unit.transform.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(targetDir);
     }
 }
