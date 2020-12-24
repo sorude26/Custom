@@ -29,7 +29,7 @@ public class Enemy : Unit
     {
         if (!silhouetteOn)
         {
-            UnitCreate(0, 0, 0, 2, 0, 2, 0);
+            UnitCreate(0, 0, 0, 0, 0, 2, 0);
         }
         if (silhouetteOn)
         {
@@ -58,10 +58,30 @@ public class Enemy : Unit
                         Vector3 dir = Target.TargetUnit.transform.position - transform.position;
                         if (dir.sqrMagnitude <= weapon1.Range * weapon1.Range)
                         {
-                            TargetCursor.instance.SetCursor(Target.TargetUnit);
-                            attackTrigger = true;
-                            TargetShot(Target.TargetUnit, weapon1);
-                            Target = null;
+                            if (weapon2 != null)
+                            {
+                                if (weapon2.Power * weapon2.TotalShotNumber > weapon1.Power * weapon1.TotalShotNumber && dir.sqrMagnitude <= weapon2.EffectiveRange * weapon2.EffectiveRange)
+                                {
+                                    TargetCursor.instance.SetCursor(Target.TargetUnit);
+                                    attackTrigger = true;
+                                    TargetShot(Target.TargetUnit, weapon2);
+                                    Target = null;
+                                }
+                                else
+                                {
+                                    TargetCursor.instance.SetCursor(Target.TargetUnit);
+                                    attackTrigger = true;
+                                    TargetShot(Target.TargetUnit, weapon1);
+                                    Target = null;
+                                }
+                            }
+                            else
+                            {
+                                TargetCursor.instance.SetCursor(Target.TargetUnit);
+                                attackTrigger = true;
+                                TargetShot(Target.TargetUnit, weapon1);
+                                Target = null;
+                            }
                         }
                     }
                     if (!attackTrigger)
@@ -115,43 +135,53 @@ public class Enemy : Unit
                             if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                             {
                                 float distance = dir.sqrMagnitude;
+                                weapon1 = null;
+                                weapon2 = null;
                                 if (LArm.CurrentPartsHp >0)
                                 {
                                     weapon1 = LArmWeapon;
-                                    weapon2 = RArmWeapon;
+                                    if (RArm.CurrentPartsHp > 0)
+                                    {
+                                        weapon2 = RArmWeapon;
+                                    }
+                                    if (weapon2 != null)
+                                    {
+                                        if (weapon1.EffectiveRange < weapon2.EffectiveRange)
+                                        {
+                                            weapon1 = RArmWeapon;
+                                            weapon2 = LArmWeapon;
+                                        }
+                                    }
                                 }
-                                else
+                                else if(RArm.CurrentPartsHp > 0)
                                 {
-                                    weapon1 = RArmWeapon;
-                                    weapon2 = LArmWeapon;
+                                    weapon1 = RArmWeapon;                                    
                                 }
-                                if (LArmWeapon.EffectiveRange < RArmWeapon.EffectiveRange && RArm.CurrentPartsHp > 0 )
+                                if (weapon1 != null)
                                 {
-                                    weapon1 = RArmWeapon;
-                                    weapon2 = LArmWeapon;
-                                }
-                                if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
-                                {
-                                    point += 10000;
-                                    point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
-                                }
-                                else
-                                {
-                                    point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
-                                }
-                                point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
-                                point -= number;//ターゲットの登録順で得点に差
-                                point -= distance;//距離が短いほど高得点
-                                if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
-                                {
-                                    if (point > Target.TargetPoint)
+                                    if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
+                                    {
+                                        point += 10000;
+                                        point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
+                                    }
+                                    else
+                                    {
+                                        point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
+                                    }
+                                    point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
+                                    point -= number;//ターゲットの登録順で得点に差
+                                    point -= distance;//距離が短いほど高得点
+                                    if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                                    {
+                                        if (point > Target.TargetPoint)
+                                        {
+                                            Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                        }
+                                    }
+                                    else
                                     {
                                         Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
                                     }
-                                }
-                                else
-                                {
-                                    Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
                                 }
                             }
                         }
