@@ -5,9 +5,7 @@ using UnityEngine;
 public class StageUI : MonoBehaviour
 {
     Stage stageDate;
-    private bool moveOrder;
-    private bool attackOrder;
-
+    
     [SerializeField]
     GameObject messageWindow;
     private bool message;
@@ -41,8 +39,7 @@ public class StageUI : MonoBehaviour
     }
 
     public void OnClickDecide()
-    {
-        moveOrder = false;
+    {        
         stageDate.UnitMoveFinish();
         message = false;
         messageWindow.SetActive(false);
