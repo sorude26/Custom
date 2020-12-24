@@ -86,7 +86,7 @@ public class Stage : MonoBehaviour
         {
             MoveNow = false;
         }
-        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start)
+        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start && !Victory)
         {
             if (!unitManager.GetPlayer(PlayerUnitCount).DestroyBody)
             {
@@ -110,7 +110,7 @@ public class Stage : MonoBehaviour
                 TargetCursor.instance.SetCursor(enemyUnit);
             }            
         }
-        if (EnemyTurn && turnCountTimer <= 0)
+        if (EnemyTurn && turnCountTimer <= 0 && !Victory)
         {
             if (EnemyAction)
             {
