@@ -9,6 +9,7 @@ public class StageUI : MonoBehaviour
     [SerializeField]
     GameObject messageWindow;
     private bool message;
+   
     void Start()
     {
         stageDate = Stage.StageDate;

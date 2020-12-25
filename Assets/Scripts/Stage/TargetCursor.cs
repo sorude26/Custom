@@ -32,5 +32,10 @@ public class TargetCursor : MonoBehaviour
         TargetUnit = target;
         currentPosY = 6 + TargetUnit.CurrentPosY;
         transform.position = new Vector3(TargetUnit.CurrentPosX * 10, currentPosY, TargetUnit.CurrentPosZ * 10);
+        Enemy enemy = target.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            Stage.StageDate.panelE.SetUnit(enemy);
+        }
     }
 }

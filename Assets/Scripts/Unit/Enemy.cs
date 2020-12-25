@@ -54,7 +54,7 @@ public class Enemy : Unit
                     // Debug.Log("待機");
                     if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
                     {
-                        // Debug.Log("攻撃");
+                        gameStage.panelP.SetUnit(Target.TargetUnit);
                         Vector3 dir = Target.TargetUnit.transform.position - transform.position;
                         if (dir.sqrMagnitude <= weapon1.Range * weapon1.Range)
                         {
@@ -65,14 +65,12 @@ public class Enemy : Unit
                                     TargetCursor.instance.SetCursor(Target.TargetUnit);
                                     attackTrigger = true;
                                     TargetShot(Target.TargetUnit, weapon2);
-                                    Target = null;
                                 }
                                 else
                                 {
                                     TargetCursor.instance.SetCursor(Target.TargetUnit);
                                     attackTrigger = true;
                                     TargetShot(Target.TargetUnit, weapon1);
-                                    Target = null;
                                 }
                             }
                             else
@@ -80,8 +78,8 @@ public class Enemy : Unit
                                 TargetCursor.instance.SetCursor(Target.TargetUnit);
                                 attackTrigger = true;
                                 TargetShot(Target.TargetUnit, weapon1);
-                                Target = null;
-                            }
+                            }                            
+                            Target = null;
                         }
                     }
                     if (!attackTrigger)

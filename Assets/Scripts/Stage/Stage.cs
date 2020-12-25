@@ -37,7 +37,10 @@ public class Stage : MonoBehaviour
     public int EnemyUnitCount { get; private set; } = 0;
     public int EnemyDestroyCount { get; set; } = 0;
     bool start = false;
-   
+    [SerializeField]
+    public ParameterPanel panelP;
+    [SerializeField]
+    public ParameterPanel panelE;
     private void Awake()
     {
         StageDate = this;
@@ -70,6 +73,7 @@ public class Stage : MonoBehaviour
         if (!start && PlayerUnit.Body)
         {
             start = true;
+            panelP.SetUnit(PlayerUnit);
         }
         if (turnCountTimer > 0)
         {
@@ -95,6 +99,7 @@ public class Stage : MonoBehaviour
                 TargetCursor.instance.SetCursor(PlayerUnit);
                 PlayerTurn = true;
                 CameraControl.Instans.UnitCamera(PlayerUnit);
+                panelP.SetUnit(PlayerUnit);
             }
             PlayerUnitCount++;            
             if (PlayerUnitCount > unitManager.GetPlayerList().Length)
@@ -131,6 +136,7 @@ public class Stage : MonoBehaviour
                         CameraControl.Instans.UnitCamera(enemyUnit);
                         enemyUnit.StatAction();
                         EnemyAction = false;
+                        panelE.SetUnit(enemyUnit);
                     }
                     EnemyUnitCount++;
                 }

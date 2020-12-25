@@ -18,10 +18,18 @@ public class ParameterPanel : MonoBehaviour
     Unit unit = null;
     void Update()
     {
-        head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
-        body.fillAmount = (float)unit.Body.CurrentPartsHp / unit.Body.MaxPartsHp;
-        rArm.fillAmount = (float)unit.RArm.CurrentPartsHp / unit.RArm.MaxPartsHp;
-        lArm.fillAmount = (float)unit.LArm.CurrentPartsHp / unit.LArm.MaxPartsHp;
-        leg.fillAmount = (float)unit.Leg.CurrentPartsHp / unit.Leg.MaxPartsHp;
+        if (unit != null)
+        {
+            head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
+            body.fillAmount = (float)unit.Body.CurrentPartsHp / unit.Body.MaxPartsHp;
+            rArm.fillAmount = (float)unit.RArm.CurrentPartsHp / unit.RArm.MaxPartsHp;
+            lArm.fillAmount = (float)unit.LArm.CurrentPartsHp / unit.LArm.MaxPartsHp;
+            leg.fillAmount = (float)unit.Leg.CurrentPartsHp / unit.Leg.MaxPartsHp;
+        }
+    }
+
+    public void SetUnit(Unit unit) 
+    {
+        this.unit = unit;
     }
 }
