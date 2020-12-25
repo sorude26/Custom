@@ -9,6 +9,9 @@ public class CameraControl : MonoBehaviour
 
     private int cameraPos = 0;
     public static CameraControl Instans { get; private set; }
+    private Unit target = null;
+    private int posX = -20;
+    private int posZ = -20;
     private void Awake()
     {
         Instans = this;
@@ -27,8 +30,15 @@ public class CameraControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            if (target != null)
+            {
+                CameraPositionChange2(cameraPos);
+            }
+            else
+            {
+                CameraPositionChange(cameraPos);
+            }
             cameraPos++;
-            CameraPositionChange(cameraPos);
         }
     }
     public void CameraPositionChange(int Pos)
@@ -74,9 +84,33 @@ public class CameraControl : MonoBehaviour
                 break;
         }
     }
+    public void CameraPositionChange2(int Pos)
+    {
+        switch (Pos)
+        {
+            case 0:
+                posX = 20; posZ = -20;
+                UnitCamera(target);
+                break;
+            case 1:
+                posX = 20; posZ = 20;
+                UnitCamera(target);
+                break;
+            case 2:
+                posX = -20; posZ = 20;
+                UnitCamera(target);
+                break;
+            default:
+                posX = -20; posZ = -20;
+                UnitCamera(target);
+                cameraPos = -1;
+                break;
+        }
+    }
     public void UnitCamera(Unit unit)
     {
-        transform.position = new Vector3(unit.CurrentPosX * 10 - 20, 20 + unit.CurrentPosY, unit.CurrentPosZ * 10 - 20);
+        target = unit;
+        transform.position = new Vector3(unit.CurrentPosX * 10 + posX, 20 + unit.CurrentPosY, unit.CurrentPosZ * 10 + posZ);
         Vector3 targetDir = unit.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(targetDir);
     }
