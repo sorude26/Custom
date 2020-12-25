@@ -10,6 +10,7 @@ public class UnitParts : MonoBehaviour
 
     [SerializeField]
     protected int partsHp;
+    public int MaxPartsHp { get; protected set; }
     public int CurrentPartsHp { get; protected set; }
 
     [SerializeField]
@@ -26,7 +27,8 @@ public class UnitParts : MonoBehaviour
     protected void StartSet()
     {
         PartsName = partsName;
-        CurrentPartsHp = partsHp;
+        MaxPartsHp = partsHp;
+        CurrentPartsHp = MaxPartsHp;
         Defense = defense;
         Weight = weight;
     }
