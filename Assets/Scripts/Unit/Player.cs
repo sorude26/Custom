@@ -11,7 +11,7 @@ public class Player : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 0, 2, 0, 1, 1);
+            UnitCreate(1, 1, 1, 2, 1, 3, 1);
         }
         if (silhouetteOn)
         {
@@ -24,7 +24,6 @@ public class Player : Unit
                 MoveFinishSet();
                 gameStage.MoveFinish = false;
                 gameStage.turnCountTimer = 2;
-                CameraControl.Instans.UnitCamera(this);
             }
             UnitAngleControl();
             if (DestroyBody)

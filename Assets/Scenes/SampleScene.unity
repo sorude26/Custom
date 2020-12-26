@@ -10484,10 +10484,12 @@ MonoBehaviour:
   - {fileID: 5636109707663599792, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
   LArmObjectList:
   - {fileID: 5636109707663599795, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
+  - {fileID: 8197818254922226933, guid: e66e716fd8c7fb34e9772240a7544cca, type: 3}
   RArmsList:
   - {fileID: 5241919623720192512, guid: 2f7af28f473e08740916ad25c92d1345, type: 3}
   RArmObjectList:
   - {fileID: 5241919623720192519, guid: 2f7af28f473e08740916ad25c92d1345, type: 3}
+  - {fileID: 58069310709599493, guid: 7220804574d286241be56b8521ab38e0, type: 3}
   LegList:
   - {fileID: 8809973078818939222, guid: f965084e377d7d84485cd09a1c79f0aa, type: 3}
   LegObjectList:
@@ -10499,6 +10501,7 @@ MonoBehaviour:
   - {fileID: 780823539462373911, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
   - {fileID: 934432947381065304, guid: ec0daba4ccc710f4da7e9b69a1f378f1, type: 3}
   - {fileID: 4468825202332573747, guid: 5222c168d18aa0a48a39fa515cf9c025, type: 3}
+  - {fileID: 165806104989183716, guid: d63e6fceae1c4c7499b037bd16cd0aac, type: 3}
 --- !u!212 &1758934267
 SpriteRenderer:
   m_ObjectHideFlags: 0

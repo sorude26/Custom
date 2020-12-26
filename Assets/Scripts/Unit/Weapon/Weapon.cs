@@ -7,6 +7,7 @@ enum WeaponType
     Rifle,
     MachineGun,
     Shotgun,
+    MachineShotGun,
 }
 
 public class Weapon : MonoBehaviour
@@ -68,6 +69,9 @@ public class Weapon : MonoBehaviour
                     break;
                 case WeaponType.Shotgun:
                     ShotgunShot();                    
+                    break;
+                case WeaponType.MachineShotGun:
+                    MachineShotGunShot();
                     break;
                 default:
                     weaponTrigger = false;
@@ -134,7 +138,36 @@ public class Weapon : MonoBehaviour
         }
         weaponTrigger = false;
     }
-
+    private void MachineShotGunShot()
+    {
+        if (!shotStart)
+        {
+            shotNumber = 0;
+            shotStart = true;
+            intervalTime = 0.1f;
+        }
+        else
+        {
+            intervalTime -= Time.deltaTime;
+        }
+        if (intervalTime <= 0)
+        {
+            if (shotNumber < TotalShotNumber)
+            {
+                for (int i = 0; i < totalShotNumber; i++)
+                {
+                    BulletShot();
+                }
+                shotNumber++;
+                intervalTime = 0.15f;
+            }
+            else
+            {
+                shotStart = false;
+                weaponTrigger = false;
+            }
+        }
+    }
     public void TransFormParts(Vector3 partsPos)
     {
         transform.position = partsPos;
