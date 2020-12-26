@@ -37,7 +37,7 @@ public class Enemy : Unit
             {
                 if (enemyAI == EnemyAI.Attacker)
                 {
-                    ActionTypeAttacker2();
+                    ActionTypeAttacker();
                 }
                 if (moveMood)
                 {
@@ -49,50 +49,7 @@ public class Enemy : Unit
                     attack = true;
                 }
                 UnitAngleControl();
-                if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
-                {
-                    // Debug.Log("待機");
-                    if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
-                    {
-                        gameStage.panelP.SetUnit(Target.TargetUnit);
-                        Vector3 dir = Target.TargetUnit.transform.position - transform.position;
-                        if (dir.sqrMagnitude <= weapon1.Range * weapon1.Range)
-                        {
-                            if (weapon2 != null)
-                            {
-                                if (weapon2.Power * weapon2.TotalShotNumber > weapon1.Power * weapon1.TotalShotNumber && dir.sqrMagnitude <= weapon2.EffectiveRange * weapon2.EffectiveRange)
-                                {
-                                    TargetCursor.instance.SetCursor(Target.TargetUnit);
-                                    attackTrigger = true;
-                                    TargetShot(Target.TargetUnit, weapon2);
-                                }
-                                else
-                                {
-                                    TargetCursor.instance.SetCursor(Target.TargetUnit);
-                                    attackTrigger = true;
-                                    TargetShot(Target.TargetUnit, weapon1);
-                                }
-                            }
-                            else
-                            {
-                                TargetCursor.instance.SetCursor(Target.TargetUnit);
-                                attackTrigger = true;
-                                TargetShot(Target.TargetUnit, weapon1);
-                            }                            
-                            Target = null;
-                        }
-                    }
-                    if (!attackTrigger)
-                    {
-                        Target = null;
-                        search = false;
-                        move = false;
-                        attack = false;
-                        ActionNow = false;
-                        gameStage.EnemyAction = true;
-                        gameStage.turnCountTimer = 2;
-                    }
-                }
+                AttackMood();
             }
             if (DestroyBody)
             {
@@ -113,8 +70,53 @@ public class Enemy : Unit
     {
         ActionNow = true;
     }
-        
-    private void ActionTypeAttacker2()
+    private void AttackMood()
+    {
+        if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
+        {
+            if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
+            {
+                gameStage.panelP.SetUnit(Target.TargetUnit);
+                Vector3 dir = Target.TargetUnit.transform.position - transform.position;
+                if (dir.sqrMagnitude <= weapon1.Range * weapon1.Range)
+                {
+                    if (weapon2 != null)
+                    {
+                        if (weapon2.Power * weapon2.TotalShotNumber > weapon1.Power * weapon1.TotalShotNumber && dir.sqrMagnitude <= weapon2.EffectiveRange * weapon2.EffectiveRange)
+                        {
+                            TargetCursor.instance.SetCursor(Target.TargetUnit);
+                            attackTrigger = true;
+                            TargetShot(Target.TargetUnit, weapon2);
+                        }
+                        else
+                        {
+                            TargetCursor.instance.SetCursor(Target.TargetUnit);
+                            attackTrigger = true;
+                            TargetShot(Target.TargetUnit, weapon1);
+                        }
+                    }
+                    else
+                    {
+                        TargetCursor.instance.SetCursor(Target.TargetUnit);
+                        attackTrigger = true;
+                        TargetShot(Target.TargetUnit, weapon1);
+                    }
+                    Target = null;
+                }
+            }
+            if (!attackTrigger)
+            {
+                Target = null;
+                search = false;
+                move = false;
+                attack = false;
+                ActionNow = false;
+                gameStage.EnemyAction = true;
+                gameStage.turnCountTimer = 2;
+            }
+        }
+    }
+    private void ActionTypeAttacker()
     {
         if (!search)
         {
