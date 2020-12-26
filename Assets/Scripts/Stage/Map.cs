@@ -108,6 +108,7 @@ public class Map : MonoBehaviour
                 {
                     GameObject mapPanel = Instantiate(panel);
                     mapPanel.transform.position = new Vector3(j * 10, data.StageLevelData(j, i), i * 10);
+                    mapPanel.transform.SetParent(transform);
                 }
             }
         }

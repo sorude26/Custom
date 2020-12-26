@@ -587,6 +587,7 @@ public class Unit : MonoBehaviour
         transform.rotation = endRot;
         if (attackWeapon == LArmWeapon)
         {
+            LArm.transform.localRotation = Quaternion.Euler(60, 0, 0);
             targetDir = targetPos - LArm.ArmParts().transform.position;
             endRot = Quaternion.LookRotation(targetDir) * p;
             LArm.ArmParts().transform.rotation = endRot;
@@ -594,6 +595,7 @@ public class Unit : MonoBehaviour
         }
         else if (attackWeapon == RArmWeapon)
         {
+            RArm.transform.localRotation = Quaternion.Euler(60, 0, 0);
             targetDir = targetPos - RArm.ArmParts().transform.position;
             endRot = Quaternion.LookRotation(targetDir) * p;
             RArm.ArmParts().transform.rotation = endRot;

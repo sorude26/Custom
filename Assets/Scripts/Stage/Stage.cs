@@ -225,6 +225,7 @@ public class Stage : MonoBehaviour
             PlayerMoveMode = false;
             PlayerTurn = false;
             PlayerUnit.ActionTurn = false;
+            turnCountTimer = 2;
         }
     }
 
