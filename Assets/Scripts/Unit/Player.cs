@@ -6,12 +6,12 @@ using UnityEngine;
 public class Player : Unit
 {
     public GameObject mark;
-
+    List<Enemy> targetEnemies = new List<Enemy>();
     void Update()
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(0, 0, 0, 1, 0, 1, 0);
+            UnitCreate(0, 0, 0, 2, 0, 1, 0);
         }
         if (silhouetteOn)
         {
@@ -24,6 +24,7 @@ public class Player : Unit
                 MoveFinishSet();
                 gameStage.MoveFinish = false;
                 gameStage.turnCountTimer = 2;
+                CameraControl.Instans.UnitCamera(this);
             }
             UnitAngleControl();
             if (DestroyBody)
@@ -57,9 +58,9 @@ public class Player : Unit
         }
     }
 
-    public List<Enemy> SearchTarget()
+    public void SearchTarget()
     {
-        List<Enemy> targetEnemies = new List<Enemy>();
+        targetEnemies.Clear();
         foreach (Enemy enemy in unitManager.GetEnemies())
         {
             Vector3 dir = enemy.transform.position - transform.position;
@@ -68,6 +69,9 @@ public class Player : Unit
                 targetEnemies.Add(enemy);
             }
         }
+    }
+    public List<Enemy> GetEnemies()
+    {
         return targetEnemies;
     }
 }

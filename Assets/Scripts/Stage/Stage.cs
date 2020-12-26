@@ -212,16 +212,8 @@ public class Stage : MonoBehaviour
             {
                 PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
                 UnitMoveFinish();
-            }
-            else
-            {
-                MoveNow = false;
-                MoveFinish = true;
-                PlayerMoveMode = false;
-                PlayerTurn = false;
-                UnitMoveReturn();
-                PlayerUnit.TargetShot(TargetCursor.instance.TargetUnit);
-            }
+                turnCountTimer = 2;
+            }            
         }
     }
 
