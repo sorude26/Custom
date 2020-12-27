@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageMessage : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    List<GameObject> battleMessage;
+    //１．戦闘開始、２．自軍ターン、３．敵軍ターン、４．戦闘終了、５．勝利条件達成、６．敗北
+    [SerializeField]
+    Image messageBack;
     void Start()
     {
-        
+        foreach (GameObject message in battleMessage)
+        {
+            message.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         
