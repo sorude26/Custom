@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
         public float TargetPoint { get; set; }
         public int PosX { get; set; }
         public int PosZ { get; set; }
-        public Target(Unit target, float point, int x, int z )
+        public Target(Unit target, float point, int x, int z)
         {
             TargetUnit = target;
             TargetPoint = point;
@@ -116,15 +116,16 @@ public class Unit : MonoBehaviour
     public float GetLiftingForce() { return liftingForce; }
 
     public int GetMaxHp() { return maxHp; }
-    
+
     /// <summary>
     /// 撃破処理
     /// </summary>
     protected void Dead()
     {
+        gameStage.panelP.SetUnit(this);
         EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
         DestroyBody = true;
-        gameStage.SetUnitPos();       
+        gameStage.SetUnitPos();
     }
     /// <summary>
     /// ユニット瞬間移動
@@ -175,7 +176,7 @@ public class Unit : MonoBehaviour
             moveTargetPosX = unitMoveList[moveCount][0] * gameMap.mapScale;
             moveTargetPosZ = unitMoveList[moveCount][1] * gameMap.mapScale;
             //moveTargetLevel = gameMap.MapDates[unitMoveList[moveCount][0]][unitMoveList[moveCount][1]].Level;
-            moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0]+(gameMap.maxX * unitMoveList[moveCount][1])].Level;
+            moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0] + (gameMap.maxX * unitMoveList[moveCount][1])].Level;
             MoveNow = true;
             StartUnitAngle();
         }
@@ -515,7 +516,7 @@ public class Unit : MonoBehaviour
                 //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
                 CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
             }
-            gameStage.SetUnitPos();            
+            gameStage.SetUnitPos();
         }
     }
 
@@ -587,6 +588,8 @@ public class Unit : MonoBehaviour
         transform.rotation = endRot;
         if (attackWeapon == LArmWeapon)
         {
+            Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
+            Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
             LArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
             targetDir = targetPos - LArm.ArmParts().transform.position;
             endRot = Quaternion.LookRotation(targetDir) * p;
@@ -595,6 +598,8 @@ public class Unit : MonoBehaviour
         }
         else if (attackWeapon == RArmWeapon)
         {
+            Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
+            Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
             RArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
             targetDir = targetPos - RArm.ArmParts().transform.position;
             endRot = Quaternion.LookRotation(targetDir) * p;
@@ -631,12 +636,15 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void RArmTargetShot(Unit targetUnit)
     {
+        
+        Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
         Vector3 targetPos = targetUnit.Body.transform.position;
         Vector3 targetDir = targetPos - transform.position;
         targetDir.y = 0.0f;
         Quaternion p = Quaternion.Euler(0, 180, 0);
         Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
         transform.rotation = endRot;
+        Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
         RArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
         targetDir = targetPos - RArm.ArmParts().transform.position;
         endRot = Quaternion.LookRotation(targetDir) * p;
@@ -664,17 +672,17 @@ public class Unit : MonoBehaviour
             Leg = leg.GetComponent<PartsLeg>();
             Leg.SetOwner(this);
             GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
-            body.transform.parent = transform;
+            body.transform.parent = Leg.transform;
             Body = body.GetComponent<PartsBody>();
             Body.SetOwner(this);
             Body.TransFormParts(Leg.GetPartsHigh().position);
             GameObject head = Instantiate(partsList.GetHeadObject(headID));
-            head.transform.parent = transform;
+            head.transform.parent = Body.transform;
             Head = head.GetComponent<PartsHead>();
             Head.SetOwner(this);
             Head.TransFormParts(Body.GetHeadPos().position);
             GameObject lArm = Instantiate(partsList.GetLArmObject(lArmID));
-            lArm.transform.parent = transform;
+            lArm.transform.parent = Body.transform;
             LArm = lArm.GetComponent<PartsLArm>();
             LArm.SetOwner(this);
             LArm.TransFormParts(Body.GetLArmPos().position);
@@ -683,7 +691,7 @@ public class Unit : MonoBehaviour
             LArmWeapon = weaponL.GetComponent<Weapon>();
             LArmWeapon.TransFormParts(LArm.GetGrip().position);
             GameObject rArm = Instantiate(partsList.GetRArmObject(rArmID));
-            rArm.transform.parent = transform;
+            rArm.transform.parent = Body.transform;
             RArm = rArm.GetComponent<PartsRArm>();
             RArm.SetOwner(this);
             RArm.TransFormParts(Body.GetRArmPos().position);
@@ -726,7 +734,7 @@ public class Unit : MonoBehaviour
             if (Body.CurrentPartsHp <= 0)
             {
                 Dead();
-            }            
+            }
         }
     }
 

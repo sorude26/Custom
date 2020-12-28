@@ -11,6 +11,7 @@ public enum EffectID
 	Smoke,
 	MuzzleFlash,
 	HyperExplosion,
+	BreakParts,
 	// 下に追加する
 	// 途中で追加しない！
 }

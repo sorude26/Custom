@@ -18,7 +18,7 @@ public class ParameterPanel : MonoBehaviour
     Unit unit = null;
     void Update()
     {
-        if (unit != null)
+        if (unit != null && !unit.DestroyBody)
         {
             head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
             headHp.text = "Head :" + unit.Head.CurrentPartsHp;

@@ -2345,6 +2345,8 @@ MonoBehaviour:
     createCount: 60
   - effectPrefab: {fileID: 100002, guid: 6ecf76dc4f268d340b2666896a954bcc, type: 3}
     createCount: 6
+  - effectPrefab: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
+    createCount: 6
 --- !u!4 &451512369
 Transform:
   m_ObjectHideFlags: 0
