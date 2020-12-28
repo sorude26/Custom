@@ -10,6 +10,7 @@ public class StageMessage : MonoBehaviour
     //１．戦闘開始、２．自軍ターン、３．敵軍ターン、４．戦闘終了、５．勝利条件達成、６．敗北
     [SerializeField]
     Image messageBack;
+    private float clearScale = 1;
     void Start()
     {
         foreach (GameObject message in battleMessage)
@@ -20,6 +21,20 @@ public class StageMessage : MonoBehaviour
 
     void Update()
     {
-        
+        if (clearScale > 0)
+        {
+            clearScale -= 0.5f * Time.deltaTime;
+        }
+        if (clearScale <= 0)
+        {
+            clearScale = 0;
+        }
+        messageBack.color = new Color(1,1,1,clearScale);
+    }
+
+    public void ViewMessage(int i)
+    {
+        battleMessage[i].SetActive(true);
+        clearScale = 1;
     }
 }
