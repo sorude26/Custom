@@ -425,7 +425,7 @@ public class Unit : MonoBehaviour
         }
     }
     /// <summary>
-    /// 向きリセットセット
+    /// 向きリセット
     /// </summary>
     protected void StartUnitAngle()
     {

@@ -58,14 +58,17 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
         {
-            stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon); 
+            stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
+            attackBottons.SetActive(true);
         }
+        
     }
     public void OnClickLeftWeapon()
     {
         if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
         {
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
+            attackBottons.SetActive(true);
         }
     }
 }

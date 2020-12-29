@@ -22,6 +22,13 @@ public class UnitParts : MonoBehaviour
     public int Weight { get; protected set; }//重量
     public bool PartsDestroy { get; protected set; }
 
+    [SerializeField]
+    protected Armor armorParts = null;
+    [SerializeField]
+    protected int armorPoint = 0;
+    [SerializeField]
+    protected int armorDefense = 0;
+
     protected Unit owner;
     protected bool partsBreak = false;
     protected void StartSet()
@@ -31,6 +38,10 @@ public class UnitParts : MonoBehaviour
         CurrentPartsHp = MaxPartsHp;
         Defense = defense;
         Weight = weight;
+        if (armorParts != null)
+        {
+            armorParts.SetData(armorPoint, armorDefense);
+        }
     }
 
     public void Damage(int damage)
