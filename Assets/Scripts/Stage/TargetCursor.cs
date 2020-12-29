@@ -35,7 +35,7 @@ public class TargetCursor : MonoBehaviour
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
-            Stage.StageDate.panelE.SetUnit(enemy);
+            Stage.Instance.panelE.SetUnit(enemy);
         }
     }
 }

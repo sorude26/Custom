@@ -67,7 +67,7 @@ public class Map : MonoBehaviour
     }
     void Start()
     {
-        gameStage = Stage.StageDate;
+        gameStage = Stage.Instance;
     }
 
     /// <summary>
@@ -130,10 +130,10 @@ public class Map : MonoBehaviour
                 point = 0;
                 break;
             case MapType.Asphalt:
-                point = 1;
+                point = 2;
                 break;
             case MapType.Wasteland:
-                point = 2;
+                point = 3;
                 break;
             default:
                 point = 0;//０は移動不可

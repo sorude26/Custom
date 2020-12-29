@@ -22,7 +22,7 @@ public class Stage : MonoBehaviour
     public List<Unit> stageUnits;
     public List<int[]> stageUnitsPos = new List<int[]>();
     public Map map;
-    public static Stage StageDate { get; private set; }
+    public static Stage Instance { get; private set; }
     public bool PlayerMoveMode { get; private set; } = false;
     public bool MoveFinish { get; set; } = false;
     public bool MoveNow { get; private set; }
@@ -41,9 +41,11 @@ public class Stage : MonoBehaviour
     public ParameterPanel panelP;
     [SerializeField]
     public ParameterPanel panelE;
+
+    private Weapon playerAttackWeapon = null;
     private void Awake()
     {
-        StageDate = this;
+        Instance = this;
     }
 
     void Start()
@@ -66,6 +68,7 @@ public class Stage : MonoBehaviour
         PlayerTurn = false;
         EnemyTurn = false;
         TargetCursor.instance.SetCursor(PlayerUnit);
+        playerAttackWeapon = PlayerUnit.RArmWeapon;
     }
 
     void Update()
@@ -101,7 +104,7 @@ public class Stage : MonoBehaviour
                 CameraControl.Instans.UnitCamera(PlayerUnit);
                 panelP.SetUnit(PlayerUnit);
             }
-            PlayerUnitCount++;            
+            PlayerUnitCount++;
             if (PlayerUnitCount > unitManager.GetPlayerList().Length)
             {
                 PlayerUnitCount = 0;
@@ -113,7 +116,7 @@ public class Stage : MonoBehaviour
                     unit.MoveFinishSet();
                 }
                 TargetCursor.instance.SetCursor(enemyUnit);
-            }            
+            }
         }
         if (EnemyTurn && turnCountTimer <= 0 && !Victory)
         {
@@ -210,10 +213,13 @@ public class Stage : MonoBehaviour
         {
             if (!MoveNow)
             {
-                PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
+                playerAttackWeapon = PlayerUnit.RArmWeapon;
+                PlayerUnit.Attack();
+                PlayerUnit.TargetShot(TargetCursor.instance.TargetUnit, playerAttackWeapon);
+                //PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
                 UnitMoveFinish();
                 turnCountTimer = 2;
-            }            
+            }
         }
     }
 
@@ -258,7 +264,10 @@ public class Stage : MonoBehaviour
         }
     }
 
-
+    public void SetPlayerAttackWeapon(Weapon attackWeapon)
+    {
+        playerAttackWeapon = attackWeapon;
+    }
 
 
 }

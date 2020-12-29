@@ -32,7 +32,7 @@ public class PartsLeg : UnitParts
     {
         if (partsBreak)
         {
-            MovePower = 2;
+            MovePower = 3;
             MoveSpeed = 15;
             partsBreak = false;
         }

@@ -8,7 +8,7 @@ public class MovePanel : MonoBehaviour
     Stage stage;
     private void Start()
     {
-        stage = Stage.StageDate;
+        stage = Stage.Instance;
     }
 
     private void Update()

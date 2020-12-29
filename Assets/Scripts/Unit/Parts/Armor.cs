@@ -13,10 +13,12 @@ public class Armor : MonoBehaviour
         Bullet hitBullet = other.GetComponent<Bullet>();
         if (hitBullet != null)
         {
+            //Debug.Log("アーマーヒット"+hitBullet.Power);
             armorPoint--;
             hitBullet.HitBullet(defense);
             if (armorPoint < 0)
             {
+                //Debug.Log("アーマーブレイク");
                 EffectManager.PlayEffect(EffectID.BreakParts, transform.position);
                 gameObject.SetActive(false);
             }

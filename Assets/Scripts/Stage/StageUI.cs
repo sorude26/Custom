@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class StageUI : MonoBehaviour
 {
-    Stage stageDate;
+    Stage stageData;
     
     [SerializeField]
     GameObject messageWindow;
     private bool message;
-   
+    [SerializeField]
+    GameObject attackBottons;
+    [SerializeField]
+    List<GameObject> attackCommands;
     void Start()
     {
-        stageDate = Stage.StageDate;
+        stageData = Stage.Instance;
         messageWindow.SetActive(false);
     }
 
     void Update()
     {
-        if (!stageDate.MoveNow && stageDate.PlayerMoveMode && !message)
+        if (!stageData.MoveNow && stageData.PlayerMoveMode && !message)
         {
             message = true;
             messageWindow.SetActive(true);
@@ -27,13 +30,13 @@ public class StageUI : MonoBehaviour
 
     public void OnClickMove()
     {
-        stageDate.MoveStart();
+        stageData.MoveStart();
     }
 
     public void OnClickAttack()
     {
 
-        stageDate.AttackStart();
+        stageData.AttackStart();
         message = false;
         messageWindow.SetActive(false);
 
@@ -41,18 +44,28 @@ public class StageUI : MonoBehaviour
 
     public void OnClickDecide()
     {        
-        stageDate.UnitMoveFinish();
+        stageData.UnitMoveFinish();
         message = false;
         messageWindow.SetActive(false);
     }
 
     public void OnClickEnemyMove()
     {
-        stageDate.enemyUnit.StatAction();
+        stageData.enemyUnit.StatAction();
     }
 
-    public void OnClickCreate()
+    public void OnClickRightWeapon()
     {
-        
+        if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
+        {
+            stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon); 
+        }
+    }
+    public void OnClickLeftWeapon()
+    {
+        if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
+        {
+            stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
+        }
     }
 }

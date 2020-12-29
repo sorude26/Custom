@@ -11,7 +11,7 @@ public class Player : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 2, 1, 3, 0);
+            UnitCreate(1, 1, 1, 2, 1, 0, 0);
         }
         if (silhouetteOn)
         {
@@ -72,5 +72,10 @@ public class Player : Unit
     public List<Enemy> GetEnemies()
     {
         return targetEnemies;
+    }
+
+    public void Attack()
+    {
+        attackTrigger = true;
     }
 }

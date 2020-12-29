@@ -94,7 +94,7 @@ public class Unit : MonoBehaviour
     protected void Start()
     {
         gameMap = Map.Instans;
-        gameStage = Stage.StageDate;
+        gameStage = Stage.Instance;
         unitManager = UnitManager.Instance;
         partsList = UnitPartsList.Instance;
         DetectionRange = detectionRange;
@@ -636,7 +636,7 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void RArmTargetShot(Unit targetUnit)
     {
-        
+
         Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
         Vector3 targetPos = targetUnit.Body.transform.position;
         Vector3 targetDir = targetPos - transform.position;
