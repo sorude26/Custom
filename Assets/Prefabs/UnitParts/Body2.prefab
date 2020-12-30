@@ -1124,9 +1124,9 @@ MonoBehaviour:
   partsHp: 120
   defense: 5
   weight: 50
-  armorParts: {fileID: 0}
-  armorPoint: 0
-  armorDefense: 0
+  armorParts: {fileID: 2513339069542352985}
+  armorPoint: 10
+  armorDefense: 10
   unitOutput: 500
   liftingForce: 2
   headParts: {fileID: 4848896098888723434}
@@ -1325,22 +1325,22 @@ PrefabInstance:
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.z
-      value: 0.26113123
+      value: 0.3530378
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.7334803
+      value: -0.7442034
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.8716073
+      value: 1.0115888
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.68843436
+      value: 0.57218206
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
@@ -1370,3 +1370,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5254783276829343012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2513339069542352985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
+    type: 3}
+  m_PrefabInstance: {fileID: 5254783276829343012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf313f592ba055449b0d93ece835b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

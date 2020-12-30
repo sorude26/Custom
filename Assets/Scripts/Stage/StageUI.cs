@@ -5,47 +5,48 @@ using UnityEngine;
 public class StageUI : MonoBehaviour
 {
     Stage stageData;
-    
+
     [SerializeField]
     GameObject messageWindow;
-    private bool message;
+    private Weapon weapon;
     [SerializeField]
     GameObject attackBottons;
     [SerializeField]
-    List<GameObject> attackCommands;
+    GameObject attackCommand;
     void Start()
     {
         stageData = Stage.Instance;
         messageWindow.SetActive(false);
+        attackCommand.SetActive(false);
+        attackBottons.SetActive(false);
     }
 
-    void Update()
-    {
-        if (!stageData.MoveNow && stageData.PlayerMoveMode && !message)
-        {
-            message = true;
-            messageWindow.SetActive(true);
-        }
-    }
 
     public void OnClickMove()
     {
-        stageData.MoveStart();
+        if (stageData.turnCountTimer <= 0)
+        {
+            stageData.MoveStart();
+            messageWindow.SetActive(true);
+        }
     }
-
+    public void OnClickMoveCancel()
+    {
+        stageData.UnitMoveReturn();
+    }
     public void OnClickAttack()
     {
-
-        stageData.AttackStart();
-        message = false;
-        messageWindow.SetActive(false);
-
+        if (stageData.turnCountTimer <= 0)
+        {
+            stageData.PlayerUnit.MoveFinishSet();
+            attackBottons.SetActive(true);
+            messageWindow.SetActive(false);
+        }
     }
 
     public void OnClickDecide()
-    {        
+    {
         stageData.UnitMoveFinish();
-        message = false;
         messageWindow.SetActive(false);
     }
 
@@ -58,17 +59,32 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
         {
+            stageData.PlayerUnit.TargetEnemy = null;
+            stageData.PlayerUnit.SearchTarget();
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
-            attackBottons.SetActive(true);
+            attackCommand.SetActive(true);
         }
-        
+
     }
     public void OnClickLeftWeapon()
     {
         if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
         {
+            stageData.PlayerUnit.TargetEnemy = null;
+            stageData.PlayerUnit.SearchTarget();
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
-            attackBottons.SetActive(true);
+            attackCommand.SetActive(true);
         }
+    }
+
+    public void OnClickAttackStart()
+    {
+        CameraControl.Instans.UnitCamera(stageData.PlayerUnit);
+        //stageData.PlayerUnit.SearchTarget();
+        stageData.PlayerUnit.TargetEnemy = stageData.PlayerUnit.TargetEnemies[0];
+        stageData.AttackStart();
+        messageWindow.SetActive(false);
+        attackCommand.SetActive(false);
+        attackBottons.SetActive(false);
     }
 }

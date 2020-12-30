@@ -31,7 +31,6 @@ public class Unit : MonoBehaviour
             PosZ = z;
         }
     }
-
     [SerializeField]
     public UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向
@@ -579,36 +578,39 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void TargetShot(Unit targetUnit, Weapon attackWeapon)
     {
-        CameraControl.Instans.UnitCamera(this);
-        Vector3 targetPos = targetUnit.Body.transform.position;
-        Vector3 targetDir = targetPos - transform.position;
-        targetDir.y = 0.0f;
-        Quaternion p = Quaternion.Euler(0, 180, 0);
-        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
-        transform.rotation = endRot;
-        if (attackWeapon == LArmWeapon)
+        if (targetUnit != null)
         {
-            Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
-            Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
-            LArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
-            targetDir = targetPos - LArm.ArmParts().transform.position;
-            endRot = Quaternion.LookRotation(targetDir) * p;
-            LArm.ArmParts().transform.rotation = endRot;
-            this.attackWeapon = LArmWeapon;
-        }
-        else if (attackWeapon == RArmWeapon)
-        {
-            Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
-            Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
-            RArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
-            targetDir = targetPos - RArm.ArmParts().transform.position;
-            endRot = Quaternion.LookRotation(targetDir) * p;
-            RArm.ArmParts().transform.rotation = endRot;
-            this.attackWeapon = RArmWeapon;
-        }
-        else
-        {
-            this.attackWeapon = null;
+            CameraControl.Instans.UnitCamera(this);
+            Vector3 targetPos = targetUnit.Body.transform.position;
+            Vector3 targetDir = targetPos - transform.position;
+            targetDir.y = 0.0f;
+            Quaternion p = Quaternion.Euler(0, 180, 0);
+            Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+            transform.rotation = endRot;
+            if (attackWeapon == LArmWeapon)
+            {
+                Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                LArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
+                targetDir = targetPos - LArm.ArmParts().transform.position;
+                endRot = Quaternion.LookRotation(targetDir) * p;
+                LArm.ArmParts().transform.rotation = endRot;
+                this.attackWeapon = LArmWeapon;
+            }
+            else if (attackWeapon == RArmWeapon)
+            {
+                Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                RArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
+                targetDir = targetPos - RArm.ArmParts().transform.position;
+                endRot = Quaternion.LookRotation(targetDir) * p;
+                RArm.ArmParts().transform.rotation = endRot;
+                this.attackWeapon = RArmWeapon;
+            }
+            else
+            {
+                this.attackWeapon = null;
+            }
         }
         attackTimer = 0;
         attackMode = true;

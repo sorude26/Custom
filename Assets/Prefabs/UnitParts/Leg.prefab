@@ -551,6 +551,9 @@ MonoBehaviour:
   partsHp: 50
   defense: 5
   weight: 40
+  armorParts: {fileID: 7315406893657299186}
+  armorPoint: 20
+  armorDefense: 2
   moveType: 0
   movePower: 8
   moveSpeed: 50
@@ -2111,3 +2114,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1119173998540664207}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7315406893657299186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
+    type: 3}
+  m_PrefabInstance: {fileID: 1119173998540664207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf313f592ba055449b0d93ece835b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

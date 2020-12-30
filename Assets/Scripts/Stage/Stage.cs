@@ -167,7 +167,11 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void UnitMoveReturn()
     {
-        PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
+        if (!MoveFinish)
+        {
+            PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
+            PlayerUnit.UnitMove2(map.MoveList2, PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
+        }
     }
 
     /// <summary>
@@ -213,9 +217,9 @@ public class Stage : MonoBehaviour
         {
             if (!MoveNow)
             {
-                playerAttackWeapon = PlayerUnit.RArmWeapon;
+                //playerAttackWeapon = PlayerUnit.RArmWeapon;
                 PlayerUnit.Attack();
-                PlayerUnit.TargetShot(TargetCursor.instance.TargetUnit, playerAttackWeapon);
+                PlayerUnit.TargetShot(PlayerUnit.TargetEnemy, playerAttackWeapon);
                 //PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
                 UnitMoveFinish();
                 turnCountTimer = 2;

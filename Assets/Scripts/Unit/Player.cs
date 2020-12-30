@@ -6,12 +6,14 @@ using UnityEngine;
 public class Player : Unit
 {
     public GameObject mark;
-    List<Enemy> targetEnemies = new List<Enemy>();
+    public List<Enemy> TargetEnemies { get; private set; } = new List<Enemy>();
+
+    public Unit TargetEnemy { get; set; } 
     void Update()
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 2, 1, 0, 0);
+            UnitCreate(1, 1, 1, 2, 1, 3, 0);
         }
         if (silhouetteOn)
         {
@@ -59,19 +61,22 @@ public class Player : Unit
 
     public void SearchTarget()
     {
-        targetEnemies.Clear();
+        TargetEnemies.Clear();
         foreach (Enemy enemy in unitManager.GetEnemies())
         {
-            Vector3 dir = enemy.transform.position - transform.position;
-            if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+            if (!enemy.DestroyBody)
             {
-                targetEnemies.Add(enemy);
+                Vector3 dir = enemy.transform.position - transform.position;
+                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                {
+                    TargetEnemies.Add(enemy);
+                }
             }
         }
     }
     public List<Enemy> GetEnemies()
     {
-        return targetEnemies;
+        return TargetEnemies;
     }
 
     public void Attack()

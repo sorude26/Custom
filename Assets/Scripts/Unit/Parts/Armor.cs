@@ -10,16 +10,13 @@ public class Armor : MonoBehaviour
     [SerializeField]
     int defense = 0;
     public int Defense { get; private set; }
-    private void Start()
-    {
-        SetData(armorPoint, defense);
-    }
+
     private void OnTriggerEnter(Collider other)
     {
         Bullet hitBullet = other.GetComponent<Bullet>();
         if (hitBullet != null)
         {
-            //Debug.Log("アーマーヒット"+hitBullet.Power);
+            //Debug.Log("アーマーヒット" + hitBullet.Power + "残：" + ArmorPoint);
             ArmorPoint--;
             hitBullet.HitBullet(Defense);
             if (ArmorPoint < 0)
