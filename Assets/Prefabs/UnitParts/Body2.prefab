@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalBody
   partsHp: 120
-  defense: 5
+  defense: 30
   weight: 50
   armorParts: {fileID: 2513339069542352985}
   armorPoint: 10

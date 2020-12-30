@@ -767,7 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalLArm
   partsHp: 50
-  defense: 5
+  defense: 30
   weight: 30
   armorParts: {fileID: 4917152528398859869}
   armorPoint: 10

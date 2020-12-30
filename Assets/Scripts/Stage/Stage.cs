@@ -115,7 +115,7 @@ public class Stage : MonoBehaviour
                 {
                     unit.MoveFinishSet();
                 }
-                TargetCursor.instance.SetCursor(enemyUnit);
+                //TargetCursor.instance.SetCursor(enemyUnit);
             }
         }
         if (EnemyTurn && turnCountTimer <= 0 && !Victory)

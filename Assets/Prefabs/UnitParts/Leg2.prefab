@@ -1677,9 +1677,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: NormalLeg
-  partsHp: 30
-  defense: 5
+  partsHp: 50
+  defense: 10
   weight: 40
+  armorParts: {fileID: 0}
+  armorPoint: 0
+  armorDefense: 0
   moveType: 0
   movePower: 12
   moveSpeed: 60

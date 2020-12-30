@@ -747,9 +747,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsName: NormalHead
   partsHp: 20
-  defense: 5
+  defense: 30
   weight: 10
-  detectionRange: 90
+  armorParts: {fileID: 0}
+  armorPoint: 0
+  armorDefense: 0
+  detectionRange: 50
 --- !u!54 &1629665236478748035
 Rigidbody:
   m_ObjectHideFlags: 0
