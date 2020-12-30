@@ -62,6 +62,7 @@ public class Player : Unit
     public void SearchTarget()
     {
         TargetEnemies.Clear();
+        TargetEnemies.Add(null);
         foreach (Enemy enemy in unitManager.GetEnemies())
         {
             if (!enemy.DestroyBody)
@@ -79,6 +80,10 @@ public class Player : Unit
         return TargetEnemies;
     }
 
+    public Unit GetTarget(int i)
+    {
+        return TargetEnemies[i];
+    }
     public void Attack()
     {
         attackTrigger = true;

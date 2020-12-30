@@ -8,7 +8,8 @@ public class StageUI : MonoBehaviour
 
     [SerializeField]
     GameObject messageWindow;
-    private Weapon weapon;
+    private int count = 0;
+    private bool choiceTarget = false;
     [SerializeField]
     GameObject attackBottons;
     [SerializeField]
@@ -21,7 +22,45 @@ public class StageUI : MonoBehaviour
         attackBottons.SetActive(false);
     }
 
-
+    private void Update()
+    {
+        if (choiceTarget)
+        {
+            if (stageData.PlayerUnit.GetEnemies().Count >= 2)
+            {
+                if (count == 0)
+                {
+                    count = 1;
+                    CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+                    TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+                }
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    count--;
+                    if (count <= 0)
+                    {
+                        count = stageData.PlayerUnit.GetEnemies().Count - 1;
+                    }
+                    CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+                    TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    count++;
+                    if (count >= stageData.PlayerUnit.GetEnemies().Count)
+                    {
+                        count = 1;
+                    }
+                    CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+                    TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+                }
+            }
+            else
+            {                
+                OnClickDecide();
+            }
+        }
+    }
     public void OnClickMove()
     {
         if (stageData.turnCountTimer <= 0)
@@ -47,7 +86,10 @@ public class StageUI : MonoBehaviour
     public void OnClickDecide()
     {
         stageData.UnitMoveFinish();
+        choiceTarget = false;
         messageWindow.SetActive(false);
+        attackCommand.SetActive(false);
+        attackBottons.SetActive(false);
     }
 
     public void OnClickEnemyMove()
@@ -63,6 +105,8 @@ public class StageUI : MonoBehaviour
             stageData.PlayerUnit.SearchTarget();
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
             attackCommand.SetActive(true);
+            choiceTarget = true;
+            count = 0;
         }
 
     }
@@ -74,17 +118,22 @@ public class StageUI : MonoBehaviour
             stageData.PlayerUnit.SearchTarget();
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
             attackCommand.SetActive(true);
+            choiceTarget = true;
+            count = 0;
         }
     }
 
     public void OnClickAttackStart()
     {
-        CameraControl.Instans.UnitCamera(stageData.PlayerUnit);
-        //stageData.PlayerUnit.SearchTarget();
-        stageData.PlayerUnit.TargetEnemy = stageData.PlayerUnit.TargetEnemies[0];
-        stageData.AttackStart();
-        messageWindow.SetActive(false);
-        attackCommand.SetActive(false);
-        attackBottons.SetActive(false);
+        if (stageData.turnCountTimer <= 0)
+        {
+            CameraControl.Instans.UnitCamera(stageData.PlayerUnit);
+            stageData.PlayerUnit.TargetEnemy = stageData.PlayerUnit.TargetEnemies[count];
+            stageData.AttackStart();
+            messageWindow.SetActive(false);
+            attackCommand.SetActive(false);
+            attackBottons.SetActive(false);
+            choiceTarget = false;
+        }
     }
 }
