@@ -1124,6 +1124,9 @@ MonoBehaviour:
   partsHp: 80
   defense: 5
   weight: 50
+  armorParts: {fileID: 0}
+  armorPoint: 0
+  armorDefense: 0
   unitOutput: 500
   liftingForce: 3
   headParts: {fileID: 6673392777080238337}
@@ -1157,8 +1160,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2071495, y: 1.0969174, z: 1.0057874}
-  m_Center: {x: -0.010478735, y: 0.6519233, z: -0.0028939247}
+  m_Size: {x: 1.2071495, y: 1.313215, z: 1.0057874}
+  m_Center: {x: -0.010478735, y: 0.5437745, z: -0.0028939247}
 --- !u!1 &7530936528805037390
 GameObject:
   m_ObjectHideFlags: 0

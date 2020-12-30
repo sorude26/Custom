@@ -36,6 +36,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float diffusivity = 0.02f;//拡散率
     public float Diffusivity { get; private set; }
     public int NumberOfBullets { get; private set; }//装弾数
+    [SerializeField] int weight = 0;
     public int Weight { get; private set; }//重量
     [SerializeField] string weaponName = "";
     public string WeaponName { get; private set; }
@@ -47,6 +48,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         WeaponName = weaponName;
+        Weight = weight;
         Range = range;
         EffectiveRange = effectiveRange;
         Power = power;

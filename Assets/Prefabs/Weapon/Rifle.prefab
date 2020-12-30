@@ -566,7 +566,8 @@ MonoBehaviour:
   power: 70
   bulletSpeed: 300
   totalShotNumber: 1
-  diffusivity: 0.02
+  diffusivity: 0.01
+  weight: 50
   weaponName: 
 --- !u!1 &4771636937973664245
 GameObject:
