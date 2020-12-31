@@ -586,7 +586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917701167420153515}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.33, z: -0.014500022}
+  m_LocalPosition: {x: 0, y: -1.2, z: -0.014500022}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 6073558764085736340}
@@ -1032,12 +1032,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: NormalBody
-  partsHp: 550
+  partsHp: 350
   defense: 50
   weight: 550
   armorParts: {fileID: 8878453950256069020}
   armorPoint: 1500
-  armorDefense: 10
+  armorDefense: 5
   unitOutput: 1500
   liftingForce: 3
   headParts: {fileID: 1917701167270976047}
@@ -1071,8 +1071,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.022547, y: 0.6841104, z: 1}
-  m_Center: {x: 0.020027831, y: -0.047944784, z: 0}
+  m_Size: {x: 0.8967383, y: 1.0704553, z: 1}
+  m_Center: {x: -0.0009353645, y: 0.49795318, z: 0}
 --- !u!65 &8581445535654615503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1084,8 +1084,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.7372124, y: 0.5849049, z: 1.7285901}
-  m_Center: {x: 0.0046484172, y: 0.81754756, z: -0.060705043}
+  m_Size: {x: 2.7372124, y: 0.584955, z: 1.7285901}
+  m_Center: {x: 0.0046484172, y: 1.4222674, z: -0.060705043}
 --- !u!1 &1917701168569078650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,7 +1489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8581586680154819046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0.014500022}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0.014500022}
   m_LocalScale: {x: 0.7, y: 1, z: 1}
   m_Children:
   - {fileID: 1917701167270976047}
@@ -1918,22 +1918,22 @@ PrefabInstance:
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.7781765
+      value: 1.9629009
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.3639704
+      value: 0.94338214
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.x
-      value: 3.4491887
+      value: 3.2185898
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.x
-      value: 0.019124001
+      value: 0.008642226
       objectReference: {fileID: 0}
     - target: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
@@ -2045,12 +2045,12 @@ PrefabInstance:
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.9523089
+      value: 1.9858634
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.36397088
+      value: 0.93497217
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
@@ -2065,12 +2065,12 @@ PrefabInstance:
     - target: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: armorPoint
-      value: 500
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: defense
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a1bf32e5153ef74da7d7d4fbadd9741, type: 3}

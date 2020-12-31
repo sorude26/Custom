@@ -1051,8 +1051,8 @@ MonoBehaviour:
   defense: 50
   weight: 150
   armorParts: {fileID: 5129456614038493649}
-  armorPoint: 20
-  armorDefense: 10
+  armorPoint: 50
+  armorDefense: 5
   armParts: {fileID: 9079448086872835923}
   grip: {fileID: 8687676756545729600}
 --- !u!1 &8687676757915577542
