@@ -94,33 +94,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1caafacb72cb6a84cbd2d7664b8ed6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeadList:
-  - {fileID: 8680217373659483878, guid: 73008ce1a04727f4ba014df48c332eb0, type: 3}
   HeadObjectList:
   - {fileID: 8680217373659483873, guid: 73008ce1a04727f4ba014df48c332eb0, type: 3}
   - {fileID: 7375752438427666084, guid: 97fe7b16a7e31f74b8c9991837dba227, type: 3}
-  BodyList:
-  - {fileID: 6673392778233104623, guid: 4afbb2037fa2ecc4c816af96bfed1c66, type: 3}
+  - {fileID: 5018153658361870310, guid: 488dbf3e58f98f34f84f241288e9ce78, type: 3}
   BodyObjectList:
   - {fileID: 6673392778233104622, guid: 4afbb2037fa2ecc4c816af96bfed1c66, type: 3}
   - {fileID: 4848896100023767557, guid: 2beea6fae65ad9141969eb897be71fff, type: 3}
-  LArmsList:
-  - {fileID: 5636109707663599792, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
+  - {fileID: 1917701168154436544, guid: 4504a378fee22d441b42b11be88a2afd, type: 3}
   LArmObjectList:
   - {fileID: 5636109707663599795, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
   - {fileID: 8197818254922226933, guid: e66e716fd8c7fb34e9772240a7544cca, type: 3}
-  RArmsList:
-  - {fileID: 5241919623720192512, guid: 2f7af28f473e08740916ad25c92d1345, type: 3}
+  - {fileID: 5021563850144768411, guid: 06a46c368643edd49a03f1e7db0f688c, type: 3}
   RArmObjectList:
   - {fileID: 5241919623720192519, guid: 2f7af28f473e08740916ad25c92d1345, type: 3}
   - {fileID: 58069310709599493, guid: 7220804574d286241be56b8521ab38e0, type: 3}
-  LegList:
-  - {fileID: 8809973078818939222, guid: f965084e377d7d84485cd09a1c79f0aa, type: 3}
+  - {fileID: 8687676757511342503, guid: b8da9584715f1f2419ccd294f1e480c3, type: 3}
   LegObjectList:
   - {fileID: 8809973078818939221, guid: f965084e377d7d84485cd09a1c79f0aa, type: 3}
   - {fileID: 7568215103165362024, guid: 7cd98b45955b1f54896f9b22d81f02a1, type: 3}
-  weaponsList:
-  - {fileID: 5040189597040958365, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
+  - {fileID: 8425611873651944173, guid: 743b4f583e670d14ab3d9d4eedaeeae5, type: 3}
   weaponObjectList:
   - {fileID: 780823539462373911, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
   - {fileID: 934432947381065304, guid: ec0daba4ccc710f4da7e9b69a1f378f1, type: 3}

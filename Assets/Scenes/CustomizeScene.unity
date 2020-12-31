@@ -282,6 +282,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnitPartsList
       objectReference: {fileID: 0}
+    - target: {fileID: 4150465046344022823, guid: 157c2b29a74ff4b448de684fe9189210,
+        type: 3}
+      propertyPath: RArmObjectList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150465046344022823, guid: 157c2b29a74ff4b448de684fe9189210,
+        type: 3}
+      propertyPath: LArmObjectList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150465046344022823, guid: 157c2b29a74ff4b448de684fe9189210,
+        type: 3}
+      propertyPath: RArmObjectList.Array.data[2]
+      value: 
+      objectReference: {fileID: 8687676757511342503, guid: b8da9584715f1f2419ccd294f1e480c3,
+        type: 3}
+    - target: {fileID: 4150465046344022823, guid: 157c2b29a74ff4b448de684fe9189210,
+        type: 3}
+      propertyPath: LArmObjectList.Array.data[2]
+      value: 
+      objectReference: {fileID: 5021563850144768411, guid: 06a46c368643edd49a03f1e7db0f688c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 157c2b29a74ff4b448de684fe9189210, type: 3}
 --- !u!1001 &247964432

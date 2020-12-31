@@ -23,6 +23,12 @@ public class UnitPartsList : MonoBehaviour
         Instance = this;
     }
 
+    public int GetPartsHeadCount() { return HeadObjectList.Count; }
+    public int GetPartsBodyCount() { return BodyObjectList.Count; }
+    public int GetPartsLArmCount() { return LArmObjectList.Count; }
+    public int GetPartsRArmCount() { return RArmObjectList.Count; }
+    public int GetPartsLegCount() { return LegObjectList.Count; }
+    public int GetWeaponCount() { return weaponObjectList.Count; }
     public GameObject GetHeadObject(int i) { return HeadObjectList[i]; }
     public GameObject GetBodyObject(int i) { return BodyObjectList[i]; }
     public GameObject GetLArmObject(int i) { return LArmObjectList[i]; }

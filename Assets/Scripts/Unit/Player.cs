@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Player : Unit
 {
+    [SerializeField]
+    int unitID = 0;
     public GameObject mark;
     public List<Enemy> TargetEnemies { get; private set; } = new List<Enemy>();
-
-    public Unit TargetEnemy { get; set; } 
+    public Unit TargetEnemy { get; set; }
     void Update()
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 2, 1, 3, 0);
+            UnitCreate(1, 1, 1, 3, 1, 3, 1);
         }
         if (silhouetteOn)
         {

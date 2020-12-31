@@ -15,6 +15,7 @@ public class BaseStage : MonoBehaviour
     bool silhouetteOn = false;
     public int SetUpUnit { get; set; } = 0;
     GameManager gM;
+    int partsNumber = 0;
     private void Start()
     {
         partsList = UnitPartsList.Instance;
@@ -24,16 +25,38 @@ public class BaseStage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            GameManager.HeadID[0]++;
-            GameManager.BodyID[0]++;
-            GameManager.LArmID[0]++;
-            GameManager.WeaponLID[0]++;
-            GameManager.RArmID[0]++;
-            GameManager.WeaponRID[0]++;
-            GameManager.LegID[0]++;
+            if (partsList.GetPartsHeadCount() > partsNumber)
+            {
+                GameManager.HeadID[0] = partsNumber;
+            }
+            if (partsList.GetPartsBodyCount() > partsNumber)
+            {
+                GameManager.BodyID[0] = partsNumber;
+            }
+            if (partsList.GetPartsLArmCount() > partsNumber)
+            {
+                GameManager.LArmID[0] = partsNumber;
+            }
+            if (partsList.GetWeaponCount() > partsNumber)
+            {
+                GameManager.WeaponLID[0] = partsNumber;
+            }
+            if (partsList.GetPartsRArmCount() > partsNumber)
+            {
+                GameManager.RArmID[0] = partsNumber;
+            }
+            if (partsList.GetWeaponCount() > partsNumber)
+            {
+                GameManager.WeaponRID[0] = partsNumber;
+            }
+            if (partsList.GetPartsLegCount() > partsNumber)
+            {
+                GameManager.LegID[0] = partsNumber;
+            }
             ResetBuild();
+            partsNumber++;
         }
-        //transform.Rotate(new Vector3(0, 0.1f, 0));
+       // transform.Rotate(new Vector3(0, 0.1f, 0));
     }
     private void LateUpdate()
     {

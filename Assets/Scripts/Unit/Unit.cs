@@ -591,7 +591,7 @@ public class Unit : MonoBehaviour
             {
                 Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
                 Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
-                LArm.transform.localRotation = Quaternion.Euler(50, 0, 0);
+                LArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
                 targetDir = targetPos - LArm.ArmParts().transform.position;
                 endRot = Quaternion.LookRotation(targetDir) * p;
                 LArm.ArmParts().transform.rotation = endRot;
@@ -601,7 +601,7 @@ public class Unit : MonoBehaviour
             {
                 Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
                 Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
-                RArm.transform.localRotation = Quaternion.Euler(50, 0, 0);
+                RArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
                 targetDir = targetPos - RArm.ArmParts().transform.position;
                 endRot = Quaternion.LookRotation(targetDir) * p;
                 RArm.ArmParts().transform.rotation = endRot;
