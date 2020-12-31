@@ -10,12 +10,20 @@ public enum StageType
     Wasteland,
     Factory1,
 }
+
+public enum StageID
+{
+    Stage1,
+    Stage2,
+    Stage3,
+}
 public class StageData : MonoBehaviour
 {
     public StageType Type { get; set; }
     public float Level { get; private set; }
     public Map.MapType MapTypeData { get; private set; }
-
+    public int PlayerNumbers { get; private set; }
+    public int EnemyNumber { get; private set; }
     public Map.MapType StageDataGet(int x, int z)
     {
         if(Type == StageType.Factory1)

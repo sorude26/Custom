@@ -174,4 +174,8 @@ public class Weapon : MonoBehaviour
     {
         transform.position = partsPos;
     }
+    public void PartsDelete()
+    {
+        Destroy(this);
+    }
 }

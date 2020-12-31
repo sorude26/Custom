@@ -73,4 +73,9 @@ public class UnitParts : MonoBehaviour
     {
         this.owner = owner;
     }
+
+    public void PartsDelete()
+    {
+        Destroy(this);
+    }
 }
