@@ -112,42 +112,13 @@ public class BaseStage : MonoBehaviour
 
     public void ResetBuild()
     {
-        if (RArmWeapon)
-        {
-            RArmWeapon.PartsDelete();
-        }
         RArmWeapon = null;
-        if (LArmWeapon)
-        {
-            LArmWeapon.PartsDelete();
-        }
         LArmWeapon = null;
-        if (RArm)
-        {
-            RArm.PartsDelete();
-        }
         RArm = null;
-        if (LArm)
-        {
-            LArm.PartsDelete();
-        }
         LArm = null;
-        if (Head)
-        {
-            Head.PartsDelete();
-        }
         Head = null;
-        if (Body)
-        {
-            Body.PartsDelete();
-        }
         Body = null;
-        if (Leg)
-        {
-            Leg.PartsDelete();
-        }
         Leg = null;
-        //  silhouetteOn = false;
         foreach (Transform n in transform)
         {
             Destroy(n.gameObject);
