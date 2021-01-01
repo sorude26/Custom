@@ -1084,8 +1084,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.7372124, y: 0.584955, z: 1.7285901}
-  m_Center: {x: 0.0046484172, y: 1.4222674, z: -0.060705043}
+  m_Size: {x: 2.7372124, y: 0.584955, z: 2.0750248}
+  m_Center: {x: 0.0046484172, y: 1.4222674, z: 0.112512305}
 --- !u!1 &1917701168569078650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,7 +1212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3351503365992328800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.19, z: -0.014500022}
+  m_LocalPosition: {x: 0, y: -0.3, z: -0.014500022}
   m_LocalScale: {x: 0.012499999, y: 0.01, z: 0.009999999}
   m_Children: []
   m_Father: {fileID: 6073558764085736340}
@@ -1908,12 +1908,12 @@ PrefabInstance:
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.z
-      value: 1.9773642
+      value: 1.8292443
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.021886427
+      value: -0.09594639
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
@@ -2035,12 +2035,12 @@ PrefabInstance:
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.z
-      value: 2.244799
+      value: 2.1182728
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.009726584
+      value: -0.07298966
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
@@ -2065,12 +2065,12 @@ PrefabInstance:
     - target: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: armorPoint
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7641923700001715581, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: defense
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a1bf32e5153ef74da7d7d4fbadd9741, type: 3}

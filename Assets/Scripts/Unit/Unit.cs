@@ -581,7 +581,7 @@ public class Unit : MonoBehaviour
         if (targetUnit != null)
         {
             CameraControl.Instans.UnitCamera(this);
-            Vector3 targetPos = targetUnit.Body.transform.position;
+            Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
             Vector3 targetDir = targetPos - transform.position;
             targetDir.y = 0.0f;
             Quaternion p = Quaternion.Euler(0, 180, 0);

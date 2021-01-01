@@ -14,7 +14,7 @@ public class Player : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(2, 1, 2, 3, 2, 3, 1);
+            UnitCreate(1, 1, 1, 0, 2, 1, 0);
         }
         if (silhouetteOn)
         {
