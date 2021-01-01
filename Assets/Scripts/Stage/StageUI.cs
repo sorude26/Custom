@@ -36,27 +36,15 @@ public class StageUI : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    count--;
-                    if (count <= 0)
-                    {
-                        count = stageData.PlayerUnit.GetEnemies().Count - 1;
-                    }
-                    CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
-                    TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+                    OnClickLeftArrow();
                 }
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    count++;
-                    if (count >= stageData.PlayerUnit.GetEnemies().Count)
-                    {
-                        count = 1;
-                    }
-                    CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
-                    TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+                    OnClickRigftArrow();
                 }
             }
             else
-            {                
+            {
                 OnClickDecide();
             }
         }
@@ -101,7 +89,7 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
         {
-            stageData.PlayerUnit.TargetEnemy = null;
+            //stageData.PlayerUnit.TargetEnemy = null;
             stageData.PlayerUnit.SearchTarget();
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
             attackCommand.SetActive(true);
@@ -114,7 +102,7 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
         {
-            stageData.PlayerUnit.TargetEnemy = null;
+            //stageData.PlayerUnit.TargetEnemy = null;
             stageData.PlayerUnit.SearchTarget();
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
             attackCommand.SetActive(true);
@@ -135,5 +123,26 @@ public class StageUI : MonoBehaviour
             attackBottons.SetActive(false);
             choiceTarget = false;
         }
+    }
+
+    public void OnClickLeftArrow()
+    {
+        count--;
+        if (count <= 0)
+        {
+            count = stageData.PlayerUnit.GetEnemies().Count - 1;
+        }
+        CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+        TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+    }
+    public void OnClickRigftArrow()
+    {
+        count++;
+        if (count >= stageData.PlayerUnit.GetEnemies().Count)
+        {
+            count = 1;
+        }
+        CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+        TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
     }
 }

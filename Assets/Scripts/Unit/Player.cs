@@ -8,13 +8,13 @@ public class Player : Unit
     [SerializeField]
     int unitID = 0;
     public GameObject mark;
-    public List<Enemy> TargetEnemies { get; private set; } = new List<Enemy>();
+    public List<Unit> TargetEnemies { get; private set; } = new List<Unit>();
     public Unit TargetEnemy { get; set; }
     void Update()
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 0, 2, 1, 0);
+            UnitCreate(1, 1, 1, 0, 1, 1, 0);
         }
         if (silhouetteOn)
         {
@@ -64,19 +64,42 @@ public class Player : Unit
     {
         TargetEnemies.Clear();
         TargetEnemies.Add(null);
-        foreach (Enemy enemy in unitManager.GetEnemies())
+        if (TargetEnemy)
         {
-            if (!enemy.DestroyBody)
+            if (!TargetEnemy.DestroyBody)
             {
-                Vector3 dir = enemy.transform.position - transform.position;
+                Vector3 dir = TargetEnemy.transform.position - transform.position;
                 if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
                 {
-                    TargetEnemies.Add(enemy);
+                    TargetEnemies.Add(TargetEnemy);
+                }
+                else
+                {
+                    TargetEnemy = null;
+                }
+            }
+            else
+            {
+                TargetEnemy = null;
+            }
+        }
+        foreach (Enemy enemy in unitManager.GetEnemies())
+        {
+            if (enemy != TargetEnemy)
+            {
+                if (!enemy.DestroyBody)
+                {
+                    Vector3 dir = enemy.transform.position - transform.position;
+                    if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                    {
+                        TargetEnemies.Add(enemy);
+                    }
                 }
             }
         }
+        TargetEnemy = null;
     }
-    public List<Enemy> GetEnemies()
+    public List<Unit> GetEnemies()
     {
         return TargetEnemies;
     }
