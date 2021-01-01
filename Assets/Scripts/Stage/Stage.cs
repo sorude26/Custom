@@ -167,7 +167,7 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void UnitMoveReturn()
     {
-        if (!MoveFinish)
+        if (!MoveFinish && !MoveNow)
         {
             PlayerUnit.UnitMove(PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);
             PlayerUnit.UnitMove2(map.MoveList2, PlayerUnit.CurrentPosX, PlayerUnit.CurrentPosZ);

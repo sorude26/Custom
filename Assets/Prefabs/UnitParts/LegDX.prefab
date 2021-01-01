@@ -2627,7 +2627,7 @@ Transform:
   m_GameObject: {fileID: 8425611873651944173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 8433986155527586900}
   - {fileID: 4753432003642929291}
@@ -2707,7 +2707,7 @@ MonoBehaviour:
   defense: 30
   weight: 250
   armorParts: {fileID: 2109497985775811752}
-  armorPoint: 50
+  armorPoint: 150
   armorDefense: 10
   moveType: 0
   movePower: 15

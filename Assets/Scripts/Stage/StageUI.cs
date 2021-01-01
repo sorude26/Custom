@@ -10,6 +10,7 @@ public class StageUI : MonoBehaviour
     GameObject messageWindow;
     private int count = 0;
     private bool choiceTarget = false;
+    private bool search = false;
     [SerializeField]
     GameObject attackBottons;
     [SerializeField]
@@ -89,12 +90,15 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
         {
-            //stageData.PlayerUnit.TargetEnemy = null;
-            stageData.PlayerUnit.SearchTarget();
+            if (!search)
+            {
+                count = 0;
+                search = true;
+                choiceTarget = true;
+                attackCommand.SetActive(true);
+                stageData.PlayerUnit.SearchTarget();
+            }
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
-            attackCommand.SetActive(true);
-            choiceTarget = true;
-            count = 0;
         }
 
     }
@@ -102,12 +106,15 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
         {
-            //stageData.PlayerUnit.TargetEnemy = null;
-            stageData.PlayerUnit.SearchTarget();
+            if (!search)
+            {
+                count = 0;
+                search = true;
+                choiceTarget = true;
+                attackCommand.SetActive(true);
+                stageData.PlayerUnit.SearchTarget();
+            }
             stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
-            attackCommand.SetActive(true);
-            choiceTarget = true;
-            count = 0;
         }
     }
 
@@ -122,6 +129,7 @@ public class StageUI : MonoBehaviour
             attackCommand.SetActive(false);
             attackBottons.SetActive(false);
             choiceTarget = false;
+            search = false;
         }
     }
 

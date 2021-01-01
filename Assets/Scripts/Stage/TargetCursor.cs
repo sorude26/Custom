@@ -30,7 +30,10 @@ public class TargetCursor : MonoBehaviour
     public void SetCursor(Unit target)
     {
         TargetUnit = target;
-        currentPosY = 6 + TargetUnit.CurrentPosY;
+        if (TargetUnit.Head)
+        {
+            currentPosY = 2 + TargetUnit.Head.transform.position.y;
+        }
         transform.position = new Vector3(TargetUnit.CurrentPosX * 10, currentPosY, TargetUnit.CurrentPosZ * 10);
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null)

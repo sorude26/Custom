@@ -875,7 +875,7 @@ Transform:
   m_GameObject: {fileID: 5018153658361870310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 1545243969048957268}
   - {fileID: 6172011088553743255}
@@ -947,12 +947,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: NormalHead
-  partsHp: 50
+  partsHp: 60
   defense: 30
   weight: 80
   armorParts: {fileID: 1193747296848497531}
   armorPoint: 20
-  armorDefense: 30
+  armorDefense: 10
   detectionRange: 70
 --- !u!54 &3846711851707651265
 Rigidbody:
