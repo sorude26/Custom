@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseStage : MonoBehaviour
 {
+    public static BaseStage Instance { get; private set; }
     UnitPartsList partsList;
     public PartsHead Head { get; private set; } = null;
     public PartsBody Body { get; private set; } = null;
@@ -14,11 +16,18 @@ public class BaseStage : MonoBehaviour
     public Weapon RArmWeapon { get; private set; } = null;
     bool silhouetteOn = false;
     public int SetUpUnit { get; set; } = 0;
-   
+    public bool viewOpen = false;
     int partsNumber = 0;
+    [SerializeField]
+    Text unitNumber;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         partsList = UnitPartsList.Instance;
+        unitNumber.text = "機体番号：" + 1;
     }
     void Update()
     {
@@ -26,36 +35,36 @@ public class BaseStage : MonoBehaviour
         {
             if (partsList.GetPartsHeadCount() > partsNumber)
             {
-                GameManager.HeadID[0] = partsNumber;
+                GameManager.HeadID[SetUpUnit] = partsNumber;
             }
             if (partsList.GetPartsBodyCount() > partsNumber)
             {
-                GameManager.BodyID[0] = partsNumber;
+                GameManager.BodyID[SetUpUnit] = partsNumber;
             }
             if (partsList.GetPartsLArmCount() > partsNumber)
             {
-                GameManager.LArmID[0] = partsNumber;
+                GameManager.LArmID[SetUpUnit] = partsNumber;
             }
             if (partsList.GetWeaponCount() > partsNumber)
             {
-                GameManager.WeaponLID[0] = partsNumber;
+                GameManager.WeaponLID[SetUpUnit] = partsNumber;
             }
             if (partsList.GetPartsRArmCount() > partsNumber)
             {
-                GameManager.RArmID[0] = partsNumber;
+                GameManager.RArmID[SetUpUnit] = partsNumber;
             }
             if (partsList.GetWeaponCount() > partsNumber)
             {
-                GameManager.WeaponRID[0] = partsNumber;
+                GameManager.WeaponRID[SetUpUnit] = partsNumber;
             }
             if (partsList.GetPartsLegCount() > partsNumber)
             {
-                GameManager.LegID[0] = partsNumber;
+                GameManager.LegID[SetUpUnit] = partsNumber;
             }
             ResetBuild();
             partsNumber++;
         }
-       // transform.Rotate(new Vector3(0, 0.1f, 0));
+        // transform.Rotate(new Vector3(0, 0.1f, 0));
     }
     private void LateUpdate()
     {
@@ -121,6 +130,16 @@ public class BaseStage : MonoBehaviour
         foreach (Transform n in transform)
         {
             Destroy(n.gameObject);
+        }
+    }
+    public void SetUpUnitChange(int i)
+    {
+        if (SetUpUnit != i)
+        {
+            SetUpUnit = i;
+            ResetBuild();
+            int j = i + 1;
+            unitNumber.text = "機体番号：" + j;
         }
     }
 }
