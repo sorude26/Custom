@@ -10,7 +10,8 @@ public enum CommandType
     ChoicePartsLArm,
     ChoicePartsRArm,
     ChoicePartsLeg,
-    ChoiceWeapon,
+    ChoiceWeaponL,
+    ChoiceWeaponR,
 }
 public class Command : MonoBehaviour
 {
@@ -42,7 +43,9 @@ public class Command : MonoBehaviour
                 break;
             case CommandType.ChoicePartsLeg:
                 break;
-            case CommandType.ChoiceWeapon:
+            case CommandType.ChoiceWeaponL:
+                break;
+            case CommandType.ChoiceWeaponR:
                 break;
             default:
                 break;

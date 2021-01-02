@@ -8,14 +8,21 @@ public class BaseStage : MonoBehaviour
     public static BaseStage Instance { get; private set; }
     UnitPartsList partsList;
     public PartsHead Head { get; private set; } = null;
+    public int HeadID { get; private set; }
     public PartsBody Body { get; private set; } = null;
+    public int BodyID { get; private set; }
     public PartsLArm LArm { get; private set; } = null;
+    public int LArmID { get; private set; }
     public PartsRArm RArm { get; private set; } = null;
+    public int RArmID { get; private set; }
     public PartsLeg Leg { get; private set; } = null;
+    public int LegID { get; private set; }
     public Weapon LArmWeapon { get; private set; } = null;
+    public int WeaponLID { get; private set; }
     public Weapon RArmWeapon { get; private set; } = null;
+    public int WeaponRID { get; private set; }
     bool silhouetteOn = false;
-    public int SetUpUnit { get; set; } = 0;
+    public int SetUpUnit { get; private set; } = 0;
     public bool viewOpen = false;
     int partsNumber = 0;
     [SerializeField]
@@ -28,6 +35,7 @@ public class BaseStage : MonoBehaviour
     {
         partsList = UnitPartsList.Instance;
         unitNumber.text = "機体番号：" + 1;
+        FirstSet();
     }
     void Update()
     {
@@ -72,8 +80,7 @@ public class BaseStage : MonoBehaviour
         {
             if (!Head)
             {
-                BuildUnit(GameManager.HeadID[SetUpUnit], GameManager.BodyID[SetUpUnit], GameManager.LArmID[SetUpUnit],
-                    GameManager.WeaponLID[SetUpUnit], GameManager.RArmID[SetUpUnit], GameManager.WeaponRID[SetUpUnit], GameManager.LegID[SetUpUnit]);
+                BuildUnit(HeadID, BodyID, LArmID, WeaponLID, RArmID, WeaponRID, LegID);
             }
         }
         if (!Head)
@@ -117,7 +124,16 @@ public class BaseStage : MonoBehaviour
             silhouetteOn = true;
         }
     }
-
+    private void FirstSet()
+    {
+        HeadID = GameManager.HeadID[SetUpUnit];
+        BodyID = GameManager.BodyID[SetUpUnit];
+        LArmID = GameManager.LArmID[SetUpUnit];
+        WeaponLID = GameManager.WeaponLID[SetUpUnit];
+        RArmID = GameManager.RArmID[SetUpUnit];
+        WeaponRID = GameManager.WeaponRID[SetUpUnit];
+        LegID = GameManager.LegID[SetUpUnit];
+    }
     public void ResetBuild()
     {
         RArmWeapon = null;
@@ -140,6 +156,63 @@ public class BaseStage : MonoBehaviour
             ResetBuild();
             int j = i + 1;
             unitNumber.text = "機体番号：" + j;
+            FirstSet();
+        }
+    }
+    public void SetUpPartsHead(int i)
+    {
+        if (HeadID != i)
+        {
+            HeadID = i;
+            ResetBuild();
+        }
+    }
+    public void SetUpPartsBody(int i)
+    {
+        if (BodyID != i)
+        {
+            BodyID = i;
+            ResetBuild();
+        }
+    }
+    public void SetUpPartsLArm(int i)
+    {
+        if (LArmID != i)
+        {
+            LArmID = i;
+            ResetBuild();
+        }
+    }
+    public void SetUpPartsRArm(int i)
+    {
+        if (RArmID != i)
+        {
+            RArmID = i;
+            ResetBuild();
+        }
+    }
+    public void SetUpPartsLeg(int i)
+    {
+        if (LegID != i)
+        {
+            LegID = i;
+            ResetBuild();
+        }
+    }
+    public void SetUpWeaponL(int i)
+    {
+        if (WeaponLID != i)
+        {
+            WeaponLID = i;
+            ResetBuild();
+        }
+    }
+    public void SetUpWeaponR(int i)
+    {
+        if (WeaponRID != i)
+        {
+            WeaponRID = i;
+            ResetBuild();
         }
     }
 }
