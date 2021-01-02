@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55e6e1c9deee9242aa413d4d7bbb413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partsName: NormalLArm
+  partsName: "\u88C5\u7532\u8FFD\u52A0\u578B"
   partsHp: 50
   defense: 30
   weight: 30

@@ -39,7 +39,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] int weight = 0;
     public int Weight { get; private set; }//重量
     [SerializeField] string weaponName = "";
-    public string WeaponName { get; private set; }
 
     private bool weaponTrigger = false;//攻撃トリガー
     private bool shotStart = false;//攻撃開始フラグ
@@ -47,7 +46,7 @@ public class Weapon : MonoBehaviour
     private float attackTimer = 0;
     private void Start()
     {
-        WeaponName = weaponName;
+       
         Weight = weight;
         Range = range;
         EffectiveRange = effectiveRange;
@@ -177,5 +176,9 @@ public class Weapon : MonoBehaviour
     public void PartsDelete()
     {
         Destroy(this);
+    }
+    public string GetName()
+    {
+        return weaponName;
     }
 }

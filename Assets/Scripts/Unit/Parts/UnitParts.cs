@@ -6,7 +6,6 @@ public class UnitParts : MonoBehaviour
 {
     [SerializeField]
     protected string partsName;
-    public string PartsName { get; protected set; }
 
     [SerializeField]
     protected int partsHp;
@@ -33,7 +32,6 @@ public class UnitParts : MonoBehaviour
     protected bool partsBreak = false;
     protected void StartSet()
     {
-        PartsName = partsName;
         MaxPartsHp = partsHp;
         CurrentPartsHp = MaxPartsHp;
         Defense = defense;
@@ -77,5 +75,9 @@ public class UnitParts : MonoBehaviour
     public void PartsDelete()
     {
         Destroy(this);
+    }
+    public string GetName()
+    {
+        return partsName;
     }
 }

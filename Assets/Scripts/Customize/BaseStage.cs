@@ -152,6 +152,13 @@ public class BaseStage : MonoBehaviour
     {
         if (SetUpUnit != i)
         {
+            GameManager.HeadID[SetUpUnit] = HeadID;
+            GameManager.BodyID[SetUpUnit] = BodyID;
+            GameManager.LArmID[SetUpUnit] = LArmID;
+            GameManager.WeaponLID[SetUpUnit] = WeaponLID;
+            GameManager.RArmID[SetUpUnit] = RArmID;
+            GameManager.WeaponRID[SetUpUnit] = WeaponRID;
+            GameManager.LegID[SetUpUnit] = LegID;
             SetUpUnit = i;
             ResetBuild();
             int j = i + 1;

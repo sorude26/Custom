@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2d941a87551fb4294e4873e9b2d472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partsName: NormalLeg
+  partsName: "\u79FB\u52D5\u529B\u5F37\u5316\u578B"
   partsHp: 50
   defense: 10
   weight: 40

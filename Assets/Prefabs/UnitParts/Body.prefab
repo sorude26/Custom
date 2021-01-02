@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9375a3e8deb1c449c52e5ac67d6ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partsName: NormalBody
+  partsName: "\u901A\u5E38\u578B"
   partsHp: 80
   defense: 20
   weight: 50

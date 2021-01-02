@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9375a3e8deb1c449c52e5ac67d6ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partsName: NormalBody
+  partsName: "\u88C5\u7532\u8FFD\u52A0\u578B"
   partsHp: 120
   defense: 30
   weight: 50
