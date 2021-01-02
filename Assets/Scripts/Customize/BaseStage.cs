@@ -5,21 +5,20 @@ using UnityEngine;
 public class BaseStage : MonoBehaviour
 {
     UnitPartsList partsList;
-    public PartsHead Head { get; protected set; } = null;
-    public PartsBody Body { get; protected set; } = null;
-    public PartsLArm LArm { get; protected set; } = null;
-    public PartsRArm RArm { get; protected set; } = null;
-    public PartsLeg Leg { get; protected set; } = null;
-    public Weapon LArmWeapon { get; protected set; } = null;
-    public Weapon RArmWeapon { get; protected set; } = null;
+    public PartsHead Head { get; private set; } = null;
+    public PartsBody Body { get; private set; } = null;
+    public PartsLArm LArm { get; private set; } = null;
+    public PartsRArm RArm { get; private set; } = null;
+    public PartsLeg Leg { get; private set; } = null;
+    public Weapon LArmWeapon { get; private set; } = null;
+    public Weapon RArmWeapon { get; private set; } = null;
     bool silhouetteOn = false;
     public int SetUpUnit { get; set; } = 0;
-    GameManager gM;
+   
     int partsNumber = 0;
     private void Start()
     {
         partsList = UnitPartsList.Instance;
-        gM = GameManager.Instance;
     }
     void Update()
     {
