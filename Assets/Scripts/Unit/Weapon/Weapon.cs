@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum WeaponType
+public enum WeaponType
 {
     Rifle,
     MachineGun,
     Shotgun,
     MachineShotGun,
+    Melee,
 }
 
 public class Weapon : MonoBehaviour
@@ -21,6 +22,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]
     WeaponType weaponType = WeaponType.Rifle;//武器種
+    public WeaponType Type { get; protected set; }
     public float Range { get; private set; }//最大射程
     [SerializeField] float range = 0;
     public float EffectiveRange { get; private set; }//有効射程
@@ -39,14 +41,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] int weight = 0;
     public int Weight { get; private set; }//重量
     [SerializeField] string weaponName = "";
-
-    private bool weaponTrigger = false;//攻撃トリガー
+    [SerializeField] protected GameObject blade = null;//攻撃判定
+    protected bool weaponTrigger = false;//攻撃トリガー
     private bool shotStart = false;//攻撃開始フラグ
     public bool AttackNow { get; private set; }
     private float attackTimer = 0;
-    private void Start()
+    protected Unit owner;
+    protected void Start()
     {
-       
+        Type = weaponType;
         Weight = weight;
         Range = range;
         EffectiveRange = effectiveRange;
@@ -54,6 +57,10 @@ public class Weapon : MonoBehaviour
         BulletSpeed = bulletSpeed;
         TotalShotNumber = totalShotNumber;
         Diffusivity = diffusivity;
+        if (blade)
+        {
+            blade.SetActive(false);
+        }
     }
     private void Update()
     {
@@ -180,5 +187,23 @@ public class Weapon : MonoBehaviour
     public string GetName()
     {
         return weaponName;
+    }
+    public void SetOwner(Unit owner)
+    {
+        this.owner = owner;
+    }
+    public void BladeAttackStart()
+    {
+        if (blade)
+        {
+            blade.SetActive(true);
+        }
+    }
+    public void BladeAttackEnd()
+    {
+        if (blade)
+        {
+            blade.SetActive(false);
+        }
     }
 }

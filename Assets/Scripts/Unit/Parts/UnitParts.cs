@@ -28,7 +28,7 @@ public class UnitParts : MonoBehaviour
     [SerializeField]
     protected int armorDefense = 0;
 
-    protected Unit owner;
+    public Unit Owner { get; protected set; }
     protected bool partsBreak = false;
     protected void StartSet()
     {
@@ -69,7 +69,7 @@ public class UnitParts : MonoBehaviour
 
     public void SetOwner(Unit owner)
     {
-        this.owner = owner;
+        Owner = owner;
     }
 
     public void PartsDelete()
