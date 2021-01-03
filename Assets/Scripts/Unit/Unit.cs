@@ -97,7 +97,6 @@ public class Unit : MonoBehaviour
         unitManager = UnitManager.Instance;
         partsList = UnitPartsList.Instance;
         DetectionRange = detectionRange;
-        //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
         CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
         StartUnitAngle();
@@ -135,7 +134,6 @@ public class Unit : MonoBehaviour
     {
         CurrentPosX = posX;
         CurrentPosZ = posZ;
-        //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
         CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
         transform.position = new Vector3(CurrentPosX * gameMap.mapScale, CurrentPosY, CurrentPosZ * gameMap.mapScale);
     }
@@ -146,13 +144,6 @@ public class Unit : MonoBehaviour
     /// <param name="moveList">検索範囲マップ</param>
     /// <param name="targetX">開始地点X軸</param>
     /// <param name="targetZ">開始地点Z軸</param>
-    public void UnitMove(List<List<Map.MapDate>> moveList, int targetX, int targetZ)
-    {
-        unitMoveList = new List<int[]>();
-        int[] pos = { targetX, targetZ };
-        unitMoveList.Add(pos); //目標データ保存
-        SearchCross(targetX, targetZ, moveList[targetX][targetZ].movePoint, moveList);
-    }
     public void UnitMove2(List<Map.MapDate> moveList, int targetX, int targetZ)
     {
         unitMoveList = new List<int[]>();
@@ -174,7 +165,6 @@ public class Unit : MonoBehaviour
             moveLevel = thisPos.y;
             moveTargetPosX = unitMoveList[moveCount][0] * gameMap.mapScale;
             moveTargetPosZ = unitMoveList[moveCount][1] * gameMap.mapScale;
-            //moveTargetLevel = gameMap.MapDates[unitMoveList[moveCount][0]][unitMoveList[moveCount][1]].Level;
             moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0] + (gameMap.maxX * unitMoveList[moveCount][1])].Level;
             MoveNow = true;
             LArm.transform.localRotation = Quaternion.Euler(-10, 0, 0);
@@ -299,16 +289,6 @@ public class Unit : MonoBehaviour
     /// <param name="x">X軸現在地</param>
     /// <param name="z">Z軸現在地</param>
     /// <param name="movePower">移動力</param>
-    protected void SearchCross(int x, int z, int movePower, List<List<Map.MapDate>> moveList)
-    {
-        if (0 <= x && x < gameMap.maxX && 0 <= z && z < gameMap.maxZ)
-        {
-            MoveSearchPos(x, z - 1, movePower, moveList[x][z].Level, moveList, gameMap.MovePoint(gameMap.MapDates[x][z].MapType));
-            MoveSearchPos(x, z + 1, movePower, moveList[x][z].Level, moveList, gameMap.MovePoint(gameMap.MapDates[x][z].MapType));
-            MoveSearchPos(x - 1, z, movePower, moveList[x][z].Level, moveList, gameMap.MovePoint(gameMap.MapDates[x][z].MapType));
-            MoveSearchPos(x + 1, z, movePower, moveList[x][z].Level, moveList, gameMap.MovePoint(gameMap.MapDates[x][z].MapType));
-        }
-    }
     protected void SearchCross2(int p, int movePower, List<Map.MapDate> moveList)
     {
         if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
@@ -340,35 +320,6 @@ public class Unit : MonoBehaviour
     /// <param name="currentLevel">現在地高度</param>
     /// <param name="moveList">移動範囲リスト</param>
     /// <param name="moveCost">移動前座標の移動コスト</param>
-    protected void MoveSearchPos(int x, int z, int movePower, float currentLevel, List<List<Map.MapDate>> moveList, int moveCost)
-    {
-        if (x < 0 || z < 0 || x >= gameMap.maxX || z >= gameMap.maxZ) { return; }//マップ範囲内か確認
-        if (movePower + moveCost != moveList[x][z].movePoint) { return; } //一つ前の座標か確認        
-        if (moveMood) { return; }//検索終了か確認
-        if (moveList[x][z].Level >= currentLevel) //高低差確認
-        {
-            if (moveList[x][z].Level - currentLevel > liftingForce) { return; }
-        }
-        else
-        {
-            if (currentLevel - moveList[x][z].Level > liftingForce) { return; }
-        }
-
-        movePower = moveList[x][z].movePoint;
-
-        int[] pos = { x, z };
-        unitMoveList.Add(pos); //移動順データ保存
-        if (CurrentPosX == x && CurrentPosZ == z) //初期地点か確認
-        {
-            moveMood = true; //移動モード移行
-            moveCount = unitMoveList.Count - 1;//移動経路数を入力
-            StartUnitAngle();
-        }
-        else
-        {
-            SearchCross(x, z, movePower, moveList);
-        }
-    }
     protected void MoveSearchPos2(int p, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
     {
         if (moveMood) { return; }//検索終了か確認
@@ -391,6 +342,7 @@ public class Unit : MonoBehaviour
         {
             moveMood = true; //移動モード移行
             moveCount = unitMoveList.Count - 1;//移動経路数を入力
+            StartUnitAngle();
         }
         else
         {
@@ -513,7 +465,6 @@ public class Unit : MonoBehaviour
             {
                 CurrentPosX = (int)Math.Round(thisPos.x) / gameMap.mapScale;
                 CurrentPosZ = (int)Math.Round(thisPos.z) / gameMap.mapScale;
-                //CurrentPosY = gameMap.MapDates[CurrentPosX][CurrentPosZ].Level;
                 CurrentPosY = gameMap.MapDates2[CurrentPosX + (gameMap.maxX * CurrentPosZ)].Level;
             }
             gameStage.SetUnitPos();
@@ -526,53 +477,7 @@ public class Unit : MonoBehaviour
         StartUnitAngle();
         ActionTurn = false;
     }
-    /// <summary>
-    /// ターゲットに攻撃
-    /// </summary>
-    /// <param name="targetUnit"></param>
-    public void TargetShot(Unit targetUnit)
-    {
-        Vector3 targetPos = targetUnit.transform.position;
-        Vector3 targetDir = targetPos - transform.position;
-        targetDir.y = 0.0f;
-        Quaternion p = Quaternion.Euler(0, 180, 0);
-        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
-        transform.rotation = endRot;
-        haveWeapon.Shot();
-    }
-    /// <summary>
-    /// ターゲットに攻撃
-    /// </summary>
-    /// <param name="targetUnit"></param>
-    public void TargetShot(Unit targetUnit, UnitParts attackArm)
-    {
-        Vector3 targetPos = targetUnit.Body.transform.position;
-        Vector3 targetDir = targetPos - transform.position;
-        targetDir.y = 0.0f;
-        Quaternion p = Quaternion.Euler(0, 180, 0);
-        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
-        transform.rotation = endRot;
-        if (attackArm == LArm)
-        {
-            targetDir = targetPos - LArm.ArmParts().transform.position;
-            endRot = Quaternion.LookRotation(targetDir) * p;
-            LArm.ArmParts().transform.rotation = endRot;
-            attackWeapon = LArmWeapon;
-        }
-        else if (attackArm == RArm)
-        {
-            targetDir = targetPos - RArm.ArmParts().transform.position;
-            endRot = Quaternion.LookRotation(targetDir) * p;
-            RArm.ArmParts().transform.rotation = endRot;
-            attackWeapon = RArmWeapon;
-        }
-        else
-        {
-            attackWeapon = null;
-        }
-        attackTimer = 0;
-        attackMode = true;
-    }
+    
     /// <summary>
     /// ターゲットに攻撃
     /// </summary>
@@ -617,44 +522,7 @@ public class Unit : MonoBehaviour
         attackTimer = 0;
         attackMode = true;
     }
-    /// <summary>
-    /// ターゲットに攻撃
-    /// </summary>
-    /// <param name="targetUnit"></param>
-    public void LArmTargetShot(Unit targetUnit)
-    {
-        Vector3 targetPos = targetUnit.Body.transform.position;
-        Vector3 targetDir = targetPos - transform.position;
-        targetDir.y = 0.0f;
-        Quaternion p = Quaternion.Euler(0, 180, 0);
-        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
-        transform.rotation = endRot;
-        targetDir = targetPos - LArm.ArmParts().transform.position;
-        endRot = Quaternion.LookRotation(targetDir) * p;
-        LArm.ArmParts().transform.rotation = endRot;
-        LArmWeapon.Shot();
-    }
-    /// <summary>
-    /// ターゲットに攻撃
-    /// </summary>
-    /// <param name="targetUnit"></param>
-    public void RArmTargetShot(Unit targetUnit)
-    {
-
-        Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
-        Vector3 targetPos = targetUnit.Body.transform.position;
-        Vector3 targetDir = targetPos - transform.position;
-        targetDir.y = 0.0f;
-        Quaternion p = Quaternion.Euler(0, 180, 0);
-        Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
-        transform.rotation = endRot;
-        Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
-        RArm.transform.localRotation = Quaternion.Euler(40, 0, 0);
-        targetDir = targetPos - RArm.ArmParts().transform.position;
-        endRot = Quaternion.LookRotation(targetDir) * p;
-        RArm.ArmParts().transform.rotation = endRot;
-        RArmWeapon.Shot();
-    }
+    
     /// <summary>
     /// 指定した見た目のユニットを生成する
     /// </summary>

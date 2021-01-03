@@ -50,8 +50,8 @@ public class Map : MonoBehaviour
     public List<MapDate> MapDates2 { get; private set; } = new List<MapDate>();
     public List<MapDate> MoveList2 { get; private set; }
     public Stage gameStage;//ステージデータ
-    public readonly int maxX = 15;//マップ最大値
-    public readonly int maxZ = 15;
+    public readonly int maxX = 25;//マップ最大値
+    public readonly int maxZ = 25;
     public readonly int mapScale = 10;//拡大率
     [SerializeField]
     StageData data = null;
