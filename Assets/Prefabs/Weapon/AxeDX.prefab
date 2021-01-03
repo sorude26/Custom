@@ -394,9 +394,9 @@ MonoBehaviour:
   weaponType: 4
   range: 15
   effectiveRange: 15
-  power: 30
+  power: 15
   bulletSpeed: 0
-  totalShotNumber: 20
+  totalShotNumber: 30
   diffusivity: 0
   weight: 400
   weaponName: "\u30D8\u30D3\u30FC\u30A2\u30C3\u30AF\u30B9"

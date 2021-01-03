@@ -465,18 +465,11 @@ public class Unit : MonoBehaviour
                             {
                                 if (attackWeapon == LArmWeapon)
                                 {
-                                    bodyRotaion = Quaternion.Euler(-20, 50, 0);
-                                    headRotaion = Quaternion.Euler(0, -40, 0);
-                                    lArmRotaion = Quaternion.Euler(10, 0, 0);
-                                    rArmRotaion = Quaternion.Euler(-20, 0, 0);
-                                    
+                                    AttackPattern(2);
                                 }
                                 else if (attackWeapon == RArmWeapon)
                                 {
-                                    bodyRotaion = Quaternion.Euler(-20, -50, 0);
-                                    headRotaion = Quaternion.Euler(0, 40, 0);
-                                    lArmRotaion = Quaternion.Euler(-20, 0, 0);
-                                    rArmRotaion = Quaternion.Euler(10, 0, 0);
+                                    AttackPattern(3);
                                 }
                                 attackWeapon.BladeAttackStart();
                                 attackNow = true;
@@ -489,6 +482,8 @@ public class Unit : MonoBehaviour
                                 headRotaion = Quaternion.Euler(0, 0, 0);
                                 lArmRotaion = Quaternion.Euler(0, 0, 0);
                                 rArmRotaion = Quaternion.Euler(0, 0, 0);
+                                LArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
+                                RArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
                                 targtPos = new Vector3(0, 0, 0);
                                 attackNow = false;
                                 attackMode = false;
@@ -589,27 +584,13 @@ public class Unit : MonoBehaviour
             {
                 if (attackWeapon == LArmWeapon)
                 {
-                    //Body.transform.localRotation = Quaternion.Euler(-5, -60, 0);
-                    bodyRotaion = Quaternion.Euler(5, -60, 0);
-                    //Head.transform.localRotation = Quaternion.Euler(0, 60, 0);
-                    headRotaion = Quaternion.Euler(0, 60, 0);
-                    //LArm.transform.localRotation = Quaternion.Euler(130, 0, 0);
-                    lArmRotaion = Quaternion.Euler(130, 0, 0);
-                    //RArm.transform.localRotation = Quaternion.Euler(20, 0, 0);
-                    rArmRotaion = Quaternion.Euler(20, 0, 0);
+                    AttackPattern(0);
                     LArm.ArmParts().transform.localRotation = Quaternion.Euler(-60, 0, 0);
                     this.attackWeapon = LArmWeapon;
                 }
                 else if (attackWeapon == RArmWeapon)
                 {
-                    //Body.transform.localRotation = Quaternion.Euler(-5, 60, 0);
-                    bodyRotaion = Quaternion.Euler(5, 60, 0);
-                    //Head.transform.localRotation = Quaternion.Euler(0, -60, 0);
-                    headRotaion = Quaternion.Euler(0, -60, 0);
-                    //LArm.transform.localRotation = Quaternion.Euler(20, 0, 0);
-                    lArmRotaion = Quaternion.Euler(20, 0, 0);
-                    //RArm.transform.localRotation = Quaternion.Euler(130, 0, 0);
-                    rArmRotaion = Quaternion.Euler(130, 0, 0);
+                    AttackPattern(1);
                     RArm.ArmParts().transform.localRotation = Quaternion.Euler(-60, 0, 0);
                     this.attackWeapon = RArmWeapon;
                 }
@@ -628,6 +609,38 @@ public class Unit : MonoBehaviour
         attackMode = true;
     }
 
+    protected void AttackPattern(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                bodyRotaion = Quaternion.Euler(5, -60, 0);
+                headRotaion = Quaternion.Euler(0, 60, 0);
+                lArmRotaion = Quaternion.Euler(130, 0, 0);
+                rArmRotaion = Quaternion.Euler(20, 0, 0);
+                break;
+            case 1:
+                bodyRotaion = Quaternion.Euler(5, 60, 0);
+                headRotaion = Quaternion.Euler(0, -60, 0);
+                lArmRotaion = Quaternion.Euler(20, 0, 0);
+                rArmRotaion = Quaternion.Euler(130, 0, 0);
+                break;
+            case 2:
+                bodyRotaion = Quaternion.Euler(-20, 50, 0);
+                headRotaion = Quaternion.Euler(0, -40, 0);
+                lArmRotaion = Quaternion.Euler(10, 0, 0);
+                rArmRotaion = Quaternion.Euler(-20, 0, 0);
+                break;
+            case 3:
+                bodyRotaion = Quaternion.Euler(-20, -50, 0);
+                headRotaion = Quaternion.Euler(0, 40, 0);
+                lArmRotaion = Quaternion.Euler(-20, 0, 0);
+                rArmRotaion = Quaternion.Euler(10, 0, 0);
+                break;
+            default:
+                break;
+        }
+    }
     /// <summary>
     /// 指定した見た目のユニットを生成する
     /// </summary>

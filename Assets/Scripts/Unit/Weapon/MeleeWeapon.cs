@@ -15,6 +15,12 @@ public class MeleeWeapon : Weapon
                 hitParts.Damage(Power);
             }
         }
+        Obstacle obstacle = other.GetComponent<Obstacle>();
+        if (obstacle)
+        {
+            EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
+            obstacle.ObstacleHit(Power);
+        }
     }
     
 }

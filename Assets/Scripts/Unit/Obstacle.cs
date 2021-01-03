@@ -9,13 +9,17 @@ public class Obstacle : Unit
         Bullet hitBullet = other.GetComponent<Bullet>();
         if (hitBullet != null)
         {
-            CurrentHp -= hitBullet.Power;
+            ObstacleHit(hitBullet.Power);
             hitBullet.HitBullet(Defense);
-            if (CurrentHp < 0)
-            {
-                Dead();
-                gameObject.SetActive(false);
-            }
+        }
+    }
+    public void ObstacleHit(int power)
+    {
+        CurrentHp -= power;
+        if (CurrentHp < 0)
+        {
+            Dead();
+            gameObject.SetActive(false);
         }
     }
 }
