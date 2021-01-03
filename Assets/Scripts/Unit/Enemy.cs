@@ -58,8 +58,7 @@ public class Enemy : Unit
                 silhouetteOn = false;
             }
         }
-
-
+        PartsMotion();
     }
     private void LateUpdate()
     {

@@ -167,8 +167,12 @@ public class Unit : MonoBehaviour
             moveTargetPosZ = unitMoveList[moveCount][1] * gameMap.mapScale;
             moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0] + (gameMap.maxX * unitMoveList[moveCount][1])].Level;
             MoveNow = true;
-            LArm.transform.localRotation = Quaternion.Euler(-10, 0, 0);
-            RArm.transform.localRotation = Quaternion.Euler(-10, 0, 0);
+            lArmRotaion = Quaternion.Euler(-10, 0, 0);
+            lArmRSpeed = 1.0f;
+            rArmRotaion = Quaternion.Euler(-10, 0, 0);
+            rArmRSpeed = 1.0f;
+            bodyRotaion = Quaternion.Euler(-5, 0, 0);
+            bodyRSpeed = 20.0f;
         }
         if (movePosX != moveTargetPosX && MoveNow) //移動・昇降、方向変更処理
         {
@@ -408,6 +412,16 @@ public class Unit : MonoBehaviour
             RArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
             RArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
             Leg.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            headRotaion = Quaternion.Euler(0, 0, 0);
+            headRSpeed = 1.0f;
+            bodyRotaion = Quaternion.Euler(0, 0, 0);
+            bodyRSpeed = 1.0f;
+            lArmRotaion = Quaternion.Euler(0, 0, 0);
+            lArmRSpeed = 1.0f;
+            rArmRotaion = Quaternion.Euler(0, 0, 0);
+            rArmRSpeed = 1.0f;
+            legRotaion = Quaternion.Euler(0, 0, 0);
+            legRSpeed = 1.0f;
         }
     }
 
@@ -477,7 +491,7 @@ public class Unit : MonoBehaviour
         StartUnitAngle();
         ActionTurn = false;
     }
-    
+
     /// <summary>
     /// ターゲットに攻撃
     /// </summary>
@@ -497,8 +511,11 @@ public class Unit : MonoBehaviour
             if (attackWeapon == LArmWeapon)
             {
                 Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                bodyRotaion = Quaternion.Euler(0, 20, 0);
                 Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                headRotaion = Quaternion.Euler(0, -20, 0);
                 LArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
+                lArmRotaion = Quaternion.Euler(30, 0, 0);
                 targetDir = targetPos - LArm.ArmParts().transform.position;
                 endRot = Quaternion.LookRotation(targetDir) * p;
                 LArm.ArmParts().transform.rotation = endRot;
@@ -507,8 +524,11 @@ public class Unit : MonoBehaviour
             else if (attackWeapon == RArmWeapon)
             {
                 Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                bodyRotaion = Quaternion.Euler(0, -20, 0);
                 Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                headRotaion = Quaternion.Euler(0, 20, 0);
                 RArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
+                rArmRotaion = Quaternion.Euler(30, 0, 0);
                 targetDir = targetPos - RArm.ArmParts().transform.position;
                 endRot = Quaternion.LookRotation(targetDir) * p;
                 RArm.ArmParts().transform.rotation = endRot;
@@ -522,7 +542,7 @@ public class Unit : MonoBehaviour
         attackTimer = 0;
         attackMode = true;
     }
-    
+
     /// <summary>
     /// 指定した見た目のユニットを生成する
     /// </summary>
@@ -593,6 +613,14 @@ public class Unit : MonoBehaviour
             }
             if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
             {
+                if (CurrentHp - (Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp) < 20)
+                {
+                    HitMotion();
+                }
+                else
+                {
+                    DamgeMotion();
+                }
                 CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
             }
             if (liftingForce != Body.LiftingForce)
@@ -610,6 +638,47 @@ public class Unit : MonoBehaviour
         }
     }
 
+    protected Quaternion headRotaion = Quaternion.Euler(0, 0, 0);
+    protected float headRSpeed = 1.0f;
+    protected Quaternion bodyRotaion = Quaternion.Euler(0, 0, 0);
+    protected float bodyRSpeed = 1.0f;
+    protected Quaternion lArmRotaion = Quaternion.Euler(0, 0, 0);
+    protected float lArmRSpeed = 1.0f;
+    protected Quaternion rArmRotaion = Quaternion.Euler(0, 0, 0);
+    protected float rArmRSpeed = 1.0f;
+    protected Quaternion legRotaion = Quaternion.Euler(0, 0, 0);
+    protected float legRSpeed = 1.0f;
+    protected void PartsMotion()
+    {
+        Head.transform.localRotation = Quaternion.Lerp(Head.transform.localRotation, headRotaion, headRSpeed * Time.deltaTime);
+        Body.transform.localRotation = Quaternion.Lerp(Body.transform.localRotation, bodyRotaion, bodyRSpeed * Time.deltaTime);
+        LArm.transform.localRotation = Quaternion.Lerp(LArm.transform.localRotation, lArmRotaion, lArmRSpeed * Time.deltaTime);
+        RArm.transform.localRotation = Quaternion.Lerp(RArm.transform.localRotation, rArmRotaion, rArmRSpeed * Time.deltaTime);
+        Leg.transform.localRotation = Quaternion.Lerp(Leg.transform.localRotation, legRotaion, legRSpeed * Time.deltaTime);
+    }
+    public void DamgeMotion()
+    {
+        headRotaion = Quaternion.Euler(0, 0, 0);
+        headRSpeed = 2.0f;
+        bodyRotaion = Quaternion.Euler(0, 0, 0);
+        bodyRSpeed = 1.0f;
+        lArmRotaion = Quaternion.Euler(0, 0, 0);
+        lArmRSpeed = 2.0f;
+        rArmRotaion = Quaternion.Euler(0, 0, 0);
+        rArmRSpeed = 2.0f;
+        legRotaion = Quaternion.Euler(0, 0, 0);
+        legRSpeed = 2.0f;
+        Body.transform.localRotation = Quaternion.Euler(-20, 0, 0);
+        Leg.transform.localRotation = Quaternion.Euler(10, 0, 0);
+        LArm.transform.localRotation = Quaternion.Euler(-5, 0, 10);
+        RArm.transform.localRotation = Quaternion.Euler(-5, 0, -10);
+        EffectManager.PlayEffect(EffectID.BreakParts, Body.transform.position);
+    }
+    public void HitMotion()
+    {
+        bodyRSpeed = 3.0f;
+        Body.transform.localRotation = Body.transform.localRotation * Quaternion.Euler(-2, 0, 0);
+    }
     public void OnClickThis()
     {
         TargetCursor.instance.SetCursor(this);

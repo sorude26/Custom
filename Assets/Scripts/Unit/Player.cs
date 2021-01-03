@@ -38,7 +38,7 @@ public class Player : Unit
                 silhouetteOn = false;
             }
         }
-
+        PartsMotion();
     }
 
     private void LateUpdate()
