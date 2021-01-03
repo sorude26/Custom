@@ -557,7 +557,7 @@ MonoBehaviour:
   moveType: 0
   movePower: 8
   moveSpeed: 50
-  partsHigh: {fileID: 8809973080735558364}
+  partsHigh: {fileID: 8809973080735558355}
 --- !u!54 &4658738442373862770
 Rigidbody:
   m_ObjectHideFlags: 0

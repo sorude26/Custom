@@ -20,13 +20,17 @@ public class PartsLeg : UnitParts
     float moveSpeed = 20;
     public float MoveSpeed { get; private set; }
     [SerializeField]
-    Transform partsHigh;
+    GameObject partsHigh;
+    float posY;
+    float posYtransform;
+    int y =1;
     void Start()
     {
         StartSet();
         MovePower = movePower;
         UnitMoveType = moveType;
         MoveSpeed = moveSpeed;
+        posY = partsHigh.transform.localPosition.y;
     }
     private void Update()
     {
@@ -36,9 +40,21 @@ public class PartsLeg : UnitParts
             MoveSpeed = 15;
             partsBreak = false;
         }
+        /*
+        if (posYtransform < 0)
+        {
+            y = 1;
+        }
+        else if (posYtransform >= 0.05f)
+        {
+            y = -1;
+        }
+        posYtransform += y * 0.1f * Time.deltaTime;
+        partsHigh.transform.localPosition = new Vector3(0, posY + posYtransform, 0);
+        */
     }
     public Transform GetPartsHigh()
     {
-        return partsHigh;
+        return partsHigh.transform;
     }
 }

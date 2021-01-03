@@ -177,9 +177,9 @@ public class Unit : MonoBehaviour
             //moveTargetLevel = gameMap.MapDates[unitMoveList[moveCount][0]][unitMoveList[moveCount][1]].Level;
             moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0] + (gameMap.maxX * unitMoveList[moveCount][1])].Level;
             MoveNow = true;
-            StartUnitAngle();
+            LArm.transform.localRotation = Quaternion.Euler(-10, 0, 0);
+            RArm.transform.localRotation = Quaternion.Euler(-10, 0, 0);
         }
-
         if (movePosX != moveTargetPosX && MoveNow) //移動・昇降、方向変更処理
         {
             if (movePosX < moveTargetPosX)
@@ -362,6 +362,7 @@ public class Unit : MonoBehaviour
         {
             moveMood = true; //移動モード移行
             moveCount = unitMoveList.Count - 1;//移動経路数を入力
+            StartUnitAngle();
         }
         else
         {
@@ -578,6 +579,7 @@ public class Unit : MonoBehaviour
     /// <param name="targetUnit"></param>
     public void TargetShot(Unit targetUnit, Weapon attackWeapon)
     {
+        StartUnitAngle();
         if (targetUnit != null)
         {
             CameraControl.Instans.UnitCamera(this);
@@ -674,7 +676,7 @@ public class Unit : MonoBehaviour
             Leg = leg.GetComponent<PartsLeg>();
             Leg.SetOwner(this);
             GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
-            body.transform.parent = Leg.transform;
+            body.transform.parent = Leg.GetPartsHigh();
             Body = body.GetComponent<PartsBody>();
             Body.SetOwner(this);
             Body.TransFormParts(Leg.GetPartsHigh().position);
