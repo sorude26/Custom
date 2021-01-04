@@ -22,18 +22,19 @@ public class Armor : MonoBehaviour
         Bullet hitBullet = other.GetComponent<Bullet>();
         if (hitBullet != null)
         {
-            //Debug.Log("アーマーヒット" + hitBullet.Power + "残：" + ArmorPoint);
-            ArmorPoint--;
             hitBullet.HitBullet(Defense);
-            if (ArmorPoint < 0)
-            {
-                //Debug.Log("アーマーブレイク");
-                EffectManager.PlayEffect(EffectID.BreakParts, transform.position);
-                gameObject.SetActive(false);
-            }
+            ArmorDamage();
         }
     }
-
+    public void ArmorDamage()
+    {
+        ArmorPoint--;
+        if (ArmorPoint < 0)
+        {
+            EffectManager.PlayEffect(EffectID.BreakParts, transform.position);
+            gameObject.SetActive(false);
+        }
+    }
     public void SetData(int armorPoint, int defense)
     {
         ArmorPoint = armorPoint;
