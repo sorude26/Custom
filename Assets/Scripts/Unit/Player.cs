@@ -14,8 +14,9 @@ public class Player : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 5, 1, 5, 0);
-            //UnitCreate(GameManager.HeadID[unitID], GameManager.BodyID[unitID], GameManager.LArmID[unitID], GameManager.WeaponLID[unitID], GameManager.RArmID[unitID], GameManager.WeaponRID[unitID], GameManager.LegID[unitID]);
+            //UnitCreate(1, 1, 1, 5, 1, 5, 0);
+            UnitCreate(GameManager.HeadID[unitID], GameManager.BodyID[unitID], GameManager.LArmID[unitID],
+                GameManager.WeaponLID[unitID], GameManager.RArmID[unitID], GameManager.WeaponRID[unitID], GameManager.LegID[unitID]);
         }
         if (silhouetteOn)
         {

@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class EndBuild : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    GameObject choiceView;
+    BaseStage baseStage;
+    bool view = false;
+    bool open = false;
+    private void Start()
     {
-        
+        baseStage = BaseStage.Instance;
+        choiceView.SetActive(false);
+    }
+    private void Update()
+    {
+        if (baseStage.viewOpen && !view)
+        {
+            open = false;
+            choiceView.SetActive(false);
+        }
+    }
+    private void LateUpdate()
+    {
+        if (view)
+        {
+            view = false;
+            baseStage.viewOpen = false;
+        }
+    }
+    public void OnClickView()
+    {
+        if (!open)
+        {
+            choiceView.SetActive(true);
+            open = true;
+            view = true;
+            baseStage.viewOpen = true;
+        }
+        else
+        {
+            open = false;
+            choiceView.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CustomizeGarageOut()
     {
-        
+        baseStage.SetUpUnitChange(0);
+        GameManager.Instance.SceneChange(0);
     }
 }

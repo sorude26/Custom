@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,9 +20,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SceneChange(int i)
     {
-        
+        switch (i)
+        {
+            case 0:
+                SceneManager.LoadScene("SampleScene");
+                break;
+            default:
+                break;
+        }
     }
 }
