@@ -29,31 +29,28 @@ public class Command : MonoBehaviour
     private void Start()
     {
         baseStage = BaseStage.Instance;
+        partsList = UnitPartsList.Instance;
         switch (commandType)
         {
             case CommandType.ChoicePartsHead:
-                partsList = UnitPartsList.Instance;
                 partsName.text = partsList.GetHeadObject(commandNumber).GetComponent<PartsHead>().GetName();
                 break;
             case CommandType.ChoicePartsBody:
-                partsList = UnitPartsList.Instance;
                 partsName.text = partsList.GetBodyObject(commandNumber).GetComponent<PartsBody>().GetName();
                 break;
             case CommandType.ChoicePartsLArm:
-                partsList = UnitPartsList.Instance;
                 partsName.text = partsList.GetLArmObject(commandNumber).GetComponent<PartsLArm>().GetName();
                 break;
             case CommandType.ChoicePartsRArm:
-                partsList = UnitPartsList.Instance;
                 partsName.text = partsList.GetRArmObject(commandNumber).GetComponent<PartsRArm>().GetName();
                 break;
             case CommandType.ChoicePartsLeg:
-                partsList = UnitPartsList.Instance;
                 partsName.text = partsList.GetLegObject(commandNumber).GetComponent<PartsLeg>().GetName();
                 break;
             case CommandType.ChoiceWeaponL:
+                partsName.text = partsList.GetWeaponObject(commandNumber).GetComponent<Weapon>().GetName();
+                break;
             case CommandType.ChoiceWeaponR:
-                partsList = UnitPartsList.Instance;
                 partsName.text = partsList.GetWeaponObject(commandNumber).GetComponent<Weapon>().GetName();
                 break;
             default:
@@ -84,8 +81,10 @@ public class Command : MonoBehaviour
                 baseStage.SetUpPartsLeg(commandNumber);
                 break;
             case CommandType.ChoiceWeaponL:
+                baseStage.SetUpWeaponL(commandNumber);
                 break;
             case CommandType.ChoiceWeaponR:
+                baseStage.SetUpWeaponR(commandNumber);
                 break;
             default:
                 break;

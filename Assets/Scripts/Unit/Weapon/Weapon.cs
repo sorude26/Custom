@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
     public int NumberOfBullets { get; private set; }//装弾数
     [SerializeField] int weight = 0;
     public int Weight { get; private set; }//重量
-    [SerializeField] string weaponName = "";
+    [SerializeField] protected string weaponName = "A";
     [SerializeField] protected GameObject blade = null;//攻撃判定
     protected bool weaponTrigger = false;//攻撃トリガー
     private bool shotStart = false;//攻撃開始フラグ

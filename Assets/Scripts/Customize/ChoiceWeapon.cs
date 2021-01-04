@@ -17,6 +17,8 @@ public class ChoiceWeapon : MonoBehaviour
     {
         baseStage = BaseStage.Instance;
         choiceView.SetActive(false);
+        weaponL.SetActive(false);
+        weaponR.SetActive(false);
     }
     private void Update()
     {
@@ -53,12 +55,12 @@ public class ChoiceWeapon : MonoBehaviour
             weaponR.SetActive(false);
         }
     }
-    public void OnClickLArm()
+    public void OnClickWeaponL()
     {
         weaponL.SetActive(true);
         weaponR.SetActive(false);
     }
-    public void OnClickRArm()
+    public void OnClickWeaponR()
     {
         weaponL.SetActive(false);
         weaponR.SetActive(true);

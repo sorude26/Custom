@@ -108,7 +108,8 @@ MonoBehaviour:
   totalShotNumber: 10
   diffusivity: 0.1
   weight: 60
-  weaponName: 
+  weaponName: "\u9023\u5C04\u578B\u62E1\u6563\u7832"
+  blade: {fileID: 0}
 --- !u!1 &428770411207775352
 GameObject:
   m_ObjectHideFlags: 0
