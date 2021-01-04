@@ -76,6 +76,7 @@ public class StageUI : MonoBehaviour
     {
         stageData.UnitMoveFinish();
         choiceTarget = false;
+        search = false;
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
         attackBottons.SetActive(false);
@@ -88,33 +89,38 @@ public class StageUI : MonoBehaviour
 
     public void OnClickRightWeapon()
     {
-        if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
+        if (stageData.turnCountTimer <= 0)
         {
-            if (!search)
+            if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
             {
-                count = 0;
-                search = true;
-                choiceTarget = true;
-                attackCommand.SetActive(true);
-                stageData.PlayerUnit.SearchTarget();
+                if (!search)
+                {
+                    count = 0;
+                    search = true;
+                    choiceTarget = true;
+                    attackCommand.SetActive(true);
+                    stageData.PlayerUnit.SearchTarget();
+                }
+                stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
             }
-            stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
         }
-
     }
     public void OnClickLeftWeapon()
     {
-        if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
+        if (stageData.turnCountTimer <= 0)
         {
-            if (!search)
+            if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
             {
-                count = 0;
-                search = true;
-                choiceTarget = true;
-                attackCommand.SetActive(true);
-                stageData.PlayerUnit.SearchTarget();
+                if (!search)
+                {
+                    count = 0;
+                    search = true;
+                    choiceTarget = true;
+                    attackCommand.SetActive(true);
+                    stageData.PlayerUnit.SearchTarget();
+                }
+                stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
             }
-            stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
         }
     }
 
