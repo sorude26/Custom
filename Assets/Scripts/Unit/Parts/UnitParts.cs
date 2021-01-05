@@ -27,6 +27,8 @@ public class UnitParts : MonoBehaviour
     protected int armorPoint = 0;
     [SerializeField]
     protected int armorDefense = 0;
+    public int ArmorPoint { get; protected set; }
+    public int ArmorDefense { get; protected set; }
 
     public Unit Owner { get; protected set; }
     protected bool partsBreak = false;
@@ -40,6 +42,8 @@ public class UnitParts : MonoBehaviour
         {
             armorParts.SetData(armorPoint, armorDefense);
         }
+        ArmorPoint = armorPoint;
+        ArmorDefense = armorDefense;
     }
 
     public void Damage(int damage)
