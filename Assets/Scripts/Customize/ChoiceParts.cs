@@ -62,6 +62,7 @@ public class ChoiceParts : MonoBehaviour
         }
         else
         {
+            open = false;
             choiceView.SetActive(false);
             HeadList.SetActive(false);
             BodyList.SetActive(false);
