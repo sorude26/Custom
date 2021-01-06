@@ -719,6 +719,6 @@ MonoBehaviour:
   bulletSpeed: 0
   totalShotNumber: 20
   diffusivity: 0
-  weight: 100
+  weight: 20
   weaponName: "\u30B5\u30FC\u30D9\u30EB"
   blade: {fileID: 214785208164376004}

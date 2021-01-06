@@ -6003,7 +6003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483389979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6021,7 +6021,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 350}
+  m_SizeDelta: {x: 300, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &483389980
 MonoBehaviour:
@@ -6044,10 +6044,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 27
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -15822,6 +15822,7 @@ GameObject:
   - component: {fileID: 1272734733}
   - component: {fileID: 1272734735}
   - component: {fileID: 1272734734}
+  - component: {fileID: 1272734736}
   m_Layer: 5
   m_Name: PartsGuide
   m_TagString: Untagged
@@ -15851,7 +15852,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -170, y: -220}
-  m_SizeDelta: {x: 300, y: 400}
+  m_SizeDelta: {x: 330, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272734734
 MonoBehaviour:
@@ -15890,6 +15891,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272734732}
   m_CullTransparentMesh: 0
+--- !u!114 &1272734736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272734732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40c45852bf3a7c41b7a4db809d16a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guideText: {fileID: 483389980}
 --- !u!1 &1273703844
 GameObject:
   m_ObjectHideFlags: 0
@@ -19729,6 +19743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewOpen: 0
   unitNumber: {fileID: 890380751}
+  guide: {fileID: 1272734736}
 --- !u!135 &1569549847
 SphereCollider:
   m_ObjectHideFlags: 0
