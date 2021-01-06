@@ -57,4 +57,7 @@ public class PartsLeg : UnitParts
     {
         return partsHigh.transform;
     }
+
+    public MoveType GetMoveType() { return moveType; }
+    public int GetMovePower() { return movePower; }
 }

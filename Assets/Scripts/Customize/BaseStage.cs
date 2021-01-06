@@ -174,6 +174,7 @@ public class BaseStage : MonoBehaviour
         if (HeadID != i)
         {
             HeadID = i;
+            guide.HeadData(partsList.GetHeadObject(i).GetComponent<PartsHead>());
             ResetBuild();
         }
     }
@@ -182,6 +183,7 @@ public class BaseStage : MonoBehaviour
         if (BodyID != i)
         {
             BodyID = i;
+            guide.BodyData(partsList.GetBodyObject(i).GetComponent<PartsBody>());
             ResetBuild();
         }
     }
@@ -190,6 +192,7 @@ public class BaseStage : MonoBehaviour
         if (LArmID != i)
         {
             LArmID = i;
+            guide.LRArmData(partsList.GetLArmObject(i).GetComponent<PartsLArm>());
             ResetBuild();
         }
     }
@@ -198,6 +201,7 @@ public class BaseStage : MonoBehaviour
         if (RArmID != i)
         {
             RArmID = i;
+            guide.LRArmData(partsList.GetRArmObject(i).GetComponent<PartsRArm>());
             ResetBuild();
         }
     }
@@ -206,6 +210,7 @@ public class BaseStage : MonoBehaviour
         if (LegID != i)
         {
             LegID = i;
+            guide.LegData(partsList.GetLegObject(i).GetComponent<PartsLeg>());
             ResetBuild();
         }
     }
@@ -214,6 +219,7 @@ public class BaseStage : MonoBehaviour
         if (WeaponLID != i)
         {
             WeaponLID = i;
+            guide.WeaponData(partsList.GetWeaponObject(i).GetComponent<Weapon>());
             ResetBuild();
         }
     }
@@ -222,6 +228,7 @@ public class BaseStage : MonoBehaviour
         if (WeaponRID != i)
         {
             WeaponRID = i;
+            guide.WeaponData(partsList.GetWeaponObject(i).GetComponent<Weapon>());
             ResetBuild();
         }
     }

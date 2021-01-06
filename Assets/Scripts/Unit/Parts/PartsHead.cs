@@ -20,4 +20,5 @@ public class PartsHead : UnitParts
             partsBreak = false;
         }
     }
+    public float GetDetectionRange() { return detectionRange; }
 }

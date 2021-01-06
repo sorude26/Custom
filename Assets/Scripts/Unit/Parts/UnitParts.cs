@@ -80,8 +80,10 @@ public class UnitParts : MonoBehaviour
     {
         Destroy(this);
     }
-    public string GetName()
-    {
-        return partsName;
-    }
+    public string GetName() { return partsName; }
+    public int GetMaxHP() { return partsHp; }
+    public int GetWeight() { return weight; }
+    public int GetDefense() { return defense; }
+    public int GetArmorPoint() { return armorPoint; }
+    public int GetArmorDefense() { return armorDefense; }
 }

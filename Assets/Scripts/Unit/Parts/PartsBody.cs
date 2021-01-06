@@ -29,4 +29,6 @@ public class PartsBody : UnitParts
     public Transform GetRArmPos() { return rArmParts; }
     public Transform GetLArmPos() { return lArmParts; }
     public Transform GetBodyCentrer() { return bodyCenter; }
+    public int GetUnitOutput() { return unitOutput; }
+    public float GetLiftingForce() { return liftingForce; }
 }

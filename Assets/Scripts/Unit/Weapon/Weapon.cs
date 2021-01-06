@@ -184,10 +184,13 @@ public class Weapon : MonoBehaviour
     {
         Destroy(this);
     }
-    public string GetName()
-    {
-        return weaponName;
-    }
+    public string GetName() { return weaponName; }
+    public int GetWeight() { return weight; }
+    public float GetRange() { return range; }
+    public float GetEffectiveRange() { return effectiveRange; }
+    public int GetPower() { return power; }
+    public int GetShotNumber() { return totalShotNumber; }
+    public WeaponType GetWeaponType() { return weaponType; }
     public void SetOwner(Unit owner)
     {
         this.owner = owner;
