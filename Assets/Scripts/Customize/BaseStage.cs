@@ -27,6 +27,8 @@ public class BaseStage : MonoBehaviour
     int partsNumber = 0;
     [SerializeField]
     Text unitNumber;
+    [SerializeField]
+    PartsGuide guide;
     private void Awake()
     {
         Instance = this;
@@ -36,6 +38,7 @@ public class BaseStage : MonoBehaviour
         partsList = UnitPartsList.Instance;
         unitNumber.text = "機体番号：" + 1;
         FirstSet();
+        guide.Clear();
     }
     void Update()
     {
