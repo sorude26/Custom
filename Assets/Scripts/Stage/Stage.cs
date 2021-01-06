@@ -42,7 +42,7 @@ public class Stage : MonoBehaviour
     [SerializeField]
     public ParameterPanel panelE;
 
-    private Weapon playerAttackWeapon = null;
+   public Weapon PlayerAttackWeapon { get; private set; } = null;
     private void Awake()
     {
         Instance = this;
@@ -68,7 +68,7 @@ public class Stage : MonoBehaviour
         PlayerTurn = false;
         EnemyTurn = false;
         TargetCursor.instance.SetCursor(PlayerUnit);
-        playerAttackWeapon = PlayerUnit.RArmWeapon;
+        PlayerAttackWeapon = PlayerUnit.RArmWeapon;
     }
 
     void Update()
@@ -219,7 +219,7 @@ public class Stage : MonoBehaviour
             {
                 //playerAttackWeapon = PlayerUnit.RArmWeapon;
                 PlayerUnit.Attack();
-                PlayerUnit.TargetShot(PlayerUnit.TargetEnemy, playerAttackWeapon);
+                PlayerUnit.TargetShot(PlayerUnit.TargetEnemy, PlayerAttackWeapon);
                 //PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
                 UnitMoveFinish();
                 turnCountTimer = 2;
@@ -270,7 +270,7 @@ public class Stage : MonoBehaviour
 
     public void SetPlayerAttackWeapon(Weapon attackWeapon)
     {
-        playerAttackWeapon = attackWeapon;
+        PlayerAttackWeapon = attackWeapon;
     }
 
 

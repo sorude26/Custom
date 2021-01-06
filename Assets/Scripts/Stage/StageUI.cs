@@ -15,9 +15,12 @@ public class StageUI : MonoBehaviour
     GameObject attackBottons;
     [SerializeField]
     GameObject attackCommand;
+    [SerializeField]
+    PartsGuide guide;
     void Start()
     {
         stageData = Stage.Instance;
+       
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
         attackBottons.SetActive(false);
@@ -34,6 +37,7 @@ public class StageUI : MonoBehaviour
                     count = 1;
                     CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
                     TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+                    guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
                 }
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
@@ -68,6 +72,7 @@ public class StageUI : MonoBehaviour
         {
             stageData.PlayerUnit.MoveFinishSet();
             attackBottons.SetActive(true);
+            guide.Clear();
             messageWindow.SetActive(false);
         }
     }
@@ -77,6 +82,7 @@ public class StageUI : MonoBehaviour
         stageData.UnitMoveFinish();
         choiceTarget = false;
         search = false;
+        guide.Clear();
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
         attackBottons.SetActive(false);
@@ -148,6 +154,7 @@ public class StageUI : MonoBehaviour
         }
         CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+        guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
     }
     public void OnClickRigftArrow()
     {
@@ -158,5 +165,6 @@ public class StageUI : MonoBehaviour
         }
         CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
+        guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
     }
 }

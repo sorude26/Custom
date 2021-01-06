@@ -637,6 +637,20 @@ public class Unit : MonoBehaviour
                 lArmRotaion = Quaternion.Euler(-20, 0, 0);
                 rArmRotaion = Quaternion.Euler(10, 0, 0);
                 break;
+            case 4:
+                bodyRotaion = Quaternion.Euler(0, 70, 0);
+                headRotaion = Quaternion.Euler(0, -70, 0);
+                lArmRotaion = Quaternion.Euler(40, 0, 0);
+                rArmRotaion = Quaternion.Euler(60, 30, 0);
+                RArm.transform.localRotation = Quaternion.Euler(-60, 60, 0);
+                break;
+            case 5:
+                bodyRotaion = Quaternion.Euler(-20, -50, 0);
+                headRotaion = Quaternion.Euler(5, -50, 0);
+                lArmRotaion = Quaternion.Euler(-40, 0, 50);
+                rArmRotaion = Quaternion.Euler(90, 30, -10);
+                RArm.transform.localRotation = Quaternion.Euler(-80, 60, 0);
+                break;
             default:
                 break;
         }
