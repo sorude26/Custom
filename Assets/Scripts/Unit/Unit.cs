@@ -82,7 +82,8 @@ public class Unit : MonoBehaviour
     public Weapon RArmWeapon { get; protected set; }
     protected bool silhouetteOn = false;
     public bool DestroyBody { get; protected set; } = false;
-
+    protected float deadTimer = 0;
+    protected int bomCount = 0;
     public bool ActionTurn { get; set; }
     protected void Awake()
     {
@@ -124,6 +125,11 @@ public class Unit : MonoBehaviour
         EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
         DestroyBody = true;
         gameStage.SetUnitPos();
+        if (silhouetteOn)
+        {
+            legRotaion = Quaternion.Euler(-90, 0, 0);
+            legRSpeed = 0.2f;
+        }
     }
     /// <summary>
     /// ユニット瞬間移動
@@ -465,11 +471,11 @@ public class Unit : MonoBehaviour
                             {
                                 if (attackWeapon == LArmWeapon)
                                 {
-                                    AttackPattern(7);
+                                    AttackPattern(2);
                                 }
                                 else if (attackWeapon == RArmWeapon)
                                 {
-                                    AttackPattern(6);
+                                    AttackPattern(3);
                                 }
                                 bodyRSpeed = 15.0f;
                                 headRSpeed = 15.0f;
@@ -588,13 +594,13 @@ public class Unit : MonoBehaviour
             {
                 if (attackWeapon == LArmWeapon)
                 {
-                    AttackPattern(5);
+                    AttackPattern(0);
                     
                     this.attackWeapon = LArmWeapon;
                 }
                 else if (attackWeapon == RArmWeapon)
                 {
-                    AttackPattern(4);
+                    AttackPattern(1);
                     
                     this.attackWeapon = RArmWeapon;
                 }
@@ -644,32 +650,32 @@ public class Unit : MonoBehaviour
                 rArmRotaion = Quaternion.Euler(10, 0, 0);
                 break;
             case 4:
-                bodyRotaion = Quaternion.Euler(0, 70, 0);
-                headRotaion = Quaternion.Euler(0, -70, 0);
-                lArmRotaion = Quaternion.Euler(40, 0, 0);
-                rArmRotaion = Quaternion.Euler(60, 30, 0);
-                RArm.ArmParts().transform.localRotation = Quaternion.Euler(-60, 60, 0);
-                break;
-            case 5:
                 bodyRotaion = Quaternion.Euler(0, -70, 0);
                 headRotaion = Quaternion.Euler(0, 70, 0);
                 lArmRotaion = Quaternion.Euler(60, 30, 0);
                 rArmRotaion = Quaternion.Euler(40, 0, 0);
                 LArm.ArmParts().transform.localRotation = Quaternion.Euler(-60, -60, 0);
                 break;
-            case 6:
-                bodyRotaion = Quaternion.Euler(-20, -50, 0);
-                headRotaion = Quaternion.Euler(5, 50, 0);
-                lArmRotaion = Quaternion.Euler(-40, 0, 50);
-                rArmRotaion = Quaternion.Euler(90, 30, -10);
-                RArm.ArmParts().transform.localRotation = Quaternion.Euler(-80, 60, 0);
+            case 5:
+                bodyRotaion = Quaternion.Euler(0, 70, 0);
+                headRotaion = Quaternion.Euler(0, -70, 0);
+                lArmRotaion = Quaternion.Euler(40, 0, 0);
+                rArmRotaion = Quaternion.Euler(60, 30, 0);
+                RArm.ArmParts().transform.localRotation = Quaternion.Euler(-60, 60, 0);
                 break;
-            case 7:
+            case 6:
                 bodyRotaion = Quaternion.Euler(-20, 50, 0);
                 headRotaion = Quaternion.Euler(5, -50, 0);
                 lArmRotaion = Quaternion.Euler(90, -30, 10);
                 rArmRotaion = Quaternion.Euler(-40, 0, -50);
                 LArm.ArmParts().transform.localRotation = Quaternion.Euler(-80, 60, 0);
+                break;
+            case 7:
+                bodyRotaion = Quaternion.Euler(-20, -50, 0);
+                headRotaion = Quaternion.Euler(5, 50, 0);
+                lArmRotaion = Quaternion.Euler(-40, 0, 50);
+                rArmRotaion = Quaternion.Euler(90, 30, -10);
+                RArm.ArmParts().transform.localRotation = Quaternion.Euler(-80, 60, 0);
                 break;
             default:
                 break;
@@ -815,6 +821,53 @@ public class Unit : MonoBehaviour
     {
         bodyRSpeed = 3.0f;
         Body.transform.localRotation = Body.transform.localRotation * Quaternion.Euler(-2, 0, 0);
+    }
+    public void DeadMotion()
+    {
+        if (DestroyBody && bomCount < 6)
+        {
+            deadTimer += Time.deltaTime;
+            if (deadTimer > 0.1f)
+            {
+                if (bomCount == 0 && deadTimer > 0.6f)
+                {
+                    EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
+                    bomCount = 1;
+                    deadTimer = 0;
+                }
+                else if (bomCount == 1 && deadTimer > 0.3f)
+                {
+                    EffectManager.PlayEffect(EffectID.Explosion, Body.GetHeadPos().position);
+                    bomCount = 2;
+                    deadTimer = 0;
+                }
+                else if (bomCount == 2 && deadTimer > 0.2f)
+                {
+                    EffectManager.PlayEffect(EffectID.Explosion, Body.GetLArmPos().position);
+                    bomCount = 3;
+                    deadTimer = 0;
+                }
+                else if (bomCount == 3 && deadTimer > 0.2f)
+                {
+                    EffectManager.PlayEffect(EffectID.Explosion, Body.GetRArmPos().position);
+                    bomCount = 4;
+                    deadTimer = 0;
+                }
+                else if (bomCount == 4 && deadTimer > 0.3f)
+                {
+                    legRSpeed = 2.0f;
+                    EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
+                    bomCount = 5;
+                    deadTimer = 0;
+                }
+                else if (bomCount == 5 && deadTimer > 0.5f)
+                {
+                    EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
+                    gameObject.SetActive(false);
+                    bomCount = 6;
+                }
+            }
+        }
     }
     public void OnClickThis()
     {

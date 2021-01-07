@@ -301,8 +301,8 @@ MonoBehaviour:
   thisBullet: {fileID: 0}
   muzzle: {fileID: 0}
   weaponType: 4
-  range: 10
-  effectiveRange: 10
+  range: 12
+  effectiveRange: 12
   power: 10
   bulletSpeed: 0
   totalShotNumber: 20

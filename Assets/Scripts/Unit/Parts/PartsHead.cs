@@ -18,6 +18,7 @@ public class PartsHead : UnitParts
         {
             DetectionRange = 20;
             partsBreak = false;
+            gameObject.SetActive(false);
         }
     }
     public float GetDetectionRange() { return detectionRange; }

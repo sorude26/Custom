@@ -33,12 +33,12 @@ public class Player : Unit
             UnitAngleControl();
             if (DestroyBody)
             {
-                gameObject.SetActive(false);
                 gameStage.PlayerDestroyCount++;
                 silhouetteOn = false;
             }
         }
         PartsMotion();
+        DeadMotion();
     }
 
     private void LateUpdate()

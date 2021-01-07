@@ -27,7 +27,7 @@ public class Enemy : Unit
 
     private void Update()
     {
-        if (!silhouetteOn)
+        if (!silhouetteOn && !DestroyBody)
         {
             UnitCreate(1, 0, 1, 0, 1, 4, 1);
         }
@@ -53,12 +53,12 @@ public class Enemy : Unit
             }
             if (DestroyBody)
             {
-                gameObject.SetActive(false);
                 gameStage.EnemyDestroyCount++;
                 silhouetteOn = false;
             }
         }
         PartsMotion();
+        DeadMotion();
     }
     private void LateUpdate()
     {
