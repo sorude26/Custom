@@ -1217,7 +1217,7 @@ MonoBehaviour:
   partsName: "\u88C5\u7532\u8FFD\u52A0\u578B"
   partsHp: 120
   defense: 30
-  weight: 50
+  weight: 80
   armorParts: {fileID: 2513339069542352985}
   armorPoint: 10
   armorDefense: 10

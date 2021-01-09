@@ -743,9 +743,9 @@ public class Unit : MonoBehaviour
     {
         if (silhouetteOn)
         {
-            if (movePower != Leg.MovePower)
+            if (movePower != Leg.MovePower + Body.MovePower)
             {
-                movePower = Leg.MovePower;
+                movePower = Leg.MovePower + Body.MovePower;
             }
             if (moveSpeed != Leg.MoveSpeed)
             {
@@ -763,9 +763,9 @@ public class Unit : MonoBehaviour
                 }
                 CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
             }
-            if (liftingForce != Body.LiftingForce)
+            if (liftingForce != Body.LiftingForce + Leg.LiftingForce)
             {
-                liftingForce = Body.LiftingForce;
+                liftingForce = Body.LiftingForce + Leg.LiftingForce;
             }
             if (DetectionRange != Head.DetectionRange)
             {
@@ -835,32 +835,48 @@ public class Unit : MonoBehaviour
                     bomCount = 1;
                     deadTimer = 0;
                 }
-                else if (bomCount == 1 && deadTimer > 0.3f)
+                else if (bomCount == 1 && deadTimer > 0.4f)
                 {
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetHeadPos().position);
+                    if (Head.CurrentPartsHp > 0)
+                    {
+                        Head.Damage(1000);
+                    }
                     bomCount = 2;
                     deadTimer = 0;
                 }
-                else if (bomCount == 2 && deadTimer > 0.2f)
+                else if (bomCount == 2 && deadTimer > 0.4f)
                 {
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetLArmPos().position);
+                    if (LArm.CurrentPartsHp > 0)
+                    {
+                        LArm.Damage(1000);
+                    }
                     bomCount = 3;
                     deadTimer = 0;
                 }
-                else if (bomCount == 3 && deadTimer > 0.2f)
+                else if (bomCount == 3 && deadTimer > 0.4f)
                 {
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetRArmPos().position);
+                    if (RArm.CurrentPartsHp > 0)
+                    {
+                        RArm.Damage(1000);
+                    }
                     bomCount = 4;
                     deadTimer = 0;
                 }
-                else if (bomCount == 4 && deadTimer > 0.3f)
+                else if (bomCount == 4 && deadTimer > 0.4f)
                 {
                     legRSpeed = 2.0f;
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
+                    if (Leg.CurrentPartsHp > 0)
+                    {
+                        Leg.Damage(1000);
+                    }
                     bomCount = 5;
                     deadTimer = 0;
                 }
-                else if (bomCount == 5 && deadTimer > 0.5f)
+                else if (bomCount == 5 && deadTimer > 0.8f)
                 {
                     EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
                     gameObject.SetActive(false);

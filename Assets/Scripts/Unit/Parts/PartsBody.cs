@@ -18,6 +18,9 @@ public class PartsBody : UnitParts
     Transform lArmParts;
     [SerializeField]
     Transform bodyCenter;
+    [SerializeField]
+    int movePower = 10;
+    public int MovePower { get; private set; }
     void Start()
     {
         StartSet();

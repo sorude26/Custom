@@ -21,6 +21,9 @@ public class PartsLeg : UnitParts
     public float MoveSpeed { get; private set; }
     [SerializeField]
     GameObject partsHigh;
+    [SerializeField]
+    float liftingForce;
+    public float LiftingForce { get; protected set; }
     float posY;
     float posYtransform;
     int y =1;
