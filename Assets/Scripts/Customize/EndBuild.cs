@@ -48,7 +48,6 @@ public class EndBuild : MonoBehaviour
 
     public void CustomizeGarageOut()
     {
-        baseStage.SetUpUnitChange(0);
-        GameManager.Instance.SceneChange(0);
+        baseStage.FinishBuild();
     }
 }

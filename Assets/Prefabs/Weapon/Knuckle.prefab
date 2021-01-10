@@ -124,6 +124,7 @@ MonoBehaviour:
   weight: 0
   weaponName: "\u6B66\u88C5\u7121\u3057"
   blade: {fileID: 7978408755069570621}
+  meleeType: 1
 --- !u!1 &4272094911483948973
 GameObject:
   m_ObjectHideFlags: 0

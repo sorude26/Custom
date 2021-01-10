@@ -29,7 +29,7 @@ public class Enemy : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(2, 2, 2, 7, 2, 5, 2);
+            UnitCreate(1, 1, 1, 7, 1, 0, 1);
         }
         if (silhouetteOn)
         {

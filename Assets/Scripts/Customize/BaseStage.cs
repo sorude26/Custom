@@ -29,6 +29,7 @@ public class BaseStage : MonoBehaviour
     Text unitNumber;
     [SerializeField]
     PartsGuide guide;
+    private bool buildEnd = false;
     private void Awake()
     {
         Instance = this;
@@ -136,6 +137,17 @@ public class BaseStage : MonoBehaviour
         RArmID = GameManager.RArmID[SetUpUnit];
         WeaponRID = GameManager.WeaponRID[SetUpUnit];
         LegID = GameManager.LegID[SetUpUnit];
+    }
+    public void FinishBuild()
+    {
+        GameManager.HeadID[SetUpUnit] = HeadID;
+        GameManager.BodyID[SetUpUnit] = BodyID;
+        GameManager.LArmID[SetUpUnit] = LArmID;
+        GameManager.WeaponLID[SetUpUnit] = WeaponLID;
+        GameManager.RArmID[SetUpUnit] = RArmID;
+        GameManager.WeaponRID[SetUpUnit] = WeaponRID;
+        GameManager.LegID[SetUpUnit] = LegID;
+        GameManager.Instance.SceneChange(0);
     }
     public void ResetBuild()
     {

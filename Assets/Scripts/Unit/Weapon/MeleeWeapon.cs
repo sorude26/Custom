@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MeleeType
+{
+    Axe,
+    Knuckle,
+}
 public class MeleeWeapon : Weapon
 {
+    [SerializeField]
+    public MeleeType meleeType = MeleeType.Axe;
     private void OnTriggerEnter(Collider other)
     {
         UnitParts hitParts = other.GetComponent<UnitParts>();

@@ -471,11 +471,25 @@ public class Unit : MonoBehaviour
                             {
                                 if (attackWeapon == LArmWeapon)
                                 {
-                                    AttackPattern(2);
+                                    if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
+                                    {
+                                        AttackPattern(2);
+                                    }
+                                    else
+                                    {
+                                        AttackPattern(6);
+                                    }
                                 }
                                 else if (attackWeapon == RArmWeapon)
                                 {
-                                    AttackPattern(3);
+                                    if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
+                                    {
+                                        AttackPattern(3);
+                                    }
+                                    else
+                                    {
+                                        AttackPattern(7);
+                                    }
                                 }
                                 bodyRSpeed = 15.0f;
                                 headRSpeed = 15.0f;
@@ -594,20 +608,33 @@ public class Unit : MonoBehaviour
             {
                 if (attackWeapon == LArmWeapon)
                 {
-                    AttackPattern(0);
-                    
+                    if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
+                    {
+                        AttackPattern(0);
+                    }
+                    else
+                    {
+                        AttackPattern(4);
+                    }
                     this.attackWeapon = LArmWeapon;
                 }
                 else if (attackWeapon == RArmWeapon)
                 {
-                    AttackPattern(1);
-                    
+                    if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
+                    {
+                        AttackPattern(1);
+                    }
+                    else
+                    {
+                        AttackPattern(5);
+                    }
                     this.attackWeapon = RArmWeapon;
                 }
                 else
                 {
                     this.attackWeapon = null;
                 }
+                
                 bodyRSpeed = 6.0f;
                 headRSpeed = 6.0f;
                 lArmRSpeed = 6.0f;
@@ -868,7 +895,7 @@ public class Unit : MonoBehaviour
                 else if (bomCount == 4 && deadTimer > 0.4f)
                 {
                     legRSpeed = 2.0f;
-                    EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
+                    EffectManager.PlayEffect(EffectID.Explosion, transform.position);
                     if (Leg.CurrentPartsHp > 0)
                     {
                         Leg.Damage(1000);
@@ -878,7 +905,7 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 5 && deadTimer > 0.8f)
                 {
-                    EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
+                    EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);
                     gameObject.SetActive(false);
                     bomCount = 6;
                 }
