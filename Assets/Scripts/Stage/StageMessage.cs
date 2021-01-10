@@ -7,13 +7,14 @@ public class StageMessage : MonoBehaviour
 {
     [SerializeField]
     List<GameObject> battleMessage;
-    //１．戦闘開始、２．自軍ターン、３．敵軍ターン、４．戦闘終了、５．勝利条件達成、６．敗北
+    //０．戦闘開始、１．自軍ターン、２．敵軍ターン、３．勝利条件達成、４．敗北
     [SerializeField]
     GameObject messageBack;
     private float clearScale = 1;
     private int viewTarget = 0;
     private float viweTime = 0;
     private bool viwe = false;
+    private bool startViwe = false;
     void Start()
     {
         viwe = true;
@@ -22,6 +23,7 @@ public class StageMessage : MonoBehaviour
         {
             message.SetActive(false);
         }
+        messageBack.SetActive(true);
         battleMessage[0].SetActive(true);
     }
 
@@ -51,16 +53,36 @@ public class StageMessage : MonoBehaviour
                 viweTime -= Time.deltaTime;
             }
         }
-        
+        if (startViwe)
+        {
+            if (clearScale < 1)
+            {
+                clearScale += 2.0f * Time.deltaTime;
+            }
+            if (clearScale >= 1)
+            {
+                clearScale = 1;
+                viwe = true;
+                startViwe = false;
+            }
+            messageBack.GetComponent<Image>().color = new Color(1, 1, 1, clearScale);
+            battleMessage[viewTarget].GetComponent<Image>().color = new Color(1, 1, 1, clearScale);
+        }
     }
-
-    public void ViewMessage(int i)
+    /// <summary>
+    /// 指定されたメッセージを表示する、０．戦闘開始、１．自軍ターン、２．敵軍ターン、３．勝利条件達成、４．敗北
+    /// </summary>
+    /// <param name="i">対象メッセージ番号</param>
+    /// <param name="time">表示時間</param>
+    public void ViewMessage(int i, float time)
     {
         viewTarget = i;
         messageBack.SetActive(true);
         battleMessage[i].SetActive(true);
-        clearScale = 1;
-        viweTime = 1;
-        viwe = true;
+        clearScale = 0;
+        messageBack.GetComponent<Image>().color = new Color(1, 1, 1, clearScale);
+        battleMessage[viewTarget].GetComponent<Image>().color = new Color(1, 1, 1, clearScale);
+        viweTime = time;
+        startViwe = true;
     }
 }

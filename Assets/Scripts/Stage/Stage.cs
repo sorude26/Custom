@@ -41,7 +41,8 @@ public class Stage : MonoBehaviour
     public ParameterPanel panelP;
     [SerializeField]
     public ParameterPanel panelE;
-
+    [SerializeField]
+    StageMessage stageMessage;
    public Weapon PlayerAttackWeapon { get; private set; } = null;
     private void Awake()
     {
@@ -76,7 +77,7 @@ public class Stage : MonoBehaviour
         if (!start && PlayerUnit.Body)
         {
             start = true;
-            panelP.SetUnit(PlayerUnit);
+            panelP.SetUnit(PlayerUnit);            
         }
         if (turnCountTimer > 0)
         {
@@ -115,6 +116,7 @@ public class Stage : MonoBehaviour
                 {
                     unit.MoveFinishSet();
                 }
+                stageMessage.ViewMessage(2, 1.0f);
                 //TargetCursor.instance.SetCursor(enemyUnit);
             }
         }
@@ -130,6 +132,7 @@ public class Stage : MonoBehaviour
                     PlayerTurn = false;
                     PlayerUnitCount = 0;
                     turnCountTimer = 2;
+                    stageMessage.ViewMessage(1, 1.0f);
                 }
                 if (EnemyAction)
                 {
@@ -248,6 +251,7 @@ public class Stage : MonoBehaviour
                 {
                     Victory = true;
                     Debug.Log("勝利");
+                    stageMessage.ViewMessage(3, 5.0f);
                 }
                 break;
             case VictoryConditions.TargetNumberBreak:
@@ -265,6 +269,7 @@ public class Stage : MonoBehaviour
         {
             Victory = true;
             Debug.Log("敗北");
+            stageMessage.ViewMessage(4, 5.0f);
         }
     }
 
