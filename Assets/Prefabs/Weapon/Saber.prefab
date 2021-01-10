@@ -715,10 +715,12 @@ MonoBehaviour:
   weaponType: 4
   range: 12
   effectiveRange: 12
-  power: 9
+  power: 12
   bulletSpeed: 0
   totalShotNumber: 20
   diffusivity: 0
   weight: 20
   weaponName: "\u30B5\u30FC\u30D9\u30EB"
   blade: {fileID: 214785208164376004}
+  meleeType: 0
+  damage: {fileID: 4671578638102411063, guid: ebc7b8fa4b99ada45b5d2266f125d34d, type: 3}

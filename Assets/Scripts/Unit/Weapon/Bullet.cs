@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
     public int Power { get; private set; }//威力
@@ -12,6 +11,8 @@ public class Bullet : MonoBehaviour
     Vector3 moveDir = Vector3.zero;//移動方向
     Vector3 startPos;//発射位置
     private float diffusivity;//拡散率
+    [SerializeField]
+    GameObject damage;
     private void Start()
     {
         startPos = transform.position;
@@ -64,6 +65,9 @@ public class Bullet : MonoBehaviour
         {
             if (Power > 0)
             {
+                GameObject hit = Instantiate(damage);
+                DamageText damageText = hit.GetComponent<DamageText>();
+                damageText.ViewDamege(Power,transform.position);
                 EffectManager.PlayEffect(EffectID.Hit, transform.position);
                 hitParts.Damage(Power);
                 Power -= hitParts.Defense;

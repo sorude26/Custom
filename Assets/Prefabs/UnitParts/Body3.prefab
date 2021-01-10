@@ -850,14 +850,15 @@ MonoBehaviour:
   defense: 20
   weight: 50
   armorParts: {fileID: 2614314380491075618}
-  armorPoint: 20
-  armorDefense: 2
+  armorPoint: 10
+  armorDefense: 3
   unitOutput: 300
   liftingForce: 2
   headParts: {fileID: 3676492202462656852}
   rArmParts: {fileID: 3676492202724113379}
   lArmParts: {fileID: 3676492202271570689}
   bodyCenter: {fileID: 8778311126405552719}
+  movePower: 10
 --- !u!54 &8571186794184506719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -885,8 +886,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 0.9, z: 2.7}
-  m_Center: {x: 0, y: 0.6, z: -0.5}
+  m_Size: {x: 1.4, y: 0.8141145, z: 2.6181521}
+  m_Center: {x: 0, y: 0.6429428, z: -0.45907575}
 --- !u!1 &3676492202271570690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,12 +2262,12 @@ PrefabInstance:
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Size.z
-      value: 3.1173396
+      value: 3.2645864
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.5
+      value: -0.57362324
       objectReference: {fileID: 0}
     - target: {fileID: 6813586058396977206, guid: 4a1bf32e5153ef74da7d7d4fbadd9741,
         type: 3}

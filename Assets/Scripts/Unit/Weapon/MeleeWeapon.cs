@@ -11,6 +11,8 @@ public class MeleeWeapon : Weapon
 {
     [SerializeField]
     public MeleeType meleeType = MeleeType.Axe;
+    [SerializeField]
+    GameObject damage;
     private void OnTriggerEnter(Collider other)
     {
         UnitParts hitParts = other.GetComponent<UnitParts>();
@@ -21,11 +23,17 @@ public class MeleeWeapon : Weapon
                 PartsLeg partsLeg = other.GetComponent<PartsLeg>();
                 if (partsLeg)
                 {
+                    GameObject hit = Instantiate(damage);
+                    DamageText damageText = hit.GetComponent<DamageText>();
+                    damageText.ViewDamege(Power / 3, transform.position);
                     EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
                     hitParts.Damage(Power / 3);
                 }
                 else
                 {
+                    GameObject hit = Instantiate(damage);
+                    DamageText damageText = hit.GetComponent<DamageText>();
+                    damageText.ViewDamege(Power, transform.position);
                     EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
                     hitParts.Damage(Power);
                 }

@@ -128,7 +128,7 @@ public class Unit : MonoBehaviour
         if (silhouetteOn)
         {
             legRotaion = Quaternion.Euler(-90, 0, 0);
-            legRSpeed = 0.2f;
+            legRSpeed = 0.1f;
         }
     }
     /// <summary>
@@ -884,6 +884,7 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 3 && deadTimer > 0.4f)
                 {
+                    legRSpeed = 2.0f;
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetRArmPos().position);
                     if (RArm.CurrentPartsHp > 0)
                     {
@@ -893,8 +894,7 @@ public class Unit : MonoBehaviour
                     deadTimer = 0;
                 }
                 else if (bomCount == 4 && deadTimer > 0.4f)
-                {
-                    legRSpeed = 2.0f;
+                {                    
                     EffectManager.PlayEffect(EffectID.Explosion, transform.position);
                     if (Leg.CurrentPartsHp > 0)
                     {

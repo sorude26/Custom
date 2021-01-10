@@ -291,7 +291,6 @@ GameObject:
   - component: {fileID: 7077404438209020627}
   - component: {fileID: 7067120489876397193}
   - component: {fileID: 3671284635824056123}
-  - component: {fileID: 3633169870195740079}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -360,19 +359,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3633169870195740079
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4182981245313355250}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5018153657435731981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,7 +1353,6 @@ GameObject:
   - component: {fileID: 8940574023121772828}
   - component: {fileID: 674336665104174308}
   - component: {fileID: 2314514227155780019}
-  - component: {fileID: 1546598667076175981}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1436,19 +1421,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1546598667076175981
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7030996968561123006}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7383208747033726579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1432,6 @@ GameObject:
   - component: {fileID: 8957296057549654910}
   - component: {fileID: 3389968654953182723}
   - component: {fileID: 8024371434936903456}
-  - component: {fileID: 7996340901671884573}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Untagged
@@ -1529,19 +1500,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7996340901671884573
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7383208747033726579}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8238986493458961775
 GameObject:
   m_ObjectHideFlags: 0

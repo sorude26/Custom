@@ -1220,13 +1220,14 @@ MonoBehaviour:
   weight: 80
   armorParts: {fileID: 2513339069542352985}
   armorPoint: 10
-  armorDefense: 10
+  armorDefense: 8
   unitOutput: 500
   liftingForce: 2
   headParts: {fileID: 4848896098888723434}
   rArmParts: {fileID: 4848896098612324701}
   lArmParts: {fileID: 4848896098027071935}
   bodyCenter: {fileID: 692965105667574001}
+  movePower: 10
 --- !u!54 &485759394553753569
 Rigidbody:
   m_ObjectHideFlags: 0
