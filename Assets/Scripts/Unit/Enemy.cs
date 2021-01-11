@@ -29,7 +29,8 @@ public class Enemy : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 7, 1, 0, 1);
+            //UnitCreate(1, 1, 1, 7, 1, 0, 1);
+            UnitCreate(4, 0);
         }
         if (silhouetteOn)
         {
@@ -136,25 +137,32 @@ public class Enemy : Unit
                                 float distance = dir.sqrMagnitude;
                                 weapon1 = null;
                                 weapon2 = null;
-                                if (LArm.CurrentPartsHp >0)
+                                if (Body.unitType == UnitType.Human)
                                 {
-                                    weapon1 = LArmWeapon;
-                                    if (RArm.CurrentPartsHp > 0)
+                                    if (LArm.CurrentPartsHp > 0)
                                     {
-                                        weapon2 = RArmWeapon;
-                                    }
-                                    if (weapon2 != null)
-                                    {
-                                        if (weapon1.EffectiveRange < weapon2.EffectiveRange)
+                                        weapon1 = LArmWeapon;
+                                        if (RArm.CurrentPartsHp > 0)
                                         {
-                                            weapon1 = RArmWeapon;
-                                            weapon2 = LArmWeapon;
+                                            weapon2 = RArmWeapon;
+                                        }
+                                        if (weapon2 != null)
+                                        {
+                                            if (weapon1.EffectiveRange < weapon2.EffectiveRange)
+                                            {
+                                                weapon1 = RArmWeapon;
+                                                weapon2 = LArmWeapon;
+                                            }
                                         }
                                     }
+                                    else if (RArm.CurrentPartsHp > 0)
+                                    {
+                                        weapon1 = RArmWeapon;
+                                    }
                                 }
-                                else if(RArm.CurrentPartsHp > 0)
+                                else if (Body.unitType == UnitType.Helicopter)
                                 {
-                                    weapon1 = RArmWeapon;                                    
+                                    weapon1 = LArmWeapon;
                                 }
                                 if (weapon1 != null)
                                 {

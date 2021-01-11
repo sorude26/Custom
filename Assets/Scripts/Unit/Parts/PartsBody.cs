@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum UnitType
+{
+    Human,
+    Helicopter,
+    Tank,
+}
 public class PartsBody : UnitParts
 {
     [SerializeField]
@@ -20,18 +26,55 @@ public class PartsBody : UnitParts
     Transform bodyCenter;
     [SerializeField]
     int movePower = 10;
+    [SerializeField]
+    GameObject bodyHand;
     public int MovePower { get; private set; }
+    
+    [SerializeField] public UnitType unitType = UnitType.Human;
     void Start()
     {
         StartSet();
         UnitOutput = unitOutput;
         LiftingForce = liftingForce;
+        MovePower = movePower;
+        posY = transform.localPosition.y;
     }
-
+    float posY;
+    float posYtransform;
+    int y = 1;
+    
+    private void Update()
+    {
+        if (unitType == UnitType.Helicopter)
+        {
+            
+            posYtransform += y * 0.2f * Time.deltaTime;
+            transform.localPosition = new Vector3(0, posY + posYtransform, 0);
+            if (partsBreak)
+            {
+                posYtransform -= 1.0f * Time.deltaTime;
+                transform.localPosition = new Vector3(0, posY + posYtransform, 0);
+                transform.Rotate(new Vector3(0, 0.5f, 0.02f));
+            }
+            else
+            {
+                if (posYtransform < 0)
+                {
+                    y = 1;
+                }
+                else if (posYtransform >= 0.1f)
+                {
+                    y = -1;
+                }
+            }
+        }
+        
+    }
     public Transform GetHeadPos() { return headParts; }
     public Transform GetRArmPos() { return rArmParts; }
     public Transform GetLArmPos() { return lArmParts; }
     public Transform GetBodyCentrer() { return bodyCenter; }
+    public GameObject GetBodyHand() { return bodyHand; }
     public int GetUnitOutput() { return unitOutput; }
     public float GetLiftingForce() { return liftingForce; }
 }

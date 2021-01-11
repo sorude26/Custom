@@ -1416,6 +1416,9 @@ MonoBehaviour:
   rArmParts: {fileID: 6673392777358537654}
   lArmParts: {fileID: 6673392776738124628}
   bodyCenter: {fileID: 1606643806223127066}
+  movePower: 2
+  bodyHand: {fileID: 0}
+  unitType: 0
 --- !u!54 &1831796853426042122
 Rigidbody:
   m_ObjectHideFlags: 0

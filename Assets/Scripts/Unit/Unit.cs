@@ -15,6 +15,7 @@ public enum UnitAngle
     Left,
     Right,
 }
+
 public class Unit : MonoBehaviour
 {
     public class Target
@@ -31,6 +32,7 @@ public class Unit : MonoBehaviour
             PosZ = z;
         }
     }
+   
     [SerializeField]
     public UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向
@@ -122,7 +124,7 @@ public class Unit : MonoBehaviour
     protected void Dead()
     {
         gameStage.panelP.SetUnit(this);
-        EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
+        EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);
         DestroyBody = true;
         gameStage.SetUnitPos();
         if (silhouetteOn)
@@ -411,23 +413,30 @@ public class Unit : MonoBehaviour
         }
         if (silhouetteOn)//パーツ向きリセット
         {
-            Head.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            Body.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            LArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            LArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
-            RArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            RArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
-            Leg.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            headRotaion = Quaternion.Euler(0, 0, 0);
-            headRSpeed = 1.0f;
-            bodyRotaion = Quaternion.Euler(0, 0, 0);
-            bodyRSpeed = 1.0f;
-            lArmRotaion = Quaternion.Euler(0, 0, 0);
-            lArmRSpeed = 1.0f;
-            rArmRotaion = Quaternion.Euler(0, 0, 0);
-            rArmRSpeed = 1.0f;
-            legRotaion = Quaternion.Euler(0, 0, 0);
-            legRSpeed = 1.0f;
+            if (Body.unitType == UnitType.Human)
+            {
+                Head.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                Body.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                LArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                LArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
+                RArm.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                RArm.ArmParts().transform.localRotation = Quaternion.Euler(0, 0, 0);
+                Leg.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                headRotaion = Quaternion.Euler(0, 0, 0);
+                headRSpeed = 1.0f;
+                bodyRotaion = Quaternion.Euler(0, 0, 0);
+                bodyRSpeed = 1.0f;
+                lArmRotaion = Quaternion.Euler(0, 0, 0);
+                lArmRSpeed = 1.0f;
+                rArmRotaion = Quaternion.Euler(0, 0, 0);
+                rArmRSpeed = 1.0f;
+                legRotaion = Quaternion.Euler(0, 0, 0);
+                legRSpeed = 1.0f;
+            }
+            else if (Body.unitType == UnitType.Helicopter)
+            {
+                Body.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
 
@@ -564,82 +573,99 @@ public class Unit : MonoBehaviour
         //StartUnitAngle();
         if (targetUnit != null)
         {
-            CameraControl.Instans.UnitCamera(this);
-            Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
-            Vector3 targetDir = targetPos - transform.position;
-            targetDir.y = 0.0f;
-            Quaternion p = Quaternion.Euler(0, 180, 0);
-            Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
-            transform.rotation = endRot;
-            if (attackWeapon.Type != WeaponType.Melee)
+            if (Body.unitType == UnitType.Human)
             {
-                if (attackWeapon == LArmWeapon)
+                CameraControl.Instans.UnitCamera(this);
+                Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
+                Vector3 targetDir = targetPos - transform.position;
+                targetDir.y = 0.0f;
+                Quaternion p = Quaternion.Euler(0, 180, 0);
+                Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+                transform.rotation = endRot;
+                if (attackWeapon.Type != WeaponType.Melee)
                 {
-                    Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
-                    bodyRotaion = Quaternion.Euler(0, 20, 0);
-                    Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
-                    headRotaion = Quaternion.Euler(0, -20, 0);
-                    LArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
-                    lArmRotaion = Quaternion.Euler(30, 0, 0);
-                    targetDir = targetPos - LArm.ArmParts().transform.position;
-                    endRot = Quaternion.LookRotation(targetDir) * p;
-                    LArm.ArmParts().transform.rotation = endRot;
-                    this.attackWeapon = LArmWeapon;
-                }
-                else if (attackWeapon == RArmWeapon)
-                {
-                    Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
-                    bodyRotaion = Quaternion.Euler(0, -20, 0);
-                    Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
-                    headRotaion = Quaternion.Euler(0, 20, 0);
-                    RArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
-                    rArmRotaion = Quaternion.Euler(30, 0, 0);
-                    targetDir = targetPos - RArm.ArmParts().transform.position;
-                    endRot = Quaternion.LookRotation(targetDir) * p;
-                    RArm.ArmParts().transform.rotation = endRot;
-                    this.attackWeapon = RArmWeapon;
+                    if (attackWeapon == LArmWeapon)
+                    {
+                        Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                        bodyRotaion = Quaternion.Euler(0, 20, 0);
+                        Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                        headRotaion = Quaternion.Euler(0, -20, 0);
+                        LArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
+                        lArmRotaion = Quaternion.Euler(30, 0, 0);
+                        targetDir = targetPos - LArm.ArmParts().transform.position;
+                        endRot = Quaternion.LookRotation(targetDir) * p;
+                        LArm.ArmParts().transform.rotation = endRot;
+                        this.attackWeapon = LArmWeapon;
+                    }
+                    else if (attackWeapon == RArmWeapon)
+                    {
+                        Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                        bodyRotaion = Quaternion.Euler(0, -20, 0);
+                        Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                        headRotaion = Quaternion.Euler(0, 20, 0);
+                        RArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
+                        rArmRotaion = Quaternion.Euler(30, 0, 0);
+                        targetDir = targetPos - RArm.ArmParts().transform.position;
+                        endRot = Quaternion.LookRotation(targetDir) * p;
+                        RArm.ArmParts().transform.rotation = endRot;
+                        this.attackWeapon = RArmWeapon;
+                    }
+                    else
+                    {
+                        this.attackWeapon = null;
+                    }
                 }
                 else
                 {
-                    this.attackWeapon = null;
+                    if (attackWeapon == LArmWeapon)
+                    {
+                        if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
+                        {
+                            AttackPattern(0);
+                        }
+                        else
+                        {
+                            AttackPattern(4);
+                        }
+                        this.attackWeapon = LArmWeapon;
+                    }
+                    else if (attackWeapon == RArmWeapon)
+                    {
+                        if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
+                        {
+                            AttackPattern(1);
+                        }
+                        else
+                        {
+                            AttackPattern(5);
+                        }
+                        this.attackWeapon = RArmWeapon;
+                    }
+                    else
+                    {
+                        this.attackWeapon = null;
+                    }
+
+                    bodyRSpeed = 6.0f;
+                    headRSpeed = 6.0f;
+                    lArmRSpeed = 6.0f;
+                    rArmRSpeed = 6.0f;
+                    targtPos = new Vector3(0, 0, -6.5f);
                 }
             }
-            else
+            else if (Body.unitType == UnitType.Helicopter)
             {
-                if (attackWeapon == LArmWeapon)
-                {
-                    if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
-                    {
-                        AttackPattern(0);
-                    }
-                    else
-                    {
-                        AttackPattern(4);
-                    }
-                    this.attackWeapon = LArmWeapon;
-                }
-                else if (attackWeapon == RArmWeapon)
-                {
-                    if (attackWeapon.GetComponent<MeleeWeapon>().meleeType == MeleeType.Axe)
-                    {
-                        AttackPattern(1);
-                    }
-                    else
-                    {
-                        AttackPattern(5);
-                    }
-                    this.attackWeapon = RArmWeapon;
-                }
-                else
-                {
-                    this.attackWeapon = null;
-                }
-                
-                bodyRSpeed = 6.0f;
-                headRSpeed = 6.0f;
-                lArmRSpeed = 6.0f;
-                rArmRSpeed = 6.0f;
-                targtPos = new Vector3(0, 0, -6.5f);
+                CameraControl.Instans.UnitCamera(this);
+                Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
+                Vector3 targetDir = targetPos - transform.position;
+                targetDir.y = 0.0f;
+                Quaternion p = Quaternion.Euler(0, 180, 0);
+                Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+                transform.rotation = endRot;
+                targetDir = targetPos - Body.GetBodyHand().transform.position;
+                endRot = Quaternion.LookRotation(targetDir) * p;
+                Body.GetBodyHand().transform.rotation = endRot;
+                this.attackWeapon = LArmWeapon;
             }
         }
         attackTimer = 0;
@@ -762,7 +788,25 @@ public class Unit : MonoBehaviour
             silhouetteOn = true;
         }
     }
-
+    public void UnitCreate(int bodyID, int weaponLID)
+    {
+        if (!silhouetteOn)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);//パーツ生成時に向きを合わせる
+            GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
+            body.transform.position = transform.position;
+            body.transform.parent = transform;
+            Body = body.GetComponent<PartsBody>();
+            Body.SetOwner(this);
+            GameObject weaponL = Instantiate(partsList.GetWeaponObject(weaponLID));
+            weaponL.transform.parent = Body.GetBodyHand().transform;
+            LArmWeapon = weaponL.GetComponent<Weapon>();
+            LArmWeapon.SetOwner(this);
+            LArmWeapon.TransFormParts(Body.GetBodyHand().transform.position);
+            StartUnitAngle();//向きを戻す
+            silhouetteOn = true;
+        }
+    }
     /// <summary>
     /// パーツデータを反映
     /// </summary>
@@ -770,37 +814,67 @@ public class Unit : MonoBehaviour
     {
         if (silhouetteOn)
         {
-            if (movePower != Leg.MovePower + Body.MovePower)
+            if (Body.unitType == UnitType.Human)
             {
-                movePower = Leg.MovePower + Body.MovePower;
-            }
-            if (moveSpeed != Leg.MoveSpeed)
-            {
-                moveSpeed = Leg.MoveSpeed;
-            }
-            if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
-            {
-                if (CurrentHp - (Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp) < 20)
+                if (movePower != Leg.MovePower + Body.MovePower)
                 {
-                    HitMotion();
+                    movePower = Leg.MovePower + Body.MovePower;
                 }
-                else
+                if (moveSpeed != Leg.MoveSpeed)
                 {
-                    DamgeMotion();
+                    moveSpeed = Leg.MoveSpeed;
                 }
-                CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
+                if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp)
+                {
+                    if (CurrentHp - (Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp) < 20)
+                    {
+                        HitMotion();
+                    }
+                    else
+                    {
+                        DamgeMotion();
+                    }
+                    CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp;
+                }
+                if (liftingForce != Body.LiftingForce + Leg.LiftingForce)
+                {
+                    liftingForce = Body.LiftingForce + Leg.LiftingForce;
+                }
+                if (DetectionRange != Head.DetectionRange)
+                {
+                    DetectionRange = Head.DetectionRange;
+                }
+                if (Body.CurrentPartsHp <= 0)
+                {
+                    Dead();
+                }
             }
-            if (liftingForce != Body.LiftingForce + Leg.LiftingForce)
+            else if (true)
             {
-                liftingForce = Body.LiftingForce + Leg.LiftingForce;
-            }
-            if (DetectionRange != Head.DetectionRange)
-            {
-                DetectionRange = Head.DetectionRange;
-            }
-            if (Body.CurrentPartsHp <= 0)
-            {
-                Dead();
+                if (movePower != Body.MovePower)
+                {
+                    movePower = Body.MovePower;
+                }
+                if (CurrentHp != Body.CurrentPartsHp)
+                {
+                    CurrentHp = Body.CurrentPartsHp;
+                }
+                if (liftingForce != Body.LiftingForce)
+                {
+                    liftingForce = Body.LiftingForce;
+                }
+                if (DetectionRange != 90)
+                {
+                    DetectionRange = 90;
+                }
+                if (moveSpeed != 50)
+                {
+                    moveSpeed = 50;
+                }
+                if (Body.CurrentPartsHp <= 0)
+                {
+                    Dead();
+                }
             }
         }
     }
@@ -819,30 +893,37 @@ public class Unit : MonoBehaviour
     protected float actionSpeed = 4.0f;
     protected void PartsMotion()
     {
-        Head.transform.localRotation = Quaternion.Lerp(Head.transform.localRotation, headRotaion, headRSpeed * Time.deltaTime);
-        Body.transform.localRotation = Quaternion.Lerp(Body.transform.localRotation, bodyRotaion, bodyRSpeed * Time.deltaTime);
-        LArm.transform.localRotation = Quaternion.Lerp(LArm.transform.localRotation, lArmRotaion, lArmRSpeed * Time.deltaTime);
-        RArm.transform.localRotation = Quaternion.Lerp(RArm.transform.localRotation, rArmRotaion, rArmRSpeed * Time.deltaTime);
-        Leg.transform.localRotation = Quaternion.Lerp(Leg.transform.localRotation, legRotaion, legRSpeed * Time.deltaTime);
-        Leg.transform.localPosition = Vector3.Lerp(Leg.transform.localPosition, targtPos, actionSpeed * Time.deltaTime);
+        if (Body.unitType == UnitType.Human)
+        {
+            Head.transform.localRotation = Quaternion.Lerp(Head.transform.localRotation, headRotaion, headRSpeed * Time.deltaTime);
+            Body.transform.localRotation = Quaternion.Lerp(Body.transform.localRotation, bodyRotaion, bodyRSpeed * Time.deltaTime);
+            LArm.transform.localRotation = Quaternion.Lerp(LArm.transform.localRotation, lArmRotaion, lArmRSpeed * Time.deltaTime);
+            RArm.transform.localRotation = Quaternion.Lerp(RArm.transform.localRotation, rArmRotaion, rArmRSpeed * Time.deltaTime);
+            Leg.transform.localRotation = Quaternion.Lerp(Leg.transform.localRotation, legRotaion, legRSpeed * Time.deltaTime);
+            Leg.transform.localPosition = Vector3.Lerp(Leg.transform.localPosition, targtPos, actionSpeed * Time.deltaTime);
+        }
+       
     }
     public void DamgeMotion()
     {
-        headRotaion = Quaternion.Euler(0, 0, 0);
-        headRSpeed = 2.0f;
-        bodyRotaion = Quaternion.Euler(0, 0, 0);
-        bodyRSpeed = 1.0f;
-        lArmRotaion = Quaternion.Euler(0, 0, 0);
-        lArmRSpeed = 2.0f;
-        rArmRotaion = Quaternion.Euler(0, 0, 0);
-        rArmRSpeed = 2.0f;
-        legRotaion = Quaternion.Euler(0, 0, 0);
-        legRSpeed = 2.0f;
-        Body.transform.localRotation = Quaternion.Euler(-20, 0, 0);
-        Leg.transform.localRotation = Quaternion.Euler(10, 0, 0);
-        LArm.transform.localRotation = Quaternion.Euler(-5, 0, 10);
-        RArm.transform.localRotation = Quaternion.Euler(-5, 0, -10);
-        EffectManager.PlayEffect(EffectID.BreakParts, Body.transform.position);
+        if (Body.unitType == UnitType.Human)
+        {
+            headRotaion = Quaternion.Euler(0, 0, 0);
+            headRSpeed = 2.0f;
+            bodyRotaion = Quaternion.Euler(0, 0, 0);
+            bodyRSpeed = 1.0f;
+            lArmRotaion = Quaternion.Euler(0, 0, 0);
+            lArmRSpeed = 2.0f;
+            rArmRotaion = Quaternion.Euler(0, 0, 0);
+            rArmRSpeed = 2.0f;
+            legRotaion = Quaternion.Euler(0, 0, 0);
+            legRSpeed = 2.0f;
+            Body.transform.localRotation = Quaternion.Euler(-20, 0, 0);
+            Leg.transform.localRotation = Quaternion.Euler(10, 0, 0);
+            LArm.transform.localRotation = Quaternion.Euler(-5, 0, 10);
+            RArm.transform.localRotation = Quaternion.Euler(-5, 0, -10);
+            EffectManager.PlayEffect(EffectID.BreakParts, Body.transform.position);
+        }
     }
     public void HitMotion()
     {
@@ -865,9 +946,12 @@ public class Unit : MonoBehaviour
                 else if (bomCount == 1 && deadTimer > 0.4f)
                 {
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetHeadPos().position);
-                    if (Head.CurrentPartsHp > 0)
+                    if (Body.unitType == UnitType.Human)
                     {
-                        Head.Damage(1000);
+                        if (Head.CurrentPartsHp > 0)
+                        {
+                            Head.Damage(1000);
+                        }
                     }
                     bomCount = 2;
                     deadTimer = 0;
@@ -875,9 +959,12 @@ public class Unit : MonoBehaviour
                 else if (bomCount == 2 && deadTimer > 0.4f)
                 {
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetLArmPos().position);
-                    if (LArm.CurrentPartsHp > 0)
+                    if (Body.unitType == UnitType.Human)
                     {
-                        LArm.Damage(1000);
+                        if (LArm.CurrentPartsHp > 0)
+                        {
+                            LArm.Damage(1000);
+                        }
                     }
                     bomCount = 3;
                     deadTimer = 0;
@@ -886,9 +973,12 @@ public class Unit : MonoBehaviour
                 {
                     legRSpeed = 2.0f;
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetRArmPos().position);
-                    if (RArm.CurrentPartsHp > 0)
+                    if (Body.unitType == UnitType.Human)
                     {
-                        RArm.Damage(1000);
+                        if (RArm.CurrentPartsHp > 0)
+                        {
+                            RArm.Damage(1000);
+                        }
                     }
                     bomCount = 4;
                     deadTimer = 0;
@@ -896,9 +986,12 @@ public class Unit : MonoBehaviour
                 else if (bomCount == 4 && deadTimer > 0.4f)
                 {                    
                     EffectManager.PlayEffect(EffectID.Explosion, transform.position);
-                    if (Leg.CurrentPartsHp > 0)
+                    if (Body.unitType == UnitType.Human)
                     {
-                        Leg.Damage(1000);
+                        if (Leg.CurrentPartsHp > 0)
+                        {
+                            Leg.Damage(1000);
+                        }
                     }
                     bomCount = 5;
                     deadTimer = 0;

@@ -20,16 +20,32 @@ public class ParameterPanel : MonoBehaviour
     {
         if (unit != null && !unit.DestroyBody)
         {
-            head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
-            headHp.text = "Head :" + unit.Head.CurrentPartsHp;
-            body.fillAmount = (float)unit.Body.CurrentPartsHp / unit.Body.MaxPartsHp;
-            bodyHp.text = "Body :" + unit.Body.CurrentPartsHp;
-            rArm.fillAmount = (float)unit.RArm.CurrentPartsHp / unit.RArm.MaxPartsHp;
-            rArmHp.text = "RArm:" + unit.RArm.CurrentPartsHp;
-            lArm.fillAmount = (float)unit.LArm.CurrentPartsHp / unit.LArm.MaxPartsHp;
-            lArmHp.text = "LArm:" + unit.LArm.CurrentPartsHp;
-            leg.fillAmount = (float)unit.Leg.CurrentPartsHp / unit.Leg.MaxPartsHp;
-            legHp.text = "Leg  :" + unit.Leg.CurrentPartsHp;
+            if (unit.Body.unitType == UnitType.Human)
+            {
+                head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
+                headHp.text = "Head :" + unit.Head.CurrentPartsHp;
+                body.fillAmount = (float)unit.Body.CurrentPartsHp / unit.Body.MaxPartsHp;
+                bodyHp.text = "Body :" + unit.Body.CurrentPartsHp;
+                rArm.fillAmount = (float)unit.RArm.CurrentPartsHp / unit.RArm.MaxPartsHp;
+                rArmHp.text = "RArm:" + unit.RArm.CurrentPartsHp;
+                lArm.fillAmount = (float)unit.LArm.CurrentPartsHp / unit.LArm.MaxPartsHp;
+                lArmHp.text = "LArm:" + unit.LArm.CurrentPartsHp;
+                leg.fillAmount = (float)unit.Leg.CurrentPartsHp / unit.Leg.MaxPartsHp;
+                legHp.text = "Leg  :" + unit.Leg.CurrentPartsHp;
+            }
+            else if (unit.Body.unitType == UnitType.Helicopter)
+            {
+                head.fillAmount = 0;
+                headHp.text = "";
+                body.fillAmount = (float)unit.Body.CurrentPartsHp / unit.Body.MaxPartsHp;
+                bodyHp.text = "Body :" + unit.Body.CurrentPartsHp;
+                rArm.fillAmount = 0;
+                rArmHp.text = "";
+                lArm.fillAmount = 0;
+                lArmHp.text = "";
+                leg.fillAmount =0;
+                legHp.text = "";
+            }
         }
     }
 

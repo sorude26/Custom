@@ -103,6 +103,7 @@ MonoBehaviour:
   - {fileID: 4848896100023767557, guid: 2beea6fae65ad9141969eb897be71fff, type: 3}
   - {fileID: 1917701168154436544, guid: 4504a378fee22d441b42b11be88a2afd, type: 3}
   - {fileID: 3676492201585279163, guid: b7ec4b157987abd469073a35915fd0de, type: 3}
+  - {fileID: 7978540530879848746, guid: dff5979d3399a3f41b6eefbccbd34b9d, type: 3}
   LArmObjectList:
   - {fileID: 5636109707663599795, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
   - {fileID: 8197818254922226933, guid: e66e716fd8c7fb34e9772240a7544cca, type: 3}
