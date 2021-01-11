@@ -123,8 +123,15 @@ public class Unit : MonoBehaviour
     /// </summary>
     protected void Dead()
     {
-        gameStage.panelP.SetUnit(this);
-        EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);
+        if (Body)
+        {
+            gameStage.panelP.SetUnit(this);
+            EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);
+        }
+        else
+        {
+            EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
+        }
         DestroyBody = true;
         gameStage.SetUnitPos();
         if (silhouetteOn)
