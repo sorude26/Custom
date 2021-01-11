@@ -735,7 +735,7 @@ MonoBehaviour:
   weaponType: 1
   range: 60
   effectiveRange: 10
-  power: 5
+  power: 4
   bulletSpeed: 300
   totalShotNumber: 20
   diffusivity: 0.04
