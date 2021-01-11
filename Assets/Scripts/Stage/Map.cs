@@ -167,7 +167,18 @@ public class Map : MonoBehaviour
         }
         int p = moveUnit.CurrentPosX + (moveUnit.CurrentPosZ * maxX);
         MoveList2[p].movePoint = moveUnit.GetMovePower();
-        SearchCross2(p, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
+        if (moveUnit.Body)
+        {
+            if (moveUnit.Body.unitType == UnitType.Helicopter)
+            {
+                SearchCross3(p, moveUnit.GetMovePower(), moveUnit);
+            }
+            else
+            {
+                SearchCross2(p, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
+            }
+        }
+        
     }
     /// <summary>
     /// 十字範囲の移動可能箇所を調べる
@@ -205,6 +216,28 @@ public class Map : MonoBehaviour
             if (MoveList2[p].PosX >= 0 && MoveList2[p].PosX < maxX - 1)
             {
                 SearchPos2(p + 1, movePower, MoveList2[p].Level, liftingForce);
+            }
+        }
+    }
+    void SearchCross3(int p, int movePower,Unit moveUnit)
+    {
+        if (0 <= p && p < maxX * maxZ)
+        {
+            if (MoveList2[p].PosZ > 0 && MoveList2[p].PosZ < maxZ)
+            {
+                SearchPos2(p - maxX, movePower, MoveList2[p].Level, moveUnit);
+            }
+            if (MoveList2[p].PosZ >= 0 && MoveList2[p].PosZ < maxZ - 1)
+            {
+                SearchPos2(p + maxX, movePower, MoveList2[p].Level, moveUnit);
+            }
+            if (MoveList2[p].PosX > 0 && MoveList2[p].PosX < maxX)
+            {
+                SearchPos2(p - 1, movePower, MoveList2[p].Level, moveUnit);
+            }
+            if (MoveList2[p].PosX >= 0 && MoveList2[p].PosX < maxX - 1)
+            {
+                SearchPos2(p + 1, movePower, MoveList2[p].Level, moveUnit);
             }
         }
     }
@@ -309,6 +342,42 @@ public class Map : MonoBehaviour
         {
             MoveList2[p].movePoint = movePower;
             SearchCross2(p, movePower, liftingForce);
+        }
+    }
+    void SearchPos2(int p, int movePower, float currentLevel, Unit moveUnit)
+    {
+        if (p < 0 || p >= maxX * maxZ)//調査対象がマップ範囲内であるか確認
+        {
+            return;
+        }
+        if (MovePoint(MoveList2[p].MapType) == 0)//侵入可能か確認、０は侵入不可又は未設定
+        {
+            return;
+        }
+        float liftingForce = moveUnit.GetLiftingForce();
+        if (MoveList2[p].Level >= currentLevel)//高低差確認
+        {
+            if (MoveList2[p].Level - currentLevel > liftingForce)
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (currentLevel - MoveList2[p].Level > liftingForce)
+            {
+                return;
+            }
+        }
+        if (movePower <= MoveList2[p].movePoint)//確認済か確認
+        {
+            return;
+        }
+        movePower = movePower - MovePoint(MoveList2[p].MapType);//移動力変動
+        if (movePower > 0)//移動可能箇所に足跡入力、再度検索
+        {
+            MoveList2[p].movePoint = movePower;
+            SearchCross3(p, movePower, moveUnit);
         }
     }
 }

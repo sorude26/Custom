@@ -47,12 +47,9 @@ public class PartsBody : UnitParts
     {
         if (unitType == UnitType.Helicopter)
         {
-            
-            posYtransform += y * 0.2f * Time.deltaTime;
-            transform.localPosition = new Vector3(0, posY + posYtransform, 0);
             if (partsBreak)
             {
-                posYtransform -= 1.0f * Time.deltaTime;
+                posYtransform -= 2.0f * Time.deltaTime;
                 transform.localPosition = new Vector3(0, posY + posYtransform, 0);
                 transform.Rotate(new Vector3(0, 0.5f, 0.02f));
             }
@@ -62,10 +59,12 @@ public class PartsBody : UnitParts
                 {
                     y = 1;
                 }
-                else if (posYtransform >= 0.1f)
+                else if (posYtransform >= 0.2f)
                 {
                     y = -1;
                 }
+                posYtransform += y * 0.2f * Time.deltaTime;
+                transform.localPosition = new Vector3(0, posY + posYtransform, 0);
             }
         }
         

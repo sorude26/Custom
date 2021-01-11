@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214785208164376004}
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071069}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1.5, z: 2}
   m_Children:
   - {fileID: 3109386157010861456}
   m_Father: {fileID: 2549720507448176632}
@@ -110,8 +110,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.3, z: 0.5}
-  m_Center: {x: 0, y: 0, z: -3.5}
+  m_Size: {x: 0.2, y: 0.3, z: 0.97038674}
+  m_Center: {x: 0, y: 0.000015800255, z: -3.0547984}
 --- !u!65 &5949291538587086518
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,8 +123,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.3, z: 1}
-  m_Center: {x: 0, y: 0, z: -2.8}
+  m_Size: {x: 0.15575868, y: 0.3, z: 2.470645}
+  m_Center: {x: 0, y: 0.000025299008, z: -2.0646803}
 --- !u!65 &5986366416861560056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,8 +136,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.3, z: 2.5}
-  m_Center: {x: 0, y: 0, z: -1.8}
+  m_Size: {x: 0.2, y: 0.3, z: 3.155309}
+  m_Center: {x: 0, y: 0.0000056430144, z: -1.4723454}
 --- !u!1 &1384336578634215109
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
   thisBullet: {fileID: 0}
   muzzle: {fileID: 0}
   weaponType: 4
-  range: 12
+  range: 15
   effectiveRange: 12
   power: 12
   bulletSpeed: 0
