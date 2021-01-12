@@ -16,7 +16,16 @@ public class ChoiceParts : MonoBehaviour
     GameObject RArmList;
     [SerializeField]
     GameObject LegList;
-    
+    [SerializeField]
+    GameObject HeadGard;
+    [SerializeField]
+    GameObject BodyGard;
+    [SerializeField]
+    GameObject LArmGard;
+    [SerializeField]
+    GameObject RArmGard;
+    [SerializeField]
+    GameObject LegGard;
     BaseStage baseStage;
     bool view = false;
     bool open = false;
@@ -29,6 +38,11 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        HeadGard.SetActive(false);
+        BodyGard.SetActive(false);
+        LArmGard.SetActive(false);
+        RArmGard.SetActive(false);
+        LegGard.SetActive(false);
     }
     private void Update()
     {
@@ -41,6 +55,11 @@ public class ChoiceParts : MonoBehaviour
             LArmList.SetActive(false);
             RArmList.SetActive(false);
             LegList.SetActive(false);
+            HeadGard.SetActive(false);
+            BodyGard.SetActive(false);
+            LArmGard.SetActive(false);
+            RArmGard.SetActive(false);
+            LegGard.SetActive(false);
         }
     }
     private void LateUpdate()
@@ -70,6 +89,11 @@ public class ChoiceParts : MonoBehaviour
             LArmList.SetActive(false);
             RArmList.SetActive(false);
             LegList.SetActive(false);
+            HeadGard.SetActive(false);
+            BodyGard.SetActive(false);
+            LArmGard.SetActive(false);
+            RArmGard.SetActive(false);
+            LegGard.SetActive(false);
         }
     }
     public void OnClickHead()
@@ -79,6 +103,11 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        HeadGard.SetActive(true);
+        BodyGard.SetActive(false);
+        LArmGard.SetActive(false);
+        RArmGard.SetActive(false);
+        LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideHead();
     }
@@ -89,6 +118,11 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        HeadGard.SetActive(false);
+        BodyGard.SetActive(true);
+        LArmGard.SetActive(false);
+        RArmGard.SetActive(false);
+        LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideBody();
     }
@@ -99,6 +133,11 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(true);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        HeadGard.SetActive(false);
+        BodyGard.SetActive(false);
+        LArmGard.SetActive(true);
+        RArmGard.SetActive(false);
+        LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideLArm();
     }
@@ -109,6 +148,11 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(true);
         LegList.SetActive(false);
+        HeadGard.SetActive(false);
+        BodyGard.SetActive(false);
+        LArmGard.SetActive(false);
+        RArmGard.SetActive(true);
+        LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideRArm();
     }
@@ -119,6 +163,11 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(true);
+        HeadGard.SetActive(false);
+        BodyGard.SetActive(false);
+        LArmGard.SetActive(false);
+        RArmGard.SetActive(false);
+        LegGard.SetActive(true);
         baseStage.SwithGard = true;
         baseStage.GuideLeg();
     }

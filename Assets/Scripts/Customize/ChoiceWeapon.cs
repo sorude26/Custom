@@ -10,6 +10,10 @@ public class ChoiceWeapon : MonoBehaviour
     GameObject weaponL;
     [SerializeField]
     GameObject weaponR;
+    [SerializeField]
+    GameObject gardL;
+    [SerializeField]
+    GameObject gardR;
     BaseStage baseStage;
     bool view = false;
     bool open = false;
@@ -19,6 +23,8 @@ public class ChoiceWeapon : MonoBehaviour
         choiceView.SetActive(false);
         weaponL.SetActive(false);
         weaponR.SetActive(false);
+        gardL.SetActive(false);
+        gardR.SetActive(false);
     }
     private void Update()
     {
@@ -28,6 +34,8 @@ public class ChoiceWeapon : MonoBehaviour
             choiceView.SetActive(false);
             weaponL.SetActive(false);
             weaponR.SetActive(false);
+            gardL.SetActive(false);
+            gardR.SetActive(false);
         }
     }
     private void LateUpdate()
@@ -54,12 +62,16 @@ public class ChoiceWeapon : MonoBehaviour
             choiceView.SetActive(false);
             weaponL.SetActive(false);
             weaponR.SetActive(false);
+            gardL.SetActive(false);
+            gardR.SetActive(false);
         }
     }
     public void OnClickWeaponL()
     {
         weaponL.SetActive(true);
         weaponR.SetActive(false);
+        gardL.SetActive(true);
+        gardR.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideWeaponL();
     }
@@ -67,6 +79,8 @@ public class ChoiceWeapon : MonoBehaviour
     {
         weaponL.SetActive(false);
         weaponR.SetActive(true);
+        gardL.SetActive(false);
+        gardR.SetActive(true);
         baseStage.SwithGard = true;
         baseStage.GuideWeaponR();
     }
