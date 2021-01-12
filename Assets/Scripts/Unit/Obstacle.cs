@@ -16,6 +16,7 @@ public class Obstacle : Unit
     public void ObstacleHit(int power)
     {
         CurrentHp -= power;
+        EffectManager.PlayEffect(EffectID.BreakParts, transform.position);
         if (CurrentHp < 0)
         {
             Dead();

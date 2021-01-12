@@ -29,8 +29,8 @@ public class Enemy : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            //UnitCreate(1, 1, 1, 2, 1, 2, 1);
-            UnitCreate(4, 9);
+            UnitCreate(1, 1, 1, 2, 1, 2, 1);
+            //UnitCreate(4, 9);
         }
         if (silhouetteOn)
         {
@@ -60,6 +60,7 @@ public class Enemy : Unit
         }
         PartsMotion();
         DeadMotion();
+        MoveMotion();
     }
     private void LateUpdate()
     {
@@ -72,7 +73,7 @@ public class Enemy : Unit
     }
     private void AttackMood()
     {
-        if (attack)//攻撃指示実行後ターゲット含めリセットし行動終了
+        if (attack && !moveMotionStart)//攻撃指示実行後ターゲット含めリセットし行動終了
         {
             if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
             {

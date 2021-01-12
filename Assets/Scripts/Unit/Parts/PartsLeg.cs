@@ -24,6 +24,14 @@ public class PartsLeg : UnitParts
     [SerializeField]
     float liftingForce;
     public float LiftingForce { get; protected set; }
+    [SerializeField]
+    GameObject legJointL1;
+    [SerializeField]
+    GameObject legJointL2;
+    [SerializeField]
+    GameObject legJointR1;
+    [SerializeField]
+    GameObject legJointR2;
     float posY;
     float posYtransform;
     int y =1;
@@ -63,4 +71,9 @@ public class PartsLeg : UnitParts
 
     public MoveType GetMoveType() { return moveType; }
     public int GetMovePower() { return movePower; }
+
+    public GameObject GetLegJointL1() { return legJointL1; }
+    public GameObject GetLegJointL2() { return legJointL2; }
+    public GameObject GetLegJointR1() { return legJointR1; }
+    public GameObject GetLegJointR2() { return legJointR2; }
 }

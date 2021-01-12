@@ -39,6 +39,7 @@ public class Player : Unit
         }
         PartsMotion();
         DeadMotion();
+        MoveMotion();
     }
 
     private void LateUpdate()
