@@ -36,6 +36,7 @@ public class ChoiceWeapon : MonoBehaviour
         {
             view = false;
             baseStage.viewOpen = false;
+            baseStage.SwithGard = true;
         }
     }
     public void OnClickView()
@@ -59,10 +60,14 @@ public class ChoiceWeapon : MonoBehaviour
     {
         weaponL.SetActive(true);
         weaponR.SetActive(false);
+        baseStage.SwithGard = true;
+        baseStage.GuideWeaponL();
     }
     public void OnClickWeaponR()
     {
         weaponL.SetActive(false);
         weaponR.SetActive(true);
+        baseStage.SwithGard = true;
+        baseStage.GuideWeaponR();
     }
 }

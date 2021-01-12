@@ -7,7 +7,7 @@ public enum WeaponType
     Rifle,
     MachineGun,
     Shotgun,
-    MachineShotGun,
+    MShotGun,
     Melee,
 }
 
@@ -78,7 +78,7 @@ public class Weapon : MonoBehaviour
                 case WeaponType.Shotgun:
                     ShotgunShot();                    
                     break;
-                case WeaponType.MachineShotGun:
+                case WeaponType.MShotGun:
                     MachineShotGunShot();
                     break;
                 default:

@@ -49,6 +49,7 @@ public class ChoiceParts : MonoBehaviour
         {
             view = false;
             baseStage.viewOpen = false;
+            baseStage.SwithGard = true;
         }
     }
     public void OnClickView()
@@ -78,6 +79,8 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        baseStage.SwithGard = true;
+        baseStage.GuideHead();
     }
     public void OnClickBody()
     {
@@ -86,6 +89,8 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        baseStage.SwithGard = true;
+        baseStage.GuideBody();
     }
     public void OnClickLArm()
     {
@@ -94,6 +99,8 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(true);
         RArmList.SetActive(false);
         LegList.SetActive(false);
+        baseStage.SwithGard = true;
+        baseStage.GuideLArm();
     }
     public void OnClickRArm()
     {
@@ -102,6 +109,8 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(true);
         LegList.SetActive(false);
+        baseStage.SwithGard = true;
+        baseStage.GuideRArm();
     }
     public void OnClickLeg()
     {
@@ -110,5 +119,7 @@ public class ChoiceParts : MonoBehaviour
         LArmList.SetActive(false);
         RArmList.SetActive(false);
         LegList.SetActive(true);
+        baseStage.SwithGard = true;
+        baseStage.GuideLeg();
     }
 }

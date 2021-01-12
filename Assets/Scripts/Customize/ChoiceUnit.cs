@@ -32,6 +32,7 @@ public class ChoiceUnit : MonoBehaviour
         {
             view = false;
             baseStage.viewOpen = false;
+            baseStage.SwithGard = true;
         }
     }
     public void OnClickView()

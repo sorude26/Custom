@@ -22,10 +22,12 @@ public class Command : MonoBehaviour
     int commandNumber = 0;
     [SerializeField]
     GameObject gard;
+    private bool setGard = false;
     BaseStage baseStage;
     UnitPartsList partsList;
     [SerializeField]
     Text partsName;
+    
     private void Start()
     {
         baseStage = BaseStage.Instance;
@@ -56,7 +58,113 @@ public class Command : MonoBehaviour
             default:
                 break;
         }
-        
+    }
+    private void Update()
+    {
+        if (baseStage.SwithGard)
+        {
+            switch (commandType)
+            {
+                case CommandType.ChoiceUnit:
+                    if (baseStage.SetUpUnit == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.SetUpUnit != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoicePartsHead:
+                    if (baseStage.HeadID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.HeadID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoicePartsBody:
+                    if (baseStage.BodyID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.BodyID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoicePartsLArm:
+                    if (baseStage.LArmID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.LArmID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoicePartsRArm:
+                    if (baseStage.RArmID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.RArmID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoicePartsLeg:
+                    if (baseStage.LegID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.LegID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoiceWeaponL:
+                    if (baseStage.WeaponLID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.WeaponLID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                case CommandType.ChoiceWeaponR:
+                    if (baseStage.WeaponRID == commandNumber && !setGard)
+                    {
+                        gard.SetActive(true);
+                        setGard = true;
+                    }
+                    if (baseStage.WeaponRID != commandNumber && setGard)
+                    {
+                        gard.SetActive(false);
+                        setGard = false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     public void OnClickThis()
     {
@@ -89,5 +197,7 @@ public class Command : MonoBehaviour
             default:
                 break;
         }
+        baseStage.SwithGard = true;
     }
+    
 }

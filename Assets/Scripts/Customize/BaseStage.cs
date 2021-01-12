@@ -29,7 +29,8 @@ public class BaseStage : MonoBehaviour
     Text unitNumber;
     [SerializeField]
     PartsGuide guide;
-    private bool buildEnd = false;
+    private bool gard = false;
+    public bool SwithGard { get; set; }
     private void Awake()
     {
         Instance = this;
@@ -40,6 +41,7 @@ public class BaseStage : MonoBehaviour
         unitNumber.text = "機体番号：" + 1;
         FirstSet();
         guide.Clear();
+        SwithGard = true;
     }
     void Update()
     {
@@ -90,6 +92,18 @@ public class BaseStage : MonoBehaviour
         if (!Head)
         {
             silhouetteOn = false;
+        }
+        if (SwithGard)
+        {
+            if (gard)
+            {
+                SwithGard = false;
+                gard = false;
+            }
+            else
+            {
+                gard = true;
+            }
         }
     }
     public void BuildUnit(int headID, int bodyID, int lArmID, int weaponLID, int rArmID, int weaponRID, int legID)
@@ -243,5 +257,33 @@ public class BaseStage : MonoBehaviour
             guide.WeaponData(partsList.GetWeaponObject(i).GetComponent<Weapon>());
             ResetBuild();
         }
+    }
+    public void GuideHead()
+    {
+        guide.HeadData(partsList.GetHeadObject(HeadID).GetComponent<PartsHead>());
+    }
+    public void GuideBody()
+    {
+        guide.BodyData(partsList.GetBodyObject(BodyID).GetComponent<PartsBody>());
+    }
+    public void GuideLArm()
+    {
+        guide.LRArmData(partsList.GetLArmObject(LArmID).GetComponent<PartsLArm>());
+    }
+    public void GuideRArm()
+    {
+        guide.LRArmData(partsList.GetRArmObject(RArmID).GetComponent<PartsRArm>());
+    }
+    public void GuideLeg()
+    {
+        guide.LegData(partsList.GetLegObject(LegID).GetComponent<PartsLeg>());
+    }
+    public void GuideWeaponL()
+    {
+        guide.WeaponData(partsList.GetWeaponObject(WeaponLID).GetComponent<Weapon>());
+    }
+    public void GuideWeaponR()
+    {
+        guide.WeaponData(partsList.GetWeaponObject(WeaponRID).GetComponent<Weapon>());
     }
 }
