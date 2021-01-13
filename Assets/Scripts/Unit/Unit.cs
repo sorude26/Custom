@@ -125,6 +125,7 @@ public class Unit : MonoBehaviour
     {
         if (Body)
         {
+            DamgeMotion();
             gameStage.panelP.SetUnit(this);
             EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);
         }
@@ -134,19 +135,16 @@ public class Unit : MonoBehaviour
         }
         DestroyBody = true;
         gameStage.SetUnitPos();
-        if (silhouetteOn)
-        {
-            legL1Rotaion = Quaternion.Euler(-10, 0, 1);
-            legL2Rotaion = Quaternion.Euler(-20, 0, 0);
-            legR1Rotaion = Quaternion.Euler(-20, 0, -1);
-            legR2Rotaion = Quaternion.Euler(-10, 0, 0);
-            legRotaion = Quaternion.Euler(-90, 0, 0);
-            legRSpeed = 0.1f;
-            legL1RSpeed = 1.0f;
-            legL2RSpeed = 1.0f;
-            legR1RSpeed = 1.0f;
-            legR2RSpeed = 1.0f;
-        }
+        legL1Rotaion = Quaternion.Euler(-10, 0, 1);
+        legL2Rotaion = Quaternion.Euler(-20, 0, 0);
+        legR1Rotaion = Quaternion.Euler(-20, 0, -1);
+        legR2Rotaion = Quaternion.Euler(-10, 0, 0);
+        legRotaion = Quaternion.Euler(-90, 0, 0);
+        legRSpeed = 0.1f;
+        legL1RSpeed = 1.0f;
+        legL2RSpeed = 1.0f;
+        legR1RSpeed = 1.0f;
+        legR2RSpeed = 1.0f;
     }
     /// <summary>
     /// ユニット瞬間移動
@@ -542,7 +540,7 @@ public class Unit : MonoBehaviour
                                 legL2Rotaion = Quaternion.Euler(0, 0, 0);
                                 legR1Rotaion = Quaternion.Euler(0, 0, 0);
                                 legR2Rotaion = Quaternion.Euler(0, 0, 0);
-                                legL1.transform.localRotation = Quaternion.Euler(-50, 0, 0); 
+                                legL1.transform.localRotation = Quaternion.Euler(-50, 0, 0);
                                 legL2.transform.localRotation = Quaternion.Euler(10, 0, 0);
                                 legR1.transform.localRotation = Quaternion.Euler(50, 0, 0);
                                 legR2.transform.localRotation = Quaternion.Euler(-20, 0, 0);
@@ -710,7 +708,7 @@ public class Unit : MonoBehaviour
                 endRot = Quaternion.LookRotation(targetDir) * p;
                 Body.GetBodyHand().transform.rotation = endRot;
                 this.attackWeapon = LArmWeapon;
-            }            
+            }
         }
         attackTimer = 0;
         attackMode = true;
@@ -937,7 +935,7 @@ public class Unit : MonoBehaviour
                     Dead();
                 }
             }
-            else if (true)
+            else if (Body.unitType == UnitType.Helicopter)
             {
                 if (movePower != Body.MovePower)
                 {
@@ -945,6 +943,14 @@ public class Unit : MonoBehaviour
                 }
                 if (CurrentHp != Body.CurrentPartsHp)
                 {
+                    if (CurrentHp - Body.CurrentPartsHp < 20)
+                    {
+                        HitMotion();
+                    }
+                    else
+                    {
+                        DamgeMotion();
+                    }
                     CurrentHp = Body.CurrentPartsHp;
                 }
                 if (liftingForce != Body.LiftingForce)
@@ -1031,6 +1037,12 @@ public class Unit : MonoBehaviour
             LArm.transform.localRotation = Quaternion.Euler(-5, 0, 10);
             RArm.transform.localRotation = Quaternion.Euler(-5, 0, -10);
             EffectManager.PlayEffect(EffectID.BreakParts, Body.transform.position);
+        }
+        else if (Body.unitType == UnitType.Helicopter)
+        {
+            bodyRotaion = Quaternion.Euler(0, 0, 0);
+            bodyRSpeed = 1.0f;
+            Body.transform.localRotation = Quaternion.Euler(2, 0, 0);
         }
     }
     protected float moveMotionTimer = 0;
@@ -1130,6 +1142,7 @@ public class Unit : MonoBehaviour
             {
                 if (bomCount == 0 && deadTimer > 0.6f)
                 {
+                    if(Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(2, 0, 0); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
                     bomCount = 1;
                     deadTimer = 0;
@@ -1142,6 +1155,7 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 2 && deadTimer > 0.4f)
                 {
+                    if (Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(0, 0, -2); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetLArmPos().position);
                     bomCount = 3;
                     deadTimer = 0;
@@ -1149,12 +1163,13 @@ public class Unit : MonoBehaviour
                 else if (bomCount == 3 && deadTimer > 0.4f)
                 {
                     legRSpeed = 2.0f;
+                    if (Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(0, 0, 2); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetRArmPos().position);
                     bomCount = 4;
                     deadTimer = 0;
                 }
                 else if (bomCount == 4 && deadTimer > 0.4f)
-                {
+                {                    
                     EffectManager.PlayEffect(EffectID.Explosion, transform.position);
                     bomCount = 5;
                     deadTimer = 0;

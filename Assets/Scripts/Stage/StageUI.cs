@@ -124,8 +124,13 @@ public class StageUI : MonoBehaviour
                     choiceTarget = true;
                     attackCommand.SetActive(true);
                     stageData.PlayerUnit.SearchTarget();
+                    stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
                 }
-                stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
+                else
+                {
+                    stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
+                    guide.AttackWeapon(stageData.PlayerUnit.RArmWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
+                }
             }
         }
     }
@@ -142,8 +147,13 @@ public class StageUI : MonoBehaviour
                     choiceTarget = true;
                     attackCommand.SetActive(true);
                     stageData.PlayerUnit.SearchTarget();
+                    stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
                 }
-                stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
+                else
+                {
+                    stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
+                    guide.AttackWeapon(stageData.PlayerUnit.LArmWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
+                }
             }
         }
     }

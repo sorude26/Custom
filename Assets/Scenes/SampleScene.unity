@@ -8823,7 +8823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1195667786
 Transform:
   m_ObjectHideFlags: 0
@@ -8860,7 +8860,7 @@ MonoBehaviour:
   detectionRange: 0
   moveSpeed: 20
   haveWeapon: {fileID: 1074396503}
-  unitID: 2
+  unitID: 0
   mark: {fileID: 3373301158540351835, guid: 316553b3b917f274d9544c22b4ad2b31, type: 3}
 --- !u!54 &1195667788
 Rigidbody:
@@ -12136,7 +12136,7 @@ MonoBehaviour:
   detectionRange: 0
   moveSpeed: 20
   haveWeapon: {fileID: 407926098}
-  unitID: 0
+  unitID: 1
   mark: {fileID: 3373301158540351835, guid: 316553b3b917f274d9544c22b4ad2b31, type: 3}
 --- !u!54 &1622120475
 Rigidbody:
@@ -12903,7 +12903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1738451492
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15204,7 +15204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2070228011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15226,7 +15226,7 @@ MonoBehaviour:
   detectionRange: 0
   moveSpeed: 20
   haveWeapon: {fileID: 199916329}
-  unitID: 1
+  unitID: 2
   mark: {fileID: 3373301158540351835, guid: 316553b3b917f274d9544c22b4ad2b31, type: 3}
 --- !u!54 &2070228012
 Rigidbody:

@@ -10,6 +10,7 @@ public class Player : Unit
     public GameObject mark;
     public List<Unit> TargetEnemies { get; private set; } = new List<Unit>();
     public Unit TargetEnemy { get; set; }
+    private float actionTimer = 0;
     void Update()
     {
         if (!silhouetteOn && !DestroyBody)
@@ -24,11 +25,18 @@ public class Player : Unit
             {
                 UnitMove();
             }
-            if (gameStage.MoveFinish && !moveMood && !attackMode)//移動終了で位置を保存
+            if (gameStage.MoveFinish && !moveMood && !attackMode && ActionTurn)//移動終了で位置を保存
             {
-                MoveFinishSet();
-                gameStage.MoveFinish = false;
-                gameStage.turnCountTimer = 1;
+                actionTimer += Time.deltaTime;
+                if (actionTimer >1)
+                {
+                    MoveFinishSet();
+                    gameStage.MoveFinish = false;
+                    gameStage.turnCountTimer = 2;
+                    actionTimer = 0;
+                    ActionTurn = false;
+                    gameStage.PlayerTurnSystem();
+                }
             }
             UnitAngleControl();
             if (DestroyBody)
@@ -60,7 +68,7 @@ public class Player : Unit
                 GameObject instance = Instantiate(mark);
                 instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);
             }
-        }
+        }       
     }
 
     public void SearchTarget()

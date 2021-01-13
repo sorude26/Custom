@@ -69,7 +69,7 @@ public class Stage : MonoBehaviour
         PlayerTurn = false;
         EnemyTurn = false;
         TargetCursor.instance.SetCursor(PlayerUnit);
-        PlayerAttackWeapon = PlayerUnit.RArmWeapon;
+        PlayerAttackWeapon = PlayerUnit.LArmWeapon;
     }
 
     void Update()
@@ -96,29 +96,8 @@ public class Stage : MonoBehaviour
         }
         if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start && !Victory)
         {
-            if (!unitManager.GetPlayer(PlayerUnitCount).DestroyBody)
-            {
-                PlayerUnit.MoveFinishSet();
-                PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
-                TargetCursor.instance.SetCursor(PlayerUnit);
-                PlayerTurn = true;
-                CameraControl.Instans.UnitCamera(PlayerUnit);
-                panelP.SetUnit(PlayerUnit);
-            }
-            PlayerUnitCount++;
-            if (PlayerUnitCount > unitManager.GetPlayerList().Length)
-            {
-                PlayerUnitCount = 0;
-                EnemyTurn = true;
-                EnemyAction = true;
-                turnCountTimer = 2;
-                foreach (Unit unit in unitManager.GetPlayerList())
-                {
-                    unit.MoveFinishSet();
-                }
-                stageMessage.ViewMessage(2, 1.0f);
-                //TargetCursor.instance.SetCursor(enemyUnit);
-            }
+            PlayerTurn = true;
+            PlayerTurnSystem();
         }
         if (EnemyTurn && turnCountTimer <= 0 && !Victory)
         {
@@ -151,6 +130,52 @@ public class Stage : MonoBehaviour
         VictoryConditionsCheck();
     }
 
+    public void PlayerTurnSystem()
+    {
+        if (PlayerUnitCount > unitManager.GetPlayerList().Length)
+        {
+            PlayerUnitCount = 0;
+            EnemyTurn = true;
+            PlayerTurn = false;
+            EnemyAction = true;
+            turnCountTimer = 2;
+            foreach (Unit unit in unitManager.GetPlayerList())
+            {
+                unit.MoveFinishSet();
+            }
+            stageMessage.ViewMessage(2, 1.0f);
+            return;
+        }
+        if (!unitManager.GetPlayer(PlayerUnitCount).DestroyBody)
+        {
+            PlayerUnit.MoveFinishSet();
+            PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
+            TargetCursor.instance.SetCursor(PlayerUnit);            
+            CameraControl.Instans.UnitCamera(PlayerUnit);
+            panelP.SetUnit(PlayerUnit);
+            PlayerUnit.ActionTurn = true;
+            PlayerUnitCount++; 
+            if (PlayerUnitCount > unitManager.GetPlayerList().Length)
+            {
+                PlayerUnitCount = 0;
+                EnemyTurn = true;
+                PlayerTurn = false;
+                EnemyAction = true;
+                turnCountTimer = 2;
+                foreach (Unit unit in unitManager.GetPlayerList())
+                {
+                    unit.MoveFinishSet();
+                }
+                stageMessage.ViewMessage(2, 1.0f);
+                return;
+            }
+        }
+        else
+        {
+            PlayerUnitCount++;
+            PlayerTurnSystem();
+        }
+    }
     /// <summary>
     /// ユニット移動（仮
     /// </summary>
@@ -220,10 +245,8 @@ public class Stage : MonoBehaviour
         {
             if (!MoveNow)
             {
-                //playerAttackWeapon = PlayerUnit.RArmWeapon;
                 PlayerUnit.Attack();
                 PlayerUnit.TargetShot(PlayerUnit.TargetEnemy, PlayerAttackWeapon);
-                //PlayerUnit.RArmTargetShot(TargetCursor.instance.TargetUnit);
                 UnitMoveFinish();
                 turnCountTimer = 2;
             }
@@ -236,8 +259,6 @@ public class Stage : MonoBehaviour
         {
             MoveFinish = true;
             PlayerMoveMode = false;
-            PlayerTurn = false;
-            PlayerUnit.ActionTurn = false;
             turnCountTimer = 2;
         }
     }
@@ -278,7 +299,7 @@ public class Stage : MonoBehaviour
             if (!viewGameOver)
             {
                 victoryTimer += 1.0f * Time.deltaTime;
-                if (victoryTimer > 2.0f)
+                if (victoryTimer > 8.0f)
                 {
                     viewGameOver = true;
                 }
