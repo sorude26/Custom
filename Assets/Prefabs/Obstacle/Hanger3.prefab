@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8479512989972718845}
   - component: {fileID: 8479512989972718834}
   - component: {fileID: 8479512989972718847}
-  - component: {fileID: 5203503831310929877}
+  - component: {fileID: 4330496408016031514}
   m_Layer: 0
   m_Name: Hanger3
   m_TagString: Untagged
@@ -122,8 +122,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &5203503831310929877
-CapsuleCollider:
+--- !u!65 &4330496408016031514
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,10 +132,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.6736877
-  m_Height: 14.584578
-  m_Direction: 1
-  m_Center: {x: 0.07409668, y: 2.3644667, z: 0.00048851967}
+  serializedVersion: 2
+  m_Size: {x: 7, y: 5, z: 7}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1001 &4316788408922932738
 PrefabInstance:
   m_ObjectHideFlags: 0

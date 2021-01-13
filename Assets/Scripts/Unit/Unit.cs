@@ -542,6 +542,14 @@ public class Unit : MonoBehaviour
                                 legL2Rotaion = Quaternion.Euler(0, 0, 0);
                                 legR1Rotaion = Quaternion.Euler(0, 0, 0);
                                 legR2Rotaion = Quaternion.Euler(0, 0, 0);
+                                legL1.transform.localRotation = Quaternion.Euler(-50, 0, 0); 
+                                legL2.transform.localRotation = Quaternion.Euler(10, 0, 0);
+                                legR1.transform.localRotation = Quaternion.Euler(50, 0, 0);
+                                legR2.transform.localRotation = Quaternion.Euler(-20, 0, 0);
+                                legL1RSpeed = 2.0f;
+                                legL2RSpeed = 2.0f;
+                                legR1RSpeed = 2.0f;
+                                legR2RSpeed = 2.0f;
                                 targtPos = new Vector3(0, 0, 0);
                                 attackNow = false;
                                 attackMode = false;
@@ -600,7 +608,7 @@ public class Unit : MonoBehaviour
         {
             if (Body.unitType == UnitType.Human)
             {
-                CameraControl.Instans.UnitCamera(this);
+                //CameraControl.Instans.UnitCamera(this);
                 Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
                 Vector3 targetDir = targetPos - transform.position;
                 targetDir.y = 0.0f;
@@ -679,12 +687,19 @@ public class Unit : MonoBehaviour
                     legL2RSpeed = 6.0f;
                     legR1RSpeed = 6.0f;
                     legR2RSpeed = 6.0f;
-                    targtPos = new Vector3(0, 0, -6.5f);
+                    if (targetUnit.CurrentPosY == CurrentPosY)
+                    {
+                        targtPos = new Vector3(0, 0, -6.5f);
+                    }
+                    else
+                    {
+                        targtPos = new Vector3(0, 0, -2.5f);
+                    }
                 }
             }
             else if (Body.unitType == UnitType.Helicopter)
             {
-                CameraControl.Instans.UnitCamera(this);
+                //CameraControl.Instans.UnitCamera(this);
                 Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
                 Vector3 targetDir = targetPos - transform.position;
                 targetDir.y = 0.0f;
@@ -695,10 +710,11 @@ public class Unit : MonoBehaviour
                 endRot = Quaternion.LookRotation(targetDir) * p;
                 Body.GetBodyHand().transform.rotation = endRot;
                 this.attackWeapon = LArmWeapon;
-            }
+            }            
         }
         attackTimer = 0;
         attackMode = true;
+        CameraControl.Instans.AttackCamera(this);
     }
 
     protected void AttackPattern(int i)
@@ -784,18 +800,21 @@ public class Unit : MonoBehaviour
     private float v = 0.5f;
     public void ShotCameraShake(float i)
     {
-        blur = UnityEngine.Random.Range(-v, v);
-        if (attackWeapon == LArmWeapon)
+        if (Body.unitType == UnitType.Human)
         {
-            LArm.transform.localRotation = Quaternion.Euler(30 + blur * i, 0 + blur * i, 0 + blur * i);
-            lArmRotaion = Quaternion.Euler(30, 0, 0);
-            rArmRSpeed = 1.0f;
-        }
-        else if (attackWeapon == RArmWeapon)
-        {
-            RArm.transform.localRotation = Quaternion.Euler(30 + blur * i, 0 + blur * i, 0 + blur * i);
-            rArmRotaion = Quaternion.Euler(30, 0, 0);
-            rArmRSpeed = 1.0f;
+            blur = UnityEngine.Random.Range(-v, v);
+            if (attackWeapon == LArmWeapon)
+            {
+                LArm.transform.localRotation = Quaternion.Euler(30 + blur * i, 0 + blur * i, 0 + blur * i);
+                lArmRotaion = Quaternion.Euler(30, 0, 0);
+                rArmRSpeed = 1.0f;
+            }
+            else if (attackWeapon == RArmWeapon)
+            {
+                RArm.transform.localRotation = Quaternion.Euler(30 + blur * i, 0 + blur * i, 0 + blur * i);
+                rArmRotaion = Quaternion.Euler(30, 0, 0);
+                rArmRSpeed = 1.0f;
+            }
         }
     }
     /// <summary>
@@ -832,6 +851,7 @@ public class Unit : MonoBehaviour
             Head = head.GetComponent<PartsHead>();
             Head.SetOwner(this);
             Head.TransFormParts(Body.GetHeadPos().position);
+            Body.SetCameraPos(Head.GetCameraPos());
             GameObject lArm = Instantiate(partsList.GetLArmObject(lArmID));
             lArm.transform.parent = Body.transform;
             LArm = lArm.GetComponent<PartsLArm>();

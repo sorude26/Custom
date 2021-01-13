@@ -1149,6 +1149,7 @@ Transform:
   - {fileID: 981269902046888529}
   - {fileID: 692965105667574001}
   - {fileID: 5535724655303416268}
+  - {fileID: 2953663340623948677}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1229,6 +1230,7 @@ MonoBehaviour:
   bodyCenter: {fileID: 692965105667574001}
   movePower: 1
   bodyHand: {fileID: 0}
+  cameraPos: {fileID: 2953663340623948677}
   unitType: 0
 --- !u!54 &485759394553753569
 Rigidbody:
@@ -1257,8 +1259,38 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.510856, y: 1.1010666, z: 0.9963647}
-  m_Center: {x: -0.013246909, y: 0.55596924, z: 0.023270547}
+  m_Size: {x: 1.5, y: 1.1, z: 1}
+  m_Center: {x: 0, y: 0.55, z: 0}
+--- !u!1 &5739497913796599330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2953663340623948677}
+  m_Layer: 0
+  m_Name: CameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2953663340623948677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739497913796599330}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: 2.25, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4848896100023767558}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8598876710739140517
 GameObject:
   m_ObjectHideFlags: 0

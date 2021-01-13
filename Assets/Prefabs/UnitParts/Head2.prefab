@@ -179,6 +179,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6870649326582208942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5238420824106936273}
+  m_Layer: 0
+  m_Name: CameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5238420824106936273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6870649326582208942}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 2.3, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7375752438427666081}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7375752437833795479
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3931133239669153814}
+  - {fileID: 5238420824106936273}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -753,6 +784,8 @@ MonoBehaviour:
   armorPoint: 0
   armorDefense: 0
   detectionRange: 50
+  cameraPos: {fileID: 5238420824106936273}
+  headObject: {fileID: 5884301981301040173}
 --- !u!54 &1629665236478748035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -780,8 +813,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32383645, y: 0.24042428, z: 0.4966312}
-  m_Center: {x: 0.011968225, y: 0.09297925, z: 0.03367719}
+  m_Size: {x: 0.324, y: 0.24, z: 0.5}
+  m_Center: {x: 0.012, y: 0.1, z: 0.034}
 --- !u!1 &7375752439053086145
 GameObject:
   m_ObjectHideFlags: 0

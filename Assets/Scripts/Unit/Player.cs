@@ -24,11 +24,11 @@ public class Player : Unit
             {
                 UnitMove();
             }
-            if (gameStage.MoveFinish && !moveMood)//移動終了で位置を保存
+            if (gameStage.MoveFinish && !moveMood && !attackMode)//移動終了で位置を保存
             {
                 MoveFinishSet();
                 gameStage.MoveFinish = false;
-                gameStage.turnCountTimer = 2;
+                gameStage.turnCountTimer = 1;
             }
             UnitAngleControl();
             if (DestroyBody)

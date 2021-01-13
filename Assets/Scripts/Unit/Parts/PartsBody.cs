@@ -28,6 +28,8 @@ public class PartsBody : UnitParts
     int movePower = 10;
     [SerializeField]
     GameObject bodyHand;
+    [SerializeField]
+    Transform cameraPos = null;
     public int MovePower { get; private set; }
     
     [SerializeField] public UnitType unitType = UnitType.Human;
@@ -76,4 +78,6 @@ public class PartsBody : UnitParts
     public GameObject GetBodyHand() { return bodyHand; }
     public int GetUnitOutput() { return unitOutput; }
     public float GetLiftingForce() { return liftingForce; }
+    public Transform GetCameraPos() { return cameraPos; }
+    public void SetCameraPos(Transform pos) { cameraPos = pos; }
 }

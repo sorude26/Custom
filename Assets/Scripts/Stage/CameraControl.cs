@@ -121,4 +121,11 @@ public class CameraControl : MonoBehaviour
         Vector3 targetDir = unit.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(targetDir);
     }
+
+    public void AttackCamera(Unit unit)
+    {
+        transform.position = unit.Body.GetCameraPos().position; 
+        Vector3 targetDir = unit.Body.GetBodyCentrer().position - transform.position;
+        transform.rotation = Quaternion.LookRotation(targetDir);
+    }
 }
