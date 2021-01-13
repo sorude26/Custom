@@ -18,7 +18,7 @@ public class StageMessage : MonoBehaviour
     void Start()
     {
         viwe = true;
-        viweTime = 0.1f;
+        viweTime = 1.0f;
         foreach (GameObject message in battleMessage)
         {
             message.SetActive(false);

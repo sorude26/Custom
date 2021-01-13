@@ -17,6 +17,10 @@ public class StageUI : MonoBehaviour
     GameObject attackCommand;
     [SerializeField]
     PartsGuide guide;
+    [SerializeField]
+    GameObject gameOverView;
+    private bool sceneChange = false;
+    private bool nControl = false;
     void Start()
     {
         stageData = Stage.Instance;
@@ -24,11 +28,12 @@ public class StageUI : MonoBehaviour
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
         attackBottons.SetActive(false);
+        gameOverView.SetActive(false);
     }
 
     private void Update()
     {
-        if (choiceTarget)
+        if (choiceTarget && !nControl)
         {
             if (stageData.PlayerUnit.GetEnemies().Count >= 2)
             {
@@ -53,10 +58,22 @@ public class StageUI : MonoBehaviour
                 OnClickDecide();
             }
         }
+        if (stageData.viewGameOver && !nControl)
+        {
+            ViewGameOver();
+            nControl = true;
+        }
+    }
+    public void ViewGameOver()
+    {
+        messageWindow.SetActive(false);
+        attackCommand.SetActive(false);
+        attackBottons.SetActive(false);
+        gameOverView.SetActive(true);
     }
     public void OnClickMove()
     {
-        if (stageData.turnCountTimer <= 0)
+        if (stageData.turnCountTimer <= 0 && !nControl)
         {
             stageData.MoveStart();
             messageWindow.SetActive(true);
@@ -69,7 +86,7 @@ public class StageUI : MonoBehaviour
     }
     public void OnClickAttack()
     {
-        if (stageData.turnCountTimer <= 0)
+        if (stageData.turnCountTimer <= 0 && !nControl)
         {
             stageData.PlayerUnit.MoveFinishSet();
             attackBottons.SetActive(true);
@@ -96,7 +113,7 @@ public class StageUI : MonoBehaviour
 
     public void OnClickRightWeapon()
     {
-        if (stageData.turnCountTimer <= 0)
+        if (stageData.turnCountTimer <= 0 && !nControl)
         {
             if (stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
             {
@@ -114,7 +131,7 @@ public class StageUI : MonoBehaviour
     }
     public void OnClickLeftWeapon()
     {
-        if (stageData.turnCountTimer <= 0)
+        if (stageData.turnCountTimer <= 0 && !nControl)
         {
             if (stageData.PlayerUnit.LArm.CurrentPartsHp > 0)
             {
@@ -133,7 +150,7 @@ public class StageUI : MonoBehaviour
 
     public void OnClickAttackStart()
     {
-        if (stageData.turnCountTimer <= 0)
+        if (stageData.turnCountTimer <= 0 && !nControl)
         {
             CameraControl.Instans.UnitCamera(stageData.PlayerUnit);
             stageData.PlayerUnit.TargetEnemy = stageData.PlayerUnit.TargetEnemies[count];
@@ -167,5 +184,22 @@ public class StageUI : MonoBehaviour
         CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
+    }
+    public void OnClickRetry()
+    {
+        if (!sceneChange)
+        {
+            GameManager.Instance.SceneChange(0);
+            sceneChange = true;
+        }
+    }
+
+    public void OnClickReturn()
+    {
+        if (!sceneChange)
+        {
+            GameManager.Instance.SceneChange(1);
+            sceneChange = true;
+        }
     }
 }

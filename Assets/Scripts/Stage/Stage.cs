@@ -242,6 +242,8 @@ public class Stage : MonoBehaviour
         }
     }
 
+    private float victoryTimer = 0;
+    public bool viewGameOver;
     private void VictoryConditionsCheck()
     {
         switch (victory)
@@ -270,6 +272,17 @@ public class Stage : MonoBehaviour
             Victory = true;
             Debug.Log("敗北");
             stageMessage.ViewMessage(4, 5.0f);
+        }
+        if (Victory)
+        {            
+            if (!viewGameOver)
+            {
+                victoryTimer += 1.0f * Time.deltaTime;
+                if (victoryTimer > 2.0f)
+                {
+                    viewGameOver = true;
+                }
+            }
         }
     }
 

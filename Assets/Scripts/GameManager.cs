@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
             case 0:
                 SceneManager.LoadScene("SampleScene");
                 break;
+            case 1:
+                SceneManager.LoadScene("CustomizeScene");
+                break;
             default:
                 break;
         }

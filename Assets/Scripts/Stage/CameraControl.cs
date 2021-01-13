@@ -117,7 +117,7 @@ public class CameraControl : MonoBehaviour
 
     public void UnitCameraMove(Unit unit)
     {
-        transform.position = new Vector3(unit.CurrentPosX * 10 + posX, 30 + unit.CurrentPosY, unit.CurrentPosZ * 10 + posZ);
+        transform.position = new Vector3(unit.CurrentPosX * 10 + posX - unit.GetMovePower() * 0.5f, unit.GetMovePower()*2 + unit.CurrentPosY, unit.CurrentPosZ * 10 + posZ -unit.GetMovePower() * 0.5f);
         Vector3 targetDir = unit.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(targetDir);
     }

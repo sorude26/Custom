@@ -71,6 +71,7 @@ public class Weapon : MonoBehaviour
                 case WeaponType.Rifle:
                     BulletShot();
                     weaponTrigger = false;
+                    owner.ShotCameraShake(20);
                     break;
                 case WeaponType.MachineGun:
                     MachineGunShot();
@@ -108,7 +109,7 @@ public class Weapon : MonoBehaviour
         GameObject bullet = Instantiate(thisBullet);
         Bullet shotBullet = bullet.GetComponent<Bullet>();
         shotBullet.StartMove(this, muzzle.position, transform.forward * -1);
-        EffectManager.PlayEffect(EffectID.MuzzleFlash, muzzle.position);
+        EffectManager.PlayEffect(EffectID.MuzzleFlash, muzzle.position);        
     }
 
     private void MachineGunShot()
@@ -130,6 +131,7 @@ public class Weapon : MonoBehaviour
                 BulletShot();
                 shotNumber++;
                 intervalTime = 0.1f;
+                owner.ShotCameraShake(5);
             }
             else
             {
@@ -144,6 +146,7 @@ public class Weapon : MonoBehaviour
         {
             BulletShot();
         }
+        owner.ShotCameraShake(20);
         weaponTrigger = false;
     }
     private void MachineShotGunShot()
@@ -168,6 +171,7 @@ public class Weapon : MonoBehaviour
                 }
                 shotNumber++;
                 intervalTime = 0.15f;
+                owner.ShotCameraShake(5);
             }
             else
             {
