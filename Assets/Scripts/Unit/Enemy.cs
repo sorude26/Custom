@@ -29,8 +29,9 @@ public class Enemy : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            UnitCreate(1, 1, 1, 6, 1, 3, 1);
+            //UnitCreate(1, 1, 1, 6, 1, 3, 1);
             //UnitCreate(4, 9);
+            UnitCreate(5, 3, 10);
         }
         if (silhouetteOn)
         {
@@ -175,7 +176,7 @@ public class Enemy : Unit
                                             weapon1 = RArmWeapon;
                                         }
                                     }
-                                    else if (Body.unitType == UnitType.Helicopter)
+                                    else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
                                     {
                                         weapon1 = LArmWeapon;
                                     }

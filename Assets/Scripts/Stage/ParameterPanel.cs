@@ -46,6 +46,19 @@ public class ParameterPanel : MonoBehaviour
                 leg.fillAmount =0;
                 legHp.text = "";
             }
+            else if (unit.Body.unitType == UnitType.Tank)
+            {
+                head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
+                headHp.text = "Head :" + unit.Head.CurrentPartsHp;
+                body.fillAmount = (float)unit.Body.CurrentPartsHp / unit.Body.MaxPartsHp;
+                bodyHp.text = "Body :" + unit.Body.CurrentPartsHp;
+                rArm.fillAmount = 0;
+                rArmHp.text = "";
+                lArm.fillAmount = 0;
+                lArmHp.text = "";
+                leg.fillAmount = 0;
+                legHp.text = "";
+            }
         }
     }
 

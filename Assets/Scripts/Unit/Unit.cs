@@ -456,6 +456,12 @@ public class Unit : MonoBehaviour
             {
                 Body.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
+            else if (Body.unitType == UnitType.Tank)
+            {
+                Head.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                Body.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                Body.GetBodyHand().transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
     protected bool attackMode = false;
@@ -709,6 +715,19 @@ public class Unit : MonoBehaviour
                 Body.GetBodyHand().transform.rotation = endRot;
                 this.attackWeapon = LArmWeapon;
             }
+            else if (Body.unitType == UnitType.Tank)
+            {
+                Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
+                Vector3 targetDir = targetPos - Head.transform.position;
+                targetDir.y = 0.0f;
+                Quaternion p = Quaternion.Euler(0, 180, 0);
+                Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
+                Head.transform.rotation = endRot;
+                targetDir = targetPos - Body.GetBodyHand().transform.position;
+                endRot = Quaternion.LookRotation(targetDir) * p;
+                Body.GetBodyHand().transform.rotation = endRot;
+                this.attackWeapon = LArmWeapon;
+            }
         }
         attackTimer = 0;
         attackMode = true;
@@ -893,6 +912,31 @@ public class Unit : MonoBehaviour
             silhouetteOn = true;
         }
     }
+    public void UnitCreate(int bodyID, int headID, int weaponLID)
+    {
+        if (!silhouetteOn)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);//パーツ生成時に向きを合わせる
+            GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
+            body.transform.position = transform.position;
+            body.transform.parent = transform;
+            Body = body.GetComponent<PartsBody>();
+            Body.SetOwner(this);
+            GameObject head = Instantiate(partsList.GetHeadObject(headID));
+            head.transform.parent = Body.transform;
+            Head = head.GetComponent<PartsHead>();
+            Head.SetOwner(this);
+            Head.TransFormParts(Body.GetHeadPos().position);
+            Body.SetCameraPos(Head.GetCameraPos());
+            GameObject weaponL = Instantiate(partsList.GetWeaponObject(weaponLID));
+            weaponL.transform.parent = Body.GetBodyHand().transform;
+            LArmWeapon = weaponL.GetComponent<Weapon>();
+            LArmWeapon.SetOwner(this);
+            LArmWeapon.TransFormParts(Body.GetBodyHand().transform.position);
+            StartUnitAngle();//向きを戻す
+            silhouetteOn = true;
+        }
+    }
     /// <summary>
     /// パーツデータを反映
     /// </summary>
@@ -964,6 +1008,33 @@ public class Unit : MonoBehaviour
                 if (moveSpeed != 50)
                 {
                     moveSpeed = 50;
+                }
+                if (Body.CurrentPartsHp <= 0)
+                {
+                    Dead();
+                }
+            }
+            else if (Body.unitType == UnitType.Tank)
+            {
+                if (movePower != Body.MovePower)
+                {
+                    movePower = Body.MovePower;
+                }
+                if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp)
+                {
+                    CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp;
+                }
+                if (liftingForce != Body.LiftingForce)
+                {
+                    liftingForce = Body.LiftingForce;
+                }
+                if (DetectionRange != Head.DetectionRange)
+                {
+                    DetectionRange = Head.DetectionRange;
+                }
+                if (moveSpeed != 40)
+                {
+                    moveSpeed = 40;
                 }
                 if (Body.CurrentPartsHp <= 0)
                 {
