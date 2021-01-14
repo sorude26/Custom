@@ -119,7 +119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233450707276364367}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.12, z: -1.288}
+  m_LocalPosition: {x: 0, y: 0.12, z: -1.651}
   m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
   m_Children: []
   m_Father: {fileID: 6929286130900249721}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 8811625959990536305}
   - component: {fileID: 7689015039299129395}
   m_Layer: 0
-  m_Name: Rifle 1
+  m_Name: TankCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,15 +355,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fae1e83803687f438d8e44a764b68d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBullet: {fileID: 524467316930622857, guid: 382b1db9323721647bfc6f61ad116d9e,
+  thisBullet: {fileID: 9145434351238493087, guid: f3f57b6624ad677418a9b56763bd2095,
     type: 3}
   muzzle: {fileID: 1845152216726437771}
   weaponType: 0
-  range: 150
-  effectiveRange: 90
-  power: 60
-  bulletSpeed: 200
-  totalShotNumber: 1
+  range: 190
+  effectiveRange: 190
+  power: 6
+  bulletSpeed: 300
+  totalShotNumber: 100
   diffusivity: 0.01
   weight: 40
   weaponName: "\u6226\u8ECA\u7832"
@@ -394,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2752031178786464763}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.12, z: -0.65}
+  m_LocalPosition: {x: 0, y: 0.12, z: -1.02}
   m_LocalScale: {x: 0.05, y: 0.701, z: 0.05}
   m_Children: []
   m_Father: {fileID: 6929286130900249721}
@@ -473,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5756660364962663873}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.12, z: -0.65}
+  m_LocalPosition: {x: 0, y: 0.12, z: -1.02}
   m_LocalScale: {x: 0.08, y: 0.7, z: 0.08}
   m_Children: []
   m_Father: {fileID: 6929286130900249721}
@@ -646,7 +646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7012348392894701470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 0.267, z: -2}
+  m_LocalPosition: {x: 0, y: 0.267, z: -2.593}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4988434329471589542}
@@ -739,8 +739,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278727980524903955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.121, z: -0.128}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0.121, z: -0.3}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.7}
   m_Children: []
   m_Father: {fileID: 6929286130900249721}
   m_RootOrder: 4

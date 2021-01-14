@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Bullet : MonoBehaviour
 {
-    public int Power { get; private set; }//威力
-    public float Speed { get; private set; }//弾速
-    public float Range { get; private set; }//最大射程
-    public float EffectiveRange { get; private set; }//有効射程
-    private bool overRange = false;//有効射程外か
-    Vector3 moveDir = Vector3.zero;//移動方向
-    Vector3 startPos;//発射位置
-    private float diffusivity;//拡散率
+    public int Power { get; protected set; }//威力
+    public float Speed { get; protected set; }//弾速
+    public float Range { get; protected set; }//最大射程
+    public float EffectiveRange { get; protected set; }//有効射程
+    protected bool overRange = false;//有効射程外か
+    protected Vector3 moveDir = Vector3.zero;//移動方向
+    protected Vector3 startPos;//発射位置
+    protected float diffusivity;//拡散率
     [SerializeField]
-    GameObject damage;
-    private void Start()
+    protected GameObject damage;
+    protected int startPower;
+    protected void Start()
     {
         startPos = transform.position;
     }
@@ -32,12 +33,23 @@ public class Bullet : MonoBehaviour
         moveDir.y += Random.Range(-diffusivity, diffusivity);
         moveDir.z += Random.Range(-diffusivity, diffusivity);
         Power = weapon.Power;
+        startPower = weapon.Power;
         Speed = weapon.BulletSpeed;
         Range = weapon.Range;
         EffectiveRange = weapon.EffectiveRange;
     }
 
-    void Update()
+    public void Shot(int power, Vector3 pos, Vector3 angle)
+    {
+        transform.localPosition = pos;        
+        moveDir = angle;        
+        Power = power;
+        startPower = power;
+        Speed = 100;
+        Range = 10;
+        EffectiveRange = 10;
+    }
+    private void Update()
     {
         transform.localPosition += moveDir * Speed * Time.deltaTime;//移動処理
 
@@ -58,7 +70,7 @@ public class Bullet : MonoBehaviour
         EffectManager.PlayEffect(EffectID.Hit, transform.position);
         Power -= Defense;
     }
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         UnitParts hitParts = other.GetComponent<UnitParts>();
         if (hitParts != null)
