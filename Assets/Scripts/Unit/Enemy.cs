@@ -24,14 +24,26 @@ public class Enemy : Unit
     private Weapon weapon2 = null;
     public Target Target { get; private set; } = null;
 
-
+    [SerializeField]
+    int enemyType = 0;
     private void Update()
     {
         if (!silhouetteOn && !DestroyBody)
         {
-            //UnitCreate(1, 1, 1, 6, 1, 3, 1);
-            //UnitCreate(4, 9);
-            UnitCreate(5, 3, 10);
+            switch (enemyType)
+            {
+                case 0:
+                    UnitCreate(5, 3, 10);
+                    break;
+                case 1:
+                    UnitCreate(4, 9);
+                    break;
+                case 2:
+                    UnitCreate(0, 3, 3, 8, 3, 2, 1);
+                    break;
+                default:
+                    break;
+            }           
         }
         if (silhouetteOn)
         {

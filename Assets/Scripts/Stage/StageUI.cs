@@ -13,6 +13,7 @@ public class StageUI : MonoBehaviour
     private bool search = false;
     [SerializeField]
     GameObject attackBottons;
+    bool attackBottonsOpen = false;
     [SerializeField]
     GameObject attackCommand;
     [SerializeField]
@@ -70,10 +71,11 @@ public class StageUI : MonoBehaviour
         attackCommand.SetActive(false);
         attackBottons.SetActive(false);
         gameOverView.SetActive(true);
+        attackBottonsOpen = false;
     }
     public void OnClickMove()
     {
-        if (stageData.turnCountTimer <= 0 && !nControl)
+        if (stageData.turnCountTimer <= 0 && !nControl && !stageData.EnemyTurn && !attackBottonsOpen)
         {
             stageData.MoveStart();
             messageWindow.SetActive(true);
@@ -90,6 +92,7 @@ public class StageUI : MonoBehaviour
         {
             stageData.PlayerUnit.MoveFinishSet();
             attackBottons.SetActive(true);
+            attackBottonsOpen = true;
             guide.Clear();
             messageWindow.SetActive(false);
         }
@@ -104,6 +107,7 @@ public class StageUI : MonoBehaviour
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
         attackBottons.SetActive(false);
+        attackBottonsOpen = false;
     }
 
     public void OnClickEnemyMove()
@@ -168,6 +172,7 @@ public class StageUI : MonoBehaviour
             messageWindow.SetActive(false);
             attackCommand.SetActive(false);
             attackBottons.SetActive(false);
+            attackBottonsOpen = false;
             choiceTarget = false;
             search = false;
         }

@@ -60,6 +60,19 @@ public class ParameterPanel : MonoBehaviour
                 legHp.text = "";
             }
         }
+        else
+        {
+            head.fillAmount = 0;
+            headHp.text = "";
+            body.fillAmount = 0;
+            bodyHp.text = "";
+            rArm.fillAmount = 0;
+            rArmHp.text = "";
+            lArm.fillAmount = 0;
+            lArmHp.text = "";
+            leg.fillAmount = 0;
+            legHp.text = "";
+        }
     }
 
     public void SetUnit(Unit unit)
