@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     protected GameObject damage;
     protected int startPower;
+    protected bool nHit = false;
     protected void Start()
     {
         startPos = transform.position;
@@ -45,8 +46,8 @@ public class Bullet : MonoBehaviour
         moveDir = angle;        
         Power = power;
         startPower = power;
-        Speed = 100;
-        Range = 10;
+        Speed = 150;
+        Range = 30;
         EffectiveRange = 10;
     }
     private void Update()
@@ -67,22 +68,28 @@ public class Bullet : MonoBehaviour
 
     public void HitBullet(int Defense)
     {
-        EffectManager.PlayEffect(EffectID.Hit, transform.position);
-        Power -= Defense;
+        if (!nHit)
+        {
+            EffectManager.PlayEffect(EffectID.Hit, transform.position);
+            Power -= Defense;
+        }
     }
     protected void OnTriggerEnter(Collider other)
     {
-        UnitParts hitParts = other.GetComponent<UnitParts>();
-        if (hitParts != null)
+        if (!nHit)
         {
-            if (Power > 0)
+            UnitParts hitParts = other.GetComponent<UnitParts>();
+            if (hitParts != null)
             {
-                GameObject hit = Instantiate(damage);
-                DamageText damageText = hit.GetComponent<DamageText>();
-                damageText.ViewDamege(Power,transform.position);
-                EffectManager.PlayEffect(EffectID.Hit, transform.position);
-                hitParts.Damage(Power);
-                Power -= hitParts.Defense;
+                if (Power > 0)
+                {
+                    GameObject hit = Instantiate(damage);
+                    DamageText damageText = hit.GetComponent<DamageText>();
+                    damageText.ViewDamege(Power, transform.position);
+                    EffectManager.PlayEffect(EffectID.Hit, transform.position);
+                    hitParts.Damage(Power);
+                    Power -= hitParts.Defense;
+                }
             }
         }
     }

@@ -106,6 +106,8 @@ MonoBehaviour:
   detectionRange: 0
   moveSpeed: 1
   haveWeapon: {fileID: 0}
+  explosion: {fileID: 9145434351238493087, guid: f3f57b6624ad677418a9b56763bd2095,
+    type: 3}
 --- !u!54 &8479512989972718847
 Rigidbody:
   m_ObjectHideFlags: 0

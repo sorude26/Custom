@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Obstacle : Unit
 {
+    [SerializeField]
+    GameObject explosion = null;
     private void OnTriggerEnter(Collider other)
     {
         Bullet hitBullet = other.GetComponent<Bullet>();
@@ -19,6 +21,13 @@ public class Obstacle : Unit
         EffectManager.PlayEffect(EffectID.BreakParts, transform.position);
         if (CurrentHp < 0)
         {
+            if (explosion)
+            {
+                GameObject bullet = Instantiate(explosion);
+                ExplosionBullet bom = bullet.GetComponent<ExplosionBullet>();
+                bom.StartBom(Defense/2, transform.position);
+
+            }
             Dead();
             gameObject.SetActive(false);
         }

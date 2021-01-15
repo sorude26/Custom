@@ -42832,7 +42832,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1861027595859642083
 MonoBehaviour:
@@ -42847,5 +42847,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: {fileID: 4671578638102411063, guid: ebc7b8fa4b99ada45b5d2266f125d34d, type: 3}
-  thisBullet: {fileID: 21713365192079208, guid: 728e4a39df6baf944a6e0d1bd8330d59,
+  thisBullet: {fileID: 7612344758654808426, guid: e35a63629c6710d4e8a35dda39732bba,
     type: 3}
+  horizontalBulletCount: 24
