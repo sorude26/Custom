@@ -39,7 +39,7 @@ public class Enemy : Unit
                     UnitCreate(4, 9);
                     break;
                 case 2:
-                    UnitCreate(0, 3, 3, 8, 3, 2, 1);
+                    UnitCreate(2, 2, 2, 6, 2, 6, 2);
                     break;
                 default:
                     break;

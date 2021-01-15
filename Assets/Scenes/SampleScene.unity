@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 80714382}
   - component: {fileID: 80714381}
   m_Layer: 5
-  m_Name: Image
+  m_Name: AttackButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9265,7 +9265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: 60}
+  m_AnchoredPosition: {x: -220, y: 60}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1271271501
@@ -10357,13 +10357,13 @@ MonoBehaviour:
   movePower: 10
   liftingForce: 2
   maxHp: 100
-  startPosX: 10
-  startPosZ: 1
+  startPosX: 7
+  startPosZ: 7
   detectionRange: 50
   moveSpeed: 20
   haveWeapon: {fileID: 0}
   enemyAI: 0
-  enemyType: 0
+  enemyType: 2
 --- !u!54 &1453601080
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11073,7 +11073,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageWindow: {fileID: 886147987}
-  attackBottons: {fileID: 0}
+  attackButtons: {fileID: 80714379}
+  buttonGaredL: {fileID: 278452258}
+  buttonGaredR: {fileID: 1009946895}
   attackCommand: {fileID: 1853677653}
   guide: {fileID: 680098787}
   gameOverView: {fileID: 1738451491}
@@ -11440,7 +11442,7 @@ MonoBehaviour:
   moveSpeed: 20
   haveWeapon: {fileID: 0}
   enemyAI: 0
-  enemyType: 0
+  enemyType: 1
 --- !u!54 &1565951241
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11730,7 +11732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: 60}
+  m_AnchoredPosition: {x: 220, y: 60}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1610659388
@@ -13393,7 +13395,7 @@ MonoBehaviour:
   moveSpeed: 20
   haveWeapon: {fileID: 0}
   enemyAI: 0
-  enemyType: 0
+  enemyType: 1
 --- !u!54 &1794283310
 Rigidbody:
   m_ObjectHideFlags: 0

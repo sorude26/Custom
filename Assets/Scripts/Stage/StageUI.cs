@@ -12,8 +12,12 @@ public class StageUI : MonoBehaviour
     private bool choiceTarget = false;
     private bool search = false;
     [SerializeField]
-    GameObject attackBottons;
-    bool attackBottonsOpen = false;
+    GameObject attackButtons;
+    bool attackButtonsOpen = false;
+    [SerializeField]
+    GameObject buttonGaredL;
+    [SerializeField]
+    GameObject buttonGaredR;
     [SerializeField]
     GameObject attackCommand;
     [SerializeField]
@@ -28,7 +32,9 @@ public class StageUI : MonoBehaviour
        
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
-        attackBottons.SetActive(false);
+        attackButtons.SetActive(false);
+        buttonGaredL.SetActive(false);
+        buttonGaredR.SetActive(false);
         gameOverView.SetActive(false);
     }
 
@@ -69,13 +75,15 @@ public class StageUI : MonoBehaviour
     {
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
-        attackBottons.SetActive(false);
+        attackButtons.SetActive(false);
+        buttonGaredL.SetActive(false);
+        buttonGaredR.SetActive(false);
         gameOverView.SetActive(true);
-        attackBottonsOpen = false;
+        attackButtonsOpen = false;
     }
     public void OnClickMove()
     {
-        if (stageData.turnCountTimer <= 0 && !nControl && !stageData.EnemyTurn && !attackBottonsOpen)
+        if (stageData.turnCountTimer <= 0 && !nControl && !stageData.EnemyTurn && !attackButtonsOpen)
         {
             stageData.MoveStart();
             messageWindow.SetActive(true);
@@ -91,8 +99,8 @@ public class StageUI : MonoBehaviour
         if (stageData.turnCountTimer <= 0 && !nControl)
         {
             stageData.PlayerUnit.MoveFinishSet();
-            attackBottons.SetActive(true);
-            attackBottonsOpen = true;
+            attackButtons.SetActive(true);
+            attackButtonsOpen = true;
             guide.Clear();
             messageWindow.SetActive(false);
         }
@@ -106,8 +114,10 @@ public class StageUI : MonoBehaviour
         guide.Clear();
         messageWindow.SetActive(false);
         attackCommand.SetActive(false);
-        attackBottons.SetActive(false);
-        attackBottonsOpen = false;
+        attackButtons.SetActive(false);
+        buttonGaredL.SetActive(false);
+        buttonGaredR.SetActive(false);
+        attackButtonsOpen = false;
     }
 
     public void OnClickEnemyMove()
@@ -135,6 +145,8 @@ public class StageUI : MonoBehaviour
                     stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.RArmWeapon);
                     guide.AttackWeapon(stageData.PlayerUnit.RArmWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
                 }
+                buttonGaredL.SetActive(false);
+                buttonGaredR.SetActive(true);
             }
         }
     }
@@ -158,6 +170,8 @@ public class StageUI : MonoBehaviour
                     stageData.SetPlayerAttackWeapon(stageData.PlayerUnit.LArmWeapon);
                     guide.AttackWeapon(stageData.PlayerUnit.LArmWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
                 }
+                buttonGaredL.SetActive(true);
+                buttonGaredR.SetActive(false);
             }
         }
     }
@@ -171,8 +185,10 @@ public class StageUI : MonoBehaviour
             stageData.AttackStart();
             messageWindow.SetActive(false);
             attackCommand.SetActive(false);
-            attackBottons.SetActive(false);
-            attackBottonsOpen = false;
+            attackButtons.SetActive(false);
+            buttonGaredL.SetActive(false);
+            buttonGaredR.SetActive(false);
+            attackButtonsOpen = false;
             choiceTarget = false;
             search = false;
         }
