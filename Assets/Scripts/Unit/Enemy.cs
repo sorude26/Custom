@@ -43,7 +43,7 @@ public class Enemy : Unit
                     break;
                 default:
                     break;
-            }           
+            }
         }
         if (silhouetteOn)
         {
@@ -61,6 +61,7 @@ public class Enemy : Unit
                 {
                     MoveFinishSet();
                     attack = true;
+                    CameraControl.Instans.UnitCamera(this);
                 }
                 UnitAngleControl();
                 AttackMood();
@@ -225,6 +226,7 @@ public class Enemy : Unit
                     }
                 }
             }
+            CameraControl.Instans.UnitCameraMove(this);
             search = true;
         }
         if (Target != null)//ターゲットが設定されているならば移動実施
