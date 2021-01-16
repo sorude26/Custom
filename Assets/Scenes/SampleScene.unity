@@ -5604,7 +5604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cb588f39b8bec49bf708278f4b4f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victory: 0
+  victory: 2
+  GoalPositionX: 0
+  GoalPositionY: 0
   subUnit: {fileID: 965185967}
   enemyUnit: {fileID: 2029687745}
   stageUnits: []

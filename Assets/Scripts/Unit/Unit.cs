@@ -625,12 +625,13 @@ public class Unit : MonoBehaviour
                     {
                         Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
                         bodyRotaion = Quaternion.Euler(0, 20, 0);
-                        Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
-                        headRotaion = Quaternion.Euler(0, -20, 0);
+                        //Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
+                        //headRotaion = Quaternion.Euler(0, -20, 0);
                         LArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
                         lArmRotaion = Quaternion.Euler(30, 0, 0);
                         targetDir = targetPos - LArm.ArmParts().transform.position;
                         endRot = Quaternion.LookRotation(targetDir) * p;
+                        Head.transform.rotation = endRot;
                         LArm.ArmParts().transform.rotation = endRot;
                         this.attackWeapon = LArmWeapon;
                     }
@@ -638,12 +639,13 @@ public class Unit : MonoBehaviour
                     {
                         Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
                         bodyRotaion = Quaternion.Euler(0, -20, 0);
-                        Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
-                        headRotaion = Quaternion.Euler(0, 20, 0);
+                        //Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
+                        //headRotaion = Quaternion.Euler(0, 20, 0);
                         RArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
                         rArmRotaion = Quaternion.Euler(30, 0, 0);
                         targetDir = targetPos - RArm.ArmParts().transform.position;
                         endRot = Quaternion.LookRotation(targetDir) * p;
+                        Head.transform.rotation = endRot;
                         RArm.ArmParts().transform.rotation = endRot;
                         this.attackWeapon = RArmWeapon;
                     }

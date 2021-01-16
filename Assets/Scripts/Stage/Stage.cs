@@ -15,6 +15,8 @@ public class Stage : MonoBehaviour
     [SerializeField]
     VictoryConditions victory = VictoryConditions.AllDestroy;
     public bool Victory { get; private set; } = false;
+    [SerializeField] int GoalPositionX = 0;
+    [SerializeField] int GoalPositionY = 0;
     public Player PlayerUnit { get; private set; }
     public Unit subUnit;
     public Enemy enemyUnit;
@@ -86,10 +88,12 @@ public class Stage : MonoBehaviour
                     stageMessage.ViewMessage(5, 2.0f);
                     break;
                 case VictoryConditions.TargetNumberBreak:
-                    stageMessage.ViewMessage(6, 2.0f);
+                    stageMessage.ViewMessage(7, 2.0f);
                     break;
                 case VictoryConditions.TargetBreak:
-                    stageMessage.ViewMessage(7, 2.0f);
+                    stageMessage.ViewMessage(6, 2.0f);
+                    enemyUnit = unitManager.GetEnemy(0);
+                    CameraControl.Instans.UnitCamera(enemyUnit);
                     break;
                 case VictoryConditions.Survive:
                     break;
@@ -283,7 +287,7 @@ public class Stage : MonoBehaviour
         {
             MoveFinish = true;
             PlayerMoveMode = false;
-            turnCountTimer = 2;
+            turnCountTimer = 1;
         }
     }
     public void BattleStart()
@@ -313,6 +317,11 @@ public class Stage : MonoBehaviour
             case VictoryConditions.TargetNumberBreak:
                 break;
             case VictoryConditions.TargetBreak:
+                if (unitManager.GetEnemy(0).DestroyBody && !Victory)
+                {
+                    Victory = true;
+                    stageMessage.ViewMessage(3, 5.0f);
+                }
                 break;
             case VictoryConditions.Survive:
                 break;

@@ -7,7 +7,7 @@ public class StageMessage : MonoBehaviour
 {
     [SerializeField]
     List<GameObject> battleMessage;
-    //０．戦闘開始、１．自軍ターン、２．敵軍ターン、３．勝利条件達成、４．敗北、５．敵の殲滅、６．規定数撃破、７．攻撃目標破壊、８．目標地点への到達
+    //０．戦闘開始、１．自軍ターン、２．敵軍ターン、３．勝利条件達成、４．敗北、５．敵の殲滅、６．攻撃目標破壊、７．規定数撃破、８．目標地点への到達
     [SerializeField]
     GameObject messageBack;
     private float clearScale = 1;
@@ -70,7 +70,7 @@ public class StageMessage : MonoBehaviour
         }
     }
     /// <summary>
-    /// 指定されたメッセージを表示する、０．戦闘開始、１．自軍ターン、２．敵軍ターン、３．勝利条件達成、４．敗北、５．敵の殲滅、６．規定数撃破、７．攻撃目標破壊、８．目標地点への到達
+    /// 指定されたメッセージを表示する、０．戦闘開始、１．自軍ターン、２．敵軍ターン、３．勝利条件達成、４．敗北、５．敵の殲滅、６．攻撃目標破壊、７．規定数撃破、８．目標地点への到達
     /// </summary>
     /// <param name="i">対象メッセージ番号</param>
     /// <param name="time">表示時間</param>
@@ -83,6 +83,7 @@ public class StageMessage : MonoBehaviour
         messageBack.GetComponent<Image>().color = new Color(1, 1, 1, clearScale);
         battleMessage[viewTarget].GetComponent<Image>().color = new Color(1, 1, 1, clearScale);
         viweTime = time;
+        viwe = false;
         startViwe = true;
     }
 }
