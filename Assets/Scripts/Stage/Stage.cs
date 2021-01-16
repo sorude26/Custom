@@ -31,7 +31,7 @@ public class Stage : MonoBehaviour
     public bool EnemyTurn { get; set; }
     public bool EnemyAction { get; set; }
 
-    public float turnCountTimer = 0;
+    public float turnCountTimer = 2;
     public int PlayerUnitCount { get; private set; } = 0;
     public int PlayerDestroyCount { get; set; } = 0;
     public int EnemyUnitCount { get; private set; } = 0;
@@ -47,6 +47,7 @@ public class Stage : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        turnCountTimer = 2;
     }
 
     void Start()
@@ -74,7 +75,7 @@ public class Stage : MonoBehaviour
 
     void Update()
     {
-        if (!start && PlayerUnit.Body)
+        if (!start && PlayerUnit.Body && turnCountTimer <= 0)
         {
             start = true;
             panelP.SetUnit(PlayerUnit);
@@ -82,18 +83,18 @@ public class Stage : MonoBehaviour
             switch (victory)
             {
                 case VictoryConditions.AllDestroy:
-                    stageMessage.ViewMessage(5, 1.0f);
+                    stageMessage.ViewMessage(5, 2.0f);
                     break;
                 case VictoryConditions.TargetNumberBreak:
-                    stageMessage.ViewMessage(6, 1.0f);
+                    stageMessage.ViewMessage(6, 2.0f);
                     break;
                 case VictoryConditions.TargetBreak:
-                    stageMessage.ViewMessage(7, 1.0f);
+                    stageMessage.ViewMessage(7, 2.0f);
                     break;
                 case VictoryConditions.Survive:
                     break;
                 case VictoryConditions.GoalPosition:
-                    stageMessage.ViewMessage(8, 1.0f);
+                    stageMessage.ViewMessage(8, 2.0f);
                     break;
                 default:
                     break;
