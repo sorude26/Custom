@@ -39,7 +39,7 @@ public class Enemy : Unit
                     UnitCreate(4, 9);
                     break;
                 case 2:
-                    UnitCreate(2, 2, 2, 6, 2, 6, 2);
+                    UnitCreate(2, 2, 2, 3, 2, 6, 2);
                     break;
                 default:
                     break;
@@ -52,6 +52,10 @@ public class Enemy : Unit
                 if (enemyAI == EnemyAI.Attacker)
                 {
                     ActionTypeAttacker();
+                }
+                else if (enemyAI == EnemyAI.Sniper)
+                {
+                    ActionTypeSniper();
                 }
                 if (moveMood)
                 {
@@ -92,6 +96,7 @@ public class Enemy : Unit
             if (Target != null && !attackMode)//ターゲットが存在する場合に攻撃
             {
                 gameStage.panelP.SetUnit(Target.TargetUnit);
+                gameStage.BattleStart();
                 Vector3 dir = Target.TargetUnit.transform.position - transform.position;
                 if (dir.sqrMagnitude <= weapon1.Range * weapon1.Range)
                 {
@@ -128,6 +133,8 @@ public class Enemy : Unit
                 ActionNow = false;
                 gameStage.EnemyAction = true;
                 gameStage.turnCountTimer = 2;
+                gameStage.BattleEnd();
+                CameraControl.Instans.UnitCameraMove(this);
             }
         }
     }
@@ -241,5 +248,186 @@ public class Enemy : Unit
         {
             attack = true;
         }
+    }
+    private void ActionTypeSniper()
+    {
+        if (!search)
+        {
+            gameMap.StartSearch2(this);
+            foreach (Map.MapDate mapDate in gameMap.MoveList2)
+            {
+                if (mapDate.movePoint > 0)
+                {
+                    bool unitOn = false;
+                    if (Body.unitType == UnitType.Helicopter)
+                    {
+                        foreach (Unit unit in gameStage.stageUnits)
+                        {
+                            if (mapDate.PosX == unit.CurrentPosX && mapDate.PosZ == unit.CurrentPosZ && !unit.DestroyBody)
+                            {
+                                unitOn = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!unitOn)
+                    {
+                        int number = 0;
+                        foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
+                        {
+                            if (!target.DestroyBody)
+                            {
+                                float point = 0;
+                                Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
+                                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                                {
+                                    float distance = dir.sqrMagnitude;
+                                    weapon1 = null;
+                                    weapon2 = null;
+                                    if (Body.unitType == UnitType.Human)
+                                    {
+                                        if (LArm.CurrentPartsHp > 0)
+                                        {
+                                            weapon1 = LArmWeapon;
+                                            if (RArm.CurrentPartsHp > 0)
+                                            {
+                                                weapon2 = RArmWeapon;
+                                            }
+                                            if (weapon2 != null)
+                                            {
+                                                if (weapon1.EffectiveRange < weapon2.EffectiveRange)
+                                                {
+                                                    weapon1 = RArmWeapon;
+                                                    weapon2 = LArmWeapon;
+                                                }
+                                            }
+                                        }
+                                        else if (RArm.CurrentPartsHp > 0)
+                                        {
+                                            weapon1 = RArmWeapon;
+                                        }
+                                    }
+                                    else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
+                                    {
+                                        weapon1 = LArmWeapon;
+                                    }
+                                    if (weapon1 != null)
+                                    {
+                                        if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
+                                        {
+                                            point += 20000;
+                                        }
+                                        point += mapDate.movePoint * 1000;//移動量が少ない場合に高得点
+                                        point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
+                                        point -= number;//ターゲットの登録順で得点に差
+                                        point -= distance;//距離が短いほど高得点
+                                        if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                                        {
+                                            if (point > Target.TargetPoint)
+                                            {
+                                                Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                                        }
+                                    }
+                                }
+                            }
+                            number++;
+                        }
+                    }
+                }
+            }
+            CameraControl.Instans.UnitCameraMove(this);
+            search = true;
+        }
+        if (Target != null)//ターゲットが設定されているならば移動実施
+        {
+            if (!move)
+            {
+                UnitMove2(gameMap.MoveList2, Target.PosX, Target.PosZ);
+                move = true;
+            }
+        }
+        else
+        {
+            attack = true;
+        }
+    }
+    private void ActionTypeGuardian()
+    {
+        if (!search)
+        {
+
+
+            int number = 0;
+            foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
+            {
+                if (!target.DestroyBody)
+                {
+                    float point = 0;
+                    Vector3 dir = target.transform.position - transform.position;
+                    if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                    {
+                        float distance = dir.sqrMagnitude;
+                        weapon1 = null;
+                        weapon2 = null;
+                        if (Body.unitType == UnitType.Human)
+                        {
+                            if (LArm.CurrentPartsHp > 0)
+                            {
+                                weapon1 = LArmWeapon;
+                                if (RArm.CurrentPartsHp > 0)
+                                {
+                                    weapon2 = RArmWeapon;
+                                }
+                                if (weapon2 != null)
+                                {
+                                    if (weapon1.EffectiveRange < weapon2.EffectiveRange)
+                                    {
+                                        weapon1 = RArmWeapon;
+                                        weapon2 = LArmWeapon;
+                                    }
+                                }
+                            }
+                            else if (RArm.CurrentPartsHp > 0)
+                            {
+                                weapon1 = RArmWeapon;
+                            }
+                        }
+                        else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
+                        {
+                            weapon1 = LArmWeapon;
+                        }
+                        if (weapon1 != null)
+                        {
+                            if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
+                            {
+                                point += 10000;
+                            }
+                            point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
+                            point -= distance;//距離が短いほど高得点
+                            if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                            {
+                                if (point > Target.TargetPoint)
+                                {
+                                    Target = new Target(target, point, target.CurrentPosX, target.CurrentPosZ);
+                                }
+                            }
+                            else
+                            {
+                                Target = new Target(target, point, target.CurrentPosX, target.CurrentPosZ);
+                            }
+                        }
+                    }
+                }
+                number++;
+            }
+            CameraControl.Instans.UnitCameraMove(this);
+            search = true;
+        }
+            attack = true;
     }
 }

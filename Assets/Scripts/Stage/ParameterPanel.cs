@@ -16,6 +16,18 @@ public class ParameterPanel : MonoBehaviour
     [SerializeField] Image leg = null;
     [SerializeField] Text legHp = null;
     Unit unit = null;
+    [SerializeField] RectTransform rect;
+    bool up;
+    bool down;
+    bool end;
+    float posY = 0;
+    float startPosX;
+    float startPosY;
+    private void Start()
+    {
+        startPosX = rect.transform.position.x;
+        startPosY = rect.transform.position.y;
+    }
     void Update()
     {
         if (unit != null && !unit.DestroyBody)
@@ -43,7 +55,7 @@ public class ParameterPanel : MonoBehaviour
                 rArmHp.text = "";
                 lArm.fillAmount = 0;
                 lArmHp.text = "";
-                leg.fillAmount =0;
+                leg.fillAmount = 0;
                 legHp.text = "";
             }
             else if (unit.Body.unitType == UnitType.Tank)
@@ -73,10 +85,70 @@ public class ParameterPanel : MonoBehaviour
             leg.fillAmount = 0;
             legHp.text = "";
         }
+        if (up)
+        {
+            if (posY < 200 && !end)
+            {
+                posY += 800 * Time.deltaTime;
+                if (posY >= 200)
+                {
+                    posY = 200;
+                }
+            }
+            else if (end)
+            {
+               // posY -= 800 * Time.deltaTime;
+               // if (posY <= 0)
+               // {
+                    posY = 0;
+                    end = false;
+                    up = false;
+               // }
+            }
+            rect.transform.position = new Vector3(startPosX, startPosY + posY, 0);
+        }
+        if (down)
+        {
+            if (posY > -200 && !end)
+            {
+                posY -= 800 * Time.deltaTime;
+                if (posY <= -200)
+                {
+                    posY = -200;
+                }
+            }
+            else if (end)
+            {
+                //posY += 800 * Time.deltaTime;
+               // if (posY >= 0)
+               // {
+                    posY = 0;
+                    end = false;
+                    down = false;
+               // }
+            }
+            rect.transform.position = new Vector3(startPosX, startPosY + posY, 0);
+        }
+        if (!up && !down && end)
+        {
+            end = false;
+        }
     }
 
     public void SetUnit(Unit unit)
     {
         this.unit = unit;
+    }
+    public void BattleMoveUp()
+    {
+        up = true;
+    }
+    public void BattleMoveDown()
+    {
+        down = true;
+    }
+    public void BattleEnd()
+    {
+        end = true;
     }
 }

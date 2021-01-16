@@ -29,7 +29,8 @@ public class UnitParts : MonoBehaviour
     protected int armorDefense = 0;
     public int ArmorPoint { get; protected set; }
     public int ArmorDefense { get; protected set; }
-
+    [SerializeField]
+    protected string partsGuide = "";
     public Unit Owner { get; protected set; }
     protected bool partsBreak = false;
     protected void StartSet()
@@ -81,6 +82,7 @@ public class UnitParts : MonoBehaviour
         Destroy(this);
     }
     public string GetName() { return partsName; }
+    public string GetGuide() { return partsGuide; }
     public int GetMaxHP() { return partsHp; }
     public int GetWeight() { return weight; }
     public int GetDefense() { return defense; }

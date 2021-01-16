@@ -1223,7 +1223,7 @@ MonoBehaviour:
   armorPoint: 10
   armorDefense: 8
   unitOutput: 500
-  liftingForce: 2
+  liftingForce: 1
   headParts: {fileID: 4848896098888723434}
   rArmParts: {fileID: 4848896098612324701}
   lArmParts: {fileID: 4848896098027071935}

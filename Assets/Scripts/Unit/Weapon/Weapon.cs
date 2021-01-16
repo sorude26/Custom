@@ -47,6 +47,8 @@ public class Weapon : MonoBehaviour
     public bool AttackNow { get; private set; }
     private float attackTimer = 0;
     protected Unit owner;
+    [SerializeField]
+    protected string weaponGuide = "";
     protected void Start()
     {
         Type = weaponType;
@@ -189,6 +191,7 @@ public class Weapon : MonoBehaviour
         Destroy(this);
     }
     public string GetName() { return weaponName; }
+    public string GetGuide() { return weaponGuide; }
     public int GetWeight() { return weight; }
     public float GetRange() { return range; }
     public float GetEffectiveRange() { return effectiveRange; }

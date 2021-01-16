@@ -899,7 +899,7 @@ public class Unit : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);//パーツ生成時に向きを合わせる
             GameObject body = Instantiate(partsList.GetBodyObject(bodyID));
-            body.transform.position = transform.position;
+            body.transform.position = transform.position + new Vector3(0, 6, 0);
             body.transform.parent = transform;
             Body = body.GetComponent<PartsBody>();
             Body.SetOwner(this);
@@ -1213,7 +1213,7 @@ public class Unit : MonoBehaviour
             {
                 if (bomCount == 0 && deadTimer > 0.6f)
                 {
-                    if(Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(2, 0, 0); }
+                    if (Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(2, 0, 0); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
                     bomCount = 1;
                     deadTimer = 0;
@@ -1240,7 +1240,7 @@ public class Unit : MonoBehaviour
                     deadTimer = 0;
                 }
                 else if (bomCount == 4 && deadTimer > 0.4f)
-                {                    
+                {
                     EffectManager.PlayEffect(EffectID.Explosion, transform.position);
                     bomCount = 5;
                     deadTimer = 0;

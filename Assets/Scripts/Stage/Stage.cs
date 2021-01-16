@@ -132,6 +132,8 @@ public class Stage : MonoBehaviour
 
     public void PlayerTurnSystem()
     {
+        BattleEnd();
+        CameraControl.Instans.UnitCameraMove(PlayerUnit);
         if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory)
         {
             PlayerUnitCount = 0;
@@ -245,6 +247,7 @@ public class Stage : MonoBehaviour
         {
             if (!MoveNow)
             {
+                BattleStart();
                 PlayerUnit.Attack();
                 PlayerUnit.TargetShot(PlayerUnit.TargetEnemy, PlayerAttackWeapon);
                 UnitMoveFinish();
@@ -262,7 +265,16 @@ public class Stage : MonoBehaviour
             turnCountTimer = 2;
         }
     }
-
+    public void BattleStart()
+    {
+        panelP.BattleMoveUp();
+        panelE.BattleMoveDown();
+    }
+    public void BattleEnd()
+    {
+        panelP.BattleEnd();
+        panelE.BattleEnd();
+    }
     private float victoryTimer = 0;
     public bool viewGameOver;
     private void VictoryConditionsCheck()

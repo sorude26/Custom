@@ -47,7 +47,7 @@ public class StageUI : MonoBehaviour
                 if (count == 0)
                 {
                     count = 1;
-                    CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+                    CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
                     TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
                     guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
                 }
@@ -201,7 +201,7 @@ public class StageUI : MonoBehaviour
         {
             count = stageData.PlayerUnit.GetEnemies().Count - 1;
         }
-        CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+        CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
     }
@@ -212,7 +212,7 @@ public class StageUI : MonoBehaviour
         {
             count = 1;
         }
-        CameraControl.Instans.UnitCamera(stageData.PlayerUnit.GetTarget(count));
+        CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
     }

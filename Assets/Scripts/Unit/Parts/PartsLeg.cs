@@ -71,7 +71,7 @@ public class PartsLeg : UnitParts
 
     public MoveType GetMoveType() { return moveType; }
     public int GetMovePower() { return movePower; }
-
+    public float GetLiftingForce() { return liftingForce; }
     public GameObject GetLegJointL1() { return legJointL1; }
     public GameObject GetLegJointL2() { return legJointL2; }
     public GameObject GetLegJointR1() { return legJointR1; }

@@ -51,7 +51,7 @@ public class PartsBody : UnitParts
         {
             if (partsBreak)
             {
-                posYtransform -= 2.0f * Time.deltaTime;
+                posYtransform -= 3.0f * Time.deltaTime;
                 transform.localPosition = new Vector3(0, posY + posYtransform, 0);
                 transform.Rotate(new Vector3(0, 0.5f, 0.02f));
             }
@@ -78,6 +78,7 @@ public class PartsBody : UnitParts
     public GameObject GetBodyHand() { return bodyHand; }
     public int GetUnitOutput() { return unitOutput; }
     public float GetLiftingForce() { return liftingForce; }
+    public int GetMovePower() { return movePower; }
     public Transform GetCameraPos() { return cameraPos; }
     public void SetCameraPos(Transform pos) { cameraPos = pos; }
 }
