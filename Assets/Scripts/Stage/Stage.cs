@@ -132,8 +132,7 @@ public class Stage : MonoBehaviour
 
     public void PlayerTurnSystem()
     {
-        BattleEnd();
-        CameraControl.Instans.UnitCameraMove(PlayerUnit);
+        BattleEnd();        
         if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory)
         {
             PlayerUnitCount = 0;

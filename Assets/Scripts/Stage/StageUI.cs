@@ -96,7 +96,7 @@ public class StageUI : MonoBehaviour
     }
     public void OnClickAttack()
     {
-        if (stageData.turnCountTimer <= 0 && !nControl)
+        if (stageData.turnCountTimer <= 0 && !nControl && stageData.PlayerUnit.LArm.CurrentPartsHp > 0 && stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
         {
             stageData.PlayerUnit.MoveFinishSet();
             attackButtons.SetActive(true);

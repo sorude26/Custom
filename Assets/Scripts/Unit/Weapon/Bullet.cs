@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     protected GameObject damage;
     protected int startPower;
-    protected bool nHit = false;
+
     protected void Start()
     {
         startPos = transform.position;
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     /// <param name="weapon">発射武器</param>
     /// <param name="pos">発射位置</param>
     /// <param name="angle">発射方向</param>
-    public void StartMove(Weapon weapon,Vector3 pos,Vector3 angle)
+    public void StartMove(Weapon weapon, Vector3 pos, Vector3 angle)
     {
         transform.localPosition = pos;
         diffusivity = weapon.Diffusivity;
@@ -42,8 +42,8 @@ public class Bullet : MonoBehaviour
 
     public void Shot(int power, Vector3 pos, Vector3 angle)
     {
-        transform.localPosition = pos;        
-        moveDir = angle;        
+        transform.localPosition = pos;
+        moveDir = angle;
         Power = power;
         startPower = power;
         Speed = 150;
@@ -68,28 +68,23 @@ public class Bullet : MonoBehaviour
 
     public void HitBullet(int Defense)
     {
-        if (!nHit)
-        {
-            EffectManager.PlayEffect(EffectID.Hit, transform.position);
-            Power -= Defense;
-        }
+
+        EffectManager.PlayEffect(EffectID.Hit, transform.position);
+        Power -= Defense;
     }
     protected void OnTriggerEnter(Collider other)
     {
-        if (!nHit)
+        UnitParts hitParts = other.GetComponent<UnitParts>();
+        if (hitParts != null)
         {
-            UnitParts hitParts = other.GetComponent<UnitParts>();
-            if (hitParts != null)
+            if (Power > 0)
             {
-                if (Power > 0)
-                {
-                    GameObject hit = Instantiate(damage);
-                    DamageText damageText = hit.GetComponent<DamageText>();
-                    damageText.ViewDamege(Power, transform.position);
-                    EffectManager.PlayEffect(EffectID.Hit, transform.position);
-                    hitParts.Damage(Power);
-                    Power -= hitParts.Defense;
-                }
+                GameObject hit = Instantiate(damage);
+                DamageText damageText = hit.GetComponent<DamageText>();
+                damageText.ViewDamege(Power, transform.position);
+                EffectManager.PlayEffect(EffectID.Hit, transform.position);
+                hitParts.Damage(Power);
+                Power -= hitParts.Defense;
             }
         }
     }

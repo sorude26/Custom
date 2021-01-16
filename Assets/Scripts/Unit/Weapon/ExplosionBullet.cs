@@ -14,14 +14,7 @@ public class ExplosionBullet : Bullet
     {
         transform.localPosition += moveDir * Speed * Time.deltaTime;//移動処理
         Vector3 dir = startPos - transform.localPosition;//移動量計算
-        if (dir.sqrMagnitude <= 10 * 10)
-        {
-            nHit = true;
-        }
-        else if (nHit)
-        {
-            nHit = false;
-        }
+        
         if (dir.sqrMagnitude >= Range * Range || explosion)//射程範囲外で消去
         {
             Destroy(gameObject);
