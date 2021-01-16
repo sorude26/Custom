@@ -77,7 +77,28 @@ public class Stage : MonoBehaviour
         if (!start && PlayerUnit.Body)
         {
             start = true;
-            panelP.SetUnit(PlayerUnit);            
+            panelP.SetUnit(PlayerUnit);
+            turnCountTimer = 2;
+            switch (victory)
+            {
+                case VictoryConditions.AllDestroy:
+                    stageMessage.ViewMessage(5, 1.0f);
+                    break;
+                case VictoryConditions.TargetNumberBreak:
+                    stageMessage.ViewMessage(6, 1.0f);
+                    break;
+                case VictoryConditions.TargetBreak:
+                    stageMessage.ViewMessage(7, 1.0f);
+                    break;
+                case VictoryConditions.Survive:
+                    break;
+                case VictoryConditions.GoalPosition:
+                    stageMessage.ViewMessage(8, 1.0f);
+                    break;
+                default:
+                    break;
+            }
+            
         }
         if (turnCountTimer > 0)
         {
