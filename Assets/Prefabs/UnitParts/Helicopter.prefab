@@ -229,11 +229,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5349048700519252751}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 10, z: 10}
+  m_LocalPosition: {x: 55, y: 50, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7978540530879848757}
-  m_RootOrder: 1
+  m_Father: {fileID: 7978540531057162010}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7978540530044702540
 GameObject:
@@ -755,7 +755,6 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 5342384792465138723}
-  - {fileID: 8508049192432528099}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -778,6 +777,7 @@ MonoBehaviour:
   armorParts: {fileID: 551806831400738888}
   armorPoint: 10
   armorDefense: 3
+  partsGuide: 
   unitOutput: 500
   liftingForce: 5
   headParts: {fileID: 7978540532007504500}
@@ -924,7 +924,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 4.4, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8508049192432528099}
   m_Father: {fileID: 5342384792465138723}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

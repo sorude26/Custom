@@ -59,7 +59,7 @@ public class Map : MonoBehaviour
     GameObject panel = null;
     private void Awake()
     {
-        data.Type = StageType.Factory1;
+        data.Type = StageType.Mountain1;
         MapCreate2(maxX, maxZ);
         //MoveList = new List<List<MapDate>>(MapDates);
         MoveList2 = new List<MapDate>(MapDates2);
