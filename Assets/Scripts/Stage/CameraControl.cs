@@ -21,7 +21,8 @@ public class CameraControl : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(-10, 20, -30);
+        // transform.position = new Vector3(-10, 20, -30);
+        transform.position = new Vector3(-10, 90, -30);
         Vector3 lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
         Vector3 targetDir = lockOnPos - transform.position;
         transform.rotation = Quaternion.LookRotation(targetDir);
