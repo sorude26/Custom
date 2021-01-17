@@ -1783,11 +1783,12 @@ MonoBehaviour:
   armorParts: {fileID: 0}
   armorPoint: 0
   armorDefense: 0
+  partsGuide: 
   moveType: 0
-  movePower: 12
+  movePower: 18
   moveSpeed: 60
   partsHigh: {fileID: 7568215102794769646}
-  liftingForce: 1
+  liftingForce: 8
   legJointL1: {fileID: 249743343536797259}
   legJointL2: {fileID: 8921895087085368769}
   legJointR1: {fileID: 6854867541989262901}

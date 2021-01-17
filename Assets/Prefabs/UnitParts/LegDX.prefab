@@ -2827,11 +2827,12 @@ MonoBehaviour:
   armorParts: {fileID: 2109497985775811752}
   armorPoint: 150
   armorDefense: 10
+  partsGuide: 
   moveType: 0
   movePower: 15
   moveSpeed: 30
   partsHigh: {fileID: 8425611874022236523}
-  liftingForce: 3
+  liftingForce: 4
   legJointL1: {fileID: 2205988580432278478}
   legJointL2: {fileID: 1272165998054492028}
   legJointR1: {fileID: 4812970758271435696}

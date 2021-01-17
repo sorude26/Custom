@@ -779,7 +779,7 @@ MonoBehaviour:
   armorDefense: 3
   partsGuide: 
   unitOutput: 500
-  liftingForce: 5
+  liftingForce: 20
   headParts: {fileID: 7978540532007504500}
   rArmParts: {fileID: 7978540531283696687}
   lArmParts: {fileID: 7978540531325488827}
