@@ -27269,7 +27269,7 @@ MonoBehaviour:
   detectionRange: 50
   moveSpeed: 20
   haveWeapon: {fileID: 0}
-  enemyAI: 0
+  enemyAI: 1
   enemyType: 2
 --- !u!54 &1453601080
 Rigidbody:
@@ -29815,7 +29815,7 @@ MonoBehaviour:
   detectionRange: 50
   moveSpeed: 20
   haveWeapon: {fileID: 0}
-  enemyAI: 0
+  enemyAI: 1
   enemyType: 1
 --- !u!54 &1565951241
 Rigidbody:
@@ -33555,7 +33555,7 @@ MonoBehaviour:
   detectionRange: 50
   moveSpeed: 20
   haveWeapon: {fileID: 0}
-  enemyAI: 0
+  enemyAI: 1
   enemyType: 1
 --- !u!54 &1794283310
 Rigidbody:

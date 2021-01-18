@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyAI
+public enum AllyAI
 {
     Attacker,
     Sniper,
@@ -11,8 +10,9 @@ public enum EnemyAI
     Commander,
     Object,
 }
-public class Enemy : Unit
+public class Ally : Unit
 {
+
     [SerializeField]
     EnemyAI enemyAI = EnemyAI.Attacker;
     public bool ActionNow { get; private set; } = false;
@@ -27,7 +27,9 @@ public class Enemy : Unit
 
     [SerializeField]
     int enemyType = 0;
-    private void Update()
+
+
+    void Update()
     {
         if (!silhouetteOn && !DestroyBody)
         {
@@ -53,23 +55,13 @@ public class Enemy : Unit
         {
             if (ActionNow)
             {
-                switch (enemyAI)
+                if (enemyAI == EnemyAI.Attacker)
                 {
-                    case EnemyAI.Attacker:
-                        ActionTypeAttacker();
-                        break;
-                    case EnemyAI.Sniper:
-                        ActionTypeSniper();
-                        break;
-                    case EnemyAI.Guardian:
-                        break;
-                    case EnemyAI.Commander:
-                        break;
-                    case EnemyAI.Object:
-                        attack = true;
-                        break;
-                    default:
-                        break;
+                    ActionTypeAttacker();
+                }
+                else if (enemyAI == EnemyAI.Sniper)
+                {
+                    ActionTypeSniper();
                 }
                 if (moveMood)
                 {
@@ -442,6 +434,6 @@ public class Enemy : Unit
             CameraControl.Instans.UnitCameraMove(this);
             search = true;
         }
-            attack = true;
+        attack = true;
     }
 }

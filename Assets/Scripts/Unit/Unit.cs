@@ -939,6 +939,15 @@ public class Unit : MonoBehaviour
             silhouetteOn = true;
         }
     }
+    public void UnitCreate(int objectID)
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);//パーツ生成時に向きを合わせる
+        GameObject body = Instantiate(partsList.GetBodyObject(objectID));
+        body.transform.position = transform.position;
+        body.transform.parent = transform;
+        Body = body.GetComponent<PartsBody>();
+        Body.SetOwner(this);
+    }
     /// <summary>
     /// パーツデータを反映
     /// </summary>
