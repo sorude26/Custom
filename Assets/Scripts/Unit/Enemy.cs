@@ -87,6 +87,7 @@ public class Enemy : Unit
             if (DestroyBody)
             {
                 gameStage.EnemyDestroyCount++;
+                gameStage.RewardAdd(PartsTotalPlice);
                 silhouetteOn = false;
             }
         }

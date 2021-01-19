@@ -45,7 +45,9 @@ public class Stage : MonoBehaviour
     public ParameterPanel panelE;
     [SerializeField]
     StageMessage stageMessage;
-   public Weapon PlayerAttackWeapon { get; private set; } = null;
+    public Weapon PlayerAttackWeapon { get; private set; } = null;
+    public int StageReward { get; private set; } = 0;
+    public int LossReward { get; private set; } = 0;
     private void Awake()
     {
         Instance = this;
@@ -103,7 +105,7 @@ public class Stage : MonoBehaviour
                 default:
                     break;
             }
-            
+
         }
         if (turnCountTimer > 0)
         {
@@ -158,7 +160,7 @@ public class Stage : MonoBehaviour
 
     public void PlayerTurnSystem()
     {
-        BattleEnd();        
+        BattleEnd();
         if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory)
         {
             PlayerUnitCount = 0;
@@ -177,11 +179,11 @@ public class Stage : MonoBehaviour
         {
             PlayerUnit.MoveFinishSet();
             PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
-            TargetCursor.instance.SetCursor(PlayerUnit);            
+            TargetCursor.instance.SetCursor(PlayerUnit);
             CameraControl.Instans.UnitCamera(PlayerUnit);
             panelP.SetUnit(PlayerUnit);
             PlayerUnit.ActionTurn = true;
-            PlayerUnitCount++; 
+            PlayerUnitCount++;
             if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory)
             {
                 PlayerUnitCount = 0;
@@ -337,7 +339,7 @@ public class Stage : MonoBehaviour
             stageMessage.ViewMessage(4, 5.0f);
         }
         if (Victory)
-        {            
+        {
             if (!viewGameOver)
             {
                 victoryTimer += 1.0f * Time.deltaTime;
@@ -354,5 +356,13 @@ public class Stage : MonoBehaviour
         PlayerAttackWeapon = attackWeapon;
     }
 
-
+    public void RewardAdd(int money)
+    {
+        StageReward += money;
+    }
+    
+    public void LossAdd(int money)
+    {
+        LossReward += money;
+    }
 }

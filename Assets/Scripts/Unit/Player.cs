@@ -42,6 +42,7 @@ public class Player : Unit
             if (DestroyBody)
             {
                 gameStage.PlayerDestroyCount++;
+                gameStage.LossAdd(PartsTotalPlice);
                 silhouetteOn = false;
             }
         }

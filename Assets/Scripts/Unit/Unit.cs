@@ -83,6 +83,7 @@ public class Unit : MonoBehaviour
     public Weapon LArmWeapon { get; protected set; }
     public Weapon RArmWeapon { get; protected set; }
     protected bool silhouetteOn = false;
+    public int PartsTotalPlice { get; protected set; }
     public bool DestroyBody { get; protected set; } = false;
     protected float deadTimer = 0;
     protected int bomCount = 0;
@@ -892,6 +893,7 @@ public class Unit : MonoBehaviour
             RArmWeapon.SetOwner(this);
             RArmWeapon.TransFormParts(RArm.GetGrip().position);
             StartUnitAngle();//向きを戻す
+            PartsTotalPlice = Body.GetPrice() + Head.GetPrice() + LArm.GetPrice() + RArm.GetPrice() + Leg.GetPrice() + LArmWeapon.GetPrice() + RArmWeapon.GetPrice();
             silhouetteOn = true;
         }
     }
@@ -911,6 +913,7 @@ public class Unit : MonoBehaviour
             LArmWeapon.SetOwner(this);
             LArmWeapon.TransFormParts(Body.GetBodyHand().transform.position);
             StartUnitAngle();//向きを戻す
+            PartsTotalPlice = Body.GetPrice() + LArmWeapon.GetPrice();
             silhouetteOn = true;
         }
     }
@@ -936,6 +939,7 @@ public class Unit : MonoBehaviour
             LArmWeapon.SetOwner(this);
             LArmWeapon.TransFormParts(Body.GetBodyHand().transform.position);
             StartUnitAngle();//向きを戻す
+            PartsTotalPlice = Body.GetPrice() + Head.GetPrice() + LArmWeapon.GetPrice();
             silhouetteOn = true;
         }
     }
@@ -947,6 +951,9 @@ public class Unit : MonoBehaviour
         body.transform.parent = transform;
         Body = body.GetComponent<PartsBody>();
         Body.SetOwner(this);
+        StartUnitAngle();//向きを戻す
+        PartsTotalPlice = Body.GetPrice();
+        silhouetteOn = true;
     }
     /// <summary>
     /// パーツデータを反映
