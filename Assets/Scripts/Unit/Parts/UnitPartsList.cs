@@ -17,6 +17,8 @@ public class UnitPartsList : MonoBehaviour
     List<GameObject> LegObjectList;
     [SerializeField]
     List<GameObject> weaponObjectList;
+    [SerializeField]
+    List<GameObject> BuildingObjectList;
 
     private void Awake()
     {
@@ -35,5 +37,5 @@ public class UnitPartsList : MonoBehaviour
     public GameObject GetRArmObject(int i) { return RArmObjectList[i]; }
     public GameObject GetLegObject(int i) { return LegObjectList[i]; }
     public GameObject GetWeaponObject(int i) { return weaponObjectList[i]; }
-
+    public GameObject GetBuilOject(int i) { return BuildingObjectList[i]; }
 }
