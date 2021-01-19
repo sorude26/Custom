@@ -33,6 +33,7 @@ public class UnitParts : MonoBehaviour
     protected string partsGuide = "";
     public Unit Owner { get; protected set; }
     protected bool partsBreak = false;
+   
     protected void StartSet()
     {
         MaxPartsHp = partsHp;
@@ -88,4 +89,6 @@ public class UnitParts : MonoBehaviour
     public int GetDefense() { return defense; }
     public int GetArmorPoint() { return armorPoint; }
     public int GetArmorDefense() { return armorDefense; }
+    [SerializeField] protected int price = 0;
+    public int GetPrice() { return price; }
 }
