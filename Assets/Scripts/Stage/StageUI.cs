@@ -88,6 +88,7 @@ public class StageUI : MonoBehaviour
             stageData.MoveStart();
             messageWindow.SetActive(true);
             CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit);
+            stageData.PlayerUnit.SearchScale();
         }
     }
     public void OnClickMoveCancel()

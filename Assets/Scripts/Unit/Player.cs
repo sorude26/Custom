@@ -8,6 +8,8 @@ public class Player : Unit
     [SerializeField]
     int unitID = 0;
     public GameObject mark;
+    public GameObject searchScale;
+    private bool searchOn = false;
     public List<Unit> TargetEnemies { get; private set; } = new List<Unit>();
     public Unit TargetEnemy { get; set; }
     private float actionTimer = 0;
@@ -15,6 +17,7 @@ public class Player : Unit
     {
         if (!silhouetteOn && !DestroyBody)
         {
+            searchScale.SetActive(false);
             //UnitCreate(1, 1, 1, 5, 1, 5, 0);
             UnitCreate(GameManager.HeadID[unitID], GameManager.BodyID[unitID], GameManager.LArmID[unitID],
                 GameManager.WeaponLID[unitID], GameManager.RArmID[unitID], GameManager.WeaponRID[unitID], GameManager.LegID[unitID]);
@@ -28,7 +31,7 @@ public class Player : Unit
             if (gameStage.MoveFinish && !moveMood && !attackMode && ActionTurn)//移動終了で位置を保存
             {
                 actionTimer += Time.deltaTime;
-                if (actionTimer >1)
+                if (actionTimer > 0.5f)
                 {
                     MoveFinishSet();
                     gameStage.MoveFinish = false;
@@ -36,6 +39,11 @@ public class Player : Unit
                     actionTimer = 0;
                     ActionTurn = false;
                     gameStage.PlayerTurnSystem();
+                    if (searchOn)
+                    {
+                        searchOn = false;
+                        searchScale.SetActive(false);
+                    }
                 }
             }
             UnitAngleControl();
@@ -44,6 +52,11 @@ public class Player : Unit
                 gameStage.PlayerDestroyCount++;
                 gameStage.LossAdd(PartsTotalPlice);
                 silhouetteOn = false;
+            }
+            if (attackMode && searchOn)
+            {
+                searchOn = false;
+                searchScale.SetActive(false);
             }
         }
         PartsMotion();
@@ -70,6 +83,13 @@ public class Player : Unit
                 instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);
             }
         }       
+    }
+
+    public void SearchScale()
+    {
+        searchScale.SetActive(true);
+        searchScale.transform.localScale = new Vector3(DetectionRange * 2, Body.GetBodyCentrer().position.y, DetectionRange * 2);
+        searchOn = true;
     }
 
     public void SearchTarget()

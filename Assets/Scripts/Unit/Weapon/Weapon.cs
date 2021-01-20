@@ -75,6 +75,7 @@ public class Weapon : MonoBehaviour
                     BulletShot();
                     weaponTrigger = false;
                     owner.ShotCameraShake(20);
+                    attackTimer = 1.0f;
                     break;
                 case WeaponType.MachineGun:
                     MachineGunShot();
@@ -140,6 +141,7 @@ public class Weapon : MonoBehaviour
             {
                 shotStart = false;
                 weaponTrigger = false;
+                attackTimer = 1.0f;
             }
         }
     }
@@ -150,6 +152,7 @@ public class Weapon : MonoBehaviour
             BulletShot();
         }
         owner.ShotCameraShake(20);
+        attackTimer = 1.0f;
         weaponTrigger = false;
     }
     private void MachineShotGunShot()
@@ -180,6 +183,7 @@ public class Weapon : MonoBehaviour
             {
                 shotStart = false;
                 weaponTrigger = false;
+                attackTimer = 1.0f;
             }
         }
     }
