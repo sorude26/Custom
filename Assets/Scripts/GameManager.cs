@@ -30,6 +30,18 @@ public class GameManager : MonoBehaviour
             case 1:
                 SceneManager.LoadScene("CustomizeScene");
                 break;
+            case 2:
+                SceneManager.LoadScene("StageSelect");
+                break;
+            case 3:
+                SceneManager.LoadScene("BaseScene");
+                break;
+            case 4:
+                SceneManager.LoadScene("BattleResult");
+                break;
+            case 5:
+                SceneManager.LoadScene("Title");
+                break;
             default:
                 break;
         }
