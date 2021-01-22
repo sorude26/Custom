@@ -140,4 +140,9 @@ public class StageData : MonoBehaviour
         }
         return Level;
     }
+
+    public void GetData()
+    {
+
+    }
 }

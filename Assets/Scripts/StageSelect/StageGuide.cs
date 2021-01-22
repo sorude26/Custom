@@ -7,8 +7,10 @@ public class StageGuide : MonoBehaviour
     [SerializeField]
     private int StageCode = 0;
 
+    [SerializeField]
+    StageData stageData;
     public void OnClickGuide()
     {
-
+        stageData.GetData();
     }
 }
