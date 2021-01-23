@@ -22,6 +22,8 @@ public class SortieUI : MonoBehaviour
     GameObject soriteGurd;
     [SerializeField]
     StageData stageData;
+    [SerializeField]
+    UnitPriceCalculator calculator;
     private bool readySorite = false;
     private int choiceUnit = 0;
     private int soritePos = 0;
@@ -31,11 +33,11 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit1()
     {
-
+        choiceUnit = 0;
     }
     public void OnClickline1()
     {
-
+        soritePos = 0;
     }
     public void OnClickSorit()
     {
