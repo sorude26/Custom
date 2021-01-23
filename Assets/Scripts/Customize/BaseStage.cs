@@ -49,31 +49,31 @@ public class BaseStage : MonoBehaviour
         {
             if (partsList.GetPartsHeadCount() > partsNumber)
             {
-                GameManager.HeadID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].HeadID = partsNumber;
             }
             if (partsList.GetPartsBodyCount() > partsNumber)
             {
-                GameManager.BodyID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].BodyID = partsNumber;
             }
             if (partsList.GetPartsLArmCount() > partsNumber)
             {
-                GameManager.LArmID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].LArmID = partsNumber;
             }
             if (partsList.GetWeaponCount() > partsNumber)
             {
-                GameManager.WeaponLID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].WeaponLID = partsNumber;
             }
             if (partsList.GetPartsRArmCount() > partsNumber)
             {
-                GameManager.RArmID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].RArmID = partsNumber;
             }
             if (partsList.GetWeaponCount() > partsNumber)
             {
-                GameManager.WeaponRID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].WeaponRID = partsNumber;
             }
             if (partsList.GetPartsLegCount() > partsNumber)
             {
-                GameManager.LegID[SetUpUnit] = partsNumber;
+                GameManager.unitDatas[SetUpUnit].LegID = partsNumber;
             }
             ResetBuild();
             partsNumber++;
@@ -144,23 +144,23 @@ public class BaseStage : MonoBehaviour
     }
     private void FirstSet()
     {
-        HeadID = GameManager.HeadID[SetUpUnit];
-        BodyID = GameManager.BodyID[SetUpUnit];
-        LArmID = GameManager.LArmID[SetUpUnit];
-        WeaponLID = GameManager.WeaponLID[SetUpUnit];
-        RArmID = GameManager.RArmID[SetUpUnit];
-        WeaponRID = GameManager.WeaponRID[SetUpUnit];
-        LegID = GameManager.LegID[SetUpUnit];
+        HeadID = GameManager.unitDatas[SetUpUnit].HeadID;
+        BodyID = GameManager.unitDatas[SetUpUnit].BodyID;
+        LArmID = GameManager.unitDatas[SetUpUnit].LArmID;
+        WeaponLID = GameManager.unitDatas[SetUpUnit].WeaponLID;
+        RArmID = GameManager.unitDatas[SetUpUnit].RArmID;
+        WeaponRID = GameManager.unitDatas[SetUpUnit].WeaponRID;
+        LegID = GameManager.unitDatas[SetUpUnit].LegID;
     }
     public void FinishBuild()
     {
-        GameManager.HeadID[SetUpUnit] = HeadID;
-        GameManager.BodyID[SetUpUnit] = BodyID;
-        GameManager.LArmID[SetUpUnit] = LArmID;
-        GameManager.WeaponLID[SetUpUnit] = WeaponLID;
-        GameManager.RArmID[SetUpUnit] = RArmID;
-        GameManager.WeaponRID[SetUpUnit] = WeaponRID;
-        GameManager.LegID[SetUpUnit] = LegID;
+        GameManager.unitDatas[SetUpUnit].HeadID = HeadID;
+        GameManager.unitDatas[SetUpUnit].BodyID = BodyID;
+        GameManager.unitDatas[SetUpUnit].LArmID = LArmID;
+        GameManager.unitDatas[SetUpUnit].WeaponLID = WeaponLID;
+        GameManager.unitDatas[SetUpUnit].RArmID = RArmID;
+        GameManager.unitDatas[SetUpUnit].WeaponRID = WeaponRID;
+        GameManager.unitDatas[SetUpUnit].LegID = LegID;
         GameManager.Instance.SceneChange(0);
     }
     public void ResetBuild()
@@ -181,13 +181,13 @@ public class BaseStage : MonoBehaviour
     {
         if (SetUpUnit != i)
         {
-            GameManager.HeadID[SetUpUnit] = HeadID;
-            GameManager.BodyID[SetUpUnit] = BodyID;
-            GameManager.LArmID[SetUpUnit] = LArmID;
-            GameManager.WeaponLID[SetUpUnit] = WeaponLID;
-            GameManager.RArmID[SetUpUnit] = RArmID;
-            GameManager.WeaponRID[SetUpUnit] = WeaponRID;
-            GameManager.LegID[SetUpUnit] = LegID;
+            GameManager.unitDatas[SetUpUnit].HeadID = HeadID;
+            GameManager.unitDatas[SetUpUnit].BodyID = BodyID;
+            GameManager.unitDatas[SetUpUnit].LArmID = LArmID;
+            GameManager.unitDatas[SetUpUnit].WeaponLID = WeaponLID;
+            GameManager.unitDatas[SetUpUnit].RArmID = RArmID;
+            GameManager.unitDatas[SetUpUnit].WeaponRID = WeaponRID;
+            GameManager.unitDatas[SetUpUnit].LegID = LegID;
             SetUpUnit = i;
             ResetBuild();
             int j = i + 1;

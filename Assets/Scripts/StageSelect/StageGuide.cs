@@ -6,8 +6,19 @@ public class StageGuide : MonoBehaviour
 {
     [SerializeField]    
     StageID stageCode;
+    private void Start()
+    {
+        if (!GameManager.Instance.GetStageFlag(stageCode))
+        {
+
+        }
+    }
     public void OnClickGuide()
     {
-        StageDataGuide.Instance.WritingGuide(stageCode);
+        StageSelectUI.Instance.WritingGuide(stageCode);
+    }
+    public void OnClickSortie()
+    {
+        StageSelectUI.Instance.OpenMessage(stageCode);
     }
 }

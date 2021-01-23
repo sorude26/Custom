@@ -14,6 +14,7 @@ public enum StageType
 
 public enum StageID
 {
+    Stage0,
     Stage1,
     Stage2,
     Stage3,
@@ -23,8 +24,10 @@ public class StageData : MonoBehaviour
     public StageType Type { get; set; }
     public float Level { get; private set; }
     public Map.MapType MapTypeData { get; private set; }
+    string data;
     public int PlayerNumbers { get; private set; }
     public int EnemyNumber { get; private set; }
+    
     public Map.MapType StageDataGet(int x, int z)
     {
         MapTypeData = Map.MapType.Asphalt;
@@ -139,21 +142,5 @@ public class StageData : MonoBehaviour
                 break;
         }
         return Level;
-    }
-
-    public string GetData(StageID ID)
-    {
-        switch (ID)
-        {
-            case StageID.Stage1:
-                break;
-            case StageID.Stage2:
-                break;
-            case StageID.Stage3:
-                break;
-            default:
-                break;
-        }
-        return null;
     }
 }

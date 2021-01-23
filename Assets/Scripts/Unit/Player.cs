@@ -19,8 +19,8 @@ public class Player : Unit
         {
             searchScale.SetActive(false);
             //UnitCreate(1, 1, 1, 5, 1, 5, 0);
-            UnitCreate(GameManager.HeadID[unitID], GameManager.BodyID[unitID], GameManager.LArmID[unitID],
-                GameManager.WeaponLID[unitID], GameManager.RArmID[unitID], GameManager.WeaponRID[unitID], GameManager.LegID[unitID]);
+            UnitCreate(GameManager.unitDatas[unitID].HeadID, GameManager.unitDatas[unitID].BodyID, GameManager.unitDatas[unitID].LArmID,
+                GameManager.unitDatas[unitID].WeaponLID, GameManager.unitDatas[unitID].RArmID, GameManager.unitDatas[unitID].WeaponRID, GameManager.unitDatas[unitID].LegID);
         }
         if (silhouetteOn)
         {

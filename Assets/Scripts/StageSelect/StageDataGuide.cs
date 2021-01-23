@@ -5,25 +5,26 @@ using UnityEngine.UI;
 
 public class StageDataGuide : MonoBehaviour
 {
-    public static StageDataGuide Instance { get; private set; } 
     [SerializeField]
     Text guideText;
-    [SerializeField]
-    StageData stageData;
-
-    void Start()
-    {
-        Instance = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void WritingGuide(StageID ID)
     {
-        stageData.GetData(ID);
+        switch (ID)
+        {
+            case StageID.Stage0:
+                guideText.text = "1";
+                break;
+            case StageID.Stage1:
+                guideText.text = "2";
+                break;
+            case StageID.Stage2:
+                guideText.text = "3";
+                break;
+            case StageID.Stage3:
+                guideText.text = "4";
+                break;
+            default:
+                break;
+        }
     }
 }

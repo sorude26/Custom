@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public static int[] HeadID { get; set; } = new int[5];
-    public static int[] BodyID { get; set; } = new int[5];
-    public static int[] LArmID { get; set; } = new int[5];
-    public static int[] WeaponLID { get; set; } = new int[5];
-    public static int[] RArmID { get; set; } = new int[5];
-    public static int[] WeaponRID { get; set; } = new int[5];
-    public static int[] LegID { get; set; } = new int[5];
-
-    int count = 0;
+    public class PlayerUnitData
+    {
+        public int HeadID { get; set; }
+        public int BodyID { get; set; } 
+        public int LArmID { get; set; } 
+        public int WeaponLID { get; set; }
+        public int RArmID { get; set; }
+        public int WeaponRID { get; set; }
+        public int LegID { get; set; }
+    }
+    public static PlayerUnitData[] unitDatas = new PlayerUnitData[5];
+    public StageID StageCode { get; private set; }
+    public bool[] StageFlag { get; private set; }
     private void Awake()
     {
         Instance = this;
@@ -45,5 +49,14 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void SetStageID(StageID ID)
+    {
+        StageCode = ID;
+    }
+    public bool GetStageFlag(StageID ID)
+    {
+        return false;
     }
 }
