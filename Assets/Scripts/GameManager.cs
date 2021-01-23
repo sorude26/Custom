@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         public int LegID { get; set; }
     }
     public static PlayerUnitData[] unitDatas = new PlayerUnitData[5];
+    public static PlayerUnitData[] sortieUnit = new PlayerUnitData[5];
     public StageID StageCode { get; private set; }
     public bool[] StageFlag { get; private set; }
     private void Awake()

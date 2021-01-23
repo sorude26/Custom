@@ -24,10 +24,6 @@ public class StageData : MonoBehaviour
     public StageType Type { get; set; }
     public float Level { get; private set; }
     public Map.MapType MapTypeData { get; private set; }
-    string data;
-    public int PlayerNumbers { get; private set; }
-    public int EnemyNumber { get; private set; }
-    
     public Map.MapType StageDataGet(int x, int z)
     {
         MapTypeData = Map.MapType.Asphalt;
@@ -142,5 +138,64 @@ public class StageData : MonoBehaviour
                 break;
         }
         return Level;
+    }
+
+    public int GetPlayerNumber(StageID ID)
+    {
+        int i = 0;
+        switch (ID)
+        {
+            case StageID.Stage0:
+                i = 3;
+                break;
+            case StageID.Stage1:
+                break;
+            case StageID.Stage2:
+                break;
+            case StageID.Stage3:
+                break;
+            default:
+                break;
+        }
+        return i;
+    }
+    public int GetEnemyNumber(StageID ID)
+    {
+        int i = 0;
+        switch (ID)
+        {
+            case StageID.Stage0:
+                i = 4;
+                break;
+            case StageID.Stage1:
+                break;
+            case StageID.Stage2:
+                break;
+            case StageID.Stage3:
+                break;
+            default:
+                break;
+        }
+        return i;
+    }
+
+    public string GetStageName(StageID ID)
+    {
+        string name = "";
+        switch (ID)
+        {
+            case StageID.Stage0:
+                name = "訓練場";
+                break;
+            case StageID.Stage1:
+                break;
+            case StageID.Stage2:
+                break;
+            case StageID.Stage3:
+                break;
+            default:
+                break;
+        }
+        return name;
     }
 }
