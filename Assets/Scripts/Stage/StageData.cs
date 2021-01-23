@@ -141,8 +141,19 @@ public class StageData : MonoBehaviour
         return Level;
     }
 
-    public void GetData()
+    public string GetData(StageID ID)
     {
-
+        switch (ID)
+        {
+            case StageID.Stage1:
+                break;
+            case StageID.Stage2:
+                break;
+            case StageID.Stage3:
+                break;
+            default:
+                break;
+        }
+        return null;
     }
 }

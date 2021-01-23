@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class StageGuide : MonoBehaviour
 {
-    [SerializeField]
-    private int StageCode = 0;
-
-    [SerializeField]
-    StageData stageData;
+    [SerializeField]    
+    StageID stageCode;
     public void OnClickGuide()
     {
-        stageData.GetData();
+        StageDataGuide.Instance.WritingGuide(stageCode);
     }
 }
