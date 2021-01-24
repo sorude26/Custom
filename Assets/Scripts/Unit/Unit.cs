@@ -304,11 +304,11 @@ public class Unit : MonoBehaviour
     }
 
     /// <summary>
-    /// 十字範囲の移動可能箇所を調べる
+    /// 十字方向の移動確認
     /// </summary>
-    /// <param name="x">X軸現在地</param>
-    /// <param name="z">Z軸現在地</param>
+    /// <param name="p">現在座標</param>
     /// <param name="movePower">移動力</param>
+    /// <param name="moveList">移動範囲リスト</param>
     protected void SearchCross2(int p, int movePower, List<Map.MapDate> moveList)
     {
         if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
@@ -331,13 +331,13 @@ public class Unit : MonoBehaviour
             }
         }
     }
+    
     /// <summary>
     /// 対象座標の確認
     /// </summary>
-    /// <param name="x">対象X軸</param>
-    /// <param name="z">対象Z軸</param>
+    /// <param name="p">対象座標</param>
     /// <param name="movePower">移動力</param>
-    /// <param name="currentLevel">現在地高度</param>
+    /// <param name="currentLevel">現在高度</param>
     /// <param name="moveList">移動範囲リスト</param>
     /// <param name="moveCost">移動前座標の移動コスト</param>
     protected void MoveSearchPos2(int p, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
@@ -370,7 +370,7 @@ public class Unit : MonoBehaviour
         }
     }
     /// <summary>
-    /// 向き変更
+    /// 4方向向き変更
     /// </summary>
     protected void UnitAngleControl()
     {
@@ -397,7 +397,7 @@ public class Unit : MonoBehaviour
         }
     }
     /// <summary>
-    /// 向きリセット
+    /// 本体向きリセット
     /// </summary>
     protected void StartUnitAngle()
     {
@@ -421,9 +421,12 @@ public class Unit : MonoBehaviour
         }
         ResetPartsAngle();
     }
+    /// <summary>
+    /// 各パーツの向きリセット
+    /// </summary>
     protected void ResetPartsAngle()
     {
-        if (silhouetteOn)//パーツ向きリセット
+        if (silhouetteOn)
         {
             if (Body.unitType == UnitType.Human)
             {
@@ -470,6 +473,9 @@ public class Unit : MonoBehaviour
     protected bool attackNow = false;
     protected float attackTimer = 0;
     protected Weapon attackWeapon = null;
+    /// <summary>
+    /// 攻撃動作制御
+    /// </summary>
     protected void AttackSystem()
     {
         if (attackMode)

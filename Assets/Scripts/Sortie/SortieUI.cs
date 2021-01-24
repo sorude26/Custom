@@ -19,7 +19,10 @@ public class SortieUI : MonoBehaviour
     List<GameObject> choiceUnitGurd;
     [SerializeField]
     List<GameObject> choiceUnitMark;
+    [SerializeField]
     GameObject soriteGurd;
+    [SerializeField]
+    GameObject soriteMessage;
     [SerializeField]
     StageData stageData;
     [SerializeField]
@@ -40,6 +43,10 @@ public class SortieUI : MonoBehaviour
         soritePos = 0;
     }
     public void OnClickSorit()
+    {
+        soriteMessage.SetActive(false);
+    }
+    public void Cancel()
     {
 
     }
