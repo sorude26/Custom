@@ -22,7 +22,7 @@ public class SortieUI : MonoBehaviour
     [SerializeField]
     GameObject soriteGurd;
     [SerializeField]
-    GameObject soriteMessage;
+    GameObject changeMessage;
     [SerializeField]
     StageData stageData;
     [SerializeField]
@@ -44,10 +44,21 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickSorit()
     {
-        soriteMessage.SetActive(false);
+        changeMessage.SetActive(false);
     }
     public void Cancel()
     {
 
+    }
+    public void ChangeScene()
+    {
+        if (true)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 }
