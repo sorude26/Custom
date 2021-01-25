@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
         public int WeaponRID { get; set; }
         public int LegID { get; set; }
     }
-    public static PlayerUnitData[] unitDatas = new PlayerUnitData[5];
-    public static PlayerUnitData[] sortieUnit = new PlayerUnitData[5];
+    public static PlayerUnitData[] UnitDatas { get; set; } = new PlayerUnitData[5];
+    public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
     public StageID StageCode { get; private set; }
     public bool[] StageFlag { get; private set; }
     private void Awake()
@@ -59,5 +59,14 @@ public class GameManager : MonoBehaviour
     public bool GetStageFlag(StageID ID)
     {
         return false;
+    }
+    /// <summary>
+    /// 出撃機体設定
+    /// </summary>
+    /// <param name="sortieNumber"></param>
+    /// <param name="setUnitNumber"></param>
+    public void SetSortieUnit(int sortieNumber, int setUnitNumber)
+    {
+        SortieUnit[sortieNumber] = UnitDatas[setUnitNumber];
     }
 }

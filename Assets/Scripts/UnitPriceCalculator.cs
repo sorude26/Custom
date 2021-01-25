@@ -12,7 +12,7 @@ public class UnitPriceCalculator : MonoBehaviour
     public int GetPraice(int unitNumber)
     {
         int price = 0;
-        GameManager.PlayerUnitData unitData = GameManager.unitDatas[unitNumber];
+        GameManager.PlayerUnitData unitData = GameManager.UnitDatas[unitNumber];
         price += unitPartsList.GetHeadObject(unitData.HeadID).GetComponent<PartsHead>().GetPrice();
         price += unitPartsList.GetBodyObject(unitData.BodyID).GetComponent<PartsBody>().GetPrice();
         price += unitPartsList.GetLArmObject(unitData.LArmID).GetComponent<PartsLArm>().GetPrice();

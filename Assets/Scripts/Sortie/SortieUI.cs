@@ -38,27 +38,31 @@ public class SortieUI : MonoBehaviour
     {
         choiceUnit = 0;
     }
+    public void OnClickChoiceUnit2()
+    {
+        choiceUnit = 1;
+    }
     public void OnClickline1()
     {
-        soritePos = 0;
+        soritePos = choiceUnit;
     }
     public void OnClickSorit()
     {
-        changeMessage.SetActive(false);
+        changeMessage.SetActive(true);
     }
     public void Cancel()
     {
-
+        changeMessage.SetActive(false);
     }
     public void ChangeScene()
     {
-        if (true)
+        if (readySorite)
         {
-
+            GameManager.Instance.SceneChange(0);
         }
         else
         {
-
+            GameManager.Instance.SceneChange(2);
         }
     }
 }
