@@ -52,6 +52,19 @@ public class SortieUI : MonoBehaviour
                 guard.SetActive(true);
             }
         }
+        soriteNumber = stageData.GetPlayerNumber(GameManager.Instance.StageCode);
+        foreach (GameObject guard in choiceUnitGuard)
+        {
+            if (soriteNumber > 0)
+            {
+                guard.SetActive(false);
+                soriteNumber--;
+            }
+            else
+            {
+                guard.SetActive(true);
+            }
+        }
     }
     private void ChoiceReset()
     {
@@ -78,7 +91,12 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit2()
     {
-        choiceUnit = 1;
+        if (choiceUnit != 1)
+        {
+            ChoiceReset();
+            choiceUnit = 1;
+            choiceUnitMark[1].SetActive(true);
+        }
     }
     public void OnClickline1()
     {
@@ -89,9 +107,45 @@ public class SortieUI : MonoBehaviour
             soriteline[0].SetActive(false);
         }
     }
+    public void OnClickline2()
+    {
+        if (soritePos != 1)
+        {
+            SoriteLineReset();
+            soritePos = 1;
+            soriteline[1].SetActive(false);
+        }
+    }
+    public void OnClickline3()
+    {
+        if (soritePos != 2)
+        {
+            SoriteLineReset();
+            soritePos = 2;
+            soriteline[2].SetActive(false);
+        }
+    }
+    public void OnClickline4()
+    {
+        if (soritePos != 3)
+        {
+            SoriteLineReset();
+            soritePos = 3;
+            soriteline[3].SetActive(false);
+        }
+    }
+    public void OnClickline5()
+    {
+        if (soritePos != 4)
+        {
+            SoriteLineReset();
+            soritePos = 4;
+            soriteline[4].SetActive(false);
+        }
+    }
     public void OnClickSetSoritUnit()
     {
-        if (choiceUnit >= 0 && soritePos >= 0)
+        if (soritePos >= 0)
         {
             posData[soritePos] = choiceUnit;
         }
