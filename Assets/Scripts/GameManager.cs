@@ -65,8 +65,19 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="sortieNumber"></param>
     /// <param name="setUnitNumber"></param>
-    public void SetSortieUnit(int sortieNumber, int setUnitNumber)
+    public void SetSortieUnit(int[] sortieData)
     {
-        SortieUnit[sortieNumber] = UnitDatas[setUnitNumber];
+        for (int i = 0; i < UnitDatas.Length; i++)
+        {
+            if (sortieData[i] < 0)
+            {
+                SortieUnit[i] = null;
+            }
+            else
+            {
+                SortieUnit[i] = UnitDatas[sortieData[i]];
+            }
+        }
+        SceneChange(0);
     }
 }

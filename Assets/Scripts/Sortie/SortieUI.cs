@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class SortieUI : MonoBehaviour
 {
     [SerializeField]
-    Text StageName;
+    Text stageName;
     [SerializeField]
     Text totalPrice;
     [SerializeField]
-    List<GameObject> soriteUnitGurd;
+    GameObject[] soriteUnitGuard;
     [SerializeField]
-    List<GameObject> soriteline;
+    GameObject[] soriteline;
     [SerializeField]
-    List<GameObject> soritelineGurd;
+    GameObject[] soritelineGuard;
     [SerializeField]
-    List<GameObject> choiceUnitGurd;
+    GameObject[] choiceUnitGuard;
     [SerializeField]
-    List<GameObject> choiceUnitMark;
+    GameObject[] choiceUnitMark;
     [SerializeField]
-    GameObject soriteGurd;
+    GameObject soriteGuard;
     [SerializeField]
     GameObject changeMessage;
     [SerializeField]
@@ -28,15 +28,53 @@ public class SortieUI : MonoBehaviour
     [SerializeField]
     UnitPriceCalculator calculator;
     private bool readySorite = false;
-    private int choiceUnit = 0;
-    private int soritePos = 0;
+    private int choiceUnit = -1;
+    private int soriteNumber = 0;
+    private int soritePos = -1;
+    private int[] posData = new int[5];
     private void Start()
     {
-        soriteGurd.SetActive(true);
+        soriteGuard.SetActive(true);
+        for (int i = 0; i < posData.Length; i++)
+        {
+            posData[i] = -1;
+        }
+        soriteNumber = stageData.GetPlayerNumber(GameManager.Instance.StageCode);
+        foreach (GameObject guard in soritelineGuard)
+        {           
+            if (soriteNumber > 0)
+            {
+                guard.SetActive(false);
+                soriteNumber--;
+            }
+            else
+            {
+                guard.SetActive(true);
+            }
+        }
+    }
+    private void ChoiceReset()
+    {
+        foreach (GameObject item in choiceUnitMark)
+        {
+            item.SetActive(false);
+        }
+    }
+    private void SoriteLineReset()
+    {
+        foreach (GameObject item in soriteline)
+        {
+            item.SetActive(true);
+        }
     }
     public void OnClickChoiceUnit1()
     {
-        choiceUnit = 0;
+        if (choiceUnit != 0)
+        {
+            ChoiceReset();
+            choiceUnit = 0;
+            choiceUnitMark[0].SetActive(true);
+        }
     }
     public void OnClickChoiceUnit2()
     {
@@ -44,25 +82,38 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickline1()
     {
-        soritePos = choiceUnit;
+        if (soritePos != 0)
+        {
+            SoriteLineReset();
+            soritePos = 0;
+            soriteline[0].SetActive(false);
+        }
+    }
+    public void OnClickSetSoritUnit()
+    {
+        if (choiceUnit >= 0 && soritePos >= 0)
+        {
+            posData[soritePos] = choiceUnit;
+        }
     }
     public void OnClickSorit()
     {
         changeMessage.SetActive(true);
     }
-    public void Cancel()
+    public void OnClickCancel()
     {
         changeMessage.SetActive(false);
     }
-    public void ChangeScene()
+    public void OnClickChangeScene()
     {
         if (readySorite)
         {
-            GameManager.Instance.SceneChange(0);
+            GameManager.Instance.SetSortieUnit(posData);
         }
         else
         {
             GameManager.Instance.SceneChange(2);
         }
     }
+
 }

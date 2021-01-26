@@ -19,8 +19,19 @@ public class Player : Unit
         {
             searchScale.SetActive(false);
             //UnitCreate(1, 1, 1, 5, 1, 5, 0);
-            UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
-                GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
+            //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
+            //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
+            if (GameManager.SortieUnit[unitID] != null)
+            {
+                UnitCreate(GameManager.SortieUnit[unitID].HeadID, GameManager.SortieUnit[unitID].BodyID, GameManager.SortieUnit[unitID].LArmID,
+               GameManager.SortieUnit[unitID].WeaponLID, GameManager.SortieUnit[unitID].RArmID, GameManager.SortieUnit[unitID].WeaponRID, GameManager.SortieUnit[unitID].LegID);
+            }
+            else
+            {
+                DestroyBody = true;
+                gameStage.PlayerDestroyCount++;
+                return;
+            }
         }
         if (silhouetteOn)
         {
@@ -47,6 +58,9 @@ public class Player : Unit
                 }
             }
             UnitAngleControl();
+            PartsMotion();
+            DeadMotion();
+            MoveMotion();
             if (DestroyBody)
             {
                 gameStage.PlayerDestroyCount++;
@@ -59,15 +73,15 @@ public class Player : Unit
                 searchScale.SetActive(false);
             }
         }
-        PartsMotion();
-        DeadMotion();
-        MoveMotion();
     }
 
     private void LateUpdate()
     {
-        PartsUpdate();
-        AttackSystem();
+        if (silhouetteOn)
+        {
+            PartsUpdate();
+            AttackSystem();
+        }
     }
     /// <summary>
     /// 移動可能箇所表示
