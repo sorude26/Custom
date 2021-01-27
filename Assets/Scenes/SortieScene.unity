@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 247358227}
   - component: {fileID: 247358226}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: ChoiceButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -710,7 +710,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 247358227}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058468632}
+        m_MethodName: OnClickChoiceUnit3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &247358227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,7 +2031,7 @@ GameObject:
   - component: {fileID: 600670345}
   - component: {fileID: 600670344}
   m_Layer: 5
-  m_Name: Gurd (1)
+  m_Name: Mark1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2168,7 +2179,7 @@ GameObject:
   - component: {fileID: 625450245}
   - component: {fileID: 625450244}
   m_Layer: 5
-  m_Name: Gurd (1)
+  m_Name: Mark4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2755,7 +2766,7 @@ GameObject:
   - component: {fileID: 820119757}
   - component: {fileID: 820119756}
   m_Layer: 5
-  m_Name: Gurd (1)
+  m_Name: Mark5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2985,7 +2996,7 @@ GameObject:
   - component: {fileID: 879394691}
   - component: {fileID: 879394690}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: ChoiceButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3026,7 +3037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3055,7 +3066,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 879394691}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058468632}
+        m_MethodName: OnClickChoiceUnit4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &879394691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3954,7 +3976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1809c363b0a244eb29a5f9dcfc22d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageName: {fileID: 0}
+  stageName: {fileID: 1196059088}
   totalPrice: {fileID: 165296027}
   soriteUnitGuard: []
   soriteline:
@@ -3975,7 +3997,12 @@ MonoBehaviour:
   - {fileID: 1718083612}
   - {fileID: 232250474}
   - {fileID: 615960170}
-  choiceUnitMark: []
+  choiceUnitMark:
+  - {fileID: 600670342}
+  - {fileID: 1896133352}
+  - {fileID: 1750776094}
+  - {fileID: 625450242}
+  - {fileID: 820119754}
   soriteGuard: {fileID: 238012330}
   changeMessage: {fileID: 0}
   stageData: {fileID: 652109149}
@@ -4896,7 +4923,7 @@ GameObject:
   - component: {fileID: 1296097948}
   - component: {fileID: 1296097947}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: ChoiceButton5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4937,7 +4964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4966,7 +4993,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1296097948}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058468632}
+        m_MethodName: OnClickChoiceUnit5
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1296097948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6008,7 +6046,7 @@ GameObject:
   - component: {fileID: 1750776097}
   - component: {fileID: 1750776096}
   m_Layer: 5
-  m_Name: Gurd (1)
+  m_Name: Mark3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6515,7 +6553,7 @@ GameObject:
   - component: {fileID: 1896133355}
   - component: {fileID: 1896133354}
   m_Layer: 5
-  m_Name: Gurd (1)
+  m_Name: Mark2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6664,7 +6702,7 @@ GameObject:
   - component: {fileID: 1923707389}
   - component: {fileID: 1923707388}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ChoiceButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6705,7 +6743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -6734,7 +6772,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1923707389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058468632}
+        m_MethodName: OnClickChoiceUnit1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1923707389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7435,7 +7484,7 @@ GameObject:
   - component: {fileID: 2090638778}
   - component: {fileID: 2090638777}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ChoiceButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7476,7 +7525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -7505,7 +7554,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2090638778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058468632}
+        m_MethodName: OnClickChoiceUnit2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2090638778
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class SortieUI : MonoBehaviour
         {
             item.SetActive(false);
         }
-    }
+    }   
     private void SoriteLineReset()
     {
         foreach (GameObject item in soriteline)
@@ -85,6 +85,7 @@ public class SortieUI : MonoBehaviour
         if (choiceUnit != 0)
         {
             ChoiceReset();
+            SoriteLineReset();
             choiceUnit = 0;
             choiceUnitMark[0].SetActive(true);
         }
@@ -94,8 +95,39 @@ public class SortieUI : MonoBehaviour
         if (choiceUnit != 1)
         {
             ChoiceReset();
+            SoriteLineReset();
             choiceUnit = 1;
             choiceUnitMark[1].SetActive(true);
+        }
+    }
+    public void OnClickChoiceUnit3()
+    {
+        if (choiceUnit != 2)
+        {
+            ChoiceReset();
+            SoriteLineReset();
+            choiceUnit = 2;
+            choiceUnitMark[2].SetActive(true);
+        }
+    }
+    public void OnClickChoiceUnit4()
+    {
+        if (choiceUnit != 3)
+        {
+            ChoiceReset();
+            SoriteLineReset();
+            choiceUnit = 3;
+            choiceUnitMark[3].SetActive(true);
+        }
+    }
+    public void OnClickChoiceUnit5()
+    {
+        if (choiceUnit != 4)
+        {
+            ChoiceReset();
+            SoriteLineReset();
+            choiceUnit = 4;
+            choiceUnitMark[4].SetActive(true);
         }
     }
     public void OnClickline1()
