@@ -141,14 +141,23 @@ public class ParameterPanel : MonoBehaviour
     }
     public void BattleMoveUp()
     {
-        up = true;
+        if (!up)
+        {
+            up = true;
+        }
     }
     public void BattleMoveDown()
     {
-        down = true;
+        if (!down)
+        {
+            down = true;
+        }
     }
     public void BattleEnd()
     {
-        end = true;
+        if (!end)
+        {
+            end = true;
+        }
     }
 }

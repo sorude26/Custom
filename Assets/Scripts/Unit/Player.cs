@@ -13,71 +13,76 @@ public class Player : Unit
     public List<Unit> TargetEnemies { get; private set; } = new List<Unit>();
     public Unit TargetEnemy { get; set; }
     private float actionTimer = 0;
+    private bool nBody = false;
     void Update()
     {
-        if (!silhouetteOn && !DestroyBody)
+        if (!nBody)
         {
-            searchScale.SetActive(false);
-            //UnitCreate(1, 1, 1, 5, 1, 5, 0);
-            //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
-            //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
-            if(GameManager.SortieUnit[unitID].Sortie)
+            if (!silhouetteOn && !DestroyBody)
             {
-                UnitCreate(GameManager.SortieUnit[unitID].HeadID, GameManager.SortieUnit[unitID].BodyID, GameManager.SortieUnit[unitID].LArmID,
-               GameManager.SortieUnit[unitID].WeaponLID, GameManager.SortieUnit[unitID].RArmID, GameManager.SortieUnit[unitID].WeaponRID, GameManager.SortieUnit[unitID].LegID);
-            }
-            else
-            {
-                DestroyBody = true;
-                gameStage.PlayerDestroyCount++;
-                return;
-            }
-        }
-        if (silhouetteOn)
-        {
-            if (moveMood)
-            {
-                UnitMove();
-            }
-            if (gameStage.MoveFinish && !moveMood && !attackMode && ActionTurn)//移動終了で位置を保存
-            {
-                actionTimer += Time.deltaTime;
-                if (actionTimer > 0.5f)
+                searchScale.SetActive(false);
+                //UnitCreate(1, 1, 1, 5, 1, 5, 0);
+                //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
+                //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
+                if (GameManager.SortieUnit[unitID].Sortie)
                 {
-                    MoveFinishSet();
-                    gameStage.MoveFinish = false;
-                    gameStage.turnCountTimer = 2;
-                    actionTimer = 0;
-                    ActionTurn = false;
-                    gameStage.PlayerTurnSystem();
-                    if (searchOn)
-                    {
-                        searchOn = false;
-                        searchScale.SetActive(false);
-                    }
+                    UnitCreate(GameManager.SortieUnit[unitID].HeadID, GameManager.SortieUnit[unitID].BodyID, GameManager.SortieUnit[unitID].LArmID,
+                   GameManager.SortieUnit[unitID].WeaponLID, GameManager.SortieUnit[unitID].RArmID, GameManager.SortieUnit[unitID].WeaponRID, GameManager.SortieUnit[unitID].LegID);
+                }
+                else
+                {
+                    DestroyBody = true;
+                    gameStage.PlayerDestroyCount++;
+                    nBody = true;
+                    return;
                 }
             }
-            UnitAngleControl();
+            if (silhouetteOn)
+            {
+                if (moveMood)
+                {
+                    UnitMove();
+                }
+                if (gameStage.MoveFinish && !moveMood && !attackMode && ActionTurn)//移動終了で位置を保存
+                {
+                    actionTimer += Time.deltaTime;
+                    if (actionTimer > 0.5f)
+                    {
+                        MoveFinishSet();
+                        gameStage.MoveFinish = false;
+                        gameStage.turnCountTimer = 2;
+                        actionTimer = 0;
+                        ActionTurn = false;
+                        gameStage.PlayerTurnSystem();
+                        if (searchOn)
+                        {
+                            searchOn = false;
+                            searchScale.SetActive(false);
+                        }
+                    }
+                }
+                UnitAngleControl();
+                if (DestroyBody)
+                {
+                    gameStage.PlayerDestroyCount++;
+                    gameStage.LossAdd(PartsTotalPlice);
+                    silhouetteOn = false;
+                }
+                if (attackMode && searchOn)
+                {
+                    searchOn = false;
+                    searchScale.SetActive(false);
+                }
+            }
             PartsMotion();
             DeadMotion();
             MoveMotion();
-            if (DestroyBody)
-            {
-                gameStage.PlayerDestroyCount++;
-                gameStage.LossAdd(PartsTotalPlice);
-                silhouetteOn = false;
-            }
-            if (attackMode && searchOn)
-            {
-                searchOn = false;
-                searchScale.SetActive(false);
-            }
         }
     }
 
     private void LateUpdate()
     {
-        if (silhouetteOn)
+        if (!nBody)
         {
             PartsUpdate();
             AttackSystem();
@@ -96,7 +101,7 @@ public class Player : Unit
                 GameObject instance = Instantiate(mark);
                 instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);
             }
-        }       
+        }
     }
 
     public void SearchScale()

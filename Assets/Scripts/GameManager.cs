@@ -79,9 +79,9 @@ public class GameManager : MonoBehaviour
                 SortieUnit[i].Sortie = false;
             }
             else
-            {
-                SortieUnit[i].Sortie = true;
+            {                
                 SortieUnit[i] = UnitDatas[sortieData[i]];
+                SortieUnit[i].Sortie = true;
             }
         }
         SceneChange(0);

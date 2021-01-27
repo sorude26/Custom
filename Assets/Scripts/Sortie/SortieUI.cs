@@ -68,6 +68,10 @@ public class SortieUI : MonoBehaviour
                 guard.SetActive(true);
             }
         }
+        foreach (Text unitData in soriteUnitData)
+        {
+            unitData.text = "";
+        }
     }
     private void ChoiceReset()
     {
@@ -190,11 +194,36 @@ public class SortieUI : MonoBehaviour
                     if (i != soritePos)
                     {
                         posData[i] = posData[soritePos];
+                        if (choiceUnit >= 0)
+                        {
+                            soriteUnitData[i].text = "" + posData[soritePos];
+                        }
+                        else
+                        {
+                            soriteUnitData[i].text = "";
+                        }                        
                         break;
                     }
                 }
             }
             posData[soritePos] = choiceUnit;
+            if (choiceUnit >= 0)
+            {
+                soriteUnitData[soritePos].text = "" + choiceUnit;
+            }
+            else
+            {
+                soriteUnitData[soritePos].text = "";
+            }
+            foreach (var item in posData)
+            {
+                if (item >= 0)
+                {
+                    soriteGuard.SetActive(false);
+                    return;
+                }
+            }
+            soriteGuard.SetActive(true);
         }
     }
     public void OnClickSorit()

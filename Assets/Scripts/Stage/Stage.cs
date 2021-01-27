@@ -70,7 +70,16 @@ public class Stage : MonoBehaviour
             stageUnits.Add(obstacle);
         }
         SetUnitPos();
-        PlayerUnit = unitManager.GetPlayer(0);
+        int i = 0;
+        foreach (var item in GameManager.SortieUnit)
+        {
+            if (item.Sortie)
+            {
+                break;
+            }
+            i++;
+        }
+        PlayerUnit = unitManager.GetPlayer(i);
         PlayerTurn = false;
         EnemyTurn = false;
         TargetCursor.instance.SetCursor(PlayerUnit);
