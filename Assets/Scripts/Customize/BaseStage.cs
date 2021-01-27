@@ -31,6 +31,7 @@ public class BaseStage : MonoBehaviour
     PartsGuide guide;
     private bool gard = false;
     public bool SwithGard { get; set; }
+    GameManager gameManager;
     private void Awake()
     {
         Instance = this;
@@ -161,7 +162,7 @@ public class BaseStage : MonoBehaviour
         GameManager.UnitDatas[SetUpUnit].RArmID = RArmID;
         GameManager.UnitDatas[SetUpUnit].WeaponRID = WeaponRID;
         GameManager.UnitDatas[SetUpUnit].LegID = LegID;
-        GameManager.Instance.SceneChange(0);
+        GameManager.Instance.SceneChange(3);
     }
     public void ResetBuild()
     {

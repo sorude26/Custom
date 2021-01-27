@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public class PlayerUnitData
+    public struct PlayerUnitData
     {
-        public int HeadID { get; set; } = 0;
-        public int BodyID { get; set; } = 0;
-        public int LArmID { get; set; } = 0;
-        public int WeaponLID { get; set; } = 0;
-        public int RArmID { get; set; } = 0;
-        public int WeaponRID { get; set; } = 0;
-        public int LegID { get; set; } = 0;
+        public int HeadID { get; set; }
+        public int BodyID { get; set; }
+        public int LArmID { get; set; }
+        public int WeaponLID { get; set; }
+        public int RArmID { get; set; }
+        public int WeaponRID { get; set; }
+        public int LegID { get; set; }
+        public bool Sortie { get; set; }
     }
     public static PlayerUnitData[] UnitDatas { get; set; } = new PlayerUnitData[5];
     public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
@@ -75,10 +76,11 @@ public class GameManager : MonoBehaviour
         {
             if (sortieData[i] < 0)
             {
-                SortieUnit[i] = null;
+                SortieUnit[i].Sortie = false;
             }
             else
             {
+                SortieUnit[i].Sortie = true;
                 SortieUnit[i] = UnitDatas[sortieData[i]];
             }
         }

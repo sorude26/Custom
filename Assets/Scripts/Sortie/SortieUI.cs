@@ -10,7 +10,7 @@ public class SortieUI : MonoBehaviour
     [SerializeField]
     Text totalPrice;
     [SerializeField]
-    GameObject[] soriteUnitGuard;
+    GameObject[] soriteUnitMark;
     [SerializeField]
     GameObject[] soriteline;
     [SerializeField]
@@ -19,6 +19,8 @@ public class SortieUI : MonoBehaviour
     GameObject[] choiceUnitGuard;
     [SerializeField]
     GameObject[] choiceUnitMark;
+    [SerializeField]
+    Text[] soriteUnitData;
     [SerializeField]
     GameObject soriteGuard;
     [SerializeField]
@@ -76,6 +78,7 @@ public class SortieUI : MonoBehaviour
     }   
     private void SoriteLineReset()
     {
+        soritePos = -1;
         foreach (GameObject item in soriteline)
         {
             item.SetActive(true);
@@ -86,7 +89,7 @@ public class SortieUI : MonoBehaviour
         if (choiceUnit != 0)
         {
             ChoiceReset();
-            SoriteLineReset();
+            SoriteLineReset();            
             choiceUnit = 0;
             choiceUnitMark[0].SetActive(true);
         }
@@ -180,6 +183,17 @@ public class SortieUI : MonoBehaviour
     {
         if (soritePos >= 0)
         {
+            for (int i = 0; i < posData.Length; i++)
+            {
+                if (posData[i] == choiceUnit)
+                {
+                    if (i != soritePos)
+                    {
+                        posData[i] = posData[soritePos];
+                        break;
+                    }
+                }
+            }
             posData[soritePos] = choiceUnit;
         }
     }
