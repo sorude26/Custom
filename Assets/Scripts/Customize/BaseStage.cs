@@ -38,10 +38,10 @@ public class BaseStage : MonoBehaviour
     private void Start()
     {
         partsList = UnitPartsList.Instance;
-        unitNumber.text = "機体番号：" + 1;
-        FirstSet();
+        unitNumber.text = "機体番号：" + 1;        
         guide.Clear();
         SwithGard = true;
+        FirstSet();
     }
     void Update()
     {
@@ -83,9 +83,9 @@ public class BaseStage : MonoBehaviour
     private void LateUpdate()
     {
         if (!silhouetteOn)
-        {
+        {            
             if (!Head)
-            {
+            {               
                 BuildUnit(HeadID, BodyID, LArmID, WeaponLID, RArmID, WeaponRID, LegID);
             }
         }

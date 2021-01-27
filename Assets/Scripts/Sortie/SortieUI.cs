@@ -35,11 +35,12 @@ public class SortieUI : MonoBehaviour
     private void Start()
     {
         soriteGuard.SetActive(true);
+        changeMessage.SetActive(false);
         for (int i = 0; i < posData.Length; i++)
         {
             posData[i] = -1;
         }
-        soriteNumber = stageData.GetPlayerNumber(GameManager.Instance.StageCode);
+        soriteNumber = stageData.GetPlayerNumber(GameManager.StageCode);
         foreach (GameObject guard in soritelineGuard)
         {           
             if (soriteNumber > 0)
@@ -52,7 +53,7 @@ public class SortieUI : MonoBehaviour
                 guard.SetActive(true);
             }
         }
-        soriteNumber = stageData.GetPlayerNumber(GameManager.Instance.StageCode);
+        soriteNumber = stageData.GetPlayerNumber(GameManager.StageCode);
         foreach (GameObject guard in choiceUnitGuard)
         {
             if (soriteNumber > 0)
@@ -185,10 +186,16 @@ public class SortieUI : MonoBehaviour
     public void OnClickSorit()
     {
         changeMessage.SetActive(true);
+        readySorite = true;
     }
     public void OnClickCancel()
     {
         changeMessage.SetActive(false);
+    }
+    public void OnClickReturn()
+    {
+        changeMessage.SetActive(true);
+        readySorite = false;
     }
     public void OnClickChangeScene()
     {

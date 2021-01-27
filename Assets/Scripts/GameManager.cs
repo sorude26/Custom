@@ -8,17 +8,17 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public class PlayerUnitData
     {
-        public int HeadID { get; set; }
-        public int BodyID { get; set; } 
-        public int LArmID { get; set; } 
-        public int WeaponLID { get; set; }
-        public int RArmID { get; set; }
-        public int WeaponRID { get; set; }
-        public int LegID { get; set; }
+        public int HeadID { get; set; } = 0;
+        public int BodyID { get; set; } = 0;
+        public int LArmID { get; set; } = 0;
+        public int WeaponLID { get; set; } = 0;
+        public int RArmID { get; set; } = 0;
+        public int WeaponRID { get; set; } = 0;
+        public int LegID { get; set; } = 0;
     }
     public static PlayerUnitData[] UnitDatas { get; set; } = new PlayerUnitData[5];
     public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
-    public StageID StageCode { get; private set; }
+    public static StageID StageCode { get; private set; }
     public bool[] StageFlag { get; private set; }
     private void Awake()
     {
@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("BattleResult");
                 break;
             case 5:
+                SceneManager.LoadScene("SortieScene");
+                break;
+            case 6:
                 SceneManager.LoadScene("Title");
                 break;
             default:
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
     public void SetStageID(StageID ID)
     {
         StageCode = ID;
+        SceneChange(5);
     }
     public bool GetStageFlag(StageID ID)
     {

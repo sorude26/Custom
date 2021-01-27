@@ -12,6 +12,7 @@ public class StageSelectUI : MonoBehaviour
     GameObject massge;
     [SerializeField]
     List<GameObject> stageList;
+    private bool returnBase = false;
     private void Awake()
     {
         Instance = this;
@@ -29,6 +30,7 @@ public class StageSelectUI : MonoBehaviour
         stageID = ID;
         WritingGuide(ID);
         massge.SetActive(true);
+        returnBase = false;
     }
     public void WritingGuide(StageID ID)
     {
@@ -37,10 +39,23 @@ public class StageSelectUI : MonoBehaviour
     public void OnClickCancel()
     {
         massge.SetActive(false);
+        returnBase = false;
     }
-    public void OnClickSortie()
+    public void OnClickReturnBase()
     {
-        GameManager.Instance.SetStageID(stageID);
+        massge.SetActive(true);
+        returnBase = true;
+    }
+    public void OnClickSceneChange()
+    {
+        if (returnBase)
+        {
+            GameManager.Instance.SceneChange(3);
+        }
+        else
+        {
+            GameManager.Instance.SetStageID(stageID);
+        }       
     }
     public void OnClickStage1()
     {
