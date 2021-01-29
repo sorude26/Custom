@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public struct PlayerUnitData
     {
-        public int HeadID { get; set; }
-        public int BodyID { get; set; }
-        public int LArmID { get; set; }
-        public int WeaponLID { get; set; }
-        public int RArmID { get; set; }
-        public int WeaponRID { get; set; }
-        public int LegID { get; set; }
-        public bool Sortie { get; set; }
+        public int HeadID;
+        public int BodyID;
+        public int LArmID;
+        public int WeaponLID;
+        public int RArmID;
+        public int WeaponRID;
+        public int LegID;
+        public bool Sortie;
     }
     public static PlayerUnitData[] UnitDatas { get; set; } = new PlayerUnitData[5];
     public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
