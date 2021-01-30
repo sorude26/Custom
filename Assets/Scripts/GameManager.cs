@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
     public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
     public static StageID StageCode { get; private set; }
     public bool[] StageFlag { get; private set; }
+    public struct ScoreData
+    {
+        public string StageName;
+        public int StageReward;
+        public int EnemyNumber;
+        public int EnemyReward;
+        public int TotalLoss;
+    }
+    public static ScoreData StageScoreData { get; set; }
     private void Awake()
     {
         Instance = this;

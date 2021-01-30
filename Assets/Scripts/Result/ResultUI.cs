@@ -27,19 +27,16 @@ public class ResultUI : MonoBehaviour
     private void Start()
     {
         sceneChangeButton.SetActive(false);
-        //stageNameText.text = GameManager.Instance.GetStageName()
-        //enemyNumber = GameManager.EnemyNumber;
+        stageNameText.text = GameManager.StageScoreData.StageName;
+        enemyNumber = GameManager.StageScoreData.EnemyNumber;
         stageRewardText.text = "" + 0;
         enemyNumberText.text = "" + enemyNumber;
         enemyRewardText.text = "" + 0;
         totalLossText.text = "" + 0;
         totalRewardText.text = "" + 0;
-        //enemyReward = GameManager.EnemyReward;
-        //stageReward = GameManager.StageReward;
-        //totalLoss = GameManager.TtalLoss;
-        stageReward = 1000;
-        enemyReward = 3000;
-        totalLoss = 800;
+        enemyReward = GameManager.StageScoreData.EnemyReward;
+        stageReward = GameManager.StageScoreData.StageReward;
+        totalLoss = GameManager.StageScoreData.TotalLoss;
         totalReward = stageReward + enemyReward - totalLoss;
     }
 
@@ -80,9 +77,12 @@ public class ResultUI : MonoBehaviour
                 if (scoreTotal > totalReward)
                 {
                     scoreTotal = totalReward;
-                    viewScorefinish = true;
                 }
                 totalRewardText.text = "" + Mathf.Floor(scoreTotal);
+            }
+            else if(!viewScorefinish)
+            {
+                viewScorefinish = true;
             }
         }
         else
