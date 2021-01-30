@@ -400,6 +400,8 @@ MonoBehaviour:
   weight: 400
   weaponName: "\u30D8\u30D3\u30FC\u30A2\u30C3\u30AF\u30B9"
   blade: {fileID: 6247816778349271822}
+  weaponGuide: 
+  price: 150
   meleeType: 0
   damage: {fileID: 4671578638102411063, guid: ebc7b8fa4b99ada45b5d2266f125d34d, type: 3}
 --- !u!1 &2823204608178042289

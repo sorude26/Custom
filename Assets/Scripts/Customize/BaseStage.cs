@@ -32,6 +32,10 @@ public class BaseStage : MonoBehaviour
     private bool gard = false;
     public bool SwithGard { get; set; }
     GameManager gameManager;
+    [SerializeField]
+    UnitPriceCalculator calculator;
+    private int partsTotalPlice;
+    int j = 1;
     private void Awake()
     {
         Instance = this;
@@ -39,7 +43,7 @@ public class BaseStage : MonoBehaviour
     private void Start()
     {
         partsList = UnitPartsList.Instance;
-        unitNumber.text = "機体番号：" + 1;        
+        unitNumber.text = "機体番号：" + j +"\n価格" + calculator.GetPraice(0);
         guide.Clear();
         SwithGard = true;
         FirstSet();
@@ -141,6 +145,8 @@ public class BaseStage : MonoBehaviour
             RArmWeapon = weaponR.GetComponent<Weapon>();
             RArmWeapon.TransFormParts(RArm.GetGrip().position);
             silhouetteOn = true;
+            partsTotalPlice = Body.GetPrice() + Head.GetPrice() + LArm.GetPrice() + RArm.GetPrice() + Leg.GetPrice() + LArmWeapon.GetPrice() + RArmWeapon.GetPrice();
+            unitNumber.text = "機体番号：" + j + "\n価格" + partsTotalPlice;
         }
     }
     private void FirstSet()
@@ -191,8 +197,8 @@ public class BaseStage : MonoBehaviour
             GameManager.UnitDatas[SetUpUnit].LegID = LegID;
             SetUpUnit = i;
             ResetBuild();
-            int j = i + 1;
-            unitNumber.text = "機体番号：" + j;
+            j = i + 1;
+            unitNumber.text = "機体番号：" + j + "\n価格" + calculator.GetPraice(i);
             FirstSet();
         }
     }

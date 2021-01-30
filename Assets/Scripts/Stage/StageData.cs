@@ -198,4 +198,24 @@ public class StageData : MonoBehaviour
         }
         return name;
     }
+
+    public int GetReward(StageID ID)
+    {
+        int reward = 0;
+        switch (ID)
+        {
+            case StageID.Stage0:
+                reward = 500;
+                break;
+            case StageID.Stage1:
+                break;
+            case StageID.Stage2:
+                break;
+            case StageID.Stage3:
+                break;
+            default:
+                break;
+        }
+        return reward;
+    }
 }

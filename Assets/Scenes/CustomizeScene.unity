@@ -3462,6 +3462,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310276470}
   m_CullTransparentMesh: 0
+--- !u!1 &330593732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330593734}
+  - component: {fileID: 330593733}
+  m_Layer: 0
+  m_Name: Calculator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &330593733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330593732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a09979ecf95b2428b85f4961bf507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &330593734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330593732}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 110.9445, y: 50358.582, z: -1.3315501}
+  m_LocalScale: {x: 0.125, y: 100, z: 0.125}
+  m_Children: []
+  m_Father: {fileID: 1569549850}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &330620560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16311,6 +16354,7 @@ MonoBehaviour:
   viewOpen: 0
   unitNumber: {fileID: 890380751}
   guide: {fileID: 1272734736}
+  calculator: {fileID: 330593733}
 --- !u!135 &1569549847
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16381,7 +16425,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 0.01, z: 8}
-  m_Children: []
+  m_Children:
+  - {fileID: 330593734}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

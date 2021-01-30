@@ -15,8 +15,10 @@ public class Stage : MonoBehaviour
     [SerializeField]
     VictoryConditions victory = VictoryConditions.AllDestroy;
     public bool Victory { get; private set; } = false;
-    [SerializeField] int GoalPositionX = 0;
-    [SerializeField] int GoalPositionY = 0;
+    private bool defeat;
+    private bool setData;
+    [SerializeField] int goalPositionX = 0;
+    [SerializeField] int goalPositionY = 0;
     public Player PlayerUnit { get; private set; }
     public Unit subUnit;
     public Enemy enemyUnit;
@@ -28,7 +30,6 @@ public class Stage : MonoBehaviour
     public bool PlayerMoveMode { get; private set; } = false;
     public bool MoveFinish { get; set; } = false;
     public bool MoveNow { get; private set; }
-
     public bool PlayerTurn { get; private set; }
     public bool EnemyTurn { get; set; }
     public bool EnemyAction { get; set; }
@@ -131,12 +132,12 @@ public class Stage : MonoBehaviour
         {
             MoveNow = false;
         }
-        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start && !Victory)
+        if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start && !Victory && !defeat)
         {
             PlayerTurn = true;
             PlayerTurnSystem();
         }
-        if (EnemyTurn && turnCountTimer <= 0 && !Victory)
+        if (EnemyTurn && turnCountTimer <= 0 && !Victory && !defeat)
         {
             if (EnemyAction)
             {
@@ -170,7 +171,7 @@ public class Stage : MonoBehaviour
     public void PlayerTurnSystem()
     {
         BattleEnd();
-        if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory)
+        if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory && !defeat)
         {
             PlayerUnitCount = 0;
             EnemyTurn = true;
@@ -211,7 +212,7 @@ public class Stage : MonoBehaviour
         else
         {
             PlayerUnitCount++;
-            PlayerTurnSystem();
+            PlayerTurnSystem(); 
         }
     }
     /// <summary>
@@ -315,7 +316,7 @@ public class Stage : MonoBehaviour
     public bool viewGameOver;
     private void VictoryConditionsCheck()
     {
-        if (!Victory)
+        if (!defeat && !Victory)
         {
             switch (victory)
             {
@@ -344,13 +345,13 @@ public class Stage : MonoBehaviour
                     break;
             }
         }
-        if (!Victory && PlayerDestroyCount == unitManager.GetPlayerList().Length)
+        if (!defeat && PlayerDestroyCount == unitManager.GetPlayerList().Length)
         {
-            Victory = true;
+            defeat = true;
             Debug.Log("敗北");
             stageMessage.ViewMessage(4, 5.0f);
         }
-        if (Victory)
+        if (defeat && !Victory)
         {
             if (!viewGameOver)
             {
@@ -360,6 +361,24 @@ public class Stage : MonoBehaviour
                     viewGameOver = true;
                 }
             }
+        }
+        if (Victory)
+        {
+            if (!setData && victoryTimer > 10.0f)
+            {
+                GameManager.StageScoreData.StageName = map.data.GetStageName(GameManager.StageCode);
+                GameManager.StageScoreData.StageReward = map.data.GetReward(GameManager.StageCode);
+                GameManager.StageScoreData.EnemyNumber = EnemyDestroyCount;
+                GameManager.StageScoreData.EnemyReward = StageReward;
+                GameManager.StageScoreData.TotalLoss = LossReward;
+                setData = true;
+            }
+            else if (setData)
+            {
+                GameManager.Instance.SceneChange(4);
+                Victory = false;
+            }
+            victoryTimer += 1.0f * Time.deltaTime;
         }
     }
 

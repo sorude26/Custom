@@ -742,6 +742,8 @@ MonoBehaviour:
   weight: 30
   weaponName: "\u30B5\u30D6\u30DE\u30B7\u30F3\u30AC\u30F3"
   blade: {fileID: 0}
+  weaponGuide: 
+  price: 0
 --- !u!1 &7654034885799072905
 GameObject:
   m_ObjectHideFlags: 0

@@ -832,6 +832,8 @@ MonoBehaviour:
   armorParts: {fileID: 3849258013453263149}
   armorPoint: 20
   armorDefense: 2
+  partsGuide: 
+  price: 50
   armParts: {fileID: 5241919623393525797}
   grip: {fileID: 5241919623421666601}
 --- !u!65 &7012260597721705737

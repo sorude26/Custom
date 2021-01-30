@@ -87,10 +87,10 @@ public class ResultUI : MonoBehaviour
         }
         else
         {
-            if (viewButtonTimer < 2)
+            if (viewButtonTimer < 5)
             {
                 viewButtonTimer += Time.deltaTime;
-                if (viewButtonTimer > 2)
+                if (viewButtonTimer > 5)
                 {
                     sceneChangeButton.SetActive(true);
                 }

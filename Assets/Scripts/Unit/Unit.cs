@@ -74,7 +74,6 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected Weapon haveWeapon;
     public int Defense { get; protected set; } = 20;
-
     public PartsHead Head { get; protected set; }
     public PartsBody Body { get; protected set; } = null;
     public PartsLArm LArm { get; protected set; }
@@ -85,6 +84,7 @@ public class Unit : MonoBehaviour
     protected bool silhouetteOn = false;
     public int PartsTotalPlice { get; protected set; }
     public bool DestroyBody { get; protected set; } = false;
+    public bool DestroyUnit { get; protected set; }
     protected float deadTimer = 0;
     protected int bomCount = 0;
     public bool ActionTurn { get; set; }
@@ -172,7 +172,15 @@ public class Unit : MonoBehaviour
         int[] pos = { targetX, targetZ };
         unitMoveList.Add(pos); //目標データ保存
         int p = targetX + (targetZ * gameMap.maxX);
-        SearchCross2(p, moveList[p].movePoint, moveList);
+        if (Body.unitType != UnitType.Helicopter)
+        {
+            SearchCross1(p, moveList[p].movePoint, moveList);
+        }
+        else
+        {
+            SearchCross2(p, moveList[p].movePoint, moveList);
+        }
+        
     }
     /// <summary>
     /// ユニット移動処理
@@ -309,29 +317,50 @@ public class Unit : MonoBehaviour
     /// <param name="p">現在座標</param>
     /// <param name="movePower">移動力</param>
     /// <param name="moveList">移動範囲リスト</param>
+    protected void SearchCross1(int p, int movePower, List<Map.MapDate> moveList)
+    {
+        if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
+        {
+            if (gameMap.MoveList2[p].PosZ > 0 && gameMap.MoveList2[p].PosZ < gameMap.maxZ)
+            {
+                MoveSearchPos(p - gameMap.maxX, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+            if (gameMap.MoveList2[p].PosZ >= 0 && gameMap.MoveList2[p].PosZ < gameMap.maxZ - 1)
+            {
+                MoveSearchPos(p + gameMap.maxX, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+            if (gameMap.MoveList2[p].PosX > 0 && gameMap.MoveList2[p].PosX < gameMap.maxX)
+            {
+                MoveSearchPos(p - 1, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+            if (gameMap.MoveList2[p].PosX >= 0 && gameMap.MoveList2[p].PosX < gameMap.maxX - 1)
+            {
+                MoveSearchPos(p + 1, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+            }
+        }
+    }
     protected void SearchCross2(int p, int movePower, List<Map.MapDate> moveList)
     {
         if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
         {
             if (gameMap.MoveList2[p].PosZ > 0 && gameMap.MoveList2[p].PosZ < gameMap.maxZ)
             {
-                MoveSearchPos2(p - gameMap.maxX, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+                MoveSearchPos(p - gameMap.maxX, movePower, moveList[p].Level, moveList);
             }
             if (gameMap.MoveList2[p].PosZ >= 0 && gameMap.MoveList2[p].PosZ < gameMap.maxZ - 1)
             {
-                MoveSearchPos2(p + gameMap.maxX, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+                MoveSearchPos(p + gameMap.maxX, movePower, moveList[p].Level, moveList);
             }
             if (gameMap.MoveList2[p].PosX > 0 && gameMap.MoveList2[p].PosX < gameMap.maxX)
             {
-                MoveSearchPos2(p - 1, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+                MoveSearchPos(p - 1, movePower, moveList[p].Level, moveList);
             }
             if (gameMap.MoveList2[p].PosX >= 0 && gameMap.MoveList2[p].PosX < gameMap.maxX - 1)
             {
-                MoveSearchPos2(p + 1, movePower, moveList[p].Level, moveList, gameMap.MovePoint(gameMap.MapDates2[p].MapType));
+                MoveSearchPos(p + 1, movePower, moveList[p].Level, moveList);
             }
         }
     }
-    
     /// <summary>
     /// 対象座標の確認
     /// </summary>
@@ -340,11 +369,11 @@ public class Unit : MonoBehaviour
     /// <param name="currentLevel">現在高度</param>
     /// <param name="moveList">移動範囲リスト</param>
     /// <param name="moveCost">移動前座標の移動コスト</param>
-    protected void MoveSearchPos2(int p, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
+    protected void MoveSearchPos(int p, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
     {
         if (moveMood) { return; }//検索終了か確認
         if (p < 0 || p >= gameMap.maxX * gameMap.maxZ) { return; }//マップ範囲内か確認
-        if (movePower + moveCost != moveList[p].movePoint) { return; } //一つ前の座標か確認     
+        if (movePower + moveCost != moveList[p].movePoint) { return; } //一つ前の座標か確認   
         if (moveList[p].Level >= currentLevel) //高低差確認
         {
             if (moveList[p].Level - currentLevel > liftingForce) { return; }
@@ -353,9 +382,34 @@ public class Unit : MonoBehaviour
         {
             if (currentLevel - moveList[p].Level > liftingForce) { return; }
         }
-
         movePower = moveList[p].movePoint;
-
+        int[] pos = { gameMap.MoveList2[p].PosX, gameMap.MoveList2[p].PosZ };
+        unitMoveList.Add(pos); //移動順データ保存
+        if (CurrentPosX == gameMap.MoveList2[p].PosX && CurrentPosZ == gameMap.MoveList2[p].PosZ) //初期地点か確認
+        {
+            moveMood = true; //移動モード移行
+            moveCount = unitMoveList.Count - 1;//移動経路数を入力
+            StartUnitAngle();
+        }
+        else
+        {
+            SearchCross1(p, movePower, moveList);
+        }
+    }
+    protected void MoveSearchPos(int p, int movePower, float currentLevel, List<Map.MapDate> moveList)
+    {
+        if (moveMood) { return; }//検索終了か確認
+        if (p < 0 || p >= gameMap.maxX * gameMap.maxZ) { return; }//マップ範囲内か確認
+        if (movePower + 1 != moveList[p].movePoint) { return; } //一つ前の座標か確認   
+        if (moveList[p].Level >= currentLevel) //高低差確認
+        {
+            if (moveList[p].Level - currentLevel > liftingForce) { return; }
+        }
+        else
+        {
+            if (currentLevel - moveList[p].Level > liftingForce) { return; }
+        }
+        movePower = moveList[p].movePoint;
         int[] pos = { gameMap.MoveList2[p].PosX, gameMap.MoveList2[p].PosZ };
         unitMoveList.Add(pos); //移動順データ保存
         if (CurrentPosX == gameMap.MoveList2[p].PosX && CurrentPosZ == gameMap.MoveList2[p].PosZ) //初期地点か確認
@@ -1271,7 +1325,7 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 5 && deadTimer > 0.8f)
                 {
-                    EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);
+                    EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);                    
                     gameObject.SetActive(false);
                     bomCount = 6;
                 }

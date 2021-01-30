@@ -784,6 +784,8 @@ MonoBehaviour:
   armorParts: {fileID: 8559268497578173254}
   armorPoint: 5
   armorDefense: 10
+  partsGuide: 
+  price: 40
   detectionRange: 60
   cameraPos: {fileID: 5238420824106936273}
   headObject: {fileID: 5884301981301040173}

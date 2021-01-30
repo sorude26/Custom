@@ -54,7 +54,7 @@ public class Map : MonoBehaviour
     public readonly int maxZ = 25;
     public readonly int mapScale = 10;//拡大率
     [SerializeField]
-    StageData data = null;
+    public StageData data = null;
     [SerializeField]
     GameObject panel = null;
     private void Awake()
@@ -354,6 +354,10 @@ public class Map : MonoBehaviour
         {
             return;
         }
+        if (movePower <= MoveList2[p].movePoint)//確認済か確認
+        {
+            return;
+        }
         float liftingForce = moveUnit.GetLiftingForce();
         if (MoveList2[p].Level >= currentLevel)//高低差確認
         {
@@ -369,11 +373,8 @@ public class Map : MonoBehaviour
                 return;
             }
         }
-        if (movePower <= MoveList2[p].movePoint)//確認済か確認
-        {
-            return;
-        }
-        movePower = movePower - MovePoint(MoveList2[p].MapType);//移動力変動
+        movePower--;//移動力変動
+        //movePower -= MovePoint(MoveList2[p].MapType);//移動力変動
         if (movePower > 0)//移動可能箇所に足跡入力、再度検索
         {
             MoveList2[p].movePoint = movePower;

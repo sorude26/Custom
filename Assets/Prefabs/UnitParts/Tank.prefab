@@ -1628,6 +1628,8 @@ MonoBehaviour:
   armorParts: {fileID: 5476179026124270474}
   armorPoint: 50
   armorDefense: 3
+  partsGuide: 
+  price: 200
   unitOutput: 500
   liftingForce: 0.5
   headParts: {fileID: 6682538041297265404}

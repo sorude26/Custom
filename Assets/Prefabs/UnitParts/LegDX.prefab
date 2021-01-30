@@ -2828,6 +2828,7 @@ MonoBehaviour:
   armorPoint: 150
   armorDefense: 10
   partsGuide: 
+  price: 400
   moveType: 0
   movePower: 15
   moveSpeed: 30
