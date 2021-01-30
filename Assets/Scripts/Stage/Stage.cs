@@ -315,31 +315,34 @@ public class Stage : MonoBehaviour
     public bool viewGameOver;
     private void VictoryConditionsCheck()
     {
-        switch (victory)
+        if (!Victory)
         {
-            case VictoryConditions.AllDestroy:
-                if (EnemyDestroyCount == unitManager.GetEnemies().Length && !Victory)
-                {
-                    Victory = true;
-                    Debug.Log("勝利");
-                    stageMessage.ViewMessage(3, 5.0f);
-                }
-                break;
-            case VictoryConditions.TargetNumberBreak:
-                break;
-            case VictoryConditions.TargetBreak:
-                if (unitManager.GetEnemy(0).DestroyBody && !Victory)
-                {
-                    Victory = true;
-                    stageMessage.ViewMessage(3, 5.0f);
-                }
-                break;
-            case VictoryConditions.Survive:
-                break;
-            case VictoryConditions.GoalPosition:
-                break;
-            default:
-                break;
+            switch (victory)
+            {
+                case VictoryConditions.AllDestroy:
+                    if (EnemyDestroyCount == unitManager.GetEnemies().Length)
+                    {
+                        Victory = true;
+                        Debug.Log("勝利");
+                        stageMessage.ViewMessage(3, 5.0f);
+                    }
+                    break;
+                case VictoryConditions.TargetNumberBreak:
+                    break;
+                case VictoryConditions.TargetBreak:
+                    if (unitManager.GetEnemy(0).DestroyBody)
+                    {
+                        Victory = true;
+                        stageMessage.ViewMessage(3, 5.0f);
+                    }
+                    break;
+                case VictoryConditions.Survive:
+                    break;
+                case VictoryConditions.GoalPosition:
+                    break;
+                default:
+                    break;
+            }
         }
         if (!Victory && PlayerDestroyCount == unitManager.GetPlayerList().Length)
         {
