@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseSeneUI : MonoBehaviour
 {
     [SerializeField]
     GameObject massegeBox;
+    [SerializeField]
+    Text allMoney;
     private int sceneNumber;
     private void Start()
     {
+        allMoney.text = GameManager.allMoney + "";
         massegeBox.SetActive(false);
     }
     public void OnClickStageSelect()

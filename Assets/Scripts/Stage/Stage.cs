@@ -171,7 +171,11 @@ public class Stage : MonoBehaviour
     public void PlayerTurnSystem()
     {
         BattleEnd();
-        if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory && !defeat)
+        if (Victory || defeat)
+        {
+            return;
+        }
+        if (PlayerUnitCount > unitManager.GetPlayerList().Length)
         {
             PlayerUnitCount = 0;
             EnemyTurn = true;
@@ -194,7 +198,7 @@ public class Stage : MonoBehaviour
             panelP.SetUnit(PlayerUnit);
             PlayerUnit.ActionTurn = true;
             PlayerUnitCount++;
-            if (PlayerUnitCount > unitManager.GetPlayerList().Length && !Victory)
+            if (PlayerUnitCount > unitManager.GetPlayerList().Length)
             {
                 PlayerUnitCount = 0;
                 EnemyTurn = true;
@@ -212,7 +216,7 @@ public class Stage : MonoBehaviour
         else
         {
             PlayerUnitCount++;
-            PlayerTurnSystem(); 
+            PlayerTurnSystem();
         }
     }
     /// <summary>

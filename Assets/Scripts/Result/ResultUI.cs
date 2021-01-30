@@ -82,6 +82,7 @@ public class ResultUI : MonoBehaviour
             }
             else if(!viewScorefinish)
             {
+                GameManager.allMoney += totalReward;
                 viewScorefinish = true;
             }
         }
