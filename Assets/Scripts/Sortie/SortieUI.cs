@@ -73,6 +73,7 @@ public class SortieUI : MonoBehaviour
         {
             unitData.text = "";
         }
+        totalPrice.text = "" + 0;
     }
     private void ChoiceReset()
     {
