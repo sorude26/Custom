@@ -36,6 +36,7 @@ public class SortieUI : MonoBehaviour
     private int[] posData = new int[5];
     private void Start()
     {
+        stageName.text = stageData.GetStageName(GameManager.StageCode);
         soriteGuard.SetActive(true);
         changeMessage.SetActive(false);
         for (int i = 0; i < posData.Length; i++)
