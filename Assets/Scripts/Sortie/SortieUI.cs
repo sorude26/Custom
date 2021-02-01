@@ -10,7 +10,7 @@ public class SortieUI : MonoBehaviour
     [SerializeField]
     Text totalPrice;
     [SerializeField]
-    GameObject[] soriteUnitMark;
+    RectTransform[] soriteUnitMark;
     [SerializeField]
     GameObject[] soriteline;
     [SerializeField]
@@ -19,6 +19,8 @@ public class SortieUI : MonoBehaviour
     GameObject[] choiceUnitGuard;
     [SerializeField]
     GameObject[] choiceUnitMark;
+    [SerializeField]
+    GameObject choiceResetMark;
     [SerializeField]
     Text[] soriteUnitData;
     [SerializeField]
@@ -29,8 +31,13 @@ public class SortieUI : MonoBehaviour
     StageData stageData;
     [SerializeField]
     UnitPriceCalculator calculator;
+    [SerializeField]
+    Image[] soriteUnitImage;
     private bool readySorite = false;
+    private bool ready = false;
     private int choiceUnit = -1;
+    private bool[] choice = new bool[5];
+    private int choideNumber = 0;
     private int soriteNumber = 0;
     private int soritePos = -1;
     private int[] posData = new int[5];
@@ -39,9 +46,11 @@ public class SortieUI : MonoBehaviour
         stageName.text = stageData.GetStageName(GameManager.StageCode);
         soriteGuard.SetActive(true);
         changeMessage.SetActive(false);
+        choiceResetMark.SetActive(false);
         for (int i = 0; i < posData.Length; i++)
         {
-            posData[i] = -1;
+            posData[i] = -2;
+            choice[i] = false;
         }
         soriteNumber = stageData.GetPlayerNumber(GameManager.StageCode);
         foreach (GameObject guard in soritelineGuard)
@@ -56,22 +65,23 @@ public class SortieUI : MonoBehaviour
                 guard.SetActive(true);
             }
         }
-        soriteNumber = stageData.GetPlayerNumber(GameManager.StageCode);
         foreach (GameObject guard in choiceUnitGuard)
         {
-            if (soriteNumber > 0)
-            {
-                guard.SetActive(false);
-                soriteNumber--;
-            }
-            else
-            {
-                guard.SetActive(true);
-            }
+            guard.SetActive(true);
+        }
+        choideNumber = stageData.GetPlayerNumber(GameManager.StageCode);
+        for (int i = 0; i < choideNumber; i++)
+        {
+            choiceUnitGuard[i].SetActive(false);
+            choice[i] = true;
         }
         foreach (Text unitData in soriteUnitData)
         {
             unitData.text = "";
+        }
+        foreach (Image item in soriteUnitImage)
+        {
+            item.rectTransform.anchoredPosition = new Vector3(0, 1000, 0);
         }
         totalPrice.text = "" + 0;
     }
@@ -81,6 +91,7 @@ public class SortieUI : MonoBehaviour
         {
             item.SetActive(false);
         }
+        choiceResetMark.SetActive(false);
     }   
     private void SoriteLineReset()
     {
@@ -92,7 +103,7 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit1()
     {
-        if (choiceUnit != 0)
+        if (choiceUnit != 0 && choice[0])
         {
             ChoiceReset();
             SoriteLineReset();            
@@ -102,7 +113,7 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit2()
     {
-        if (choiceUnit != 1)
+        if (choiceUnit != 1 && choice[1])
         {
             ChoiceReset();
             SoriteLineReset();
@@ -112,7 +123,7 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit3()
     {
-        if (choiceUnit != 2)
+        if (choiceUnit != 2 && choice[2])
         {
             ChoiceReset();
             SoriteLineReset();
@@ -122,7 +133,7 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit4()
     {
-        if (choiceUnit != 3)
+        if (choiceUnit != 3 && choice[3])
         {
             ChoiceReset();
             SoriteLineReset();
@@ -132,12 +143,22 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickChoiceUnit5()
     {
-        if (choiceUnit != 4)
+        if (choiceUnit != 4 && choice[3])
         {
             ChoiceReset();
             SoriteLineReset();
             choiceUnit = 4;
             choiceUnitMark[4].SetActive(true);
+        }
+    }
+    public void OnClickChoiceReset()
+    {
+        if (choiceUnit != -1)
+        {
+            ChoiceReset();
+            SoriteLineReset();
+            choiceUnit = -1;
+            choiceResetMark.SetActive(true);
         }
     }
     public void OnClickline1()
@@ -147,6 +168,7 @@ public class SortieUI : MonoBehaviour
             SoriteLineReset();
             soritePos = 0;
             soriteline[0].SetActive(false);
+            OnClickSetSoritUnit();
         }
     }
     public void OnClickline2()
@@ -156,6 +178,7 @@ public class SortieUI : MonoBehaviour
             SoriteLineReset();
             soritePos = 1;
             soriteline[1].SetActive(false);
+            OnClickSetSoritUnit();
         }
     }
     public void OnClickline3()
@@ -165,6 +188,7 @@ public class SortieUI : MonoBehaviour
             SoriteLineReset();
             soritePos = 2;
             soriteline[2].SetActive(false);
+            OnClickSetSoritUnit();
         }
     }
     public void OnClickline4()
@@ -174,6 +198,7 @@ public class SortieUI : MonoBehaviour
             SoriteLineReset();
             soritePos = 3;
             soriteline[3].SetActive(false);
+            OnClickSetSoritUnit();
         }
     }
     public void OnClickline5()
@@ -183,55 +208,73 @@ public class SortieUI : MonoBehaviour
             SoriteLineReset();
             soritePos = 4;
             soriteline[4].SetActive(false);
+            OnClickSetSoritUnit();
         }
     }
     public void OnClickSetSoritUnit()
     {
         if (soritePos >= 0)
         {
-            for (int i = 0; i < posData.Length; i++)
-            {
-                if (posData[i] == choiceUnit)
-                {
-                    if (i != soritePos)
-                    {
-                        posData[i] = posData[soritePos];
-                        if (choiceUnit >= 0)
-                        {
-                            soriteUnitData[i].text = "" + posData[soritePos];
-                        }
-                        else
-                        {
-                            soriteUnitData[i].text = "";
-                        }                        
-                        break;
-                    }
-                }
-            }
-            posData[soritePos] = choiceUnit;
             if (choiceUnit >= 0)
             {
-                soriteUnitData[soritePos].text = "" + choiceUnit;
+                for (int i = 0; i < posData.Length; i++)
+                {
+                    if (posData[i] == choiceUnit)
+                    {
+                        if (i != soritePos)
+                        {
+                            posData[i] = posData[soritePos];
+                            break;
+                        }                        
+                    }
+                }
+                posData[soritePos] = choiceUnit;
             }
             else
             {
-                soriteUnitData[soritePos].text = "";
+                if (posData[soritePos] >= 0)
+                {
+                    posData[soritePos] = choiceUnit;
+                }
             }
+            for (int i = 0; i < soriteUnitImage.Length; i++)
+            {
+                bool check = true;
+                for (int j = 0; j < posData.Length; j++)
+                {
+                    if (posData[j] == i)
+                    {
+                        soriteUnitImage[i].rectTransform.anchoredPosition = soriteUnitMark[j].anchoredPosition;
+                        check = false;
+                        break;
+                    }
+                }
+                if (check)
+                {
+                    soriteUnitImage[i].rectTransform.anchoredPosition = new Vector3(0, 1000, 0);
+                }
+            }
+            
             foreach (var item in posData)
             {
                 if (item >= 0)
                 {
                     soriteGuard.SetActive(false);
+                    ready = true;
                     return;
                 }
             }
             soriteGuard.SetActive(true);
+            ready = false;
         }
     }
     public void OnClickSorit()
     {
-        changeMessage.SetActive(true);
-        readySorite = true;
+        if (ready)
+        {
+            changeMessage.SetActive(true);
+            readySorite = true;
+        }
     }
     public void OnClickCancel()
     {
