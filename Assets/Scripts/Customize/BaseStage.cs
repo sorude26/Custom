@@ -48,43 +48,7 @@ public class BaseStage : MonoBehaviour
         SwithGard = true;
         FirstSet();
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (partsList.GetPartsHeadCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].HeadID = partsNumber;
-            }
-            if (partsList.GetPartsBodyCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].BodyID = partsNumber;
-            }
-            if (partsList.GetPartsLArmCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].LArmID = partsNumber;
-            }
-            if (partsList.GetWeaponCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].WeaponLID = partsNumber;
-            }
-            if (partsList.GetPartsRArmCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].RArmID = partsNumber;
-            }
-            if (partsList.GetWeaponCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].WeaponRID = partsNumber;
-            }
-            if (partsList.GetPartsLegCount() > partsNumber)
-            {
-                GameManager.UnitDatas[SetUpUnit].LegID = partsNumber;
-            }
-            ResetBuild();
-            partsNumber++;
-        }
-        // transform.Rotate(new Vector3(0, 0.1f, 0));
-    }
+    
     private void LateUpdate()
     {
         if (!silhouetteOn)
