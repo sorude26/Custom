@@ -691,7 +691,7 @@ MonoBehaviour:
   partsGuide: 
   price: 80
   moveType: 0
-  movePower: 8
+  movePower: 7
   moveSpeed: 50
   partsHigh: {fileID: 8809973080735558355}
   liftingForce: 2

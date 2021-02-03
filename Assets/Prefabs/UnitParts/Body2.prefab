@@ -1230,7 +1230,7 @@ MonoBehaviour:
   rArmParts: {fileID: 4848896098612324701}
   lArmParts: {fileID: 4848896098027071935}
   bodyCenter: {fileID: 692965105667574001}
-  movePower: 1
+  movePower: 3
   bodyHand: {fileID: 0}
   cameraPos: {fileID: 2953663340623948677}
   unitType: 0

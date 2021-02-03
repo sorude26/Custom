@@ -956,7 +956,7 @@ MonoBehaviour:
   weight: 15
   armorParts: {fileID: 4716583016234234220}
   armorPoint: 10
-  armorDefense: 1
+  armorDefense: 2
   partsGuide: 
   price: 25
   armParts: {fileID: 8672660956077436910}
