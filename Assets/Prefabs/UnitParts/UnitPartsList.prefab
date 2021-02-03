@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 8809973078818939221, guid: f965084e377d7d84485cd09a1c79f0aa, type: 3}
   - {fileID: 7568215103165362024, guid: 7cd98b45955b1f54896f9b22d81f02a1, type: 3}
   - {fileID: 8425611873651944173, guid: 743b4f583e670d14ab3d9d4eedaeeae5, type: 3}
+  - {fileID: 9152105344427546320, guid: b024fdbb4e6419c49814d409a0771766, type: 3}
   weaponObjectList:
   - {fileID: 780823539462373911, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
   - {fileID: 934432947381065304, guid: ec0daba4ccc710f4da7e9b69a1f378f1, type: 3}
@@ -133,3 +134,4 @@ MonoBehaviour:
   - {fileID: 7268386062906034534, guid: 51b227e4dff725049b6311e446649459, type: 3}
   - {fileID: 2706818492750514617, guid: c0ae95c376bef7a41a479f354bc26435, type: 3}
   - {fileID: 1651793244384715899, guid: 81fd4c2531f8d0e47bab716f0946117f, type: 3}
+  BuildingObjectList: []

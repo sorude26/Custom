@@ -88,7 +88,6 @@ public class StageUI : MonoBehaviour
             stageData.MoveStart();
             messageWindow.SetActive(true);
             CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit);
-            stageData.PlayerUnit.SearchScale();
         }
     }
     public void OnClickMoveCancel()
@@ -104,6 +103,7 @@ public class StageUI : MonoBehaviour
             attackButtonsOpen = true;
             guide.Clear();
             messageWindow.SetActive(false);
+            stageData.PlayerUnit.SearchScale();
         }
     }
 

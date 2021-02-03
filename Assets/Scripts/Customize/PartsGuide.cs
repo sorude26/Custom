@@ -41,7 +41,7 @@ public class PartsGuide : MonoBehaviour
     public void WeaponData(Weapon weapon)
     {
         guideText.text = "武器名：" + weapon.GetName() + "\n武器種：" + weapon.GetWeaponType() + "\n攻撃力：" + weapon.GetPower() + "×" + weapon.GetShotNumber()
-            + "\n有効射程距離：" + weapon.GetEffectiveRange() + "\n最大射程距離：" + weapon.GetRange() + "\n重量：" + weapon.GetWeight()
+            + "\n有効射程距離：" + weapon.GetEffectiveRange() + "\n最大射程距離：" + weapon.GetRange() + "\n重量：" + weapon.GetWeight() 
             + "\n価格：" + weapon.GetPrice() + "\n備考：" + weapon.GetGuide();
     }
     public void AttackWeapon(Weapon weapon, Unit Attacker, Unit target)

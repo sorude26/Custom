@@ -118,12 +118,15 @@ MonoBehaviour:
   range: 10
   effectiveRange: 10
   power: 8
+  powerRange: 4
   bulletSpeed: 0
   totalShotNumber: 3
   diffusivity: 0
   weight: 0
   weaponName: "\u6B66\u88C5\u7121\u3057"
   blade: {fileID: 7978408755069570621}
+  weaponGuide: 
+  price: 0
   meleeType: 1
   damage: {fileID: 4671578638102411063, guid: ebc7b8fa4b99ada45b5d2266f125d34d, type: 3}
 --- !u!1 &4272094911483948973

@@ -1400,8 +1400,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victory: 2
-  GoalPositionX: 0
-  GoalPositionY: 0
+  goalPositionX: 0
+  goalPositionY: 0
   subUnit: {fileID: 965185967}
   enemyUnit: {fileID: 2029687745}
   stageUnits: []

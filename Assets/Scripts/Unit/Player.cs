@@ -110,7 +110,7 @@ public class Player : Unit
         searchScale.transform.localScale = new Vector3(DetectionRange * 2, Body.GetBodyCentrer().position.y, DetectionRange * 2);
         searchOn = true;
     }
-
+    
     public void SearchTarget()
     {
         TargetEnemies.Clear();

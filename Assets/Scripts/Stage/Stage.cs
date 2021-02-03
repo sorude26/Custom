@@ -89,7 +89,7 @@ public class Stage : MonoBehaviour
 
     void Update()
     {
-        if (!start && PlayerUnit.Body && turnCountTimer <= 0)
+        if (!start && turnCountTimer <= 0)
         {
             start = true;
             panelP.SetUnit(PlayerUnit);

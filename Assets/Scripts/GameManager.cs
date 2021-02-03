@@ -97,4 +97,11 @@ public class GameManager : MonoBehaviour
         }
         SceneChange(0);
     }
+    public void ResetSortieUnit()
+    {
+        for (int i = 0; i < SortieUnit.Length; i++)
+        {
+            SortieUnit[i].Sortie = false;
+        }
+    }
 }

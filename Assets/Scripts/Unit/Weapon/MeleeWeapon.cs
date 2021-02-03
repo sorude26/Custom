@@ -20,22 +20,23 @@ public class MeleeWeapon : Weapon
         {
             if (hitParts.Owner != owner)
             {
+                int power = Power + Random.Range(-PowerRange, PowerRange + 1);
                 PartsLeg partsLeg = other.GetComponent<PartsLeg>();
                 if (partsLeg)
                 {
                     GameObject hit = Instantiate(damage);
                     DamageText damageText = hit.GetComponent<DamageText>();
-                    damageText.ViewDamege(Power / 3, transform.position);
+                    damageText.ViewDamege(power / 3, transform.position);
                     EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
-                    hitParts.Damage(Power / 3);
+                    hitParts.Damage(power / 3);
                 }
                 else
                 {
                     GameObject hit = Instantiate(damage);
                     DamageText damageText = hit.GetComponent<DamageText>();
-                    damageText.ViewDamege(Power, transform.position);
+                    damageText.ViewDamege(power, transform.position);
                     EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
-                    hitParts.Damage(Power);
+                    hitParts.Damage(power);
                 }
             }
         }

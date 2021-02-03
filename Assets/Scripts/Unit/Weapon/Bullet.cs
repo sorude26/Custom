@@ -27,14 +27,15 @@ public class Bullet : MonoBehaviour
     /// <param name="angle">発射方向</param>
     public void StartMove(Weapon weapon, Vector3 pos, Vector3 angle)
     {
+        int power = Random.Range(-weapon.PowerRange, weapon.PowerRange + 1);
         transform.localPosition = pos;
         diffusivity = weapon.Diffusivity;
         moveDir = angle;
         moveDir.x += Random.Range(-diffusivity, diffusivity);
         moveDir.y += Random.Range(-diffusivity, diffusivity);
         moveDir.z += Random.Range(-diffusivity, diffusivity);
-        Power = weapon.Power;
-        startPower = weapon.Power;
+        Power = weapon.Power + power;
+        startPower = weapon.Power + power;
         Speed = weapon.BulletSpeed;
         Range = weapon.Range;
         EffectiveRange = weapon.EffectiveRange;

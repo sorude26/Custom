@@ -29,6 +29,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] float effectiveRange = 0;
     public int Power { get; private set; }//威力
     [SerializeField] int power = 0;
+    public int PowerRange { get; private set; }//威力振れ幅
+    [SerializeField] int powerRange = 0;
     public float BulletSpeed { get; private set; }//弾速
     [SerializeField] float bulletSpeed = 0;
     public int TotalShotNumber { get; private set; }//総射撃数
@@ -52,6 +54,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected int price = 0;
     protected void Start()
     {
+        PowerRange = powerRange;
         Type = weaponType;
         Weight = weight;
         Range = range;
@@ -201,6 +204,7 @@ public class Weapon : MonoBehaviour
     public float GetRange() { return range; }
     public float GetEffectiveRange() { return effectiveRange; }
     public int GetPower() { return power; }
+    public int GetPowerRange() { return powerRange; }
     public int GetShotNumber() { return totalShotNumber; }
     public WeaponType GetWeaponType() { return weaponType; }
     public int GetPrice() { return price; }

@@ -369,6 +369,7 @@ MonoBehaviour:
   range: 50
   effectiveRange: 50
   power: 10
+  powerRange: 3
   bulletSpeed: 160
   totalShotNumber: 100
   diffusivity: 0.05
