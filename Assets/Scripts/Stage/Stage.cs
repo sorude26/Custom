@@ -20,8 +20,7 @@ public class Stage : MonoBehaviour
     [SerializeField] int goalPositionX = 0;
     [SerializeField] int goalPositionY = 0;
     public Player PlayerUnit { get; private set; }
-    public Unit subUnit;
-    public Enemy enemyUnit;
+    public Enemy EnemyUnit { get; private set; }
     private UnitManager unitManager;
     public List<Unit> stageUnits;
     public List<int[]> stageUnitsPos = new List<int[]>();
@@ -104,8 +103,8 @@ public class Stage : MonoBehaviour
                     break;
                 case VictoryConditions.TargetBreak:
                     stageMessage.ViewMessage(6, 2.0f);
-                    enemyUnit = unitManager.GetEnemy(0);
-                    CameraControl.Instans.UnitCamera(enemyUnit);
+                    EnemyUnit = unitManager.GetEnemy(0);
+                    CameraControl.Instans.UnitCamera(EnemyUnit);
                     break;
                 case VictoryConditions.Survive:
                     break;
@@ -155,11 +154,11 @@ public class Stage : MonoBehaviour
                 {
                     if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
                     {
-                        enemyUnit = unitManager.GetEnemy(EnemyUnitCount);
-                        CameraControl.Instans.UnitCamera(enemyUnit);
-                        enemyUnit.StatAction();
+                        EnemyUnit = unitManager.GetEnemy(EnemyUnitCount);
+                        CameraControl.Instans.UnitCamera(EnemyUnit);
+                        EnemyUnit.StatAction();
                         EnemyAction = false;
-                        panelE.SetUnit(enemyUnit);
+                        panelE.SetUnit(EnemyUnit);
                     }
                     EnemyUnitCount++;
                 }

@@ -44,7 +44,8 @@ public class Map : MonoBehaviour
             movePoint = 0;
         }
     }
-
+    [SerializeField]
+    StageType stageType = StageType.Mountain1;
     public List<List<MapDate>> MapDates { get; private set; } = new List<List<MapDate>>();//マップデータ
     public List<List<MapDate>> MoveList { get; private set; } //移動マップデータ
     public List<MapDate> MapDates2 { get; private set; } = new List<MapDate>();
@@ -59,7 +60,7 @@ public class Map : MonoBehaviour
     GameObject panel = null;
     private void Awake()
     {
-        data.Type = StageType.Mountain1;
+        data.Type = stageType;
         MapCreate2(maxX, maxZ);
         //MoveList = new List<List<MapDate>>(MapDates);
         MoveList2 = new List<MapDate>(MapDates2);

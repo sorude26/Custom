@@ -123,7 +123,7 @@ public class StageUI : MonoBehaviour
 
     public void OnClickEnemyMove()
     {
-        stageData.enemyUnit.StatAction();
+        stageData.EnemyUnit.StatAction();
     }
 
     public void OnClickRightWeapon()

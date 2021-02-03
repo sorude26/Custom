@@ -1223,7 +1223,7 @@ MonoBehaviour:
   armorPoint: 10
   armorDefense: 8
   partsGuide: 
-  price: 150
+  price: 250
   unitOutput: 500
   liftingForce: 1
   headParts: {fileID: 4848896098888723434}
