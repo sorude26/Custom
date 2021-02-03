@@ -51,7 +51,7 @@ public class PartsBody : UnitParts
         {
             if (partsBreak)
             {
-                posYtransform -= 3.0f * Time.deltaTime;
+                posYtransform -= 2.5f * Time.deltaTime;
                 transform.localPosition = new Vector3(0, posY + posYtransform, 0);
                 transform.Rotate(new Vector3(0, 0.5f, 0.02f));
             }
