@@ -6,6 +6,6 @@ public class TitleUI : MonoBehaviour
 {
     public void OnClickStart()
     {
-        GameManager.Instance.SceneChange(3);
+        GameManager.Instance.StartChange(3);
     }
 }

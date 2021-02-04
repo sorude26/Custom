@@ -50,7 +50,7 @@ public class StageSelectUI : MonoBehaviour
     {
         if (returnBase)
         {
-            GameManager.Instance.SceneChange(3);
+            GameManager.Instance.StartChange(3);
         }
         else
         {

@@ -103,7 +103,7 @@ public class ResultUI : MonoBehaviour
     {
         if (viewScorefinish)
         {
-            GameManager.Instance.SceneChange(3);
+            GameManager.Instance.StartChange(3);
         }
     }
 }

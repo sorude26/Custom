@@ -378,7 +378,7 @@ public class Stage : MonoBehaviour
             }
             else if (setData)
             {
-                GameManager.Instance.SceneChange(4);
+                GameManager.Instance.StartChange(4);
                 Victory = false;
             }
             victoryTimer += 1.0f * Time.deltaTime;

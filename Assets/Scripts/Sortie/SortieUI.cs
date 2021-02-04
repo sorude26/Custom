@@ -294,7 +294,7 @@ public class SortieUI : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.SceneChange(2);
+            GameManager.Instance.StartChange(2);
         }
     }
 

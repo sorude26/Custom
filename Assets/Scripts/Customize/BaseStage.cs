@@ -132,7 +132,7 @@ public class BaseStage : MonoBehaviour
         GameManager.UnitDatas[SetUpUnit].RArmID = RArmID;
         GameManager.UnitDatas[SetUpUnit].WeaponRID = WeaponRID;
         GameManager.UnitDatas[SetUpUnit].LegID = LegID;
-        GameManager.Instance.SceneChange(3);
+        GameManager.Instance.StartChange(3);
     }
     public void ResetBuild()
     {

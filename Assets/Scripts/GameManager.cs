@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -36,41 +34,16 @@ public class GameManager : MonoBehaviour
         Instance = this;
        
     }
-
-    public void SceneChange(int i)
+    public void StartChange(int i)
     {
-        switch (i)
-        {
-            case 0:
-                SceneManager.LoadScene("SampleScene");
-                break;
-            case 1:
-                SceneManager.LoadScene("CustomizeScene");
-                break;
-            case 2:
-                SceneManager.LoadScene("StageSelect");
-                break;
-            case 3:
-                SceneManager.LoadScene("BaseScene");
-                break;
-            case 4:
-                SceneManager.LoadScene("BattleResult");
-                break;
-            case 5:
-                SceneManager.LoadScene("SortieScene");
-                break;
-            case 6:
-                SceneManager.LoadScene("Title");
-                break;
-            default:
-                break;
-        }
+        SceneChangeControl.Instance.StartFade(i);
     }
+    
 
     public void SetStageID(StageID ID)
     {
         StageCode = ID;
-        SceneChange(5);
+        StartChange(5);
     }
     public bool GetStageFlag(StageID ID)
     {
@@ -95,7 +68,7 @@ public class GameManager : MonoBehaviour
                 SortieUnit[i].Sortie = true;
             }
         }
-        SceneChange(0);
+        StartChange(0);
     }
     public void ResetSortieUnit()
     {

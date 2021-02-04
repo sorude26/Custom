@@ -27,7 +27,7 @@ public class BaseSeneUI : MonoBehaviour
     }
     public void OnClickSceneChange()
     {
-        GameManager.Instance.SceneChange(sceneNumber);
+        GameManager.Instance.StartChange(sceneNumber);
     }
     public void OnClickCancel()
     {

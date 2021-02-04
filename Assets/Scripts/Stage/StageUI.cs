@@ -221,7 +221,7 @@ public class StageUI : MonoBehaviour
     {
         if (!sceneChange)
         {
-            GameManager.Instance.SceneChange(0);
+            GameManager.Instance.StartChange(0);
             sceneChange = true;
         }
     }
@@ -230,7 +230,7 @@ public class StageUI : MonoBehaviour
     {
         if (!sceneChange)
         {
-            GameManager.Instance.SceneChange(1);
+            GameManager.Instance.StartChange(1);
             sceneChange = true;
         }
     }
