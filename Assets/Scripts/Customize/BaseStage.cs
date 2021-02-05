@@ -31,7 +31,6 @@ public class BaseStage : MonoBehaviour
     PartsGuide guide;
     private bool gard = false;
     public bool SwithGard { get; set; }
-    GameManager gameManager;
     [SerializeField]
     UnitPriceCalculator calculator;
     private int partsTotalPlice;

@@ -14,6 +14,10 @@ public class BaseSeneUI : MonoBehaviour
     {
         allMoney.text = GameManager.allMoney + "";
         massegeBox.SetActive(false);
+        if (GameManager.allMoney >= 10000)
+        {
+            GameManager.Instance.StartChange(0);
+        }
     }
     public void OnClickStageSelect()
     {
