@@ -31,7 +31,23 @@ public class SceneChangeControl : MonoBehaviour
         switch (i)
         {
             case 0:
-                SceneManager.LoadScene("SampleScene");
+                switch (GameManager.StageCode)
+                {
+                    case StageID.Stage0:
+                        SceneManager.LoadScene("SampleScene");
+                        break;
+                    case StageID.Stage1:
+                        SceneManager.LoadScene("Stage1");
+                        break;
+                    case StageID.Stage2:
+                        SceneManager.LoadScene("Stage2");
+                        break;
+                    case StageID.Stage3:
+                        break;
+                    default:
+                        SceneManager.LoadScene("SampleScene");
+                        break;
+                }               
                 break;
             case 1:
                 SceneManager.LoadScene("CustomizeScene");
@@ -50,6 +66,9 @@ public class SceneChangeControl : MonoBehaviour
                 break;
             case 6:
                 SceneManager.LoadScene("Title");
+                break;
+            case 7:
+                SceneManager.LoadScene("Ending");
                 break;
             default:
                 break;

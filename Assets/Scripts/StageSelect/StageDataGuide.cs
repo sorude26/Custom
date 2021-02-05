@@ -15,10 +15,10 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "1";
                 break;
             case StageID.Stage1:
-                guideText.text = "2";
+                guideText.text = "平原：敵部隊の殲滅";
                 break;
             case StageID.Stage2:
-                guideText.text = "3";
+                guideText.text = "都市：敵部隊の殲滅";
                 break;
             case StageID.Stage3:
                 guideText.text = "4";

@@ -6,15 +6,15 @@ public class UnitManager : MonoBehaviour
 {
     public static UnitManager Instance { get; private set; }
 
+    [SerializeField]
     Player[] playerList = null;
+    [SerializeField]
     Enemy[] enemyList = null;
     Obstacle[] obstaclesList = null;
     public static List<int[]> UnitDetaList { get; private set; }//パーツデータ反映用
     private void Awake()
     {
-        Instance = this;
-        playerList = FindObjectsOfType<Player>();
-        enemyList = FindObjectsOfType<Enemy>();
+        Instance = this;        
         obstaclesList = FindObjectsOfType<Obstacle>();
     }
     public Player GetPlayer(int i)

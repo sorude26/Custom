@@ -149,8 +149,10 @@ public class StageData : MonoBehaviour
                 i = 3;
                 break;
             case StageID.Stage1:
+                i = 3;
                 break;
             case StageID.Stage2:
+                i = 5;
                 break;
             case StageID.Stage3:
                 break;
@@ -188,8 +190,10 @@ public class StageData : MonoBehaviour
                 name = "訓練場";
                 break;
             case StageID.Stage1:
+                name = "平原";
                 break;
             case StageID.Stage2:
+                name = "都市";
                 break;
             case StageID.Stage3:
                 break;
@@ -208,8 +212,10 @@ public class StageData : MonoBehaviour
                 reward = 500;
                 break;
             case StageID.Stage1:
+                reward = 1500;
                 break;
             case StageID.Stage2:
+                reward = 2000;
                 break;
             case StageID.Stage3:
                 break;
