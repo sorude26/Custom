@@ -230,7 +230,7 @@ public class StageUI : MonoBehaviour
     {
         if (!sceneChange)
         {
-            GameManager.Instance.StartChange(1);
+            GameManager.Instance.StartChange(3);
             sceneChange = true;
         }
     }

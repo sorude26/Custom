@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public static StageID StageCode { get; private set; }
     public static int allMoney = 0;
     public bool[] StageFlag { get; private set; }
-    public class ScoreData
+    public struct ScoreData
     {
         public string StageName;
         public int StageReward;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         public int EnemyReward;
         public int TotalLoss;
     }
-    public static ScoreData StageScoreData { get; set; } = new ScoreData();
+    public static ScoreData StageScoreData = new ScoreData();
     private void Awake()
     {
         Instance = this;

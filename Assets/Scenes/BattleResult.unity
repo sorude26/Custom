@@ -1670,6 +1670,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneChangeControl
       objectReference: {fileID: 0}
+    - target: {fileID: 7295564710496103484, guid: ae8e67129c5e5e741907067377d0f47b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7295564710496103485, guid: ae8e67129c5e5e741907067377d0f47b,
         type: 3}
       propertyPath: m_LocalPosition.x
