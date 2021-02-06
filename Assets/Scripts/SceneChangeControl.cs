@@ -80,4 +80,8 @@ public class SceneChangeControl : MonoBehaviour
         fade.StartFadeOut();
         secenChange = true;
     }
+    public bool GetFadeInEnd()
+    {
+        return fade.IsFadeInEnd();
+    }
 }

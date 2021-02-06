@@ -10,13 +10,22 @@ public class BaseSeneUI : MonoBehaviour
     [SerializeField]
     Text allMoney;
     private int sceneNumber;
+    private bool moneyMax;
     private void Start()
     {
         allMoney.text = GameManager.allMoney + "";
         massegeBox.SetActive(false);
-        if (GameManager.allMoney >= 10000)
+    }
+
+    private void Update()
+    {
+        if (GameManager.allMoney >= 10000 && !moneyMax)
         {
-            GameManager.Instance.StartChange(0);
+            if (SceneChangeControl.Instance.GetFadeInEnd())
+            {
+                GameManager.Instance.StartChange(7);
+                moneyMax = true;
+            }
         }
     }
     public void OnClickStageSelect()
