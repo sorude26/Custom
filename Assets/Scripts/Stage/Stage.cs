@@ -52,8 +52,7 @@ public class Stage : MonoBehaviour
     public int LossReward { get; private set; } = 0;
     private void Awake()
     {
-        Instance = this;
-        turnCountTimer = 2;
+        Instance = this;        
     }
 
     void Start()
@@ -86,6 +85,7 @@ public class Stage : MonoBehaviour
         EnemyTurn = false;
         TargetCursor.instance.SetCursor(PlayerUnit);
         PlayerAttackWeapon = PlayerUnit.LArmWeapon;
+        turnCountTimer = 3;
     }
 
     void Update()
@@ -250,7 +250,7 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void SetUnitPos()
     {
-        turnCountTimer = 2;
+        turnCountTimer = 1;
         stageUnitsPos.Clear();
         foreach (Unit unit in stageUnits)
         {
