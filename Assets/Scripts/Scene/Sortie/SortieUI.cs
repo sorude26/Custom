@@ -70,7 +70,7 @@ public class SortieUI : MonoBehaviour
         {
             guard.SetActive(true);
         }
-        choideNumber = stageData.GetPlayerNumber(GameManager.StageCode);
+        choideNumber = 5;
         for (int i = 0; i < choideNumber; i++)
         {
             choiceUnitGuard[i].SetActive(false);
