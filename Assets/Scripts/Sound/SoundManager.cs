@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum BGMType
 {
+    None,   // 未定義
     Title,
     Base,
     Sortie,
@@ -15,6 +17,7 @@ public enum BGMType
 }
 public enum SEType
 {
+    None,   // 未定義
     ClickBotton,
     MoveWalk,
     MoveTank,
@@ -33,7 +36,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource audioSource;
     private AudioClip[] soundBGM;
     private AudioClip[] soundEffect;
-    Dictionary<BGMType, List<AudioClip>> soundBGMList = new Dictionary<BGMType, List<AudioClip>>();
+    Dictionary<BGMType, AudioClip> soundBGMList = new Dictionary<BGMType, AudioClip>();
+    Dictionary<SEType, AudioClip> soundSEList = new Dictionary<SEType, AudioClip>();
     private void Awake()
     {
         if (Instance == null)
@@ -47,5 +51,26 @@ public class SoundManager : MonoBehaviour
             return;
         }
         audioSource = GetComponent<AudioSource>();
+        for (int i = 0; i < soundBGM.Length; i++)
+        {
+            var soundID = (BGMType)(i + 1);
+            soundBGMList.Add(soundID, soundBGM[i]);
+        }
+        for (int i = 0; i < soundEffect.Length; i++)
+        {
+            var soundID = (SEType)(i + 1);
+            soundSEList.Add(soundID, soundEffect[i]);
+        }
+    }
+
+    public void PlayBGM(BGMType type) 
+    {
+        audioSource.clip = soundBGMList[type];
+        audioSource.Play();
+    }
+
+    public void PlaySE(SEType type)
+    {
+        audioSource.PlayOneShot(soundSEList[type]);
     }
 }
