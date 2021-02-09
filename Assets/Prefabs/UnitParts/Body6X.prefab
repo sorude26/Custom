@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: "\u591A\u91CD\u88C5\u7532\u578B"
-  partsHp: 50
+  partsHp: 70
   defense: 50
   weight: 250
   armorParts: {fileID: 3358731495902784788}
