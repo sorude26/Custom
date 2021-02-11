@@ -76,6 +76,10 @@ public class StageMessage : MonoBehaviour
     /// <param name="time">表示時間</param>
     public void ViewMessage(int i, float time)
     {
+        foreach (GameObject message in battleMessage)
+        {
+            message.SetActive(false);
+        }
         viewTarget = i;
         messageBack.SetActive(true);
         battleMessage[i].SetActive(true);
