@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Rotor : MonoBehaviour
 {
+    [SerializeField]
+    float rotateSpeed = 5.0f;
+    float timer = 0;
     void Update()
     {
-        transform.Rotate(new Vector3(0, 5, 0));
+        timer += Time.deltaTime;
+        if (timer >= 0.02f)
+        {
+            transform.Rotate(new Vector3(0, rotateSpeed, 0));
+            timer = 0;
+        }
     }
 }
