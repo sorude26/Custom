@@ -147,4 +147,5 @@ MonoBehaviour:
   - {fileID: 7268386062906034534, guid: 51b227e4dff725049b6311e446649459, type: 3}
   - {fileID: 2706818492750514617, guid: c0ae95c376bef7a41a479f354bc26435, type: 3}
   - {fileID: 1651793244384715899, guid: 81fd4c2531f8d0e47bab716f0946117f, type: 3}
+  - {fileID: 973067607912976246, guid: 5285e44ab35c9de42a3a1b1ef3b71af6, type: 3}
   BuildingObjectList: []
