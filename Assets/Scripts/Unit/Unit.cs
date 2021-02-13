@@ -32,7 +32,8 @@ public class Unit : MonoBehaviour
             PosZ = z;
         }
     }
-
+    [SerializeField]
+    public string unitName;
     [SerializeField]
     public UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向
@@ -44,7 +45,6 @@ public class Unit : MonoBehaviour
     protected int maxHp = 100;//仮
     [SerializeField] protected int startPosX;//初期位置
     [SerializeField] protected int startPosZ;//初期位置
-
     public int CurrentHp { get; protected set; }
     public int CurrentPosX { get; protected set; } = 0;//現在位置
     public int CurrentPosZ { get; protected set; } = 0;//現在位置

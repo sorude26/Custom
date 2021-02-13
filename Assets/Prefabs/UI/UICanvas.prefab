@@ -257,7 +257,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 830, y: -470}
-  m_SizeDelta: {x: 250, y: 80}
+  m_SizeDelta: {x: 240, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5922450276454132767
 CanvasRenderer:
@@ -3109,6 +3109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1b9e7496e811f418876ec8c28e3cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: {fileID: 2744055271150431756}
   head: {fileID: 2744055272872431686}
   headHp: {fileID: 2744055273024163137}
   body: {fileID: 2744055272696402243}
@@ -3419,7 +3420,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 830, y: -470}
-  m_SizeDelta: {x: 250, y: 80}
+  m_SizeDelta: {x: 240, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2744055272137713712
 CanvasRenderer:
@@ -7007,6 +7008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1b9e7496e811f418876ec8c28e3cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: {fileID: 2744055271905266295}
   head: {fileID: 2744055272600386133}
   headHp: {fileID: 2744055272124254782}
   body: {fileID: 2744055272209132390}
