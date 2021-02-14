@@ -69,6 +69,7 @@ public class UnitParts : MonoBehaviour
 
     protected void PartsBreak()
     {
+        SoundManager.Instance.PlaySE(SEType.Explosion1);
         EffectManager.PlayEffect(EffectID.Explosion, transform.position);
         partsBreak = true;
     }

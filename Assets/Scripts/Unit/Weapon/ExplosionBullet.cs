@@ -37,6 +37,7 @@ public class ExplosionBullet : Bullet
 
     public void Explosion()
     {
+        SoundManager.Instance.PlaySE(SEType.Explosion2);
         EffectManager.PlayEffect(EffectID.Explosion, transform.position);
         var angleStep = 360.0f / horizontalBulletCount;
         BomShot(0.0f, horizontalBulletCount); // 赤道方向に弾を発射

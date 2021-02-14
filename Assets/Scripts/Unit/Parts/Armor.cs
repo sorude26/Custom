@@ -31,6 +31,7 @@ public class Armor : MonoBehaviour
         ArmorPoint--;
         if (ArmorPoint < 0)
         {
+            SoundManager.Instance.PlaySE(SEType.Break);
             EffectManager.PlayEffect(EffectID.Smoke, transform.position);
             gameObject.SetActive(false);
         }

@@ -79,12 +79,14 @@ public class Weapon : MonoBehaviour
                     weaponTrigger = false;
                     owner.ShotCameraShake(20);
                     attackTimer = 1.0f;
+                    SoundManager.Instance.PlaySE(SEType.Shot3);
                     break;
                 case WeaponType.MachineGun:
                     MachineGunShot();
                     break;
                 case WeaponType.Shotgun:
-                    ShotgunShot();                    
+                    ShotgunShot();
+                    SoundManager.Instance.PlaySE(SEType.Shot2);
                     break;
                 case WeaponType.MShotGun:
                     MachineShotGunShot();
@@ -139,6 +141,7 @@ public class Weapon : MonoBehaviour
                 shotNumber++;
                 intervalTime = 0.1f;
                 owner.ShotCameraShake(5);
+                SoundManager.Instance.PlaySE(SEType.Shot1);
             }
             else
             {
@@ -181,6 +184,7 @@ public class Weapon : MonoBehaviour
                 shotNumber++;
                 intervalTime = 0.15f;
                 owner.ShotCameraShake(5);
+                SoundManager.Instance.PlaySE(SEType.Shot2);
             }
             else
             {

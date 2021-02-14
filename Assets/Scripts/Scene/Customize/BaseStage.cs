@@ -172,6 +172,7 @@ public class BaseStage : MonoBehaviour
             HeadID = i;
             guide.HeadData(partsList.GetHeadObject(i).GetComponent<PartsHead>());
             ResetBuild();
+            SoundManager.Instance.PlaySE(SEType.ClickBotton);
         }
     }
     public void SetUpPartsBody(int i)

@@ -683,7 +683,7 @@ MonoBehaviour:
   muzzle: {fileID: 6401233160510685012}
   weaponType: 1
   range: 60
-  effectiveRange: 15
+  effectiveRange: 10
   power: 4
   powerRange: 1
   bulletSpeed: 300

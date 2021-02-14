@@ -32,8 +32,7 @@ public class Unit : MonoBehaviour
             PosZ = z;
         }
     }
-    [SerializeField]
-    public string unitName;
+
     [SerializeField]
     public UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向
@@ -45,6 +44,7 @@ public class Unit : MonoBehaviour
     protected int maxHp = 100;//仮
     [SerializeField] protected int startPosX;//初期位置
     [SerializeField] protected int startPosZ;//初期位置
+
     public int CurrentHp { get; protected set; }
     public int CurrentPosX { get; protected set; } = 0;//現在位置
     public int CurrentPosZ { get; protected set; } = 0;//現在位置
@@ -134,6 +134,7 @@ public class Unit : MonoBehaviour
         {
             EffectManager.PlayEffect(EffectID.HyperExplosion, transform.position);
         }
+        SoundManager.Instance.PlaySE(SEType.Explosion2);
         DestroyBody = true;
         gameStage.SetUnitPos();
         legL1Rotaion = Quaternion.Euler(-10, 0, 1);
@@ -1197,6 +1198,7 @@ public class Unit : MonoBehaviour
     protected float moveMotionTimer = 0;
     protected float resetTimer = 0;
     protected bool moveMotionStart = false;
+    protected bool walkSound = false;
     protected void MoveMotion()
     {
         if (moveMood)
@@ -1215,12 +1217,18 @@ public class Unit : MonoBehaviour
                     legRSpeed = moveSpeed * 0.2f;
                     headRSpeed = moveSpeed * 0.2f;
                     moveMotionStart = true;
+                    walkSound = false;
                     moveMotionTimer = 0;
                     resetTimer = 0;
                 }
                 moveMotionTimer += moveSpeed * Time.deltaTime;
                 if (moveMotionTimer <= 10)
                 {
+                    if (!walkSound)
+                    {
+                        walkSound = true;
+                        SoundManager.Instance.PlaySE(SEType.MoveWalk);
+                    }
                     legL1Rotaion = Quaternion.Euler(40, 0, -5);
                     legL2Rotaion = Quaternion.Euler(-20, 0, 0);
                     legR1Rotaion = Quaternion.Euler(-20, 0, 5);
@@ -1233,6 +1241,11 @@ public class Unit : MonoBehaviour
                 }
                 else if (moveMotionTimer <= 20)
                 {
+                    if (walkSound)
+                    {
+                        walkSound = false;
+                        SoundManager.Instance.PlaySE(SEType.MoveWalk);
+                    }
                     legL1Rotaion = Quaternion.Euler(-20, 0, -5);
                     legL2Rotaion = Quaternion.Euler(-10, 0, 0);
                     legR1Rotaion = Quaternion.Euler(40, 0, 5);
@@ -1291,6 +1304,7 @@ public class Unit : MonoBehaviour
             {
                 if (bomCount == 0 && deadTimer > 0.6f)
                 {
+                    SoundManager.Instance.PlaySE(SEType.Explosion1);
                     if (Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(2, 0, 0); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetBodyCentrer().position);
                     bomCount = 1;
@@ -1298,12 +1312,14 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 1 && deadTimer > 0.4f)
                 {
+                    SoundManager.Instance.PlaySE(SEType.Explosion1);
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetHeadPos().position);
                     bomCount = 2;
                     deadTimer = 0;
                 }
                 else if (bomCount == 2 && deadTimer > 0.4f)
                 {
+                    SoundManager.Instance.PlaySE(SEType.Explosion1);
                     if (Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(0, 0, -2); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetLArmPos().position);
                     bomCount = 3;
@@ -1311,6 +1327,7 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 3 && deadTimer > 0.4f)
                 {
+                    SoundManager.Instance.PlaySE(SEType.Explosion1);
                     legRSpeed = 2.0f;
                     if (Body.unitType == UnitType.Human) { Body.transform.localRotation = Quaternion.Euler(0, 0, 2); }
                     EffectManager.PlayEffect(EffectID.Explosion, Body.GetRArmPos().position);
@@ -1319,12 +1336,14 @@ public class Unit : MonoBehaviour
                 }
                 else if (bomCount == 4 && deadTimer > 0.4f)
                 {
+                    SoundManager.Instance.PlaySE(SEType.Explosion1);
                     EffectManager.PlayEffect(EffectID.Explosion, transform.position);
                     bomCount = 5;
                     deadTimer = 0;
                 }
                 else if (bomCount == 5 && deadTimer > 0.8f)
                 {
+                    SoundManager.Instance.PlaySE(SEType.Explosion2);
                     EffectManager.PlayEffect(EffectID.HyperExplosion, Body.GetBodyCentrer().position);                    
                     gameObject.SetActive(false);
                     bomCount = 6;
