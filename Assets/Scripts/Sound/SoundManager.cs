@@ -34,7 +34,9 @@ public class SoundManager : MonoBehaviour
 {
     static public SoundManager Instance { get; private set; }
     private AudioSource audioSource;
+    [SerializeField]
     private AudioClip[] soundBGM;
+    [SerializeField]
     private AudioClip[] soundEffect;
     Dictionary<BGMType, AudioClip> soundBGMList = new Dictionary<BGMType, AudioClip>();
     Dictionary<SEType, AudioClip> soundSEList = new Dictionary<SEType, AudioClip>();
@@ -62,11 +64,15 @@ public class SoundManager : MonoBehaviour
             soundSEList.Add(soundID, soundEffect[i]);
         }
     }
-
+    private void Start()
+    {
+        PlayBGM(BGMType.Title);
+    }
     public void PlayBGM(BGMType type) 
     {
         audioSource.clip = soundBGMList[type];
         audioSource.Play();
+        audioSource.loop = true;
     }
 
     public void PlaySE(SEType type)
