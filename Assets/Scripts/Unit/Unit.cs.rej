@@ -1,0 +1,9 @@
+diff a/Assets/Scripts/Unit/Unit.cs b/Assets/Scripts/Unit/Unit.cs	(rejected hunks)
+@@ -32,6 +32,7 @@
+             PosZ = z;
+         }
+     }
++    [SerializeField]
+     public string unitName;
+     [SerializeField]
+     public UnitAngle unitAngle = UnitAngle.Down;//初期方向

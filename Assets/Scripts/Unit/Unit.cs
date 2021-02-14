@@ -32,7 +32,8 @@ public class Unit : MonoBehaviour
             PosZ = z;
         }
     }
-
+    [SerializeField]
+    public string unitName = "";
     [SerializeField]
     public UnitAngle unitAngle = UnitAngle.Down;//初期方向
     protected UnitAngle currentAngle;//現在の方向

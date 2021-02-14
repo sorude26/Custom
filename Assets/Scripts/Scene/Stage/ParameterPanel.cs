@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ParameterPanel : MonoBehaviour
 {
+    [SerializeField] Text unitName;
     [SerializeField] Image head = null;
     [SerializeField] Text headHp = null;
     [SerializeField] Image body = null;
@@ -32,6 +33,7 @@ public class ParameterPanel : MonoBehaviour
     {
         if (unit != null && !unit.DestroyBody)
         {
+            unitName.text = unit.unitName;
             if (unit.Body.unitType == UnitType.Human)
             {
                 head.fillAmount = (float)unit.Head.CurrentPartsHp / unit.Head.MaxPartsHp;
@@ -74,6 +76,7 @@ public class ParameterPanel : MonoBehaviour
         }
         else
         {
+            unitName.text = "";
             head.fillAmount = 0;
             headHp.text = "";
             body.fillAmount = 0;
