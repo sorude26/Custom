@@ -169,7 +169,7 @@ public class Unit : MonoBehaviour
     /// <param name="targetX">開始地点X軸</param>
     /// <param name="targetZ">開始地点Z軸</param>
     public void UnitMove2(List<Map.MapDate> moveList, int targetX, int targetZ)
-    {
+    {        
         unitMoveList = new List<int[]>();
         int[] pos = { targetX, targetZ };
         unitMoveList.Add(pos); //目標データ保存
@@ -179,10 +179,9 @@ public class Unit : MonoBehaviour
             SearchCross1(p, moveList[p].movePoint, moveList);
         }
         else
-        {
+        {            
             SearchCross2(p, moveList[p].movePoint, moveList);
-        }
-        
+        }        
     }
     /// <summary>
     /// ユニット移動処理
@@ -199,6 +198,14 @@ public class Unit : MonoBehaviour
             moveTargetPosZ = unitMoveList[moveCount][1] * gameMap.mapScale;
             moveTargetLevel = gameMap.MapDates2[unitMoveList[moveCount][0] + (gameMap.maxX * unitMoveList[moveCount][1])].Level;
             MoveNow = true;
+            if (Body.unitType == UnitType.Tank)
+            {
+                SoundManager.Instance.PlaySE(SEType.MoveTank);
+            }
+            else if (Body.unitType == UnitType.Helicopter)
+            {
+                SoundManager.Instance.PlaySE(SEType.MoveHelicopter);
+            }
         }
         if (movePosX != moveTargetPosX && MoveNow) //移動・昇降、方向変更処理
         {
@@ -595,6 +602,7 @@ public class Unit : MonoBehaviour
                                 attackWeapon.BladeAttackStart();
                                 attackNow = true;
                                 attackTimer = 0;
+                                SoundManager.Instance.PlaySE(SEType.Attack);
                             }
                             if (attackTimer > 1.0)
                             {
@@ -730,6 +738,7 @@ public class Unit : MonoBehaviour
                             AttackPattern(4);
                         }
                         this.attackWeapon = LArmWeapon;
+                        SoundManager.Instance.PlaySE(SEType.Attack);
                     }
                     else if (attackWeapon == RArmWeapon)
                     {
@@ -742,6 +751,7 @@ public class Unit : MonoBehaviour
                             AttackPattern(5);
                         }
                         this.attackWeapon = RArmWeapon;
+                        SoundManager.Instance.PlaySE(SEType.Attack);
                     }
                     else
                     {
@@ -1039,6 +1049,7 @@ public class Unit : MonoBehaviour
                     if (CurrentHp - (Body.CurrentPartsHp + Head.CurrentPartsHp + LArm.CurrentPartsHp + RArm.CurrentPartsHp + Leg.CurrentPartsHp) < 20)
                     {
                         HitMotion();
+                        SoundManager.Instance.PlaySE(SEType.Hit);
                     }
                     else
                     {
@@ -1070,6 +1081,7 @@ public class Unit : MonoBehaviour
                     if (CurrentHp - Body.CurrentPartsHp < 20)
                     {
                         HitMotion();
+                        SoundManager.Instance.PlaySE(SEType.Hit);
                     }
                     else
                     {
@@ -1103,6 +1115,7 @@ public class Unit : MonoBehaviour
                 if (CurrentHp != Body.CurrentPartsHp + Head.CurrentPartsHp)
                 {
                     CurrentHp = Body.CurrentPartsHp + Head.CurrentPartsHp;
+                    SoundManager.Instance.PlaySE(SEType.Hit);
                 }
                 if (liftingForce != Body.LiftingForce)
                 {

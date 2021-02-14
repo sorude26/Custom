@@ -38,6 +38,7 @@ public class MeleeWeapon : Weapon
                     EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
                     hitParts.Damage(power);
                 }
+                SoundManager.Instance.PlaySE(SEType.Hit);
             }
         }
         else
