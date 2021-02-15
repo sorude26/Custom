@@ -160,7 +160,7 @@ public class Map : MonoBehaviour
         MoveList[moveUnit.CurrentPosX][moveUnit.CurrentPosZ].movePoint = moveUnit.GetMovePower();
         SearchCross(moveUnit.CurrentPosX, moveUnit.CurrentPosZ, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
     }
-    public void StartSearch2(Unit moveUnit)
+    public void StartSearch2(in Unit moveUnit)
     {
         foreach (MapDate map in MoveList2)
         {
@@ -179,7 +179,6 @@ public class Map : MonoBehaviour
                 SearchCross2(p, moveUnit.GetMovePower(), moveUnit.GetLiftingForce());
             }
         }
-        
     }
     /// <summary>
     /// 十字範囲の移動可能箇所を調べる
@@ -220,7 +219,7 @@ public class Map : MonoBehaviour
             }
         }
     }
-    void SearchCross3(int p, int movePower,Unit moveUnit)
+    void SearchCross3(int p, int movePower,in Unit moveUnit)
     {
         if (0 <= p && p < maxX * maxZ)
         {
@@ -345,7 +344,7 @@ public class Map : MonoBehaviour
             SearchCross2(p, movePower, liftingForce);
         }
     }
-    void SearchPos2(int p, int movePower, float currentLevel, Unit moveUnit)
+    void SearchPos2(int p, int movePower, float currentLevel,in Unit moveUnit)
     {
         if (p < 0 || p >= maxX * maxZ)//調査対象がマップ範囲内であるか確認
         {

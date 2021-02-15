@@ -168,7 +168,7 @@ public class Unit : MonoBehaviour
     /// <param name="moveList">検索範囲マップ</param>
     /// <param name="targetX">開始地点X軸</param>
     /// <param name="targetZ">開始地点Z軸</param>
-    public void UnitMove2(List<Map.MapDate> moveList, int targetX, int targetZ)
+    public void UnitMove2(in List<Map.MapDate> moveList, int targetX, int targetZ)
     {        
         unitMoveList = new List<int[]>();
         int[] pos = { targetX, targetZ };
@@ -326,7 +326,7 @@ public class Unit : MonoBehaviour
     /// <param name="p">現在座標</param>
     /// <param name="movePower">移動力</param>
     /// <param name="moveList">移動範囲リスト</param>
-    protected void SearchCross1(int p, int movePower, List<Map.MapDate> moveList)
+    protected void SearchCross1(int p, int movePower,in List<Map.MapDate> moveList)
     {
         if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
         {
@@ -348,7 +348,7 @@ public class Unit : MonoBehaviour
             }
         }
     }
-    protected void SearchCross2(int p, int movePower, List<Map.MapDate> moveList)
+    protected void SearchCross2(int p, int movePower,in List<Map.MapDate> moveList)
     {
         if (0 <= p && p < gameMap.maxX * gameMap.maxZ)
         {
@@ -378,7 +378,7 @@ public class Unit : MonoBehaviour
     /// <param name="currentLevel">現在高度</param>
     /// <param name="moveList">移動範囲リスト</param>
     /// <param name="moveCost">移動前座標の移動コスト</param>
-    protected void MoveSearchPos(int p, int movePower, float currentLevel, List<Map.MapDate> moveList, int moveCost)
+    protected void MoveSearchPos(int p, int movePower, float currentLevel,in List<Map.MapDate> moveList, int moveCost)
     {
         if (moveMood) { return; }//検索終了か確認
         if (p < 0 || p >= gameMap.maxX * gameMap.maxZ) { return; }//マップ範囲内か確認
@@ -405,7 +405,7 @@ public class Unit : MonoBehaviour
             SearchCross1(p, movePower, moveList);
         }
     }
-    protected void MoveSearchPos(int p, int movePower, float currentLevel, List<Map.MapDate> moveList)
+    protected void MoveSearchPos(int p, int movePower, float currentLevel,in List<Map.MapDate> moveList)
     {
         if (moveMood) { return; }//検索終了か確認
         if (p < 0 || p >= gameMap.maxX * gameMap.maxZ) { return; }//マップ範囲内か確認
@@ -676,7 +676,7 @@ public class Unit : MonoBehaviour
     /// ターゲットに攻撃
     /// </summary>
     /// <param name="targetUnit"></param>
-    public void TargetShot(Unit targetUnit, Weapon attackWeapon)
+    public void TargetShot(in Unit targetUnit,in Weapon attackWeapon)
     {
         ResetPartsAngle();
         if (targetUnit != null)

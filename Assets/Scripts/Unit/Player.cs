@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : Unit
@@ -24,7 +25,7 @@ public class Player : Unit
                 //UnitCreate(2, 7, 3, 5, 3, 3, 4);
                 //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
                 //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
-               
+
                 if (GameManager.SortieUnit[unitID].Sortie)
                 {
                     UnitCreate(GameManager.SortieUnit[unitID].HeadID, GameManager.SortieUnit[unitID].BodyID, GameManager.SortieUnit[unitID].LArmID,
@@ -37,7 +38,7 @@ public class Player : Unit
                     nBody = true;
                     return;
                 }
-                
+
             }
             if (silhouetteOn)
             {
@@ -94,15 +95,13 @@ public class Player : Unit
     /// 移動可能箇所表示
     /// </summary>
     /// <param name="moveList"></param>
-    public void UnitMoveList2(List<Map.MapDate> moveList)
+    public void UnitMoveList2(in List<Map.MapDate> moveList)
     {
-        foreach (Map.MapDate map in moveList)
+        var list = moveList.Where(p => p.movePoint > 0);
+        foreach (Map.MapDate map in list)
         {
-            if (map.movePoint > 0)
-            {
-                GameObject instance = Instantiate(mark);
-                instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);
-            }
+            GameObject instance = Instantiate(mark);
+            instance.transform.position = new Vector3(map.PosX * gameMap.mapScale, map.Level, map.PosZ * gameMap.mapScale);
         }
     }
 
@@ -112,7 +111,7 @@ public class Player : Unit
         searchScale.transform.localScale = new Vector3(DetectionRange * 2, Body.GetBodyCentrer().position.y, DetectionRange * 2);
         searchOn = true;
     }
-    
+
     public void SearchTarget()
     {
         TargetEnemies.Clear();
