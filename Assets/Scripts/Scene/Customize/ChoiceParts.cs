@@ -66,6 +66,7 @@ public class ChoiceParts : MonoBehaviour
     {
         if (view)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             view = false;
             baseStage.viewOpen = false;
             baseStage.SwithGard = true;
@@ -110,6 +111,7 @@ public class ChoiceParts : MonoBehaviour
         LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideHead();
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
     public void OnClickBody()
     {
@@ -125,6 +127,7 @@ public class ChoiceParts : MonoBehaviour
         LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideBody();
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
     public void OnClickLArm()
     {
@@ -140,6 +143,7 @@ public class ChoiceParts : MonoBehaviour
         LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideLArm();
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
     public void OnClickRArm()
     {
@@ -155,6 +159,7 @@ public class ChoiceParts : MonoBehaviour
         LegGard.SetActive(false);
         baseStage.SwithGard = true;
         baseStage.GuideRArm();
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
     public void OnClickLeg()
     {
@@ -170,5 +175,6 @@ public class ChoiceParts : MonoBehaviour
         LegGard.SetActive(true);
         baseStage.SwithGard = true;
         baseStage.GuideLeg();
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
 }

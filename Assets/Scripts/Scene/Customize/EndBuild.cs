@@ -44,10 +44,12 @@ public class EndBuild : MonoBehaviour
             open = false;
             choiceView.SetActive(false);
         }
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
 
     public void CustomizeGarageOut()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         baseStage.FinishBuild();
     }
 }

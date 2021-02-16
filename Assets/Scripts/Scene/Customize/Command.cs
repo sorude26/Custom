@@ -198,6 +198,7 @@ public class Command : MonoBehaviour
                 break;
         }
         baseStage.SwithGard = true;
+        SoundManager.Instance.PlaySE(SEType.ClickBotton);
     }
     
 }

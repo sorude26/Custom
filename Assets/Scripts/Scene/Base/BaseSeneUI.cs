@@ -30,20 +30,24 @@ public class BaseSeneUI : MonoBehaviour
     }
     public void OnClickStageSelect()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         massegeBox.SetActive(true);
         sceneNumber = 2;
     }
     public void OnClickCustomize()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         massegeBox.SetActive(true);
         sceneNumber = 1;
     }
     public void OnClickSceneChange()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         GameManager.Instance.StartChange(sceneNumber);
     }
     public void OnClickCancel()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         massegeBox.SetActive(false);
     }
 }

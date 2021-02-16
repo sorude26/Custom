@@ -88,6 +88,7 @@ public class SortieUI : MonoBehaviour
     }
     private void ChoiceReset()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceUnit);
         foreach (GameObject item in choiceUnitMark)
         {
             item.SetActive(false);
@@ -95,7 +96,7 @@ public class SortieUI : MonoBehaviour
         choiceResetMark.SetActive(false);
     }   
     private void SoriteLineReset()
-    {
+    {        
         soritePos = -1;
         foreach (GameObject item in soriteline)
         {
@@ -214,6 +215,7 @@ public class SortieUI : MonoBehaviour
     }
     public void OnClickSetSoritUnit()
     {
+        SoundManager.Instance.PlaySE(SEType.ClickBotton);
         if (soritePos >= 0)
         {
             if (choiceUnit >= 0)
@@ -266,7 +268,7 @@ public class SortieUI : MonoBehaviour
                 }
             }
             soriteGuard.SetActive(true);
-            ready = false;
+            ready = false;            
         }
     }
     public void OnClickSorit()
@@ -275,16 +277,19 @@ public class SortieUI : MonoBehaviour
         {
             changeMessage.SetActive(true);
             readySorite = true;
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         }
     }
     public void OnClickCancel()
     {
         changeMessage.SetActive(false);
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
     public void OnClickReturn()
     {
         changeMessage.SetActive(true);
         readySorite = false;
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
     public void OnClickChangeScene()
     {
@@ -296,6 +301,7 @@ public class SortieUI : MonoBehaviour
         {
             GameManager.Instance.StartChange(2);
         }
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
     }
 
 }

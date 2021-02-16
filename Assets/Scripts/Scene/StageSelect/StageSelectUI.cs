@@ -38,16 +38,19 @@ public class StageSelectUI : MonoBehaviour
     }
     public void OnClickCancel()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         massge.SetActive(false);
         returnBase = false;
     }
     public void OnClickReturnBase()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         massge.SetActive(true);
         returnBase = true;
     }
     public void OnClickSceneChange()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         if (returnBase)
         {
             GameManager.Instance.StartChange(3);
@@ -59,6 +62,7 @@ public class StageSelectUI : MonoBehaviour
     }
     public void OnClickStage1()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         foreach (GameObject stage in stageList)
         {
             stage.SetActive(false);
@@ -67,6 +71,7 @@ public class StageSelectUI : MonoBehaviour
     }
     public void OnClickStage2()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         foreach (GameObject stage in stageList)
         {
             stage.SetActive(false);
@@ -75,6 +80,7 @@ public class StageSelectUI : MonoBehaviour
     }
     public void OnClickStage3()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         foreach (GameObject stage in stageList)
         {
             stage.SetActive(false);
@@ -83,6 +89,7 @@ public class StageSelectUI : MonoBehaviour
     }
     public void OnClickStage4()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         foreach (GameObject stage in stageList)
         {
             stage.SetActive(false);

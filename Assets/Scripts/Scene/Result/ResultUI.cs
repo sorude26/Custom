@@ -47,8 +47,9 @@ public class ResultUI : MonoBehaviour
             if (scoreReward < stageReward)
             {
                 scoreReward += scoreSpeed * Time.deltaTime;
-                if (scoreReward > stageReward)
+                if (scoreReward >= stageReward)
                 {
+                    SoundManager.Instance.PlaySE(SEType.MoveWalk);
                     scoreReward = stageReward;
                 }
                 stageRewardText.text = "" + Mathf.Floor(scoreReward);
@@ -56,8 +57,9 @@ public class ResultUI : MonoBehaviour
             else if (scoreEnemy < enemyReward)
             {
                 scoreEnemy += scoreSpeed * Time.deltaTime;
-                if (scoreEnemy > enemyReward)
+                if (scoreEnemy >= enemyReward)
                 {
+                    SoundManager.Instance.PlaySE(SEType.MoveWalk);
                     scoreEnemy = enemyReward;
                 }
                 enemyRewardText.text = "" + Mathf.Floor(scoreEnemy);
@@ -65,8 +67,9 @@ public class ResultUI : MonoBehaviour
             else if (scoreLoss < totalLoss)
             {
                 scoreLoss += scoreSpeed * Time.deltaTime;
-                if (scoreLoss > totalLoss)
+                if (scoreLoss >= totalLoss)
                 {
+                    SoundManager.Instance.PlaySE(SEType.MoveWalk);
                     scoreLoss = totalLoss;
                 }
                 totalLossText.text = "" + Mathf.Floor(-scoreLoss);
@@ -74,8 +77,9 @@ public class ResultUI : MonoBehaviour
             else if (scoreTotal < totalReward)
             {
                 scoreTotal += scoreSpeed * Time.deltaTime;
-                if (scoreTotal > totalReward)
+                if (scoreTotal >= totalReward)
                 {
+                    SoundManager.Instance.PlaySE(SEType.MoveWalk);
                     scoreTotal = totalReward;
                 }
                 totalRewardText.text = "" + Mathf.Floor(scoreTotal);
@@ -103,6 +107,7 @@ public class ResultUI : MonoBehaviour
     {
         if (viewScorefinish)
         {
+            SoundManager.Instance.PlaySE(SEType.ClickBotton);
             GameManager.Instance.StartChange(3);
         }
     }

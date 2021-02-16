@@ -30,6 +30,7 @@ public class ChoiceUnit : MonoBehaviour
     {
         if (view)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             view = false;
             baseStage.viewOpen = false;
             baseStage.SwithGard = true;

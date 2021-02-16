@@ -31,6 +31,8 @@ public enum SEType
     Explosion3,
     Hit,
     Attack,
+    ChoiceButton,
+    ChoiceUnit,
 }
 public class SoundManager : MonoBehaviour
 {

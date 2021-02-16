@@ -109,7 +109,7 @@ public class BaseStage : MonoBehaviour
             RArmWeapon.TransFormParts(RArm.GetGrip().position);
             silhouetteOn = true;
             partsTotalPlice = Body.GetPrice() + Head.GetPrice() + LArm.GetPrice() + RArm.GetPrice() + Leg.GetPrice() + LArmWeapon.GetPrice() + RArmWeapon.GetPrice();
-            unitNumber.text = "機体番号：" + j + "\n価格" + partsTotalPlice;
+            unitNumber.text = "機体番号：" + j + "\n価格" + partsTotalPlice;            
         }
     }
     private void FirstSet()
@@ -171,8 +171,7 @@ public class BaseStage : MonoBehaviour
         {
             HeadID = i;
             guide.HeadData(partsList.GetHeadObject(i).GetComponent<PartsHead>());
-            ResetBuild();
-            SoundManager.Instance.PlaySE(SEType.ClickBotton);
+            ResetBuild();            
         }
     }
     public void SetUpPartsBody(int i)

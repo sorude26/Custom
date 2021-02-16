@@ -42,6 +42,7 @@ public class ChoiceWeapon : MonoBehaviour
     {
         if (view)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             view = false;
             baseStage.viewOpen = false;
             baseStage.SwithGard = true;
@@ -68,6 +69,7 @@ public class ChoiceWeapon : MonoBehaviour
     }
     public void OnClickWeaponL()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         weaponL.SetActive(true);
         weaponR.SetActive(false);
         gardL.SetActive(true);
@@ -77,6 +79,7 @@ public class ChoiceWeapon : MonoBehaviour
     }
     public void OnClickWeaponR()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         weaponL.SetActive(false);
         weaponR.SetActive(true);
         gardL.SetActive(false);
