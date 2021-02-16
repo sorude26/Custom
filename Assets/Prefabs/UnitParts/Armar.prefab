@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorPoint: 0
   defense: 0
+  damage: {fileID: 4671578638102411063, guid: ebc7b8fa4b99ada45b5d2266f125d34d, type: 3}
 --- !u!54 &7957590575758363883
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ public class Bullet : MonoBehaviour
     public void HitBullet(int Defense)
     {
 
-        EffectManager.PlayEffect(EffectID.Hit, transform.position);
+        EffectManager.PlayEffect(EffectID.Hit, transform.position);        
         Power -= Defense;
     }
     protected void OnTriggerEnter(Collider other)

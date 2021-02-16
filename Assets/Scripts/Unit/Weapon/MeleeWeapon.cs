@@ -48,6 +48,9 @@ public class MeleeWeapon : Weapon
             {
                 EffectManager.PlayEffect(EffectID.Hit, blade.transform.position);
                 armor.ArmorDamage();
+                GameObject hit = Instantiate(damage);
+                DamageText damageText = hit.GetComponent<DamageText>();
+                damageText.ViewDamege(1, transform.position);
             }
             else
             {

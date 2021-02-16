@@ -559,7 +559,7 @@ MonoBehaviour:
   defense: 50
   weight: 100
   armorParts: {fileID: 2077467327347008433}
-  armorPoint: 50
+  armorPoint: 5
   armorDefense: 5
   partsGuide: 
   price: 50

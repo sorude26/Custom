@@ -9,6 +9,8 @@ public class Armor : MonoBehaviour
     public int ArmorPoint { get; private set; }
     [SerializeField]
     int defense = 0;
+    [SerializeField]
+    GameObject damage;
     public int Defense { get; private set; }
     private void Start()
     {
@@ -22,6 +24,8 @@ public class Armor : MonoBehaviour
         Bullet hitBullet = other.GetComponent<Bullet>();
         if (hitBullet != null)
         {
+            GameObject hit = Instantiate(damage);
+            hit.transform.position = transform.position * 1.02f;
             hitBullet.HitBullet(Defense);
             ArmorDamage();
         }

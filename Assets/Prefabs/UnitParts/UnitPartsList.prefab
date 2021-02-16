@@ -103,6 +103,7 @@ MonoBehaviour:
   - {fileID: 1279342521735030483, guid: a80f4f8d659e6e2428e24be85f6a2cd6, type: 3}
   - {fileID: 6902753147675914989, guid: 15e9ced5106c83a4dbb5acb479b511b8, type: 3}
   - {fileID: 951841751963104289, guid: 0b159280c16c27e4fb0ff2166bfab2d2, type: 3}
+  - {fileID: 147036150136683647, guid: 31e74a16fd4a6664fa5f03ecb05f1ca3, type: 3}
   BodyObjectList:
   - {fileID: 6673392778233104622, guid: 4afbb2037fa2ecc4c816af96bfed1c66, type: 3}
   - {fileID: 4848896100023767557, guid: 2beea6fae65ad9141969eb897be71fff, type: 3}
@@ -153,4 +154,5 @@ MonoBehaviour:
   - {fileID: 2706818492750514617, guid: c0ae95c376bef7a41a479f354bc26435, type: 3}
   - {fileID: 1651793244384715899, guid: 81fd4c2531f8d0e47bab716f0946117f, type: 3}
   - {fileID: 973067607912976246, guid: 5285e44ab35c9de42a3a1b1ef3b71af6, type: 3}
+  - {fileID: 8542803181327101397, guid: 5bd84d313cab22f4d8b8e9fdfc2dd994, type: 3}
   BuildingObjectList: []
