@@ -683,7 +683,6 @@ public class Unit : MonoBehaviour
         {
             if (Body.unitType == UnitType.Human)
             {
-                //CameraControl.Instans.UnitCamera(this);
                 Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
                 Vector3 targetDir = targetPos - transform.position;
                 targetDir.y = 0.0f;
@@ -696,8 +695,6 @@ public class Unit : MonoBehaviour
                     {
                         Body.transform.localRotation = Quaternion.Euler(0, 20, 0);
                         bodyRotaion = Quaternion.Euler(0, 20, 0);
-                        //Head.transform.localRotation = Quaternion.Euler(0, -20, 0);
-                        //headRotaion = Quaternion.Euler(0, -20, 0);
                         LArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
                         lArmRotaion = Quaternion.Euler(30, 0, 0);
                         targetDir = targetPos - LArm.ArmParts().transform.position;
@@ -710,8 +707,6 @@ public class Unit : MonoBehaviour
                     {
                         Body.transform.localRotation = Quaternion.Euler(0, -20, 0);
                         bodyRotaion = Quaternion.Euler(0, -20, 0);
-                        //Head.transform.localRotation = Quaternion.Euler(0, 20, 0);
-                        //headRotaion = Quaternion.Euler(0, 20, 0);
                         RArm.transform.localRotation = Quaternion.Euler(30, 0, 0);
                         rArmRotaion = Quaternion.Euler(30, 0, 0);
                         targetDir = targetPos - RArm.ArmParts().transform.position;
@@ -778,11 +773,10 @@ public class Unit : MonoBehaviour
             }
             else if (Body.unitType == UnitType.Helicopter)
             {
-                //CameraControl.Instans.UnitCamera(this);
                 Vector3 targetPos = targetUnit.Body.GetBodyCentrer().position;
                 Vector3 targetDir = targetPos - transform.position;
                 targetDir.y = 0.0f;
-                Quaternion p = Quaternion.Euler(0, 180, 0);
+                Quaternion p = Quaternion.Euler(1, 180, 0);
                 Quaternion endRot = Quaternion.LookRotation(targetDir) * p;  //< 方向からローテーションに変換する
                 transform.rotation = endRot;
                 targetDir = targetPos - Body.GetBodyHand().transform.position;

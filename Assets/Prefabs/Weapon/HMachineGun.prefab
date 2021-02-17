@@ -562,12 +562,12 @@ MonoBehaviour:
   muzzle: {fileID: 6401233160510685012}
   weaponType: 1
   range: 60
-  effectiveRange: 10
-  power: 4
-  powerRange: 1
+  effectiveRange: 20
+  power: 3
+  powerRange: 2
   bulletSpeed: 300
-  totalShotNumber: 20
-  diffusivity: 0.04
+  totalShotNumber: 15
+  diffusivity: 0.05
   weight: 30
   weaponName: "\u30B5\u30D6\u30DE\u30B7\u30F3\u30AC\u30F3"
   blade: {fileID: 0}

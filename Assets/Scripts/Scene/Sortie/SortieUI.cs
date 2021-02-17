@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -257,18 +258,21 @@ public class SortieUI : MonoBehaviour
                     soriteUnitImage[i].rectTransform.anchoredPosition = new Vector3(0, 1000, 0);
                 }
             }
-            
-            foreach (var item in posData)
+            int price = 0;
+            posData.ToList().ForEach(data =>
             {
-                if (item >= 0)
+                if (data >= 0)
                 {
-                    soriteGuard.SetActive(false);
-                    ready = true;
-                    return;
+                    price += calculator.GetPraice(data);
                 }
+            });
+            totalPrice.text = "" + price;
+            if (price > 0)
+            {
+                return;
             }
             soriteGuard.SetActive(true);
-            ready = false;            
+            ready = false;                      
         }
     }
     public void OnClickSorit()
