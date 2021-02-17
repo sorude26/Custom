@@ -56,6 +56,7 @@ MonoBehaviour:
   powerRange: 1
   bulletSpeed: 250
   totalShotNumber: 10
+  interval: 0.15
   diffusivity: 0.1
   weight: 60
   weaponName: "\u9023\u5C04\u578B\u62E1\u6563\u7832"

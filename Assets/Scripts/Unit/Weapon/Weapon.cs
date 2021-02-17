@@ -36,6 +36,8 @@ public class Weapon : MonoBehaviour
     public int TotalShotNumber { get; private set; }//総射撃数
     [SerializeField] int totalShotNumber = 0;
     private int shotNumber;//発射弾数
+    [SerializeField]
+    private float interval = 0.1f;
     private float intervalTime;//発射間隔
     [SerializeField] float diffusivity = 0.02f;//拡散率
     public float Diffusivity { get; private set; }
@@ -127,7 +129,7 @@ public class Weapon : MonoBehaviour
         {
             shotNumber = 0;
             shotStart = true;
-            intervalTime = 0.1f;
+            intervalTime = interval;
         }
         else
         {
@@ -139,7 +141,7 @@ public class Weapon : MonoBehaviour
             {
                 BulletShot();
                 shotNumber++;
-                intervalTime = 0.1f;
+                intervalTime = interval;
                 owner.ShotCameraShake(5);
                 SoundManager.Instance.PlaySE(SEType.Shot1);
             }
@@ -167,7 +169,7 @@ public class Weapon : MonoBehaviour
         {
             shotNumber = 0;
             shotStart = true;
-            intervalTime = 0.1f;
+            intervalTime = interval;
         }
         else
         {
@@ -182,7 +184,7 @@ public class Weapon : MonoBehaviour
                     BulletShot();
                 }
                 shotNumber++;
-                intervalTime = 0.15f;
+                intervalTime = interval;
                 owner.ShotCameraShake(5);
                 SoundManager.Instance.PlaySE(SEType.Shot2);
             }

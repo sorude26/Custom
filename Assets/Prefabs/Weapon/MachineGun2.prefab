@@ -303,8 +303,9 @@ MonoBehaviour:
   effectiveRange: 70
   power: 8
   powerRange: 4
-  bulletSpeed: 350
-  totalShotNumber: 30
+  bulletSpeed: 300
+  totalShotNumber: 40
+  interval: 0.05
   diffusivity: 0.04
   weight: 20
   weaponName: "\u5927\u578B\u30DE\u30B7\u30F3\u30AC\u30F3"
