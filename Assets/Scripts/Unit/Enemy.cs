@@ -56,24 +56,7 @@ public class Enemy : Unit
         {
             if (ActionNow)
             {
-                switch (enemyAI)
-                {
-                    case EnemyAI.Attacker:
-                        ActionTypeAttacker();
-                        break;
-                    case EnemyAI.Sniper:
-                        ActionTypeSniper();
-                        break;
-                    case EnemyAI.Guardian:
-                        break;
-                    case EnemyAI.Commander:
-                        break;
-                    case EnemyAI.Object:
-                        attack = true;
-                        break;
-                    default:
-                        break;
-                }
+                enemyAIControl();                
                 if (moveMood)
                 {
                     UnitMove();
@@ -106,6 +89,27 @@ public class Enemy : Unit
     public void StatAction()
     {
         ActionNow = true;
+    }
+    private void enemyAIControl()
+    {
+        switch (enemyAI)
+        {
+            case EnemyAI.Attacker:
+                ActionTypeAttacker();
+                break;
+            case EnemyAI.Sniper:
+                ActionTypeSniper();
+                break;
+            case EnemyAI.Guardian:
+                break;
+            case EnemyAI.Commander:
+                break;
+            case EnemyAI.Object:
+                attack = true;
+                break;
+            default:
+                break;
+        }
     }
     private void AttackMood()
     {
@@ -179,74 +183,9 @@ public class Enemy : Unit
                     }
                     if (!unitOn)
                     {
-                        int number = 0;
                         foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
                         {
-                            if (!target.DestroyBody)
-                            {
-                                float point = 0;
-                                Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
-                                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
-                                {
-                                    float distance = dir.sqrMagnitude;
-                                    weapon1 = null;
-                                    weapon2 = null;
-                                    if (Body.unitType == UnitType.Human)
-                                    {
-                                        if (LArm.CurrentPartsHp > 0)
-                                        {
-                                            weapon1 = LArmWeapon;
-                                            if (RArm.CurrentPartsHp > 0)
-                                            {
-                                                weapon2 = RArmWeapon;
-                                            }
-                                            if (weapon2 != null)
-                                            {
-                                                if (weapon1.EffectiveRange < weapon2.EffectiveRange)
-                                                {
-                                                    weapon1 = RArmWeapon;
-                                                    weapon2 = LArmWeapon;
-                                                }
-                                            }
-                                        }
-                                        else if (RArm.CurrentPartsHp > 0)
-                                        {
-                                            weapon1 = RArmWeapon;
-                                        }
-                                    }
-                                    else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
-                                    {
-                                        weapon1 = LArmWeapon;
-                                    }
-                                    if (weapon1 != null)
-                                    {
-                                        if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
-                                        {
-                                            point += 10000;
-                                            point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
-                                        }
-                                        else
-                                        {
-                                            point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
-                                        }
-                                        point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
-                                        point -= number;//ターゲットの登録順で得点に差
-                                        point -= distance;//距離が短いほど高得点
-                                        if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
-                                        {
-                                            if (point > Target.TargetPoint)
-                                            {
-                                                Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
-                                        }
-                                    }
-                                }
-                            }
-                            number++;
+                            AttackerAI(target, mapDate);
                         }
                     }
                 }
@@ -290,70 +229,9 @@ public class Enemy : Unit
                     }
                     if (!unitOn)
                     {
-                        int number = 0;
                         foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
                         {
-                            if (!target.DestroyBody)
-                            {
-                                float point = 0;
-                                Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
-                                if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
-                                {
-                                    float distance = dir.sqrMagnitude;
-                                    weapon1 = null;
-                                    weapon2 = null;
-                                    if (Body.unitType == UnitType.Human)
-                                    {
-                                        if (LArm.CurrentPartsHp > 0)
-                                        {
-                                            weapon1 = LArmWeapon;
-                                            if (RArm.CurrentPartsHp > 0)
-                                            {
-                                                weapon2 = RArmWeapon;
-                                            }
-                                            if (weapon2 != null)
-                                            {
-                                                if (weapon1.EffectiveRange < weapon2.EffectiveRange)
-                                                {
-                                                    weapon1 = RArmWeapon;
-                                                    weapon2 = LArmWeapon;
-                                                }
-                                            }
-                                        }
-                                        else if (RArm.CurrentPartsHp > 0)
-                                        {
-                                            weapon1 = RArmWeapon;
-                                        }
-                                    }
-                                    else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
-                                    {
-                                        weapon1 = LArmWeapon;
-                                    }
-                                    if (weapon1 != null)
-                                    {
-                                        if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
-                                        {
-                                            point += 20000;
-                                        }
-                                        point += mapDate.movePoint * 1000;//移動量が少ない場合に高得点
-                                        point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
-                                        point -= number;//ターゲットの登録順で得点に差
-                                        point -= distance;//距離が短いほど高得点
-                                        if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
-                                        {
-                                            if (point > Target.TargetPoint)
-                                            {
-                                                Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
-                                        }
-                                    }
-                                }
-                            }
-                            number++;
+                            SniperAI(target, mapDate);
                         }
                     }
                 }
@@ -376,76 +254,110 @@ public class Enemy : Unit
     }
     private void ActionTypeGuardian()
     {
-        if (!search)
+        
+    }
+    private void AttackerAI(in Player target, in Map.MapDate mapDate)
+    {
+        if (!target.DestroyBody)
         {
-
-
-            int number = 0;
-            foreach (Player target in unitManager.GetPlayerList())//ユニットが移動後の索敵範囲にいるか検索
+            float point = 0;
+            Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
+            if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
             {
-                if (!target.DestroyBody)
+                float distance = dir.sqrMagnitude;
+                SetWeapon();
+                if (weapon1 != null)
                 {
-                    float point = 0;
-                    Vector3 dir = target.transform.position - transform.position;
-                    if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+                    if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
                     {
-                        float distance = dir.sqrMagnitude;
-                        weapon1 = null;
-                        weapon2 = null;
-                        if (Body.unitType == UnitType.Human)
+                        point += 10000;
+                        point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
+                    }
+                    else
+                    {
+                        point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
+                    }
+                    point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
+                    point -= distance;//距離が短いほど高得点
+                    if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                    {
+                        if (point > Target.TargetPoint)
                         {
-                            if (LArm.CurrentPartsHp > 0)
-                            {
-                                weapon1 = LArmWeapon;
-                                if (RArm.CurrentPartsHp > 0)
-                                {
-                                    weapon2 = RArmWeapon;
-                                }
-                                if (weapon2 != null)
-                                {
-                                    if (weapon1.EffectiveRange < weapon2.EffectiveRange)
-                                    {
-                                        weapon1 = RArmWeapon;
-                                        weapon2 = LArmWeapon;
-                                    }
-                                }
-                            }
-                            else if (RArm.CurrentPartsHp > 0)
-                            {
-                                weapon1 = RArmWeapon;
-                            }
-                        }
-                        else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
-                        {
-                            weapon1 = LArmWeapon;
-                        }
-                        if (weapon1 != null)
-                        {
-                            if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
-                            {
-                                point += 10000;
-                            }
-                            point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
-                            point -= distance;//距離が短いほど高得点
-                            if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
-                            {
-                                if (point > Target.TargetPoint)
-                                {
-                                    Target = new Target(target, point, target.CurrentPosX, target.CurrentPosZ);
-                                }
-                            }
-                            else
-                            {
-                                Target = new Target(target, point, target.CurrentPosX, target.CurrentPosZ);
-                            }
+                            Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
                         }
                     }
+                    else
+                    {
+                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                    }
                 }
-                number++;
             }
-            CameraControl.Instans.UnitCameraMove(this);
-            search = true;
         }
-            attack = true;
+    }
+    private void SniperAI(in Player target,in Map.MapDate mapDate)
+    {
+        if (!target.DestroyBody)
+        {
+            float point = 0;
+            Vector3 dir = target.transform.position - new Vector3(mapDate.PosX * gameMap.mapScale, mapDate.Level, mapDate.PosZ * gameMap.mapScale);
+            if (dir.sqrMagnitude <= DetectionRange * DetectionRange)
+            {
+                float distance = dir.sqrMagnitude;
+                SetWeapon();
+                if (weapon1 != null)
+                {
+                    if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
+                    {
+                        point += 20000;
+                    }
+                    point += mapDate.movePoint * 1000;//移動量が少ない場合に高得点
+                    point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点                                       
+                    point -= distance;//距離が短いほど高得点
+                    if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
+                    {
+                        if (point > Target.TargetPoint)
+                        {
+                            Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                        }
+                    }
+                    else
+                    {
+                        Target = new Target(target, point, mapDate.PosX, mapDate.PosZ);
+                    }
+                }
+            }
+        }
+    }
+    private void SetWeapon()
+    {
+        weapon1 = null;
+        weapon2 = null;
+        if (Body.unitType == UnitType.Human)
+        {
+            if (LArm.CurrentPartsHp > 0)
+            {
+                weapon1 = LArmWeapon;
+                if (RArm.CurrentPartsHp > 0)
+                {
+                    weapon2 = RArmWeapon;
+                }
+                if (weapon2 != null)
+                {
+                    if (weapon1.EffectiveRange < weapon2.EffectiveRange)
+                    {
+                        weapon1 = RArmWeapon;
+                        weapon2 = LArmWeapon;
+                    }
+                }
+            }
+            else if (RArm.CurrentPartsHp > 0)
+            {
+                weapon1 = RArmWeapon;
+            }
+        }
+        else if (Body.unitType == UnitType.Helicopter || Body.unitType == UnitType.Tank)
+        {
+            weapon1 = LArmWeapon;
+        }
     }
 }
