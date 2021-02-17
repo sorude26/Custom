@@ -43,6 +43,7 @@ public class SceneChangeControl : MonoBehaviour
                         SceneManager.LoadScene("Stage2");
                         break;
                     case StageID.Stage3:
+                        SceneManager.LoadScene("Stage3");
                         break;
                     default:
                         SceneManager.LoadScene("SampleScene");
