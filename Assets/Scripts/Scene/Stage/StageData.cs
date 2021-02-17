@@ -32,6 +32,12 @@ public class StageData : MonoBehaviour
             case StageType.City1:
                 break;
             case StageType.Forest1:
+                if (x <= 8 && 3 <= z && z <= 11 || x >= 5 && x <= 13 && z >= 14 && z <= 22
+                    || 13 <= x && x <= 21 && z <= 8 || 15 <= x && x <= 23 && 15 <= z && z <= 23
+                    || 10 <= x && x <= 18 && 9 <= z && z <= 17)
+                {
+                    MapTypeData = Map.MapType.Forest;
+                }                
                 break;
             case StageType.Wasteland:
                 break;
@@ -54,6 +60,30 @@ public class StageData : MonoBehaviour
             case StageType.City1:
                 break;
             case StageType.Forest1:
+                if (x <= 8 && 3 <= z && z <= 11 || x >= 5 && x <=13 && z >=14 && z <= 22 
+                    || 13 <= x && x <= 21 && z <= 8 || 15 <= x && x <= 23 && 15 <= z && z <= 23 
+                    || 10<= x && x <= 18 && 9<= z && z <= 17)
+                {
+                    Level = 0.5f;
+                }
+                if (1 <= x &&x <= 7 && 4 <= z && z <= 10 || x >= 6 && x <= 12 && z >= 15 && z <= 21 
+                    || 14 <= x && x <= 20 && 1 <= z && z <= 7|| 16 <= x && x <= 22 && 16 <= z && z <= 22 
+                    || 11 <= x && x <= 17 && 10 <= z && z <= 16)
+                {
+                    Level = 1.0f;
+                }
+                if (2 <= x && x <= 6 && 5 <= z && z <= 9 || x >= 7 && x <= 11 && z >= 16 && z <= 20
+                    || 15 <= x && x <= 19 && 2 <= z && z <= 6 || 17 <= x && x <= 21 && 17 <= z && z <= 21
+                    || 12 <= x && x <= 16 && 11 <= z && z <= 15)
+                {
+                    Level = 1.5f;
+                }
+                if (3 <= x && x <= 5 && 6 <= z && z <= 8 || x >= 8 && x <= 10 && z >= 17 && z <= 19
+                    || 16 <= x && x <= 18 && 3 <= z && z <= 5 || 18 <= x && x <= 20 && 18 <= z && z <= 20
+                    || 13 <= x && x <= 15 && 12 <= z && z <= 14)
+                {
+                    Level = 2.0f;
+                }
                 break;
             case StageType.Wasteland:
                 break;
@@ -155,7 +185,8 @@ public class StageData : MonoBehaviour
                 i = 5;
                 break;
             case StageID.Stage3:
-                break;
+                i = 4;
+                break;                
             default:
                 break;
         }
@@ -196,6 +227,7 @@ public class StageData : MonoBehaviour
                 name = "都市";
                 break;
             case StageID.Stage3:
+                name = "森林地帯";
                 break;
             default:
                 break;
@@ -218,7 +250,8 @@ public class StageData : MonoBehaviour
                 reward = 2000;
                 break;
             case StageID.Stage3:
-                break;
+                reward = 2000;
+                break;                
             default:
                 break;
         }

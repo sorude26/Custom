@@ -41,6 +41,7 @@ public class PartsLeg : UnitParts
         MovePower = movePower;
         UnitMoveType = moveType;
         MoveSpeed = moveSpeed;
+        LiftingForce = liftingForce;
         posY = partsHigh.transform.localPosition.y;
     }
     private void Update()

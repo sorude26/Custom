@@ -15,6 +15,7 @@ public class Map : MonoBehaviour
         NonAggressive,//侵入不可
         Asphalt,//舗装
         Wasteland,//荒地
+        Forest,//森
     }
 
     /// <summary>
@@ -135,6 +136,9 @@ public class Map : MonoBehaviour
                 break;
             case MapType.Wasteland:
                 point = 3;
+                break;
+            case MapType.Forest:
+                point = 4;
                 break;
             default:
                 point = 0;//０は移動不可
