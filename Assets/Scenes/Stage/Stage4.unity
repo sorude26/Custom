@@ -364,6 +364,11 @@ PrefabInstance:
       propertyPath: startPosZ
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7750338913767645043, guid: 0644073a4e847e34480a710b38eb6edd,
+        type: 3}
+      propertyPath: enemyAI
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0644073a4e847e34480a710b38eb6edd, type: 3}
 --- !u!114 &282853695 stripped
@@ -2010,6 +2015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: startPosX
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750338913767645043, guid: 0644073a4e847e34480a710b38eb6edd,
+        type: 3}
+      propertyPath: enemyAI
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0644073a4e847e34480a710b38eb6edd, type: 3}
