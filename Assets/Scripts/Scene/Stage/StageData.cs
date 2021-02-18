@@ -14,10 +14,11 @@ public enum StageType
 
 public enum StageID
 {
-    Stage0,
+    Stage0,//デバック用仮ステージ
     Stage1,
     Stage2,
     Stage3,
+    Stage4,
 }
 public class StageData : MonoBehaviour
 {
@@ -186,7 +187,10 @@ public class StageData : MonoBehaviour
                 break;
             case StageID.Stage3:
                 i = 4;
-                break;                
+                break;
+            case StageID.Stage4:
+                i = 5;
+                break;
             default:
                 break;
         }
@@ -229,6 +233,9 @@ public class StageData : MonoBehaviour
             case StageID.Stage3:
                 name = "森林地帯";
                 break;
+            case StageID.Stage4:
+                name = "山岳基地";
+                break;
             default:
                 break;
         }
@@ -251,7 +258,10 @@ public class StageData : MonoBehaviour
                 break;
             case StageID.Stage3:
                 reward = 2000;
-                break;                
+                break;
+            case StageID.Stage4:
+                reward = 3000;
+                break;
             default:
                 break;
         }
