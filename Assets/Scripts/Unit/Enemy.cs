@@ -48,6 +48,12 @@ public class Enemy : Unit
                 case 4:
                     UnitCreate(9, 10, 6, 7, 6, 9, 6);
                     break;
+                case 5:
+                    UnitCreate(4, 9, 5, 12, 5, 12, 5);
+                    break;
+                case 6:
+                    UnitCreate(9, 10, 6, 0, 6, 4, 6);
+                    break;
                 default:
                     break;
             }
