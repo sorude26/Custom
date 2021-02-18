@@ -24,7 +24,6 @@ public class BaseStage : MonoBehaviour
     bool silhouetteOn = false;
     public int SetUpUnit { get; private set; } = 0;
     public bool viewOpen = false;
-    int partsNumber = 0;
     [SerializeField]
     Text unitNumber;
     [SerializeField]
