@@ -85,6 +85,7 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.turnCountTimer <= 0 && !nControl && !stageData.EnemyTurn && !attackButtonsOpen)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             stageData.MoveStart();
             messageWindow.SetActive(true);
             CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit);
@@ -92,12 +93,14 @@ public class StageUI : MonoBehaviour
     }
     public void OnClickMoveCancel()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         stageData.UnitMoveReturn();
     }
     public void OnClickAttack()
     {
         if (stageData.turnCountTimer <= 0 && !nControl && stageData.PlayerUnit.LArm.CurrentPartsHp + stageData.PlayerUnit.RArm.CurrentPartsHp > 0)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             stageData.PlayerUnit.MoveFinishSet();
             attackButtons.SetActive(true);
             attackButtonsOpen = true;
@@ -109,6 +112,7 @@ public class StageUI : MonoBehaviour
 
     public void OnClickDecide()
     {
+        SoundManager.Instance.PlaySE(SEType.ChoiceButton);
         stageData.UnitMoveFinish();
         choiceTarget = false;
         search = false;
@@ -148,6 +152,7 @@ public class StageUI : MonoBehaviour
                 }
                 buttonGaredL.SetActive(false);
                 buttonGaredR.SetActive(true);
+                SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             }
         }
     }
@@ -173,6 +178,7 @@ public class StageUI : MonoBehaviour
                 }
                 buttonGaredL.SetActive(true);
                 buttonGaredR.SetActive(false);
+                SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             }
         }
     }
@@ -181,6 +187,7 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.turnCountTimer <= 0 && !nControl)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             CameraControl.Instance.UnitCamera(stageData.PlayerUnit);
             stageData.PlayerUnit.TargetEnemy = stageData.PlayerUnit.TargetEnemies[count];
             stageData.AttackStart();
@@ -205,6 +212,7 @@ public class StageUI : MonoBehaviour
         CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
+        SoundManager.Instance.PlaySE(SEType.ChoiceUnit);
     }
     public void OnClickRigftArrow()
     {
@@ -216,11 +224,13 @@ public class StageUI : MonoBehaviour
         CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
+        SoundManager.Instance.PlaySE(SEType.ChoiceUnit);
     }
     public void OnClickRetry()
     {
         if (!sceneChange)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             GameManager.Instance.StartChange(0);
             sceneChange = true;
         }
@@ -230,6 +240,7 @@ public class StageUI : MonoBehaviour
     {
         if (!sceneChange)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceButton);
             GameManager.Instance.StartChange(2);
             sceneChange = true;
         }

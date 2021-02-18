@@ -23,6 +23,7 @@ public class MovePanel : MonoBehaviour
     {
         if (!stage.MoveNow)
         {
+            SoundManager.Instance.PlaySE(SEType.ChoiceUnit);
             Vector3 thisPos = transform.position;
             //float posX = thisPos.x;
             //float posZ = thisPos.z;

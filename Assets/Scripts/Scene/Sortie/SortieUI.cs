@@ -266,7 +266,7 @@ public class SortieUI : MonoBehaviour
                     price += calculator.GetPraice(data);
                 }
             });
-            totalPrice.text = "" + price/2;
+            totalPrice.text = "" + price;
             if (price > 0)
             {
                 soriteGuard.SetActive(false);

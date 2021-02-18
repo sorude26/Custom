@@ -8,12 +8,10 @@ public enum BGMType
     None,   // 未定義
     Title,
     Base,
-    Sortie,
     Customize,
     Result,
-    Ending,
-    Stage1p,
-    Stage1e,
+    Stage1,
+    Stage2,
 }
 public enum SEType
 {
@@ -33,6 +31,7 @@ public enum SEType
     Attack,
     ChoiceButton,
     ChoiceUnit,
+    ChangeScene,
 }
 public class SoundManager : MonoBehaviour
 {
@@ -44,6 +43,7 @@ public class SoundManager : MonoBehaviour
     private AudioClip[] soundEffect;
     Dictionary<BGMType, AudioClip> soundBGMList = new Dictionary<BGMType, AudioClip>();
     Dictionary<SEType, AudioClip> soundSEList = new Dictionary<SEType, AudioClip>();
+    private BGMType bgmType = BGMType.None;
     private void Awake()
     {
         if (Instance == null)
@@ -74,9 +74,13 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayBGM(BGMType type) 
     {
-        audioSource.clip = soundBGMList[type];
-        audioSource.Play();
-        audioSource.loop = true;
+        if (bgmType != type)
+        {
+            audioSource.clip = soundBGMList[type];
+            audioSource.Play();
+            audioSource.loop = true;
+            bgmType = type;
+        }
     }
 
     public void PlaySE(SEType type)

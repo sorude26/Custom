@@ -28,6 +28,7 @@ public class SceneChangeControl : MonoBehaviour
     }
     public void SceneChange(int i)
     {
+        SoundManager.Instance.PlaySE(SEType.ChangeScene);
         switch (i)
         {
             case 0:
@@ -55,12 +56,14 @@ public class SceneChangeControl : MonoBehaviour
                 break;
             case 1:
                 SceneManager.LoadScene("CustomizeScene");
+                SoundManager.Instance.PlayBGM(BGMType.Customize);
                 break;
             case 2:
                 SceneManager.LoadScene("StageSelect");
                 break;
             case 3:
                 SceneManager.LoadScene("BaseScene");
+                SoundManager.Instance.PlayBGM(BGMType.Base);
                 break;
             case 4:
                 SceneManager.LoadScene("BattleResult");
@@ -73,6 +76,7 @@ public class SceneChangeControl : MonoBehaviour
                 break;
             case 7:
                 SceneManager.LoadScene("Ending");
+                SoundManager.Instance.PlayBGM(BGMType.Result);
                 break;
             default:
                 break;

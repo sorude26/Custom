@@ -89,5 +89,6 @@ public class StageMessage : MonoBehaviour
         viweTime = time;
         viwe = false;
         startViwe = true;
+        SoundManager.Instance.PlaySE(SEType.ChangeScene);
     }
 }

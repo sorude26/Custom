@@ -57,6 +57,7 @@ public class Stage : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instance.PlayBGM(BGMType.Stage1);
         unitManager = UnitManager.Instance;
         foreach (Enemy unit in unitManager.GetEnemies())
         {
@@ -361,6 +362,10 @@ public class Stage : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+            if (Victory)
+            {
+                SoundManager.Instance.PlayBGM(BGMType.Result);
             }
         }
         if (!defeat && PlayerDestroyCount == unitManager.GetPlayerList().Length)
