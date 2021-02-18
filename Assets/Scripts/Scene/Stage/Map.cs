@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public static Map Instans { get; private set; }
+    public static Map Instance { get; private set; }
 
     /// <summary>
     /// 地形タイプ
@@ -65,7 +65,7 @@ public class Map : MonoBehaviour
         MapCreate2(maxX, maxZ);
         //MoveList = new List<List<MapDate>>(MapDates);
         MoveList2 = new List<MapDate>(MapDates2);
-        Instans = this;
+        Instance = this;
     }
     void Start()
     {

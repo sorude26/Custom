@@ -8,13 +8,13 @@ public class CameraControl : MonoBehaviour
     public Transform MainCameraTrans { get; private set; }
 
     private int cameraPos = 0;
-    public static CameraControl Instans { get; private set; }
+    public static CameraControl Instance { get; private set; }
     private Unit target = null;
     private int posX = -15;
     private int posZ = -15;
     private void Awake()
     {
-        Instans = this;
+        Instance = this;
         MainCamera = GetComponentInChildren<Camera>();
         MainCameraTrans = MainCamera.transform;
     }
@@ -23,7 +23,7 @@ public class CameraControl : MonoBehaviour
     {
         // transform.position = new Vector3(-10, 20, -30);
         transform.position = new Vector3(-10, 90, -30);
-        Vector3 lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+        Vector3 lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
         Vector3 targetDir = lockOnPos - transform.position;
         transform.rotation = Quaternion.LookRotation(targetDir);
     }
@@ -48,37 +48,37 @@ public class CameraControl : MonoBehaviour
         {
             case 0:
                 transform.position = new Vector3(-10, 20, -30);
-                Vector3 lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+                Vector3 lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
                 Vector3 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 break;
             case 1:
-                transform.position = new Vector3(Map.Instans.maxX * 10.0f, 20, Map.Instans.maxZ * 10.0f + 15);
-                lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+                transform.position = new Vector3(Map.Instance.maxX * 10.0f, 20, Map.Instance.maxZ * 10.0f + 15);
+                lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
                 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 break;
             case 2:
-                transform.position = new Vector3(-10, 20, Map.Instans.maxZ * 10.0f + 15);
-                lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+                transform.position = new Vector3(-10, 20, Map.Instance.maxZ * 10.0f + 15);
+                lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
                 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 break;
             case 3:
-                transform.position = new Vector3(Map.Instans.maxX * 10.0f, 22, -30);
-                lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+                transform.position = new Vector3(Map.Instance.maxX * 10.0f, 22, -30);
+                lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
                 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 break;
             case 4:
-                transform.position = new Vector3(Map.Instans.maxX * 5.0f, (Map.Instans.maxX + Map.Instans.maxZ)*5, Map.Instans.maxZ * 5.0f);
-                lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+                transform.position = new Vector3(Map.Instance.maxX * 5.0f, (Map.Instance.maxX + Map.Instance.maxZ)*5, Map.Instance.maxZ * 5.0f);
+                lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
                 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 break;
             default:
                 transform.position = new Vector3(-10, 20, -30);
-                lockOnPos = new Vector3(Map.Instans.maxX * 5.0f, 0, Map.Instans.maxZ * 5.0f);
+                lockOnPos = new Vector3(Map.Instance.maxX * 5.0f, 0, Map.Instance.maxZ * 5.0f);
                 targetDir = lockOnPos - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDir);
                 cameraPos = 0;
@@ -127,6 +127,13 @@ public class CameraControl : MonoBehaviour
     {
         transform.position = unit.Body.GetCameraPos().position; 
         Vector3 targetDir = unit.Body.GetBodyCentrer().position - transform.position;
+        transform.rotation = Quaternion.LookRotation(targetDir);
+    }
+    public void PointCamera(int x, int z)
+    {
+        int p = x + (z * Map.Instance.maxX);
+        transform.position = new Vector3(x * 10 + posX, 10 + Map.Instance.MapDates2[p].Level, z * 10 + posZ);
+        Vector3 targetDir = new Vector3(x * 10, Map.Instance.MapDates2[p].Level, z * 10) - transform.position;
         transform.rotation = Quaternion.LookRotation(targetDir);
     }
 }

@@ -47,7 +47,7 @@ public class StageUI : MonoBehaviour
                 if (count == 0)
                 {
                     count = 1;
-                    CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
+                    CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
                     TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
                     guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
                 }
@@ -87,7 +87,7 @@ public class StageUI : MonoBehaviour
         {
             stageData.MoveStart();
             messageWindow.SetActive(true);
-            CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit);
+            CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit);
         }
     }
     public void OnClickMoveCancel()
@@ -181,7 +181,7 @@ public class StageUI : MonoBehaviour
     {
         if (stageData.turnCountTimer <= 0 && !nControl)
         {
-            CameraControl.Instans.UnitCamera(stageData.PlayerUnit);
+            CameraControl.Instance.UnitCamera(stageData.PlayerUnit);
             stageData.PlayerUnit.TargetEnemy = stageData.PlayerUnit.TargetEnemies[count];
             stageData.AttackStart();
             messageWindow.SetActive(false);
@@ -202,7 +202,7 @@ public class StageUI : MonoBehaviour
         {
             count = stageData.PlayerUnit.GetEnemies().Count - 1;
         }
-        CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
+        CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
     }
@@ -213,7 +213,7 @@ public class StageUI : MonoBehaviour
         {
             count = 1;
         }
-        CameraControl.Instans.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
+        CameraControl.Instance.UnitCameraMove(stageData.PlayerUnit.GetTarget(count));
         TargetCursor.instance.SetCursor(stageData.PlayerUnit.GetTarget(count));
         guide.AttackWeapon(stageData.PlayerAttackWeapon, stageData.PlayerUnit, stageData.PlayerUnit.GetTarget(count));
     }

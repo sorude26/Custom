@@ -15,17 +15,11 @@ public class UnitShowBase : MonoBehaviour
     Transform[] unitPos;
     UnitPartsList partsList = null;
     public PartsHead Head { get; private set; } = null;
-    public int HeadID { get; private set; }
     public PartsBody Body { get; private set; } = null;
-    public int BodyID { get; private set; }
     public PartsLArm LArm { get; private set; } = null;
-    public int LArmID { get; private set; }
     public PartsRArm RArm { get; private set; } = null;
-    public int RArmID { get; private set; }
     public PartsLeg Leg { get; private set; } = null;
-    public int LegID { get; private set; }
     public Weapon LArmWeapon { get; private set; } = null;
-    public int WeaponLID { get; private set; }
     public Weapon RArmWeapon { get; private set; } = null;
     private int count = 0;
 

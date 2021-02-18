@@ -18,7 +18,7 @@ public class Stage : MonoBehaviour
     private bool defeat;
     private bool setData;
     [SerializeField] int goalPositionX = 0;
-    [SerializeField] int goalPositionY = 0;
+    [SerializeField] int goalPositionZ = 0;
     public Player PlayerUnit { get; private set; }
     public Enemy EnemyUnit { get; private set; }
     [SerializeField]
@@ -34,7 +34,7 @@ public class Stage : MonoBehaviour
     public bool PlayerTurn { get; private set; }
     public bool EnemyTurn { get; set; }
     public bool EnemyAction { get; set; }
-
+    private bool victoryCheck;
     public float turnCountTimer = 2;
     public int PlayerUnitCount { get; private set; } = 0;
     public int PlayerDestroyCount { get; set; } = 0;
@@ -105,12 +105,13 @@ public class Stage : MonoBehaviour
                     break;
                 case VictoryConditions.TargetBreak:
                     stageMessage.ViewMessage(6, 2.0f);                   
-                    CameraControl.Instans.UnitCamera(targetEnemy);
+                    CameraControl.Instance.UnitCamera(targetEnemy);
                     break;
                 case VictoryConditions.Survive:
                     break;
                 case VictoryConditions.GoalPosition:
                     stageMessage.ViewMessage(8, 2.0f);
+                    CameraControl.Instance.PointCamera(goalPositionX, goalPositionZ);
                     break;
                 default:
                     break;
@@ -156,10 +157,10 @@ public class Stage : MonoBehaviour
                     if (unitManager.GetEnemy(EnemyUnitCount).Body.CurrentPartsHp > 0)
                     {
                         EnemyUnit = unitManager.GetEnemy(EnemyUnitCount);
-                        CameraControl.Instans.UnitCamera(EnemyUnit);
+                        CameraControl.Instance.UnitCamera(EnemyUnit);
                         EnemyUnit.StatAction();
                         EnemyAction = false;
-                        panelE.SetUnit(EnemyUnit);
+                        panelE.SetUnit(EnemyUnit);                        
                     }
                     EnemyUnitCount++;
                 }
@@ -175,6 +176,7 @@ public class Stage : MonoBehaviour
         {
             return;
         }
+        victoryCheck = true;
         if (PlayerUnitCount > unitManager.GetPlayerList().Length)
         {
             PlayerUnitCount = 0;
@@ -194,7 +196,7 @@ public class Stage : MonoBehaviour
             PlayerUnit.MoveFinishSet();
             PlayerUnit = unitManager.GetPlayer(PlayerUnitCount);
             TargetCursor.instance.SetCursor(PlayerUnit);
-            CameraControl.Instans.UnitCamera(PlayerUnit);
+            CameraControl.Instance.UnitCamera(PlayerUnit);
             panelP.SetUnit(PlayerUnit);
             PlayerUnit.ActionTurn = true;
             PlayerUnitCount++;
@@ -343,6 +345,19 @@ public class Stage : MonoBehaviour
                 case VictoryConditions.Survive:
                     break;
                 case VictoryConditions.GoalPosition:
+                    if (victoryCheck)
+                    {
+                        victoryCheck = false;
+                        foreach (var unit in unitManager.GetPlayerList())
+                        {
+                            if (unit.CurrentPosX == goalPositionX && unit.CurrentPosZ == goalPositionZ)
+                            {
+                                Victory = true;
+                                stageMessage.ViewMessage(3, 5.0f);                                
+                                return;
+                            }
+                        }
+                    }
                     break;
                 default:
                     break;

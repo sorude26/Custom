@@ -71,7 +71,7 @@ public class Ally : Unit
                 {
                     MoveFinishSet();
                     attack = true;
-                    CameraControl.Instans.UnitCamera(this);
+                    CameraControl.Instance.UnitCamera(this);
                 }
                 UnitAngleControl();
                 AttackMood();
@@ -140,7 +140,7 @@ public class Ally : Unit
                 gameStage.EnemyAction = true;
                 gameStage.turnCountTimer = 2;
                 gameStage.BattleEnd();
-                CameraControl.Instans.UnitCameraMove(this);
+                CameraControl.Instance.UnitCameraMove(this);
             }
         }
     }
@@ -239,7 +239,7 @@ public class Ally : Unit
                     }
                 }
             }
-            CameraControl.Instans.UnitCameraMove(this);
+            CameraControl.Instance.UnitCameraMove(this);
             search = true;
         }
         if (Target != null)//ターゲットが設定されているならば移動実施
@@ -346,7 +346,7 @@ public class Ally : Unit
                     }
                 }
             }
-            CameraControl.Instans.UnitCameraMove(this);
+            CameraControl.Instance.UnitCameraMove(this);
             search = true;
         }
         if (Target != null)//ターゲットが設定されているならば移動実施
@@ -431,7 +431,7 @@ public class Ally : Unit
                 }
                 number++;
             }
-            CameraControl.Instans.UnitCameraMove(this);
+            CameraControl.Instance.UnitCameraMove(this);
             search = true;
         }
         attack = true;

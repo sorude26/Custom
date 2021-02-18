@@ -97,7 +97,7 @@ public class Unit : MonoBehaviour
     }
     protected void Start()
     {
-        gameMap = Map.Instans;
+        gameMap = Map.Instance;
         gameStage = Stage.Instance;
         unitManager = UnitManager.Instance;
         partsList = UnitPartsList.Instance;
@@ -800,7 +800,7 @@ public class Unit : MonoBehaviour
         }
         attackTimer = 0;
         attackMode = true;
-        CameraControl.Instans.AttackCamera(this);
+        CameraControl.Instance.AttackCamera(this);
     }
 
     protected void AttackPattern(int i)
