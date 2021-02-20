@@ -21,7 +21,7 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "都市：敵部隊の殲滅";
                 break;
             case StageID.Stage3:
-                guideText.text = "森林地帯：敵部隊の殲滅";
+                guideText.text = "森林地帯：目標地点への到達";
                 break;
             case StageID.Stage4:
                 guideText.text = "山岳基地：大型起動兵器ギガントの破壊";

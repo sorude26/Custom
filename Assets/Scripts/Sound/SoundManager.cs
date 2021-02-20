@@ -43,6 +43,8 @@ public class SoundManager : MonoBehaviour
     private AudioClip[] soundEffect;
     Dictionary<BGMType, AudioClip> soundBGMList = new Dictionary<BGMType, AudioClip>();
     Dictionary<SEType, AudioClip> soundSEList = new Dictionary<SEType, AudioClip>();
+    [SerializeField]
+    private BGMType startBGM = BGMType.Title;
     private BGMType bgmType = BGMType.None;
     private void Awake()
     {
@@ -70,7 +72,7 @@ public class SoundManager : MonoBehaviour
     }
     private void Start()
     {
-        PlayBGM(BGMType.Title);
+        PlayBGM(startBGM);
     }
     public void PlayBGM(BGMType type) 
     {
