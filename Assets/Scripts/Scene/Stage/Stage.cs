@@ -50,6 +50,7 @@ public class Stage : MonoBehaviour
     public Weapon PlayerAttackWeapon { get; private set; } = null;
     public int StageReward { get; private set; } = 0;
     public int LossReward { get; private set; } = 0;
+    private bool sceneChange =false;
     private void Awake()
     {
         Instance = this;        
@@ -385,9 +386,9 @@ public class Stage : MonoBehaviour
                 }
             }
         }
-        if (Victory)
+        if (Victory && !sceneChange)
         {
-            if (!setData && victoryTimer > 10.0f)
+            if (!setData && victoryTimer > 8.0f)
             {
                 GameManager.StageScoreData.StageName = map.data.GetStageName(GameManager.StageCode);
                 GameManager.StageScoreData.StageReward = map.data.GetReward(GameManager.StageCode);
@@ -399,7 +400,7 @@ public class Stage : MonoBehaviour
             else if (setData)
             {
                 GameManager.Instance.StartChange(4);
-                Victory = false;
+                sceneChange = true;
             }
             victoryTimer += 1.0f * Time.deltaTime;
         }
