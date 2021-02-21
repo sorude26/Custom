@@ -2202,7 +2202,7 @@ MonoBehaviour:
   movePower: 11
   moveSpeed: 50
   partsHigh: {fileID: 9152105345335696726}
-  liftingForce: 3
+  liftingForce: 2
   legJointL1: {fileID: 1545360176375353331}
   legJointL2: {fileID: 7914386488989748345}
   legJointR1: {fileID: 5270369822495227789}

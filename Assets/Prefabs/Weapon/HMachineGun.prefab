@@ -566,8 +566,9 @@ MonoBehaviour:
   power: 3
   powerRange: 2
   bulletSpeed: 300
-  totalShotNumber: 15
-  diffusivity: 0.05
+  totalShotNumber: 20
+  interval: 0.07
+  diffusivity: 0.06
   weight: 30
   weaponName: "\u30B5\u30D6\u30DE\u30B7\u30F3\u30AC\u30F3"
   blade: {fileID: 0}

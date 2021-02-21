@@ -64,7 +64,7 @@ MonoBehaviour:
   partsGuide: 
   price: 90
   unitOutput: 250
-  liftingForce: 5
+  liftingForce: 4
   headParts: {fileID: 87206587244213615}
   rArmParts: {fileID: 87206586985576408}
   lArmParts: {fileID: 87206587439494970}
