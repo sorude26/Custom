@@ -291,13 +291,14 @@ public class Enemy : Unit
                 {
                     if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
                     {
-                        point += 10000;
+                        point += 20000;
                         point += mapDate.movePoint * 20;//移動量が少ない場合に高得点
                     }
                     else
                     {
                         point += (movePower - mapDate.movePoint) * 10;//移動量が大きい場合に高得点
                     }
+                    point += target.PartsTotalPlice;//価格が高いほど高得点
                     point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点
                     point -= distance;//距離が短いほど高得点
                     if (Target != null)//ターゲットが登録済みか判断し、登録済みのターゲットポイントと比較、高ポイントならば新規登録
@@ -329,8 +330,9 @@ public class Enemy : Unit
                 {
                     if (dir.sqrMagnitude <= weapon1.EffectiveRange * weapon1.EffectiveRange)
                     {
-                        point += 20000;
+                        point += 30000;
                     }
+                    point += target.PartsTotalPlice;//価格が高いほど高得点
                     point += mapDate.movePoint * 1000;//移動量が少ない場合に高得点
                     point += (target.GetMaxHp() - target.CurrentHp) * 10;//ターゲットの耐久値の減少量が大きい場合に高得点                                       
                     point -= distance;//距離が短いほど高得点

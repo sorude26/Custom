@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 0
   m_Name: EnemyLightArmorT.A
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b527cc98b385e49b1d1c22b47c9470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: "H.T.\u30E9\u30A4\u30C8\u30A2\u30FC\u30DE\u30FCS"
+  unitName: "H.T.\u30E9\u30A4\u30C8\u30A2\u30FC\u30DE\u30FCA"
   unitAngle: 1
   movePower: 10
   liftingForce: 2
@@ -71,8 +71,8 @@ MonoBehaviour:
   detectionRange: 50
   moveSpeed: 20
   haveWeapon: {fileID: 0}
-  enemyAI: 1
-  enemyType: 7
+  enemyAI: 0
+  enemyType: 6
 --- !u!114 &6178661401031773749
 MonoBehaviour:
   m_ObjectHideFlags: 0
