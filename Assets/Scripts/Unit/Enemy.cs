@@ -34,25 +34,40 @@ public class Enemy : Unit
             switch (enemyType)
             {
                 case 0:
-                    UnitCreate(5, 3, 10);
+                    UnitCreate(5, 3, 10);//戦車
                     break;
                 case 1:
-                    UnitCreate(4, 9);
+                    UnitCreate(4, 9);//戦闘ヘリ
                     break;
                 case 2:
-                    UnitCreate(2, 2, 2, 3, 2, 6, 2);
+                    UnitCreate(2, 2, 2, 3, 2, 6, 2);//ギガント
                     break;
                 case 3:
-                    UnitCreate(1);
+                    UnitCreate(12, 15, 10, 1, 10, 0, 9);//ソルジャー
                     break;
                 case 4:
-                    UnitCreate(9, 10, 6, 7, 6, 9, 6);
+                    UnitCreate(9, 10, 6, 7, 6, 9, 6);//ライトアーマー通常
                     break;
                 case 5:
-                    UnitCreate(4, 9, 5, 12, 5, 12, 5);
+                    UnitCreate(4, 9, 5, 12, 5, 12, 5);//オーガ
                     break;
                 case 6:
-                    UnitCreate(9, 10, 6, 0, 6, 4, 6);
+                    UnitCreate(9, 10, 6, 0, 6, 4, 6);//ライトアーマーアサルト
+                    break;
+                case 7:
+                    UnitCreate(10, 10, 6, 7, 10, 2, 6);//ライトアーマースナイパー
+                    break;
+                case 8:
+                    UnitCreate(11, 16, 10, 9, 12, 11, 9);//ソルジャー砲撃戦仕様
+                    break;
+                case 9:
+                    UnitCreate(10, 13, 11, 9, 11, 8, 10);//サーチャー
+                    break;
+                case 10:
+                    UnitCreate(8, 12, 13);//重戦車
+                    break;
+                case 11:
+                    UnitCreate(12, 14, 10, 3, 12, 1, 9);//重装甲type
                     break;
                 default:
                     break;
