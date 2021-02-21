@@ -2678,7 +2678,7 @@ MonoBehaviour:
   price: 400
   moveType: 0
   movePower: 13
-  moveSpeed: 40
+  moveSpeed: 45
   partsHigh: {fileID: 8425611874022236523}
   liftingForce: 4
   legJointL1: {fileID: 2205988580432278478}

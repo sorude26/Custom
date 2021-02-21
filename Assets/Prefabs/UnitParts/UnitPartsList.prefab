@@ -99,6 +99,7 @@ MonoBehaviour:
   - {fileID: 3110852228004207859, guid: b9696fc65b017c94db089da58dfb9d1d, type: 3}
   - {fileID: 2212699668649349587, guid: fd34f3e25e1b9d54f8a295e6140d3873, type: 3}
   - {fileID: 8824775360046814260, guid: 7b4450acd7961c048b610ffeb7575906, type: 3}
+  - {fileID: 4857647923059245504, guid: 9798e43ab2c76b144b87df3ab3339f0b, type: 3}
   weaponObjectList:
   - {fileID: 780823539462373911, guid: 9811b0b32bc64e24297368f3226eac4e, type: 3}
   - {fileID: 934432947381065304, guid: ec0daba4ccc710f4da7e9b69a1f378f1, type: 3}
