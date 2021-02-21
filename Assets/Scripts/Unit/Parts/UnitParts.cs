@@ -48,7 +48,7 @@ public class UnitParts : MonoBehaviour
         ArmorDefense = armorDefense;
     }
 
-    public void Damage(int damage)
+    public virtual void Damage(int damage)
     {
         if (CurrentPartsHp > 0)
         {

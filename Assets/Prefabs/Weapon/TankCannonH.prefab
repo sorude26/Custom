@@ -162,12 +162,13 @@ MonoBehaviour:
     type: 3}
   muzzle: {fileID: 1845152216726437771}
   weaponType: 0
-  range: 60
-  effectiveRange: 60
+  range: 40
+  effectiveRange: 40
   power: 6
   powerRange: 0
   bulletSpeed: 180
   totalShotNumber: 100
+  interval: 0.1
   diffusivity: 0.02
   weight: 40
   weaponName: "\u69B4\u5F3E\u7832"

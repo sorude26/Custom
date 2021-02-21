@@ -71,6 +71,19 @@ public class PartsBody : UnitParts
         }
         
     }
+    public override void Damage(int damage)
+    {
+        if (unitType == UnitType.Tank)
+        {
+            if(Owner.Head.CurrentPartsHp <= 0)
+            {
+                CurrentPartsHp = 0;
+                PartsBreak();
+                return;
+            }
+        }
+        base.Damage(damage);
+    }
     public Transform GetHeadPos() { return headParts; }
     public Transform GetRArmPos() { return rArmParts; }
     public Transform GetLArmPos() { return lArmParts; }

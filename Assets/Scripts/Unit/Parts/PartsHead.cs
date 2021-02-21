@@ -23,7 +23,10 @@ public class PartsHead : UnitParts
         {
             DetectionRange = 20;
             partsBreak = false;
-            headObject.SetActive(false);
+            if (Owner.Body.unitType != UnitType.Tank)
+            {
+                headObject.SetActive(false);
+            }
         }
     }
     public float GetDetectionRange() { return detectionRange; }
