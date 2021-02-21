@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088943667495954861}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.12, z: -1.32}
-  m_LocalScale: {x: 0.08, y: 0.7, z: 0.08}
+  m_LocalPosition: {x: 0, y: 0.12, z: -1.115}
+  m_LocalScale: {x: 0.08, y: 0.9, z: 0.08}
   m_Children: []
   m_Father: {fileID: 3690535162528385045}
   m_RootOrder: 0
@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3624960770544729074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: -0.01, z: -3.353}
+  m_LocalPosition: {x: 0, y: -0.01, z: -4.575}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1595635186379978954}
@@ -184,7 +184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3899435168132004479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.121, z: -0.561}
+  m_LocalPosition: {x: 0, y: 0.121, z: -0.3}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.5}
   m_Children: []
   m_Father: {fileID: 3690535162528385045}
@@ -263,8 +263,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5774684576446881315}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.12, z: -1.99}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.06}
+  m_LocalPosition: {x: 0, y: 0.12, z: -1.984}
+  m_LocalScale: {x: 0.12, y: 0.1, z: 0.07}
   m_Children: []
   m_Father: {fileID: 3690535162528385045}
   m_RootOrder: 2
@@ -340,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8156126229126207305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: 0.66}
+  m_LocalPosition: {x: 0, y: -0.15, z: -0.55}
   m_LocalScale: {x: 1.2, y: 1.2, z: 2}
   m_Children:
   - {fileID: 8383937880768075828}
@@ -377,7 +377,7 @@ Transform:
   m_GameObject: {fileID: 8444111785267791767}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.12, z: -1.32}
-  m_LocalScale: {x: 0.05, y: 0.701, z: 0.05}
+  m_LocalScale: {x: 0.05, y: 0.7, z: 0.05}
   m_Children: []
   m_Father: {fileID: 3690535162528385045}
   m_RootOrder: 1
@@ -484,6 +484,7 @@ MonoBehaviour:
   powerRange: 20
   bulletSpeed: 350
   totalShotNumber: 100
+  interval: 0.1
   diffusivity: 0.01
   weight: 40
   weaponName: "\u5BFE\u8D77\u52D5\u5175\u5668\u7528\u8CAB\u901A\u5F3E\u7832"

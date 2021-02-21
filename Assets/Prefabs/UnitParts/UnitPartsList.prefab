@@ -67,6 +67,7 @@ MonoBehaviour:
   - {fileID: 8351323455597825899, guid: df383f0b291ed6f428a8d80f02bb297c, type: 3}
   - {fileID: 87206586249399424, guid: bfa06172a26a0f94d8e6e35c7288eea1, type: 3}
   - {fileID: 8973712366781457388, guid: f53f817fedb76414caad86a89d39483e, type: 3}
+  - {fileID: 5967765890709248521, guid: 7e17334d4c39d4540b8846816b7fa072, type: 3}
   LArmObjectList:
   - {fileID: 5636109707663599795, guid: 8468cda8a16940a49a00dc75ab2cc998, type: 3}
   - {fileID: 8197818254922226933, guid: e66e716fd8c7fb34e9772240a7544cca, type: 3}
