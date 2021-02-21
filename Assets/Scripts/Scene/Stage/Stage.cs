@@ -354,8 +354,8 @@ public class Stage : MonoBehaviour
                             if (unit.CurrentPosX == goalPositionX && unit.CurrentPosZ == goalPositionZ)
                             {
                                 Victory = true;
-                                stageMessage.ViewMessage(3, 5.0f);                                
-                                return;
+                                stageMessage.ViewMessage(3, 5.0f);
+                                break;
                             }
                         }
                     }

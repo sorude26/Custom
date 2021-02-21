@@ -299,6 +299,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d0844dcec30d4243b4cb0ce1aa6d0c5, type: 3}
+--- !u!114 &76641353 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2768733794187276982, guid: 5d0844dcec30d4243b4cb0ce1aa6d0c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 76641352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b527cc98b385e49b1d1c22b47c9470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &85200223 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2768733794187276982, guid: 5d0844dcec30d4243b4cb0ce1aa6d0c5,
@@ -1453,7 +1465,7 @@ PrefabInstance:
     - target: {fileID: 1856619545057639694, guid: a7a226e27f6e8304f92ac94be3cbfb89,
         type: 3}
       propertyPath: enemyList.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1856619545057639694, guid: a7a226e27f6e8304f92ac94be3cbfb89,
         type: 3}
@@ -1505,6 +1517,11 @@ PrefabInstance:
       propertyPath: enemyList.Array.data[2]
       value: 
       objectReference: {fileID: 1421063159}
+    - target: {fileID: 1856619545057639694, guid: a7a226e27f6e8304f92ac94be3cbfb89,
+        type: 3}
+      propertyPath: enemyList.Array.data[6]
+      value: 
+      objectReference: {fileID: 76641353}
     - target: {fileID: 1856619545057639695, guid: a7a226e27f6e8304f92ac94be3cbfb89,
         type: 3}
       propertyPath: m_Name
