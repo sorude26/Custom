@@ -23,6 +23,8 @@ public class Stage : MonoBehaviour
     public Enemy EnemyUnit { get; private set; }
     [SerializeField]
     private Enemy targetEnemy = null;
+    [SerializeField]
+    private Enemy[] targetEnemies;
     private UnitManager unitManager;
     public List<Unit> stageUnits;
     public List<int[]> stageUnitsPos = new List<int[]>();
@@ -103,7 +105,8 @@ public class Stage : MonoBehaviour
                     stageMessage.ViewMessage(5, 2.0f);
                     break;
                 case VictoryConditions.TargetNumberBreak:
-                    stageMessage.ViewMessage(7, 2.0f);
+                    stageMessage.ViewMessage(6, 2.0f);
+                    CameraControl.Instance.UnitCamera(targetEnemies[0]);
                     break;
                 case VictoryConditions.TargetBreak:
                     stageMessage.ViewMessage(6, 2.0f);                   
@@ -324,51 +327,6 @@ public class Stage : MonoBehaviour
     public bool viewGameOver;
     private void VictoryConditionsCheck()
     {
-        if (!defeat && !Victory)
-        {
-            switch (victory)
-            {
-                case VictoryConditions.AllDestroy:
-                    if (EnemyDestroyCount == unitManager.GetEnemies().Length)
-                    {
-                        Victory = true;
-                        stageMessage.ViewMessage(3, 5.0f);
-                    }
-                    break;
-                case VictoryConditions.TargetNumberBreak:
-                    break;
-                case VictoryConditions.TargetBreak:
-                    if (targetEnemy.DestroyBody)
-                    {
-                        Victory = true;
-                        stageMessage.ViewMessage(3, 5.0f);
-                    }
-                    break;
-                case VictoryConditions.Survive:
-                    break;
-                case VictoryConditions.GoalPosition:
-                    if (victoryCheck)
-                    {
-                        victoryCheck = false;
-                        foreach (var unit in unitManager.GetPlayerList())
-                        {
-                            if (unit.CurrentPosX == goalPositionX && unit.CurrentPosZ == goalPositionZ)
-                            {
-                                Victory = true;
-                                stageMessage.ViewMessage(3, 5.0f);
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-            if (Victory)
-            {
-                SoundManager.Instance.PlayBGM(BGMType.Result);
-            }
-        }
         if (!defeat && PlayerDestroyCount == unitManager.GetPlayerList().Length)
         {
             defeat = true;
@@ -403,6 +361,64 @@ public class Stage : MonoBehaviour
                 sceneChange = true;
             }
             victoryTimer += 1.0f * Time.deltaTime;
+        }
+        if (!defeat && !Victory)
+        {
+            switch (victory)
+            {
+                case VictoryConditions.AllDestroy:
+                    if (EnemyDestroyCount == unitManager.GetEnemies().Length)
+                    {
+                        Victory = true;
+                        stageMessage.ViewMessage(3, 5.0f);
+                    }
+                    break;
+                case VictoryConditions.TargetNumberBreak:
+                    if (victoryCheck)
+                    {
+                        victoryCheck = false;
+                        foreach (var unti in targetEnemies)
+                        {
+                            if (!unti.DestroyBody)
+                            {
+                                return;
+                            }
+                        }
+                        Victory = true;
+                        stageMessage.ViewMessage(3, 5.0f);
+                    }
+                    break;
+                case VictoryConditions.TargetBreak:
+                    if (targetEnemy.DestroyBody)
+                    {
+                        Victory = true;
+                        stageMessage.ViewMessage(3, 5.0f);
+                    }
+                    break;
+                case VictoryConditions.Survive:
+                    break;
+                case VictoryConditions.GoalPosition:
+                    if (victoryCheck)
+                    {
+                        victoryCheck = false;
+                        foreach (var unit in unitManager.GetPlayerList())
+                        {
+                            if (unit.CurrentPosX == goalPositionX && unit.CurrentPosZ == goalPositionZ)
+                            {
+                                Victory = true;
+                                stageMessage.ViewMessage(3, 5.0f);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (Victory)
+            {
+                SoundManager.Instance.PlayBGM(BGMType.Result);
+            }
         }
     }
 
