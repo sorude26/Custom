@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b527cc98b385e49b1d1c22b47c9470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: "T.G.\u30BD\u30EB\u30B8\u30E3\u30FC\u7832\u6483\u6226\u4ED5\u69D8"
+  unitName: "T.G.\u30BD\u30EB\u30B8\u30E3\u30FC\u5BFE\u7A7A\u7832\u4ED5\u69D8"
   unitAngle: 1
   movePower: 10
   liftingForce: 2
