@@ -60,6 +60,7 @@ public class SceneChangeControl : MonoBehaviour
                 break;
             case 2:
                 SceneManager.LoadScene("StageSelect");
+                SoundManager.Instance.PlayBGM(BGMType.Base);
                 break;
             case 3:
                 SceneManager.LoadScene("BaseScene");
