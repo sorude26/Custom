@@ -646,6 +646,7 @@ MonoBehaviour:
   goalPositionX: 0
   goalPositionZ: 0
   targetEnemy: {fileID: 0}
+  targetEnemies: []
   stageUnits: []
   map: {fileID: 1356154673}
   turnCountTimer: 2
@@ -3641,8 +3642,14 @@ PrefabInstance:
     - target: {fileID: 5363767959075163690, guid: 35d646ddd2cdc6e4a80a306b0e73b11e,
         type: 3}
       propertyPath: stageType
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5363767959075163690, guid: 35d646ddd2cdc6e4a80a306b0e73b11e,
+        type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 7195886238839786580, guid: 387432e4977afb34da2795451814f66f,
+        type: 3}
     - target: {fileID: 5363767959075163693, guid: 35d646ddd2cdc6e4a80a306b0e73b11e,
         type: 3}
       propertyPath: m_Name
