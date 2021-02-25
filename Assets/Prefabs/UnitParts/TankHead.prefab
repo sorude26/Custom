@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: "\u6226\u8ECA\u7832\u982D"
-  partsHp: 50
+  partsHp: 30
   defense: 50
   weight: 100
   armorParts: {fileID: 2077467327347008433}

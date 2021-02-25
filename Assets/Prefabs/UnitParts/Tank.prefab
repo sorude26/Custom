@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partsName: "\u6226\u8ECA"
-  partsHp: 120
+  partsHp: 110
   defense: 50
   weight: 250
   armorParts: {fileID: 5476179026124270474}

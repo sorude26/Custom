@@ -22,7 +22,7 @@ public class Player : Unit
             if (!silhouetteOn && !DestroyBody)
             {
                 searchScale.SetActive(false);
-                //UnitCreate(2, 7, 3, 5, 3, 3, 0);
+                //UnitCreate(0, 0, 0, 0, 0, 0, 0);
                 //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
                 //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
                 

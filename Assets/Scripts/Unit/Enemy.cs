@@ -64,7 +64,7 @@ public class Enemy : Unit
                     UnitCreate(10, 13, 11, 9, 11, 8, 10);//サーチャー
                     break;
                 case 10:
-                    UnitCreate(8, 12, 13);//重戦車
+                    UnitCreate(12, 8, 13);//重戦車
                     break;
                 case 11:
                     UnitCreate(12, 14, 10, 3, 12, 1, 9);//重装甲type
