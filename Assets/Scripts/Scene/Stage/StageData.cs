@@ -200,6 +200,7 @@ public class StageData : MonoBehaviour
                 i = 5;
                 break;
             case StageID.Stage5:
+                i = 5;
                 break;
             case StageID.Stage6:
                 break;
