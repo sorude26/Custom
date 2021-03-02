@@ -19,6 +19,14 @@ public enum StageID
     Stage2,
     Stage3,
     Stage4,
+    Stage5,
+    Stage6,
+    Stage7,
+    Stage8,
+    Stage9,
+    Stage10,
+    Stage11,
+    Stage12,
 }
 public class StageData : MonoBehaviour
 {
@@ -191,6 +199,22 @@ public class StageData : MonoBehaviour
             case StageID.Stage4:
                 i = 5;
                 break;
+            case StageID.Stage5:
+                break;
+            case StageID.Stage6:
+                break;
+            case StageID.Stage7:
+                break;
+            case StageID.Stage8:
+                break;
+            case StageID.Stage9:
+                break;
+            case StageID.Stage10:
+                break;
+            case StageID.Stage11:
+                break;
+            case StageID.Stage12:
+                break;
             default:
                 break;
         }
@@ -202,13 +226,30 @@ public class StageData : MonoBehaviour
         switch (ID)
         {
             case StageID.Stage0:
-                i = 4;
                 break;
             case StageID.Stage1:
                 break;
             case StageID.Stage2:
                 break;
             case StageID.Stage3:
+                break;
+            case StageID.Stage4:
+                break;
+            case StageID.Stage5:
+                break;
+            case StageID.Stage6:
+                break;
+            case StageID.Stage7:
+                break;
+            case StageID.Stage8:
+                break;
+            case StageID.Stage9:
+                break;
+            case StageID.Stage10:
+                break;
+            case StageID.Stage11:
+                break;
+            case StageID.Stage12:
                 break;
             default:
                 break;
@@ -236,6 +277,30 @@ public class StageData : MonoBehaviour
             case StageID.Stage4:
                 name = "山岳基地";
                 break;
+            case StageID.Stage5:
+                name = "平原";
+                break;
+            case StageID.Stage6:
+                name = "平原";
+                break;
+            case StageID.Stage7:
+                name = "都市";
+                break;
+            case StageID.Stage8:
+                name = "都市";
+                break;
+            case StageID.Stage9:
+                name = "森林地帯";
+                break;
+            case StageID.Stage10:
+                name = "森林地帯";
+                break;
+            case StageID.Stage11:
+                name = "山岳基地";
+                break;
+            case StageID.Stage12:
+                name = "山岳基地";
+                break;
             default:
                 break;
         }
@@ -261,6 +326,22 @@ public class StageData : MonoBehaviour
                 break;
             case StageID.Stage4:
                 reward = 3000;
+                break;
+            case StageID.Stage5:
+                break;
+            case StageID.Stage6:
+                break;
+            case StageID.Stage7:
+                break;
+            case StageID.Stage8:
+                break;
+            case StageID.Stage9:
+                break;
+            case StageID.Stage10:
+                break;
+            case StageID.Stage11:
+                break;
+            case StageID.Stage12:
                 break;
             default:
                 break;
