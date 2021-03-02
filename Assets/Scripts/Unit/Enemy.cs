@@ -58,7 +58,7 @@ public class Enemy : Unit
                     UnitCreate(10, 10, 6, 7, 10, 2, 6);//ライトアーマースナイパー
                     break;
                 case 8:
-                    UnitCreate(11, 16, 10, 9, 12, 11, 9);//ソルジャー砲撃戦仕様
+                    UnitCreate(11, 16, 10, 9, 12, 11, 11);//ソルジャー砲撃戦仕様
                     break;
                 case 9:
                     UnitCreate(10, 13, 11, 9, 11, 8, 10);//サーチャー
@@ -67,7 +67,7 @@ public class Enemy : Unit
                     UnitCreate(12, 8, 13);//重戦車
                     break;
                 case 11:
-                    UnitCreate(12, 14, 10, 3, 12, 1, 9);//重装甲type
+                    UnitCreate(12, 14, 10, 3, 12, 1, 11);//重装甲type
                     break;
                 default:
                     break;
