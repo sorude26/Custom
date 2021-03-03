@@ -23,6 +23,7 @@ public class Player : Unit
             {
                 searchScale.SetActive(false);
                 //UnitCreate(0, 3, 0, 14, 0, 14, 1);
+                //UnitCreate(0, 0, 0, 0, 0, 0, 0);
                 //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
                 //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
                 
