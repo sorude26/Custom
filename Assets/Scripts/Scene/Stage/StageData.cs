@@ -117,7 +117,7 @@ public class StageData : MonoBehaviour
                 {
                     Level = 3.0f;
                 }
-                if (x >= 11 && x <= 12 && z == 9)
+                if (x >= 15 && x <= 19 && z == 9)
                 {
                     Level = 3.5f;
                 }

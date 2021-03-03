@@ -16,7 +16,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hanger1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5058305789c394189257db49d9239b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: 
   unitAngle: 0
   movePower: 0
   liftingForce: 0
@@ -106,6 +107,7 @@ MonoBehaviour:
   detectionRange: 0
   moveSpeed: 1
   haveWeapon: {fileID: 0}
+  explosion: {fileID: 0}
 --- !u!65 &840613071210499666
 BoxCollider:
   m_ObjectHideFlags: 0
