@@ -22,10 +22,10 @@ public class Player : Unit
             if (!silhouetteOn && !DestroyBody)
             {
                 searchScale.SetActive(false);
-                //UnitCreate(0, 3, 0, 0, 0, 0, 1);
+                UnitCreate(0, 3, 0, 14, 0, 14, 1);
                 //UnitCreate(GameManager.UnitDatas[unitID].HeadID, GameManager.UnitDatas[unitID].BodyID, GameManager.UnitDatas[unitID].LArmID,
                 //     GameManager.UnitDatas[unitID].WeaponLID, GameManager.UnitDatas[unitID].RArmID, GameManager.UnitDatas[unitID].WeaponRID, GameManager.UnitDatas[unitID].LegID);
-                
+                /*
                 if (GameManager.SortieUnit[unitID].Sortie)
                 {
                     UnitCreate(GameManager.SortieUnit[unitID].HeadID, GameManager.SortieUnit[unitID].BodyID, GameManager.SortieUnit[unitID].LArmID,
@@ -38,7 +38,7 @@ public class Player : Unit
                     nBody = true;
                     return;
                 }
-                
+                */
             }
             if (silhouetteOn)
             {

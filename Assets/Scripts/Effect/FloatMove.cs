@@ -8,9 +8,14 @@ public class FloatMove : MonoBehaviour
     [SerializeField]
     private float currentPosY = 6;
     private int y = 1;
-    
+    [SerializeField]
+    Unit owner = null;
     void Update()
     {
+        if (owner)
+        {
+            currentPosY = owner.Head.transform.position.y + 3f;
+        }
         if (posY < 0)
         {
             y = 1;
