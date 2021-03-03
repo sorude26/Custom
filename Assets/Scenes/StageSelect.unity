@@ -9203,7 +9203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896d1991667544a42be1052505890aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageCode: 1
+  stageCode: 7
 --- !u!114 &1455744201
 MonoBehaviour:
   m_ObjectHideFlags: 0

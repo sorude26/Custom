@@ -30,9 +30,10 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "平原：戦車部隊の殲滅";
                 break;
             case StageID.Stage6:
-                guideText.text = "平原横断任務";
+                guideText.text = "平原：平原横断任務";
                 break;
             case StageID.Stage7:
+                guideText.text = "都市：対空砲装備部隊の撃滅";
                 break;
             case StageID.Stage8:
                 break;

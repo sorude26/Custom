@@ -14,7 +14,10 @@ public class FloatMove : MonoBehaviour
     {
         if (owner)
         {
-            currentPosY = owner.Head.transform.position.y + 3f;
+            if (owner.Head)
+            {
+                currentPosY = owner.Head.transform.position.y + 3f;
+            }
         }
         if (posY < 0)
         {
