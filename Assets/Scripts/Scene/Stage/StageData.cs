@@ -215,6 +215,7 @@ public class StageData : MonoBehaviour
                 i = 4;
                 break;
             case StageID.Stage10:
+                i = 5;
                 break;
             case StageID.Stage11:
                 break;
@@ -348,6 +349,7 @@ public class StageData : MonoBehaviour
                 reward = 2000;
                 break;
             case StageID.Stage10:
+                reward = 3000;
                 break;
             case StageID.Stage11:
                 break;

@@ -42,6 +42,7 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "森林地帯：敵部隊の殲滅";
                 break;
             case StageID.Stage10:
+                guideText.text = "森林地帯：敵重装甲部隊の撃滅";
                 break;
             case StageID.Stage11:
                 break;

@@ -65,6 +65,7 @@ public class SceneChangeControl : MonoBehaviour
                         SceneManager.LoadScene("Stage9");
                         break;
                     case StageID.Stage10:
+                        SceneManager.LoadScene("Stage10");
                         break;
                     case StageID.Stage11:
                         break;
