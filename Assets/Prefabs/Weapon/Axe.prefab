@@ -250,12 +250,13 @@ MonoBehaviour:
   thisBullet: {fileID: 0}
   muzzle: {fileID: 0}
   weaponType: 4
-  range: 12
-  effectiveRange: 12
+  range: 10
+  effectiveRange: 10
   power: 10
   powerRange: 3
   bulletSpeed: 0
   totalShotNumber: 25
+  interval: 0.1
   diffusivity: 0
   weight: 100
   weaponName: "\u30A2\u30C3\u30AF\u30B9"
