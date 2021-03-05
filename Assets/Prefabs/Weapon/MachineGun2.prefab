@@ -271,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 973067607912976246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.8}
   m_Children:
   - {fileID: 8903833946281450385}
   - {fileID: 3569884375070619972}
@@ -298,15 +298,15 @@ MonoBehaviour:
   thisBullet: {fileID: 21713365192079208, guid: 728e4a39df6baf944a6e0d1bd8330d59,
     type: 3}
   muzzle: {fileID: 3569884375070619972}
-  weaponType: 1
-  range: 100
-  effectiveRange: 70
-  power: 8
-  powerRange: 4
-  bulletSpeed: 300
-  totalShotNumber: 40
-  interval: 0.05
-  diffusivity: 0.04
+  weaponType: 3
+  range: 120
+  effectiveRange: 120
+  power: 2
+  powerRange: 1
+  bulletSpeed: 100
+  totalShotNumber: 20
+  interval: 0.2
+  diffusivity: 0.05
   weight: 20
   weaponName: "\u5927\u578B\u30DE\u30B7\u30F3\u30AC\u30F3"
   blade: {fileID: 0}
@@ -575,7 +575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5278596390829218129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0.002696991, y: 0.076, z: -1.607}
+  m_LocalPosition: {x: 0.002696991, y: 0.02, z: -1.56}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 7866645406196259433}

@@ -514,8 +514,9 @@ MonoBehaviour:
   effectiveRange: 90
   power: 80
   powerRange: 10
-  bulletSpeed: 300
+  bulletSpeed: 200
   totalShotNumber: 1
+  interval: 0.1
   diffusivity: 0.02
   weight: 50
   weaponName: "\u30E9\u30A4\u30D5\u30EB"

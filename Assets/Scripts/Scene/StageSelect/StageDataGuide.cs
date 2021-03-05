@@ -24,7 +24,7 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "森林地帯：森林横断任務";
                 break;
             case StageID.Stage4:
-                guideText.text = "山岳基地：大型起動兵器ギガントの破壊";
+                guideText.text = "山岳基地：起動兵器ギガントの破壊";
                 break;
             case StageID.Stage5:
                 guideText.text = "平原：戦車部隊の撃滅";
@@ -45,6 +45,7 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "森林地帯：敵重装甲部隊の撃滅";
                 break;
             case StageID.Stage11:
+                guideText.text = "山岳基地：大型起動兵器迎撃作戦";
                 break;
             case StageID.Stage12:
                 break;

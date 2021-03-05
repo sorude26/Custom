@@ -49,7 +49,7 @@ public class Enemy : Unit
                     UnitCreate(9, 10, 6, 7, 6, 9, 6);//ライトアーマー通常
                     break;
                 case 5:
-                    UnitCreate(4, 9, 5, 12, 5, 12, 5);//オーガ
+                    UnitCreate(11, 9, 5, 12, 5, 12, 5);//オーガ
                     break;
                 case 6:
                     UnitCreate(9, 10, 6, 0, 6, 4, 6);//ライトアーマーアサルト
