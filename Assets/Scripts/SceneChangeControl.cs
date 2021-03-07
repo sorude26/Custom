@@ -71,6 +71,7 @@ public class SceneChangeControl : MonoBehaviour
                         SceneManager.LoadScene("Stage11");
                         break;
                     case StageID.Stage12:
+                        SceneManager.LoadScene("Stage12");
                         break;
                     default:
                         SceneManager.LoadScene("SampleScene");

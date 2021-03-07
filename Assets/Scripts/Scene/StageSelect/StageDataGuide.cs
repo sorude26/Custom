@@ -48,6 +48,7 @@ public class StageDataGuide : MonoBehaviour
                 guideText.text = "山岳基地：大型起動兵器迎撃作戦";
                 break;
             case StageID.Stage12:
+                guideText.text = "山岳基地：基地からの脱出";
                 break;
             default:
                 break;
