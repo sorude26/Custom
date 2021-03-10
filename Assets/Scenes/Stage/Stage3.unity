@@ -1969,6 +1969,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45a763b549ca8d740aaacc9090823e21, type: 3}
+--- !u!1 &556029099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2744055272137713716, guid: 45a763b549ca8d740aaacc9090823e21,
+    type: 3}
+  m_PrefabInstance: {fileID: 556029098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &587580792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5019,7 +5025,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh385286
+  m_Name: pb_Mesh109406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7254,12 +7260,14 @@ MonoBehaviour:
   goalPositionX: 22
   goalPositionZ: 13
   targetEnemy: {fileID: 0}
+  targetEnemies: []
   stageUnits: []
   map: {fileID: 285177025}
   turnCountTimer: 2
   panelP: {fileID: 1946470973}
   panelE: {fileID: 654850519}
   stageMessage: {fileID: 265469141}
+  actionButton: {fileID: 556029099}
   viewGameOver: 0
 --- !u!33 &2074288452
 MeshFilter:

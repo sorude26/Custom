@@ -2934,12 +2934,14 @@ MonoBehaviour:
   goalPositionX: 0
   goalPositionZ: 0
   targetEnemy: {fileID: 0}
+  targetEnemies: []
   stageUnits: []
   map: {fileID: 747654706}
   turnCountTimer: 2
   panelP: {fileID: 2127517672}
   panelE: {fileID: 655723521}
   stageMessage: {fileID: 1292042456}
+  actionButton: {fileID: 1402218830}
   viewGameOver: 0
 --- !u!4 &989832817
 Transform:
@@ -4345,6 +4347,12 @@ PrefabInstance:
 --- !u!224 &1402218829 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2744055272118215523, guid: 45a763b549ca8d740aaacc9090823e21,
+    type: 3}
+  m_PrefabInstance: {fileID: 1402218828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1402218830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2744055272137713716, guid: 45a763b549ca8d740aaacc9090823e21,
     type: 3}
   m_PrefabInstance: {fileID: 1402218828}
   m_PrefabAsset: {fileID: 0}

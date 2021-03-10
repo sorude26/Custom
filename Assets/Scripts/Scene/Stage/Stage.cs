@@ -53,6 +53,8 @@ public class Stage : MonoBehaviour
     public int StageReward { get; private set; } = 0;
     public int LossReward { get; private set; } = 0;
     private bool sceneChange =false;
+    [SerializeField]
+    GameObject actionButton;
     private void Awake()
     {
         Instance = this;        
@@ -90,6 +92,7 @@ public class Stage : MonoBehaviour
         TargetCursor.instance.SetCursor(PlayerUnit);
         PlayerAttackWeapon = PlayerUnit.LArmWeapon;
         turnCountTimer = 3;
+        actionButton.SetActive(false);
     }
 
     void Update()
@@ -140,6 +143,7 @@ public class Stage : MonoBehaviour
         }
         if (!PlayerTurn && !EnemyTurn && turnCountTimer <= 0 && start && !Victory && !defeat)
         {
+            actionButton.SetActive(true);
             PlayerTurn = true;
             PlayerTurnSystem();
         }
@@ -168,6 +172,7 @@ public class Stage : MonoBehaviour
                         panelE.SetUnit(EnemyUnit);                        
                     }
                     EnemyUnitCount++;
+                    actionButton.SetActive(false);
                 }
             }
         }
@@ -194,6 +199,7 @@ public class Stage : MonoBehaviour
                 unit.MoveFinishSet();
             }
             stageMessage.ViewMessage(2, 1.0f);
+            actionButton.SetActive(false);
             return;
         }
         if (!unitManager.GetPlayer(PlayerUnitCount).DestroyBody)
@@ -217,6 +223,7 @@ public class Stage : MonoBehaviour
                     unit.MoveFinishSet();
                 }
                 stageMessage.ViewMessage(2, 1.0f);
+                actionButton.SetActive(false);
                 return;
             }
         }

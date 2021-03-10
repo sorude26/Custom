@@ -1393,6 +1393,7 @@ MonoBehaviour:
   panelP: {fileID: 1783552721}
   panelE: {fileID: 552844501}
   stageMessage: {fileID: 718784491}
+  actionButton: {fileID: 2744055271497053304}
   viewGameOver: 0
 --- !u!212 &771640687
 SpriteRenderer:
@@ -4430,6 +4431,12 @@ PrefabInstance:
 --- !u!224 &2744055271497053303 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2744055272118215523, guid: 45a763b549ca8d740aaacc9090823e21,
+    type: 3}
+  m_PrefabInstance: {fileID: 2744055271497053302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2744055271497053304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2744055272137713716, guid: 45a763b549ca8d740aaacc9090823e21,
     type: 3}
   m_PrefabInstance: {fileID: 2744055271497053302}
   m_PrefabAsset: {fileID: 0}

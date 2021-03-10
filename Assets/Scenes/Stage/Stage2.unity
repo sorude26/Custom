@@ -653,6 +653,7 @@ MonoBehaviour:
   panelP: {fileID: 779360839}
   panelE: {fileID: 2099184978}
   stageMessage: {fileID: 1759526525}
+  actionButton: {fileID: 211950174}
   viewGameOver: 0
 --- !u!4 &130709410
 Transform:
@@ -1275,6 +1276,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45a763b549ca8d740aaacc9090823e21, type: 3}
+--- !u!1 &211950174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2744055272137713716, guid: 45a763b549ca8d740aaacc9090823e21,
+    type: 3}
+  m_PrefabInstance: {fileID: 211950173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &215759504
 PrefabInstance:
   m_ObjectHideFlags: 0
