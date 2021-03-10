@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public static PlayerUnitData[] UnitDatas { get; set; } = new PlayerUnitData[5];
     public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
     public static StageID StageCode { get; private set; }
-    public static int allMoney = 0;
+    public static int allMoney = 10000;
     public bool[] StageFlag { get; private set; }
     public struct ScoreData
     {
@@ -81,16 +81,16 @@ public class GameManager : MonoBehaviour
 
     public void FullReset()
     {
-        UnitDatas.ToList().ForEach(u =>
+        for (int i = 0; i < UnitDatas.Length; i++)
         {
-            u.BodyID = 0;
-            u.HeadID = 0;
-            u.LArmID = 0;
-            u.RArmID = 0;
-            u.LegID = 0;
-            u.WeaponLID = 0;
-            u.WeaponRID = 0;
-        });
+            UnitDatas[i].BodyID = 0;
+            UnitDatas[i].HeadID = 0;
+            UnitDatas[i].LArmID = 0;
+            UnitDatas[i].RArmID = 0;
+            UnitDatas[i].LegID = 0;
+            UnitDatas[i].WeaponLID = 0;
+            UnitDatas[i].WeaponRID = 0;
+        }
         allMoney = 0;
     }
 }

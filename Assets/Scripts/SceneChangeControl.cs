@@ -96,9 +96,10 @@ public class SceneChangeControl : MonoBehaviour
             case 5:
                 SceneManager.LoadScene("SortieScene");
                 break;
-            case 6:
-                GameManager.Instance.FullReset();
+            case 6:                
+                GameManager.Instance.FullReset();                
                 SceneManager.LoadScene("Title");
+                SoundManager.Instance.PlayBGM(BGMType.Title);
                 break;
             case 7:
                 SceneManager.LoadScene("Ending");
