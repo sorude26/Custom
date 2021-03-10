@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
@@ -76,5 +77,20 @@ public class GameManager : MonoBehaviour
         {
             SortieUnit[i].Sortie = false;
         }
+    }
+
+    public void FullReset()
+    {
+        UnitDatas.ToList().ForEach(u =>
+        {
+            u.BodyID = 0;
+            u.HeadID = 0;
+            u.LArmID = 0;
+            u.RArmID = 0;
+            u.LegID = 0;
+            u.WeaponLID = 0;
+            u.WeaponRID = 0;
+        });
+        allMoney = 0;
     }
 }

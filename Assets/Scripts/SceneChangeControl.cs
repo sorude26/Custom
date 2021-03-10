@@ -97,6 +97,7 @@ public class SceneChangeControl : MonoBehaviour
                 SceneManager.LoadScene("SortieScene");
                 break;
             case 6:
+                GameManager.Instance.FullReset();
                 SceneManager.LoadScene("Title");
                 break;
             case 7:
