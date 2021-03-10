@@ -166,9 +166,9 @@ public class Map : MonoBehaviour
     }
     public void StartSearch2(in Unit moveUnit)
     {
-        foreach (MapDate map in MoveList2)
+        for (int i = 0; i < MoveList2.Count; i++)
         {
-            map.movePoint = 0;
+            MoveList2[i].movePoint = 0;
         }
         int p = moveUnit.CurrentPosX + (moveUnit.CurrentPosZ * maxX);
         MoveList2[p].movePoint = moveUnit.GetMovePower();
@@ -339,7 +339,7 @@ public class Map : MonoBehaviour
                 }
             }
         }
-
+        MoveList2[p].movePoint = 0;
         movePower = movePower - MovePoint(MoveList2[p].MapType);//移動力変動
 
         if (movePower > 0)//移動可能箇所に足跡入力、再度検索
