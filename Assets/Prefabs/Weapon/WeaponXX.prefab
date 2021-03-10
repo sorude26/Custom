@@ -226,18 +226,18 @@ MonoBehaviour:
   muzzle: {fileID: 4237463622698369237}
   weaponType: 1
   range: 120
-  effectiveRange: 80
-  power: 9
-  powerRange: 7
+  effectiveRange: 70
+  power: 6
+  powerRange: 4
   bulletSpeed: 300
-  totalShotNumber: 100
+  totalShotNumber: 50
   interval: 0.08
   diffusivity: 0.01
   weight: 160
   weaponName: "\u30AC\u30C8\u30EA\u30F3\u30B0\u7832"
   blade: {fileID: 0}
   weaponGuide: 
-  price: 800
+  price: 500
 --- !u!1 &586410504841554696
 GameObject:
   m_ObjectHideFlags: 0

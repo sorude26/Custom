@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public static PlayerUnitData[] UnitDatas { get; set; } = new PlayerUnitData[5];
     public static PlayerUnitData[] SortieUnit { get; private set; } = new PlayerUnitData[5];
     public static StageID StageCode { get; private set; }
-    public static int allMoney = 10000;
+    public static int allMoney = 0;
     public bool[] StageFlag { get; private set; }
     public struct ScoreData
     {

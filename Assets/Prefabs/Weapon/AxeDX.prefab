@@ -346,6 +346,7 @@ MonoBehaviour:
   powerRange: 5
   bulletSpeed: 0
   totalShotNumber: 30
+  interval: 0.1
   diffusivity: 0
   weight: 400
   weaponName: "\u30D8\u30D3\u30FC\u30A2\u30C3\u30AF\u30B9"
@@ -1573,7 +1574,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.3, z: 1}
+  m_Size: {x: 0.4, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: -0.8}
 --- !u!65 &495263337301862524
 BoxCollider:
@@ -1586,7 +1587,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.3, z: 1}
+  m_Size: {x: 0.3, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0.6, z: -0.8}
 --- !u!65 &530438263526324786
 BoxCollider:
@@ -1599,7 +1600,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.3, z: 1}
+  m_Size: {x: 0.3, y: 0.3, z: 1}
   m_Center: {x: 0, y: -0.6, z: -0.8}
 --- !u!1 &6368308594700251218
 GameObject:

@@ -19,7 +19,7 @@ public class BaseSeneUI : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.allMoney >= 10000 && !moneyMax)
+        if (GameManager.allMoney >= 30000 && !moneyMax)
         {
             if (SceneChangeControl.Instance.GetFadeInEnd())
             {

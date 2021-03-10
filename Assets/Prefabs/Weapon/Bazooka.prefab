@@ -321,12 +321,13 @@ MonoBehaviour:
   powerRange: 3
   bulletSpeed: 160
   totalShotNumber: 100
+  interval: 0.1
   diffusivity: 0.05
   weight: 120
   weaponName: "\u5BFE\u8981\u585E\u643A\u884C\u7832"
   blade: {fileID: 0}
   weaponGuide: 
-  price: 300
+  price: 500
 --- !u!1 &1732407580847421844
 GameObject:
   m_ObjectHideFlags: 0

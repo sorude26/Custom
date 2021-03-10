@@ -40,7 +40,7 @@ public class Enemy : Unit
                     UnitCreate(4, 9);//戦闘ヘリ
                     break;
                 case 2:
-                    UnitCreate(2, 2, 2, 3, 2, 6, 2);//ギガント
+                    UnitCreate(2, 2, 2, 14, 2, 6, 2);//ギガント
                     break;
                 case 3:
                     UnitCreate(12, 15, 10, 1, 10, 0, 9);//ソルジャー
