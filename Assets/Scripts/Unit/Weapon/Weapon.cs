@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType
+{
+    Shot,
+    Melee,
+    Bom,
+}
 public enum WeaponType
 {
     Rifle,
