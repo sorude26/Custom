@@ -5,20 +5,13 @@ using UnityEngine;
 public class UnitPartsList : MonoBehaviour
 {
     public static UnitPartsList Instance { get; private set; }
-    [SerializeField]
-    List<GameObject> HeadObjectList;
-    [SerializeField]
-    List<GameObject> BodyObjectList;
-    [SerializeField]
-    List<GameObject> LArmObjectList;
-    [SerializeField]
-    List<GameObject> RArmObjectList;
-    [SerializeField]
-    List<GameObject> LegObjectList;
-    [SerializeField]
-    List<GameObject> weaponObjectList;
-    [SerializeField]
-    List<GameObject> BuildingObjectList;
+    [SerializeField] List<GameObject> HeadObjectList;
+    [SerializeField] List<GameObject> BodyObjectList;
+    [SerializeField] List<GameObject> LArmObjectList;
+    [SerializeField] List<GameObject> RArmObjectList;
+    [SerializeField] List<GameObject> LegObjectList;
+    [SerializeField] List<GameObject> weaponObjectList;
+    [SerializeField] List<GameObject> BuildingObjectList;
 
     private void Awake()
     {

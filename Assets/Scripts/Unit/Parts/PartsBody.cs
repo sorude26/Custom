@@ -94,4 +94,5 @@ public class PartsBody : UnitParts
     public int GetMovePower() { return movePower; }
     public Transform GetCameraPos() { return cameraPos; }
     public void SetCameraPos(Transform pos) { cameraPos = pos; }
+    public int GetUnitOverOutput() { return 0; }
 }

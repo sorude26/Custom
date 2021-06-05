@@ -10,28 +10,23 @@ public enum MoveType
 }
 public class PartsLeg : UnitParts
 {
-    [SerializeField]
-    MoveType moveType;
+    [SerializeField] MoveType moveType;
     public MoveType UnitMoveType { get; private set; }
-    [SerializeField]
-    int movePower = 10;
+    /// <summary> 移動力 </summary>
+    [SerializeField] int movePower = 10;
     public int MovePower { get; private set; }
-    [SerializeField]
-    float moveSpeed = 20;
+    [SerializeField] float moveSpeed = 20;
     public float MoveSpeed { get; private set; }
-    [SerializeField]
-    GameObject partsHigh;
-    [SerializeField]
-    float liftingForce;
+    [SerializeField] GameObject partsHigh;
+    /// <summary> 昇降力 </summary>
+    [SerializeField] float liftingForce;
+    /// <summary> 回避力 </summary>
+    [SerializeField] int avoidance;
     public float LiftingForce { get; protected set; }
-    [SerializeField]
-    GameObject legJointL1;
-    [SerializeField]
-    GameObject legJointL2;
-    [SerializeField]
-    GameObject legJointR1;
-    [SerializeField]
-    GameObject legJointR2;
+    [SerializeField] GameObject legJointL1;
+    [SerializeField] GameObject legJointL2;
+    [SerializeField] GameObject legJointR1;
+    [SerializeField] GameObject legJointR2;
     float posY;
     float posYtransform;
     int y =1;
@@ -72,6 +67,7 @@ public class PartsLeg : UnitParts
 
     public MoveType GetMoveType() { return moveType; }
     public int GetMovePower() { return movePower; }
+    public int GetAvoidance() { return avoidance; }
     public float GetLiftingForce() { return liftingForce; }
     public GameObject GetLegJointL1() { return legJointL1; }
     public GameObject GetLegJointL2() { return legJointL2; }

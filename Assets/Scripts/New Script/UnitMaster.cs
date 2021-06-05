@@ -4,48 +4,22 @@ using UnityEngine;
 
 public class UnitMaster : MonoBehaviour
 {
-    public int BodyPartsHp { get; protected set; }
-    public int Avoidance { get; protected set; }
     public int HitAccuracy { get; protected set; }
 
-    protected PartsBody body;
-    protected PartsHead head;
-    protected PartsLArm lArm;
-    protected PartsRArm rArm;
-    protected PartsLeg leg;
-    int bodySize = 0;
-    int headSize = 0;
-    int lArmSize = 0;
-    int rArmSize = 0;
-    int legSize = 0;
+    protected PartsBody body = null;
+    protected PartsHead head = null;
+    protected PartsLArm lArm = null;
+    protected PartsRArm rArm = null;
+    protected PartsLeg leg = null;
     protected virtual void StartSet()
     {
-        if (body)
-        {
-            bodySize = body.GetPartsSize();
-        }
-        if (head)
-        {
-            headSize = head.GetPartsSize();
-        }
-        if (lArm)
-        {
-            lArmSize = lArm.GetPartsSize();
-        }
-        if (rArm)
-        {
-            rArmSize = rArm.GetPartsSize();
-        }
-        if (leg)
-        {
-            legSize = leg.GetPartsSize();
-        }
+
     }
     /// <summary>
     /// 現在の総パーツ耐久値を返す
     /// </summary>
     /// <returns></returns>
-    public int CurrentHP()
+    public int GetCurrentHP()
     {
         int hp = 0;
         UnitParts[] allParts = { body, head, lArm, rArm, leg };
@@ -58,7 +32,52 @@ public class UnitMaster : MonoBehaviour
         }
         return hp;
     }
-
+    /// <summary>
+    /// 現在の回避率を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetAvoidance()
+    {
+        int avoidance = body.GetUnitOverOutput();
+        if (leg)
+        {
+            if (leg.CurrentPartsHp > 0)
+            {
+                avoidance += leg.GetAvoidance();
+            }
+        }
+        if (head)
+        {
+            if (head.CurrentPartsHp > 0)
+            {
+                avoidance += head.GetAvoidance();
+            }
+        }
+        return avoidance;
+    }
+    /// <summary>
+    /// 平均装甲値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetAmorPoint()
+    {
+        int count = 0; 
+        int armor = 0;
+        UnitParts[] allParts = { body, head, lArm, rArm, leg };
+        foreach (var parts in allParts)
+        {
+            if (parts)
+            {
+                if (parts.CurrentPartsHp > 0)
+                {
+                    continue;
+                }
+                armor += parts.GetArmorPoint();
+                count++;
+            }
+        }
+        return armor / count;
+    }
     /// <summary>
     /// 命中弾をランダムなパーツに割り振り、ダメージ計算を行わせる
     /// </summary>
@@ -79,46 +98,22 @@ public class UnitMaster : MonoBehaviour
             }
         }
         int r = Random.Range(0, hitPos);
-        if (bodySize > r)
+        int prb = 0;
+        foreach (var parts in allParts)
         {
-            body.Damage(hitDamage);
-        }
-        else
-        {
-            r -= bodySize;
-        }
-        if (head)
-        {
-            if (head.CurrentPartsHp > 0 && head.GetPartsSize() > r)
+            if (parts)
             {
-                head.Damage(hitDamage);
+                if (parts.CurrentPartsHp > 0)
+                {
+                    continue;
+                }
+                prb += parts.GetPartsSize();
+                if (prb > r)
+                {
+                    parts.Damage(hitDamage);
+                    break;
+                }
             }
-            else
-            {
-                r -= head.GetPartsSize();
-            }
-        }
-        if (lArm)
-        {
-            if (lArm.CurrentPartsHp > 0 && lArmSize > r)
-            {
-                lArm.Damage(hitDamage);
-            }
-            else
-            {
-                r -= lArmSize;
-            }
-        }
-        if (rArm)
-        {
-            if (rArm.CurrentPartsHp > 0 && rArmSize > r)
-            {
-                rArm.Damage(hitDamage);
-            }
-        }
-        if (leg)
-        {
-            leg.Damage(hitDamage);
         }
     }
 
