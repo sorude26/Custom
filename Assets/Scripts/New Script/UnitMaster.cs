@@ -13,64 +13,112 @@ public class UnitMaster : MonoBehaviour
     protected PartsLArm lArm;
     protected PartsRArm rArm;
     protected PartsLeg leg;
-
-    public int CurrentHP()
+    int bodySize = 0;
+    int headSize = 0;
+    int lArmSize = 0;
+    int rArmSize = 0;
+    int legSize = 0;
+    protected virtual void StartSet()
     {
-        int hp = 0;
         if (body)
         {
-            hp += body.CurrentPartsHp;
+            bodySize = body.GetPartsSize();
         }
         if (head)
         {
-            hp += head.CurrentPartsHp;
+            headSize = head.GetPartsSize();
         }
         if (lArm)
         {
-            hp += lArm.CurrentPartsHp;
+            lArmSize = lArm.GetPartsSize();
         }
         if (rArm)
         {
-            hp += rArm.CurrentPartsHp;
+            rArmSize = rArm.GetPartsSize();
         }
         if (leg)
         {
-            hp += leg.CurrentPartsHp;
+            legSize = leg.GetPartsSize();
+        }
+    }
+    /// <summary>
+    /// 現在の総パーツ耐久値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int CurrentHP()
+    {
+        int hp = 0;
+        UnitParts[] allParts = { body, head, lArm, rArm, leg };
+        foreach (var parts in allParts)
+        {
+            if (parts)
+            {
+                hp += parts.CurrentPartsHp;
+            }
         }
         return hp;
     }
 
-    public void HitCheck(int hitDamage)
+    /// <summary>
+    /// 命中弾をランダムなパーツに割り振り、ダメージ計算を行わせる
+    /// </summary>
+    /// <param name="hitDamage"></param>
+    public void HitCheckShot(int hitDamage)
     {
         int hitPos = 0;
-        if (body && body.CurrentPartsHp > 0)
+        UnitParts[] allParts = { body, head, lArm, rArm, leg };
+        foreach (var parts in allParts)
         {
-            hitPos += body.GetPartsSize();
-        }
-        if (head && head.CurrentPartsHp > 0)
-        {
-            hitPos += head.GetPartsSize();
-        }
-        if (lArm && lArm.CurrentPartsHp > 0)
-        {
-            hitPos += lArm.GetPartsSize();
-        }
-        if (rArm && rArm.CurrentPartsHp > 0)
-        {
-            hitPos += rArm.GetPartsSize();
-        }
-        if (leg && leg.CurrentPartsHp > 0)
-        {
-            hitPos += leg.GetPartsSize();
+            if (parts)
+            {
+                if (parts.CurrentPartsHp > 0)
+                {
+                    continue;
+                }
+                hitPos += parts.GetPartsSize();
+            }
         }
         int r = Random.Range(0, hitPos);
-        if (r > body.GetPartsSize())
+        if (bodySize > r)
         {
-            r -= body.GetPartsSize();
+            body.Damage(hitDamage);
         }
         else
         {
-            body.Damage(r);
+            r -= bodySize;
+        }
+        if (head)
+        {
+            if (head.CurrentPartsHp > 0 && head.GetPartsSize() > r)
+            {
+                head.Damage(hitDamage);
+            }
+            else
+            {
+                r -= head.GetPartsSize();
+            }
+        }
+        if (lArm)
+        {
+            if (lArm.CurrentPartsHp > 0 && lArmSize > r)
+            {
+                lArm.Damage(hitDamage);
+            }
+            else
+            {
+                r -= lArmSize;
+            }
+        }
+        if (rArm)
+        {
+            if (rArm.CurrentPartsHp > 0 && rArmSize > r)
+            {
+                rArm.Damage(hitDamage);
+            }
+        }
+        if (leg)
+        {
+            leg.Damage(hitDamage);
         }
     }
 
