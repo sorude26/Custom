@@ -60,6 +60,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     protected string weaponGuide = "";
     [SerializeField] protected int price = 0;
+    [SerializeField] int weaponID;
     protected void Start()
     {
         PowerRange = powerRange;
@@ -220,6 +221,7 @@ public class Weapon : MonoBehaviour
     public int GetShotNumber() { return totalShotNumber; }
     public WeaponType GetWeaponType() { return weaponType; }
     public int GetPrice() { return price; }
+    public int GetID() { return weaponID; }
     public void SetOwner(Unit owner)
     {
         this.owner = owner;

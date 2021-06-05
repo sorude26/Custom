@@ -33,6 +33,7 @@ public class UnitParts : MonoBehaviour
     protected string partsGuide = "";
     public Unit Owner { get; protected set; }
     protected bool partsBreak = false;
+    [SerializeField] int partsID;
 
     protected void StartSet()
     {
@@ -93,5 +94,6 @@ public class UnitParts : MonoBehaviour
     [SerializeField] protected int price = 0;
     public int GetPrice() { return price; }
     public int GetPartsSize() { return 1; }
+    public int GetID() { return partsID; }
 
 }
