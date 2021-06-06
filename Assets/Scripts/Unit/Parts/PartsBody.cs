@@ -10,26 +10,17 @@ public enum UnitType
 }
 public class PartsBody : UnitParts
 {
-    [SerializeField]
-    int unitOutput;
+    [SerializeField] int unitOutput;
     public int UnitOutput { get; protected set; }
-    [SerializeField]
-    float liftingForce;
+    [SerializeField] float liftingForce;
     public float LiftingForce { get; protected set; }
-    [SerializeField]
-    Transform headParts;
-    [SerializeField]
-    Transform rArmParts;
-    [SerializeField]
-    Transform lArmParts;
-    [SerializeField]
-    Transform bodyCenter;
-    [SerializeField]
-    int movePower = 10;
-    [SerializeField]
-    GameObject bodyHand;
-    [SerializeField]
-    Transform cameraPos = null;
+    [SerializeField] Transform headParts;
+    [SerializeField] Transform rArmParts;
+    [SerializeField] Transform lArmParts;
+    [SerializeField] Transform bodyCenter;
+    [SerializeField] int movePower = 10;
+    [SerializeField] GameObject bodyHand;
+    [SerializeField] Transform cameraPos = null;
     public int MovePower { get; private set; }
     
     [SerializeField] public UnitType unitType = UnitType.Human;

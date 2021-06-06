@@ -4,38 +4,31 @@ using UnityEngine;
 
 public class UnitParts : MonoBehaviour
 {
-    [SerializeField]
-    protected string partsName;
+    [SerializeField] protected string partsName;
 
-    [SerializeField]
-    protected int partsHp;
+    [SerializeField] protected int partsHp;
     public int MaxPartsHp { get; protected set; }
     public int CurrentPartsHp { get; protected set; }
 
-    [SerializeField]
-    protected int defense;
+    [SerializeField] protected int defense;
     public int Defense { get; protected set; }
 
-    [SerializeField]
-    protected int weight;
+    [SerializeField] protected int weight;
     public int Weight { get; protected set; }//重量
     public bool PartsDestroy { get; protected set; }
 
-    [SerializeField]
-    protected Armor armorParts = null;
-    [SerializeField]
-    protected int armorPoint = 0;
+    [SerializeField] protected Armor armorParts = null;
+    [SerializeField] protected int armorPoint = 0;
     [SerializeField]
     protected int armorDefense = 0;
     public int ArmorPoint { get; protected set; }
     public int ArmorDefense { get; protected set; }
-    [SerializeField]
-    protected string partsGuide = "";
+    [SerializeField] protected string partsGuide = "";
     public Unit Owner { get; protected set; }
     protected bool partsBreak = false;
     [SerializeField] int partsID;
-
-    protected void StartSet()
+    [SerializeField] protected int price = 0;
+    protected virtual void StartSet()
     {
         MaxPartsHp = partsHp;
         CurrentPartsHp = MaxPartsHp;
@@ -68,7 +61,7 @@ public class UnitParts : MonoBehaviour
         transform.position = partsPos;
     }
 
-    protected void PartsBreak()
+    protected virtual void PartsBreak()
     {
         SoundManager.Instance.PlaySE(SEType.Explosion1);
         EffectManager.PlayEffect(EffectID.Explosion, transform.position);
@@ -91,7 +84,6 @@ public class UnitParts : MonoBehaviour
     public int GetDefense() { return defense; }
     public int GetArmorPoint() { return armorPoint; }
     public int GetArmorDefense() { return armorDefense; }
-    [SerializeField] protected int price = 0;
     public int GetPrice() { return price; }
     public int GetPartsSize() { return 1; }
     public int GetID() { return partsID; }

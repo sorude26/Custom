@@ -19,20 +19,19 @@ public enum WeaponType
 
 public class Weapon : MonoBehaviour
 {
-
-    [SerializeField]
-    GameObject thisBullet = null;//弾
-
-    [SerializeField]
-    Transform muzzle = null;//銃口
-
-    [SerializeField]
-    WeaponType weaponType = WeaponType.Rifle;//武器種
+    /// <summary> 弾のPrefab </summary>
+    [SerializeField] GameObject thisBullet = null;
+    /// <summary> 銃口の位置 </summary>
+    [SerializeField] Transform muzzle = null;
+    /// <summary> 武器種 </summary>
+    [SerializeField] WeaponType weaponType = WeaponType.Rifle;
     public WeaponType Type { get; protected set; }
-    public float Range { get; private set; }//最大射程
+    /// <summary> 最大射程 </summary>
     [SerializeField] float range = 0;
-    public float EffectiveRange { get; private set; }//有効射程
+    public float Range { get; private set; }
+    /// <summary> 有効射程 </summary>
     [SerializeField] float effectiveRange = 0;
+    public float EffectiveRange { get; private set; }
     public int Power { get; private set; }//威力
     [SerializeField] int power = 0;
     public int PowerRange { get; private set; }//威力振れ幅
