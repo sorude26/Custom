@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackParts
+{
+    LArm,
+    RArm,
+    LShoulder,
+    RShoulder,
+    Body,
+}
 public class UnitMaster : MonoBehaviour
 {
     public int HitAccuracy { get; protected set; }
@@ -11,6 +19,11 @@ public class UnitMaster : MonoBehaviour
     protected PartsLArm lArm = null;
     protected PartsRArm rArm = null;
     protected PartsLeg leg = null;
+    protected WeaponMaster LArmWeapon = null;
+    protected WeaponMaster RArmWeapon = null;
+    protected WeaponMaster LSWeapon = null;
+    protected WeaponMaster RSWeapon = null;
+    protected WeaponMaster BodyWeapon = null;
     protected virtual void StartSet()
     {
 
@@ -77,6 +90,26 @@ public class UnitMaster : MonoBehaviour
             }
         }
         return armor / count;
+    }
+    public int GetHitAccuracy(AttackParts attackParts)
+    {
+        switch (attackParts)
+        {
+            case AttackParts.LArm:
+
+                break;
+            case AttackParts.RArm:
+                break;
+            case AttackParts.LShoulder:
+                break;
+            case AttackParts.RShoulder:
+                break;
+            case AttackParts.Body:
+                break;
+            default:                
+                break;
+        }
+        return 0;
     }
     /// <summary>
     /// 命中弾をランダムなパーツに割り振り、ダメージ計算を行わせる

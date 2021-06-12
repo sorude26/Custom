@@ -47,7 +47,7 @@ public class UnitParts : MonoBehaviour
         if (CurrentPartsHp > 0)
         {
             CurrentPartsHp -= damage;
-            //Debug.Log(partsName + "にヒット" + damage + "ダメージ！残："+ CurrentPartsHp );
+            Debug.Log(partsName + "にヒット" + damage + "ダメージ！残："+ CurrentPartsHp );
             if (CurrentPartsHp <= 0)
             {
                 CurrentPartsHp = 0;

@@ -32,6 +32,7 @@ public class PartsHead : UnitParts
     }
     public float GetDetectionRange() { return detectionRange; }
     public int GetAvoidance() { return avoidance; }
+    public int GetHitAccyracy() { return hitAccuracy; }
     public Transform GetCameraPos() { return cameraPos; }
     
 }
